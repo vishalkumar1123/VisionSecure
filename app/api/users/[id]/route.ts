@@ -71,7 +71,7 @@ export async function PATCH(
     const body = await req.json()
     const validatedData = updateUserSchema.parse(body)
 
-    const user = await UserService.updateUser(params.id, validatedData)
+    const user = await UserService.updateUser(params.id, { ...validatedData, role: validatedData.role as UserRole })
     return successResponse(user, "User updated successfully")
   } catch (error) {
     return handleApiError(error)

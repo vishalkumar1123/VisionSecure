@@ -23,17 +23,14 @@ export async function POST(req: NextRequest) {
       )
 
     return createdResponse(
-      {
-        user: result.user,
+{
+ user: result.user,
 
-        message:
-          "Registration successful. Please verify your email.",
-
-        verificationUrl:
-          `/verify-email?token=${result.verificationToken}&email=${result.user.email}`,
-      },
-      "User registered successfully"
-    )
+ message:
+ "Registration successful",
+},
+"User registered successfully"
+)
   } catch (error) {
     return handleApiError(error)
   }

@@ -66,12 +66,7 @@ export const authOptions: NextAuthOptions = {
               "Account disabled"
             )
             return null
-          }
-          if (!user.emailVerified) {
-       throw new Error(
-       "Please verify your email first"
-      )
-     }
+          }         
 
           const isPasswordCorrect =
             await bcrypt.compare(

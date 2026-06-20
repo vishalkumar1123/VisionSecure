@@ -3,10 +3,10 @@ import type { ActivityAction } from "@/types"
 
 interface IActivityLog {
   _id?: string
-  userId: string
+  userId: mongoose.Types.ObjectId | string
   action: ActivityAction
   resourceType?: string
-  resourceId?: string
+  resourceId?: mongoose.Types.ObjectId | string
   changes?: Record<string, any>
   ipAddress?: string
   userAgent?: string
@@ -86,14 +86,13 @@ const ActivityLogSchema = new Schema<IActivityLog>(
   },
   {
     timestamps: true,
-    indexes: [
-      { userId: 1, createdAt: -1 },
-      { action: 1, createdAt: -1 },
-      { resourceType: 1, resourceId: 1 },
-      { createdAt: -1 },
-    ],
   }
 )
+
+ActivityLogSchema.index({ userId: 1, createdAt: -1 })
+ActivityLogSchema.index({ action: 1, createdAt: -1 })
+ActivityLogSchema.index({ resourceType: 1, resourceId: 1 })
+ActivityLogSchema.index({ createdAt: -1 })
 
 export default models.ActivityLog || model<IActivityLog>(
   "ActivityLog",

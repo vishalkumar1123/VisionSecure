@@ -84,122 +84,202 @@ export default function UsersPage() {
 useEffect(() => {
   fetchUsers()
 }, [])
-async function deleteUser(id: string) {
+async function deleteUser(user: any) {
+
+  if (isProtectedUser(user)) {
+
+    toast.error(
+      `${user.role} cannot be deleted`
+    )
+
+    return
+  }
+
   const confirmed = window.confirm(
-    "Are you sure you want to delete this user?"
+    `Delete ${user.name}?`
   )
 
   if (!confirmed) return
 
   try {
-    const res = await fetch(`/api/users/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+
+    const res = await fetch(
+      `/api/users/${user._id}`,
+      {
+        method: "DELETE",
+      }
+    )
 
     const data = await res.json()
 
     if (!res.ok) {
+
       throw new Error(
         data.message ||
-          data.error ||
-          "Failed to delete user"
+        "Delete failed"
       )
     }
 
     toast.success(
-      data.message ||
-        "User deleted successfully"
+      "User deleted successfully"
     )
 
-    await fetchUsers()
+    fetchUsers()
+
   } catch (error: any) {
-    console.error(
-      "Delete User Error:",
-      error
-    )
 
     toast.error(
-      error.message ||
-        "Delete failed"
+      error.message
     )
   }
 }
-  async function toggleUserStatus(
-    id: string,
-    currentStatus: boolean
-  ) {
-    try {
-      const res = await fetch(
-        `/api/users/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            isActive: !currentStatus,
-          }),
-        }
-      )
+ async function toggleUserStatus(
+ user:any
+) {
 
-      const data = await res.json()
+ if (isProtectedUser(user)) {
 
-      if (data.success) {
-        toast.success(
-          currentStatus
-            ? "User Disabled"
-            : "User Activated"
-        )
+   toast.error(
+     `${user.role} cannot be locked or unlocked`
+   )
 
-        fetchUsers()
-      } else {
-        toast.error(data.error)
-      }
-    } catch {
-      toast.error("Update failed")
+   return
+ }
+
+ try {
+
+   const res = await fetch(
+     `/api/users/${user._id}`,
+     {
+       method:"PATCH",
+
+       headers:{
+         "Content-Type":
+         "application/json"
+       },
+
+       body:JSON.stringify({
+
+         isActive:
+         !user.isActive
+
+       })
+     }
+   )
+
+   const data =
+   await res.json()
+
+   if(data.success){
+
+     toast.success(
+
+      user.isActive
+
+      ? "User disabled"
+
+      : "User activated"
+
+     )
+
+     fetchUsers()
+
+   }else{
+
+     toast.error(
+
+      data.message
+
+     )
+   }
+
+ }catch{
+
+   toast.error(
+    "Update failed"
+   )
+ }
+}
+
+ async function updateUserRole() {
+
+ if (!selectedUser) return
+
+ if (
+   isProtectedUser(
+    selectedUser
+   )
+ ) {
+
+   toast.error(
+
+    `${selectedUser.role} role cannot be changed`
+
+   )
+
+   return
+ }
+
+ try {
+
+   const res = await fetch(
+
+    `/api/users/${selectedUser._id}`,
+
+    {
+
+      method:"PATCH",
+
+      headers:{
+
+       "Content-Type":
+
+       "application/json"
+
+      },
+
+      body:JSON.stringify({
+
+       role:selectedRole
+
+      })
+
     }
-  }
+   )
 
-  async function updateUserRole() {
-    if (!selectedUser) return
+   const data =
+   await res.json()
 
-    try {
-      const res = await fetch(
-        `/api/users/${selectedUser._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            role: selectedRole,
-          }),
-        }
-      )
+   if(data.success){
 
-      const data = await res.json()
+     toast.success(
 
-      if (data.success) {
-        toast.success(
-          "Role Updated Successfully"
-        )
+      "Role updated successfully"
 
-        setSelectedUser(null)
+     )
 
-        fetchUsers()
-      } else {
-        toast.error(data.error)
-      }
-    } catch {
-      toast.error("Role Update Failed")
-    }
-  }
+     setSelectedUser(null)
 
+     fetchUsers()
+
+   }else{
+
+     toast.error(
+
+      data.message
+
+     )
+   }
+
+ }catch{
+
+   toast.error(
+
+    "Role update failed"
+
+   )
+ }
+}
   const columnDefs = useMemo<
     ColDef[]
   >(
@@ -273,12 +353,11 @@ async function deleteUser(id: string) {
             </button>
 
             <button
-              onClick={() =>
-                toggleUserStatus(
-                  params.data._id,
-                  params.data.isActive
-                )
-              }
+             onClick={() =>
+  toggleUserStatus(
+    params.data
+  )
+}
               className="rounded bg-yellow-600 p-2 text-white"
             >
               <Shield size={16} />
@@ -287,7 +366,7 @@ async function deleteUser(id: string) {
             <button
               onClick={() =>
                 deleteUser(
-                  params.data._id
+                  params.data
                 )
               }
               className="rounded bg-red-600 p-2 text-white"
@@ -422,5 +501,11 @@ async function deleteUser(id: string) {
       </Dialog>
 
     </div>
+  )
+}
+function isProtectedUser(user: any) {
+  return (
+    user?.role === "admin" ||
+    user?.role === "super_admin"
   )
 }
