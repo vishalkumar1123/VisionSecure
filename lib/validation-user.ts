@@ -27,7 +27,8 @@ const passwordSchema = z
     'Password must contain at least one special character (!@#$%^&*)'
   )
 
-const roleOptions = Object.keys(USER_ROLES) as const
+// 1. FIXED HERE: Convert dynamic keys to a typed tuple that Zod accepts
+const roleOptions = Object.keys(USER_ROLES) as [string, ...string[]]
 
 export const createUserSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),

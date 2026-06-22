@@ -19,7 +19,8 @@ export interface ValidationErrorDetail {
   value?: any
 }
 
-export interface ApiErrorDetail extends ApiErrorResponse {
+// FIXED: Remove 'errors' from ApiErrorResponse before extending it
+export interface ApiErrorDetail extends Omit<ApiErrorResponse, 'errors'> {
   errors?: ValidationErrorDetail[]
   timestamp?: string
   path?: string

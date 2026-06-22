@@ -5,14 +5,17 @@
 
 import { NextRequest } from "next/server"
 import { getToken } from "next-auth/jwt"
+
 import { ActivityLogService } from "@/services/activity-log-service"
 import { successResponse, handleApiError } from "@/middleware/error-handler"
+
 import { canUserPerform } from "@/constants/permissions"
+
 import type { UserRole } from "@/types"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userId: string } }
+  context: { params: Promise<{ userId: string }> }
 ) {
   try {
     const token = await getToken({
@@ -21,16 +24,28 @@ export async function GET(
     })
 
     if (!token) {
-      return new Response("Unauthorized", { status: 401 })
+      return new Response("Unauthorized", {
+        status: 401,
+      })
     }
 
     // Check permission
     if (!canUserPerform(token.role as UserRole, "activity.view")) {
-      return new Response("Forbidden", { status: 403 })
+      return new Response("Forbidden", {
+        status: 403,
+      })
     }
 
-    const summary = await ActivityLogService.getUserActivitySummary(params.userId)
-    return successResponse(summary, "User activity summary fetched")
+    // Next.js 16
+    const { userId } = await context.params
+
+    const summary =
+      await ActivityLogService.getUserActivitySummary(userId)
+
+    return successResponse(
+      summary,
+      "User activity summary fetched"
+    )
   } catch (error) {
     return handleApiError(error)
   }

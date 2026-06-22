@@ -17,7 +17,8 @@ const resetPasswordSchema = z.object({
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  // 1. Change this to expect context with a Promise
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = await getToken({
@@ -37,7 +38,12 @@ export async function POST(
     const body = await req.json()
     const validatedData = resetPasswordSchema.parse(body)
 
-    const user = await UserService.resetUserPassword(params.id, validatedData.newPassword)
+    // 2. Await the context params here
+    const { id } = await context.params
+
+    // 3. Use the awaited 'id' variable
+    const user = await UserService.resetUserPassword(id, validatedData.newPassword)
+    
     return successResponse(user, "Password reset successfully")
   } catch (error) {
     return handleApiError(error)

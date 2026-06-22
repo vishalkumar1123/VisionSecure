@@ -12,7 +12,8 @@ import type { UserRole } from "@/types"
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  // 1. Change the second argument to accept context with a Promise
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = await getToken({
@@ -29,7 +30,12 @@ export async function POST(
       return new Response("Forbidden", { status: 403 })
     }
 
-    const user = await UserService.deactivateUser(params.id)
+    // 2. Await the params before using the id
+    const { id } = await context.params
+
+    // 3. Pass the extracted id to your service
+    const user = await UserService.deactivateUser(id)
+    
     return successResponse(user, "User deactivated")
   } catch (error) {
     return handleApiError(error)

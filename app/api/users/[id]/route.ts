@@ -22,7 +22,7 @@ import type { UserRole } from "@/types"
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } // Updated to Promise
 ) {
   try {
     const token = await getToken({
@@ -34,12 +34,13 @@ export async function GET(
       return new Response("Unauthorized", { status: 401 })
     }
 
-    // Check permission
     if (!canUserPerform(token.role as UserRole, "user.read")) {
       return new Response("Forbidden", { status: 403 })
     }
 
-    const user = await UserService.getUserById(params.id)
+    // Await the context params
+    const { id } = await context.params
+    const user = await UserService.getUserById(id)
     return successResponse(user, "User fetched successfully")
   } catch (error) {
     return handleApiError(error)
@@ -51,7 +52,7 @@ export async function GET(
  */
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } // Updated to Promise
 ) {
   try {
     const token = await getToken({
@@ -63,7 +64,6 @@ export async function PATCH(
       return new Response("Unauthorized", { status: 401 })
     }
 
-    // Check permission
     if (!canUserPerform(token.role as UserRole, "user.update")) {
       return new Response("Forbidden", { status: 403 })
     }
@@ -71,7 +71,9 @@ export async function PATCH(
     const body = await req.json()
     const validatedData = updateUserSchema.parse(body)
 
-    const user = await UserService.updateUser(params.id, { ...validatedData, role: validatedData.role as UserRole })
+    // Await the context params
+    const { id } = await context.params
+    const user = await UserService.updateUser(id, { ...validatedData, role: validatedData.role as UserRole })
     return successResponse(user, "User updated successfully")
   } catch (error) {
     return handleApiError(error)
@@ -83,7 +85,7 @@ export async function PATCH(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } // Updated to Promise
 ) {
   try {
     const token = await getToken({
@@ -95,13 +97,13 @@ export async function DELETE(
       return new Response("Unauthorized", { status: 401 })
     }
 
-    // Check permission
     if (!canUserPerform(token.role as UserRole, "user.delete")) {
       return new Response("Forbidden", { status: 403 })
     }
 
-    // Soft delete by deactivating
-    const user = await UserService.deactivateUser(params.id)
+    // Await the context params
+    const { id } = await context.params
+    const user = await UserService.deactivateUser(id)
     return successResponse(user, "User deactivated")
   } catch (error) {
     return handleApiError(error)

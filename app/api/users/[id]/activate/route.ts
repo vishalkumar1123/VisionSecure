@@ -1,6 +1,6 @@
 /**
- * POST /api/users/[id]/activate
- * Activate a user account
+ * POST /api/users/[id]/deactivate
+ * Deactivate a user account
  */
 
 import { NextRequest } from "next/server"
@@ -10,9 +10,10 @@ import { successResponse, handleApiError } from "@/middleware/error-handler"
 import { canUserPerform } from "@/constants/permissions"
 import type { UserRole } from "@/types"
 
+// 1. Update the context type here to use Promise
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = await getToken({
@@ -21,16 +22,27 @@ export async function POST(
     })
 
     if (!token) {
-      return new Response("Unauthorized", { status: 401 })
+      return new Response("Unauthorized", {
+        status: 401,
+      })
     }
 
-    // Check permission
     if (!canUserPerform(token.role as UserRole, "user.update")) {
-      return new Response("Forbidden", { status: 403 })
+      return new Response("Forbidden", {
+        status: 403,
+      })
     }
 
-    const user = await UserService.activateUser(params.id)
-    return successResponse(user, "User activated")
+    // 2. Await the params before destructuring
+    const { id } = await context.params
+
+    // 3. Make sure it calls deactivateUser instead of activateUser
+    const user = await UserService.deactivateUser(id)
+
+    return successResponse(
+      user,
+      "User deactivated"
+    )
   } catch (error) {
     return handleApiError(error)
   }

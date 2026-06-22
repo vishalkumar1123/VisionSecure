@@ -125,8 +125,17 @@ export async function withAuth(req: NextRequest) {
  * Extract user info from request headers
  */
 export function getUserInfoFromRequest(req: NextRequest) {
+  // 1. Check fallback proxies first, then real-ip header
+  const forwardedFor = req.headers.get("x-forwarded-for")
+  const realIp = req.headers.get("x-real-ip")
+  
+  // 2. If forwarded-for contains a chain of proxy IPs, pick the client's original IP (the first one)
+  const ipAddress = forwardedFor 
+    ? forwardedFor.split(',')[0].trim() 
+    : (realIp || "unknown")
+
   return {
-    ipAddress: req.ip || req.headers.get("x-forwarded-for") || "unknown",
+    ipAddress,
     userAgent: req.headers.get("user-agent") || "unknown",
   }
 }
