@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Providers from "@/components/providers"
 import { Toaster } from "sonner"
 
@@ -85,6 +86,7 @@ export default function RootLayout({
          </Providers>
 
         {process.env.NODE_ENV === "production" && <Analytics />}
+        {process.env.NODE_ENV === "production" && <SpeedInsights />}
         
       </body>
     </html>
