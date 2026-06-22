@@ -83,9 +83,7 @@ export default function RootLayout({
           {children}
           <Toaster richColors position="top-right" />
          </Providers>
-
-        {process.env.NODE_ENV === "production" && <Analytics />}
-        
+        <Analytics />
       </body>
     </html>
   )
