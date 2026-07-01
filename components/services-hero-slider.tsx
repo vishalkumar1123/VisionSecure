@@ -62,7 +62,7 @@ const slides = [
     title: "Advanced Fire Alarm Systems",
     subtitle:
       "Reliable fire detection systems with smoke sensors, emergency alerts, and complete fire safety protection.",
-    image: "/images/smoke.jpeg",
+    image: "/images/Smoke Detector.jpeg",
   },
 
   {
@@ -211,7 +211,7 @@ export function ServicesHeroSlider() {
 
                   <CheckCircle2 className="h-4 w-4 text-green-400" />
 
-                  500+ Installations
+                  150+ Installations
 
                 </div>
 

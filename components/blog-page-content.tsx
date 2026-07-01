@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { blogPosts } from "@/lib/blogs"
 import { 
   Calendar,
   Clock,
@@ -14,69 +15,6 @@ import {
   Youtube
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "How to Choose the Right CCTV Camera for Your Home",
-    excerpt: "A comprehensive guide to selecting the perfect CCTV system based on your home size, budget, and security needs.",
-    image: "/images/service-cctv.jpg",
-    category: "CCTV",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Biometric Attendance vs Manual Attendance: Which is Better?",
-    excerpt: "Compare the pros and cons of biometric and manual attendance systems for your office or school.",
-    image: "/images/service-biometric.jpg",
-    category: "Biometric",
-    date: "March 10, 2024",
-    readTime: "4 min read",
-    featured: false
-  },
-  {
-    id: 3,
-    title: "Top 5 Home Automation Features You Need in 2024",
-    excerpt: "Discover the must-have smart home features that can improve your lifestyle and save energy.",
-    image: "/images/service-automation.jpg",
-    category: "Automation",
-    date: "March 5, 2024",
-    readTime: "6 min read",
-    featured: false
-  },
-  {
-    id: 4,
-    title: "Understanding IP vs Analog CCTV Systems",
-    excerpt: "Learn the key differences between IP and analog cameras to make an informed decision for your security setup.",
-    image: "/images/project-1.jpg",
-    category: "CCTV",
-    date: "February 28, 2024",
-    readTime: "7 min read",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "Fire Safety Tips for Commercial Buildings",
-    excerpt: "Essential fire safety measures and equipment every commercial building should have installed.",
-    image: "/images/project-2.jpg",
-    category: "Fire Safety",
-    date: "February 20, 2024",
-    readTime: "5 min read",
-    featured: false
-  },
-  {
-    id: 6,
-    title: "Benefits of Access Control Systems for Offices",
-    excerpt: "Why modern offices are switching from traditional locks to electronic access control systems.",
-    image: "/images/service-access.jpg",
-    category: "Access Control",
-    date: "February 15, 2024",
-    readTime: "4 min read",
-    featured: false
-  },
-]
 
 const categories = ["All", "CCTV", "Biometric", "Automation", "Access Control", "Fire Safety", "Networking"]
 
@@ -103,19 +41,21 @@ export function BlogPageContent() {
     return () => observer.disconnect()
   }, [])
 
-  const filteredPosts = blogPosts.filter(post => {
+  const filteredPosts = blogPosts.filter((post) => {
     const matchesCategory = activeCategory === "All" || post.category === activeCategory
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesSearch = 
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesCategory && matchesSearch
   })
 
-  const featuredPost = blogPosts.find(post => post.featured)
-  const regularPosts = filteredPosts.filter(post => !post.featured)
+  const featuredPost = blogPosts.find((post) => post.featured)
+  const regularPosts = filteredPosts.filter((post) => !post.featured)
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8">
+        
         {/* Search and Filter */}
         <div className={cn(
           "flex flex-col md:flex-row gap-4 justify-between items-center mb-12 transition-all duration-700",
@@ -125,10 +65,12 @@ export function BlogPageContent() {
           <div className="relative w-full md:w-80">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
+              type="search"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 bg-card border-border/50"
+              aria-label="Search articles"
             />
           </div>
           
@@ -154,23 +96,24 @@ export function BlogPageContent() {
         {/* Featured Post */}
         {featuredPost && activeCategory === "All" && !searchQuery && (
           <div className={cn(
-            "mb-16 transition-all duration-700",
+            "mb-16 transition-all duration-700 delay-100",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <div className="grid lg:grid-cols-2 gap-8 bg-card rounded-3xl border border-border/50 overflow-hidden">
               <div className="relative aspect-[4/3] lg:aspect-auto">
                 <Image
-                  src={featuredPost.image}
+                  src={featuredPost.image || "/placeholder.svg"}
                   alt={featuredPost.title}
                   fill
+                  priority
                   className="object-cover"
                 />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium">
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium pinned">
                   Featured
                 </div>
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
                   <span className="flex items-center gap-1">
                     <Tag className="h-4 w-4" />
                     {featuredPost.category}
@@ -194,8 +137,8 @@ export function BlogPageContent() {
                   className="w-fit bg-accent hover:bg-accent/90 text-accent-foreground rounded-full"
                   asChild
                 >
-                  <Link href={`/blog/${featuredPost.id}`}>
-                    Read Article
+                  <Link href={`/blog/${featuredPost.slug}`}>
+                    Read More
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -213,12 +156,12 @@ export function BlogPageContent() {
                 "group bg-card rounded-2xl border border-border/50 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{ transitionDelay: `${(index + 1) * 75}ms` }}
             >
               {/* Image */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
-                  src={post.image}
+                  src={post.image || "/placeholder.svg"}
                   alt={post.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -249,8 +192,8 @@ export function BlogPageContent() {
                   {post.excerpt}
                 </p>
                 
-                <Link
-                  href={`/blog/${post.id}`}
+                <Link 
+                  href={`/blog/${post.slug}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
                 >
                   Read More
@@ -312,13 +255,15 @@ export function BlogPageContent() {
           <p className="text-muted-foreground max-w-xl mx-auto mb-6">
             Get the latest security tips and industry news delivered to your inbox.
           </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input
               type="email"
               placeholder="Enter your email"
               className="flex-1 bg-background border-border/50"
+              aria-label="Email address for newsletter"
+              required
             />
-            <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8">
+            <Button type="submit" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8">
               Subscribe
             </Button>
           </form>

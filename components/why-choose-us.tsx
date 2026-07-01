@@ -10,11 +10,11 @@ const features = [
     title: "Premium Quality Products",
     description: "We use trusted brands like CP Plus, IMOU, Prama, Tp-Link, Hikvision, Dahua, and TP-Link to deliver durable, high-performance security systems with long-term reliability."
   },
-  {
-    icon: Headphones,
-    title: "24/7 Technical Support",
-    description: "Our support team is always ready to assist with troubleshooting, maintenance, upgrades, and emergency technical issues."
-  },
+ {
+  icon: Headphones,
+  title: "Dedicated Technical Support",
+  description: "Our professional team is always ready to assist you with quick troubleshooting, timely maintenance, system upgrades, and emergency issues."
+},
   {
     icon: Users,
     title: "Expert Technicians",

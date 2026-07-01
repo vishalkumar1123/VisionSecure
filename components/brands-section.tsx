@@ -1,19 +1,21 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
+// Sahi kiya hua unique brands array
 const brands = [
-  { name: "CP Plus", logo: "CP+" },
-  { name: "Hikvision", logo: "HIKVISION" },
-  { name: "Dahua", logo: "DAHUA" },
-  { name: "IMOU", logo: "IMOU" },
-  { name: "EZVIZ", logo: "EZVIZ" },
-  { name: "Tenda", logo: "TENDA" },
-  { name: "TP-Link", logo: "TP-LINK" },
-  { name: "ESSL", logo: "ESSL" },
-  { name: "Honeywell", logo: "HONEYWELL" },
-  { name: "Tapo", logo: "TAPO" },
+  { name: "CP Plus", logoPath: "/images/brands/cpplus_logo.png" },
+  { name: "Hikvision", logoPath: "/images/brands/hikvision_logo.png" },
+  { name: "Dahua", logoPath: "/images/brands/DAHUA_logo.png" },
+  { name: "IMOU", logoPath: "/images/brands/Imou_logo.png" },
+  { name: "EZVIZ", logoPath: "/images/brands/EZVIZ_logo.png" },
+  { name: "Tenda", logoPath: "/images/brands/TENDA_logo.png" },
+  { name: "TP-Link", logoPath: "/images/brands/Tp-Link_logo.png" }, 
+  { name: "ESSL", logoPath: "/images/brands/ESSL_logo.png" },
+  { name: "Honeywell", logoPath: "/images/brands/HONEYWELL_logo.png" },
+  { name: "Tapo", logoPath: "/images/brands/tapo_logo.png" },
 ]
 
 export function BrandsSection() {
@@ -64,15 +66,24 @@ export function BrandsSection() {
           
           {/* Scrolling Container */}
           <div className="flex animate-marquee">
+            {/* Duplicating the array for infinite scroll effect */}
             {[...brands, ...brands].map((brand, index) => (
               <div
                 key={`${brand.name}-${index}`}
                 className="flex-shrink-0 mx-4 lg:mx-8"
               >
-                <div className="group flex items-center justify-center w-32 h-16 lg:w-40 lg:h-20 rounded-xl bg-card/50 border border-border/50 hover:border-accent/50 hover:bg-card transition-all duration-300">
-                  <span className="font-display text-sm lg:text-base font-bold text-muted-foreground group-hover:text-accent transition-colors tracking-wider">
-                    {brand.logo}
-                  </span>
+                {/* Logo Card with Hover Effects */}
+                <div className="group flex items-center justify-center w-36 h-20 lg:w-44 lg:h-24 rounded-xl bg-card/40 border border-border/40 hover:border-accent/40 hover:bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 p-4">
+                  <div className="relative w-full h-full opacity-60 group-hover:opacity-100 grayscale group-hover:grayscale-0 transition-all duration-300">
+                    <Image
+                      src={brand.logoPath}
+                      alt={`${brand.name} Logo`}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1024px) 144px, 176px"
+                      priority={index < 6} // First few images load immediately for performance
+                    />
+                  </div>
                 </div>
               </div>
             ))}

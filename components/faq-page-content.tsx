@@ -7,10 +7,9 @@ import {
   ChevronDown,
   HelpCircle,
   Phone,
-  MessageCircle
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-
+import { FaWhatsapp } from "react-icons/fa";
 const faqCategories = [
   {
     id: "general",
@@ -214,7 +213,7 @@ export function FAQPageContent() {
                     asChild
                   >
                     <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="mr-2 h-4 w-4" />
+                      <FaWhatsapp className="mr-2 h-4 w-4" />
                       WhatsApp
                     </a>
                   </Button>

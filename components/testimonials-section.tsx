@@ -6,50 +6,50 @@ import { cn } from "@/lib/utils"
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
-    role: "Business Owner",
-    company: "Kumar Enterprises",
-    content: "VisionSecure transformed our office security completely. The CCTV system they installed is top-notch, and their 24/7 support gives us peace of mind.",
+    name: "Naman Kumar",
+    role: "Home Owner",
+    company: "Lucknow",
+    content: "VisionSecure Smart Technologies changed our home security in a way. They put in a good CCTV system. This system is very good. It makes my family feel safe all the time. We feel safe because of the CCTV system, from VisionSecure Smart Technologies.",
     rating: 5,
-    avatar: "RK"
+    avatar: "NK"
   },
   {
-    name: "Priya Sharma",
-    role: "Homeowner",
-    company: "Noida Sector 62",
-    content: "Excellent service from consultation to installation. The biometric lock system works flawlessly, and the team was very professional throughout.",
+    name: "Abhishek Kumar",
+    role: "Home owner",
+    company: "Lucknow",
+    content: "I got good service from the people who came to my house. They helped me pick out a lock. Then they put it in. The biometric smart lock, on our door is really great. It works perfectly. Our home is a lot safer now and we do not need to use keys. The biometric smart lock is very convenient.",
     rating: 5,
-    avatar: "PS"
+    avatar: "AK"
   },
   {
-    name: "Amit Verma",
+    name: "Ankit Sharma",
     role: "IT Manager",
-    company: "Tech Solutions Ltd",
-    content: "We needed a comprehensive security solution for our new office. VisionSecure delivered beyond our expectations with their integrated CCTV and access control system.",
+    company: "Ware Works",
+    content: "We were looking for a security system, for our new logistics warehouse. VisionSecure Smart Technologies did a job. They gave us a security system that includes cameras and a way to control who gets in. This keeps our stock and our company safe. VisionSecure Smart Technologies really helped us out with their security system.",
     rating: 5,
-    avatar: "AV"
+    avatar: "AS"
   },
   {
     name: "Sunita Agarwal",
     role: "School Principal",
-    company: "Delhi Public School",
-    content: "The safety of our students is paramount. VisionSecure provided a complete campus security solution with 64 cameras and biometric attendance for staff.",
+    company: "",
+    content: "The safety of our students is very important. VisionSecure Smart Technologies gave us a security system for the whole campus. It has 32 cameras and a special attendance system that uses fingerprints, for staff.",
     rating: 5,
     avatar: "SA"
   },
   {
     name: "Vikram Singh",
     role: "Retail Manager",
-    company: "Fashion Hub",
-    content: "Quick installation, competitive pricing, and excellent after-sales support. Our retail store is now fully secured with their advanced surveillance system.",
+    company: "",
+    content: "Quick installation was a plus for us.The pricing is very competitive. Their, after-sales support has been excellent far. Their advanced surveillance system has really helped us secure our store.We are now fully secured and feel safe.",
     rating: 5,
     avatar: "VS"
   },
   {
     name: "Neha Gupta",
     role: "Homeowner",
-    company: "Gurugram",
-    content: "The home automation setup is incredible! I can control everything from my phone. VisionSecure team was patient in explaining all the features.",
+    company: "",
+    content: "I really like my home automation setup. It is so cool that I can use my phone to control everything. The people from VisionSecure Smart Technologies team were very nice. They took the time to explain all the features of my home automation setup to me. They were very patient, with me when I was learning about the home automation setup.",
     rating: 5,
     avatar: "NG"
   },

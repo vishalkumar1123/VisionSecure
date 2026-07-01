@@ -3,7 +3,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-
+import { FaWhatsapp } from "react-icons/fa";
 import Image from "next/image"
 import Link from "next/link"
 
@@ -164,22 +164,22 @@ export function FAQHeroSlider() {
                 </Link>
               </Button>
 
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full border-green-500/40 bg-green-500/10 px-8 text-green-400 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-green-500/20"
-                asChild
-              >
-                <a
-                  href="https://wa.me/919872133840"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="mr-2 h-5 w-5" />
-
-                  WhatsApp Support
-                </a>
-              </Button>
+             <Button
+  size="lg"
+  variant="outline"
+  className="rounded-full border-green-500/40 bg-green-500/10 px-8 text-green-400 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-green-500/20 hover:border-green-500"
+  asChild
+>
+  <a
+    href="https://wa.me/919872133840"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center"
+  >
+    <FaWhatsapp className="mr-2 h-5 w-5 text-green-500 transition-transform duration-300 group-hover:scale-110" />
+    WhatsApp Support
+  </a>
+</Button>
 
             </div>
 

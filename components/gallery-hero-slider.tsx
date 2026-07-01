@@ -33,7 +33,7 @@ const slides = [
     title: "Professional CCTV Installations",
     subtitle:
       "Advanced surveillance systems with HD cameras, AI analytics, night vision, and remote monitoring solutions.",
-    image: "/images/service-cctv.jpg",
+    image: "/images/service-cctv.png",
   },
 
   {
@@ -195,7 +195,7 @@ export function GalleryHeroSlider() {
 
                   <CheckCircle2 className="h-4 w-4 text-green-400" />
 
-                  500+ Projects
+                  150+ Projects
 
                 </div>
 

@@ -14,25 +14,25 @@ const stats = [
   },
   {
     icon: Building2,
-    value: 200,
+    value: 150,
     suffix: "+",
     label: "Installations",
     description: "Across Lucknow & UP"
   },
   {
     icon: Users,
-    value: 500,
+    value: 200,
     suffix: "+",
     label: "Happy Clients",
     description: "Homes & businesses secured"
   },
-  {
-    icon: Wrench,
-    value: 24,
-    suffix: "/7",
-    label: "Support",
-    description: "Always available for you"
-  },
+ {
+  icon: Wrench,
+  value: 100,
+  suffix: "%",
+  label: "Support",
+  description: "Customer Assistance"
+}
 ]
 
 function AnimatedCounter({ value, suffix, duration = 2000 }: { value: number; suffix: string; duration?: number }) {

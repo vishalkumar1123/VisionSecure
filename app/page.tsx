@@ -21,7 +21,7 @@ export default function Home() {
       <AboutSection />
       <ServicesSection />
       <WhyChooseUs />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <TestimonialsSection />
       <BrandsSection />
       <CTABanner />

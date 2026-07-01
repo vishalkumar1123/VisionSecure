@@ -46,7 +46,7 @@ const services = [
     shortDesc: "Attendance & Access Control",
     description:
       "Advanced biometric systems with fingerprint and face recognition technology for secure attendance tracking and access management.",
-    image: "/images/essl.jpg",
+    image: "/images/EsslBio.png",
     features: [
       "Fingerprint Recognition",
       "Face Recognition",
@@ -55,7 +55,7 @@ const services = [
       "Cloud Dashboard",
       "Mobile Access",
     ],
-    brands: ["eSSL", "ZKTeco", "Realtime", "Matrix"],
+    brands: ["eSSL", "Cpplus","ZKTeco", "Realtime", "Matrix","Hikvision","VisionSecurTech"],
   },
 
   {
@@ -65,7 +65,7 @@ const services = [
     shortDesc: "Secure Entry Solutions",
     description:
       "Complete access control solutions including RFID systems, smart locks, boom barriers, and turnstile gates for modern security management.",
-    image: "/images/FL200.png",
+    image: "/images/EsslDoor_Lock.png",
     features: [
       "RFID Systems",
       "Smart Locks",
@@ -74,7 +74,7 @@ const services = [
       "Real-time Logs",
       "Multi-door Access",
     ],
-    brands: ["Honeywell", "HID", "Suprema", "ZKTeco"],
+    brands: ["eSSL", "Cpplus", "VisionSecureTech", "Hikvision"],
   },
 
   {
@@ -122,7 +122,7 @@ const services = [
     shortDesc: "Smart Entrance Security",
     description:
       "Modern video door phone systems with HD display, smartphone connectivity, and remote monitoring for safer homes and offices.",
-    image: "/images/Door bell.jpg",
+    image: "/images/VideoDoor_Bell.png",
     features: [
       "HD Display",
       "Two-way Audio",
@@ -141,7 +141,7 @@ const services = [
     shortDesc: "Advanced Fire Protection",
     description:
       "Reliable fire detection and alarm systems with smoke detectors, heat sensors, emergency lighting, and complete fire safety solutions.",
-    image: "/images/smoke.jpeg",
+    image: "/images/Smoke Detector.png",
     features: [
       "Smoke Detectors",
       "Heat Sensors",
@@ -169,7 +169,7 @@ const services = [
       "Repair Assistance",
       "On-site Visits",
     ],
-    brands: ["CP Plus", "Honeywell", "ZKTeco", "All Major Brands"],
+    brands: ["VisionSecureTech","CP Plus", "Honeywell", "ZKTeco", "All Major Brands"],
   },
 ]
 
@@ -261,7 +261,7 @@ export function ServicesPageContent() {
 
               <div className="mt-10 grid grid-cols-2 gap-4 text-sm text-slate-300">
                 {[
-                  "500+ Installations",
+                  "150+ Installations",
                   "Trusted Brands",
                   "Expert Team",
                   "PAN India Support",

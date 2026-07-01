@@ -36,7 +36,7 @@ const slides = [
     subtitle:
       "Learn how to choose the best CCTV cameras, improve surveillance coverage, and secure your home or business effectively.",
 
-    image: "/images/service-cctv.jpg",
+    image: "/images/CCTV_Camera.png",
   },
 
   {

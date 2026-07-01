@@ -189,7 +189,7 @@ export function HeroSlider() {
                 <h3 className="font-display text-2xl font-bold text-center">Why Choose Us?</h3>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-accent">200+</div>
+                    <div className="text-3xl font-bold text-accent">100+</div>
                     <div className="text-sm text-muted-foreground">Projects Completed</div>
                   </div>
                   <div className="text-center">
@@ -197,8 +197,8 @@ export function HeroSlider() {
                     <div className="text-sm text-muted-foreground">Years Experience</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-accent">24/7</div>
-                    <div className="text-sm text-muted-foreground">Support Available</div>
+                  <div className="text-2xl font-bold text-accent tracking-tight">Reliable</div>
+                  <div className="text-sm text-muted-foreground">Expert Support</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-accent">100%</div>
@@ -207,7 +207,7 @@ export function HeroSlider() {
                 </div>
                 <div className="pt-4 border-t border-border/50">
                   <p className="text-sm text-muted-foreground text-center">
-                   Trusted by 500+ customers across Lucknow, Uttar Pradesh, and other states.
+                   Trusted by 200+ customers across Lucknow, Uttar Pradesh, and other states.
                   </p>
                 </div>
               </div>

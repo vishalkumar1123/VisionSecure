@@ -8,14 +8,13 @@ import {
   Facebook,
   Phone,
   Mail,
-  MapPin,
-  MessageCircle,
+  MapPin,  
   ArrowUpRight,
   ShieldCheck,
   Clock3,
   Headphones,
 } from "lucide-react"
-
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -70,7 +69,7 @@ const socialLinks = [
   },
 
   {
-    icon: MessageCircle,
+    icon: FaWhatsapp,
     href: "https://wa.me/919872133840",
     label: "WhatsApp",
     hover: "hover:bg-green-500",
@@ -91,9 +90,9 @@ const features = [
   },
 
   {
-    icon: Headphones,
-    title: "24/7 Assistance",
-    desc: "Dedicated Customer & Technical Support",
+  icon: Headphones,
+  title: "Priority Assistance",
+  desc: "Dedicated and quick support for your peace of mind",
   },
 ]
 
@@ -189,25 +188,25 @@ export function Footer() {
               </a>
 
               <a
-                href="https://wa.me/919872133840"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:border-green-500/40 hover:bg-green-500/10"
-              >
-                <div className="rounded-xl bg-green-500/10 p-3 text-green-400">
-                  <MessageCircle className="h-5 w-5" />
-                </div>
+  href="https://wa.me/919872133840"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:border-green-500/40 hover:bg-green-500/10"
+>
+  <div className="rounded-xl bg-green-500/10 p-3 text-green-500 transition-transform duration-300 group-hover:scale-110">
+    <FaWhatsapp className="h-6 w-6" />
+  </div>
 
-                <div>
-                  <p className="text-xs uppercase tracking-wide text-zinc-500">
-                    WhatsApp
-                  </p>
+  <div>
+    <p className="text-xs uppercase tracking-wide text-zinc-500">
+      WhatsApp
+    </p>
 
-                  <p className="mt-1 text-sm font-medium text-white">
-                    Chat Support
-                  </p>
-                </div>
-              </a>
+    <p className="mt-1 text-sm font-medium text-white">
+      Chat Support
+    </p>
+  </div>
+</a>
 
               <a
                 href="mailto:info@visionsecuretech.in"
@@ -400,20 +399,20 @@ export function Footer() {
       </div>
 
       {/* Floating WhatsApp */}
-      <Button
-        size="lg"
-        asChild
-        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-green-500 p-0 text-white shadow-2xl shadow-green-500/30 transition-all duration-300 hover:scale-110 hover:bg-green-600"
-      >
-        <a
-          href="https://wa.me/919872133840"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat on WhatsApp"
-        >
-          <MessageCircle className="h-7 w-7 animate-pulse" />
-        </a>
-      </Button>
+     <Button
+  size="lg"
+  asChild
+  className="fixed bottom-6 right-6 z-50 h-16 w-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 p-0 text-white shadow-[0_10px_30px_rgba(34,197,94,0.45)] transition-all duration-300 hover:scale-110 hover:shadow-[0_15px_40px_rgba(34,197,94,0.6)]"
+>
+  <a
+    href="https://wa.me/919872133840"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp"
+  >
+    <FaWhatsapp className="h-8 w-8" />
+  </a>
+</Button>
     </footer>
   )
 }
