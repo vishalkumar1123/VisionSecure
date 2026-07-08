@@ -4,7 +4,8 @@ import { Analytics } from "@vercel/analytics/next"
 import Providers from "@/components/providers"
 import { Toaster } from "sonner"
 import GoogleAnalytics from "@/components/google-analytics"
-import ClarityProvider from "@/components/clarity";
+import ClarityProvider from "@/components/clarity"
+import Schema from "@/components/schema"
 
 import "./globals.css"
 
@@ -81,6 +82,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-black text-white`}
       >
       <ClarityProvider />
+       <Schema />
          <Providers>
           {children}
           <Toaster richColors position="top-right" />

@@ -18,8 +18,6 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field"
-
-// FIX 2: यहाँ से FaWhatsapp को हटा दिया गया है
 import {
   MapPin,
   Phone,
