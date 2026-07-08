@@ -15,7 +15,6 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
 })
-
 export const metadata: Metadata = {
   title:
     "VisionSecure Smart Technologies | CCTV, Biometric & Security Solutions",
