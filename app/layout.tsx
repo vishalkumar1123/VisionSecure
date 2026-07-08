@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Providers from "@/components/providers"
 import { Toaster } from "sonner"
+import GoogleAnalytics from "@/components/google-analytics"
 
 import "./globals.css"
 
@@ -82,7 +83,7 @@ export default function RootLayout({
           {children}
           <Toaster richColors position="top-right" />
          </Providers>
-
+         <GoogleAnalytics />
         {process.env.NODE_ENV === "production" && <Analytics />}
         
       </body>
