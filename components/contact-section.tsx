@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-
+import { FaWhatsapp } from "react-icons/fa";
 import {
   Select,
   SelectContent,
@@ -569,7 +569,7 @@ ${formData.message}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
+                 <FaWhatsapp className="h-8 w-8" />
                 Chat on WhatsApp
               </a>
             </Button>

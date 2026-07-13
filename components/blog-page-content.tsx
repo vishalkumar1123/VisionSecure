@@ -99,16 +99,20 @@ export function BlogPageContent() {
             "mb-16 transition-all duration-700 delay-100",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <div className="grid lg:grid-cols-2 gap-8 bg-card rounded-3xl border border-border/50 overflow-hidden">
-              <div className="relative aspect-[4/3] lg:aspect-auto">
+            {/* Featured Card Wrapper */}
+            <Link 
+              href={`/blog/${featuredPost.slug}`}
+              className="group grid lg:grid-cols-2 gap-8 bg-card rounded-3xl border border-border/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-accent/5 transition-all duration-500 block hover:-translate-y-1 cursor-pointer"
+            >
+              <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
                 <Image
                   src={featuredPost.image || "/placeholder.svg"}
                   alt={featuredPost.title}
                   fill
                   priority
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium pinned">
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-accent text-accent-foreground text-sm font-medium">
                   Featured
                 </div>
               </div>
@@ -127,80 +131,80 @@ export function BlogPageContent() {
                     {featuredPost.readTime}
                   </span>
                 </div>
-                <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
                   {featuredPost.title}
                 </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed line-clamp-3">
                   {featuredPost.excerpt}
                 </p>
-                <Button
-                  className="w-fit bg-accent hover:bg-accent/90 text-accent-foreground rounded-full"
-                  asChild
-                >
-                  <Link href={`/blog/${featuredPost.slug}`}>
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                
+                {/* Clean Indicator instead of Button */}
+                <div className="inline-flex items-center gap-2 text-sm font-medium text-accent">
+                  <span>Read Article</span>
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         )}
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {regularPosts.map((post, index) => (
-            <article
+            <Link
+              href={`/blog/${post.slug}`}
               key={post.id}
               className={cn(
-                "group bg-card rounded-2xl border border-border/50 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10",
+                "group block bg-card rounded-2xl border border-border/50 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
               style={{ transitionDelay: `${(index + 1) * 75}ms` }}
             >
-              {/* Image */}
+              {/* Image Container with Zoom Effect */}
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
                   src={post.image || "/placeholder.svg"}
                   alt={post.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm text-xs font-medium">
                   {post.category}
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {post.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {post.readTime}
-                  </span>
+              {/* Content Container */}
+              <div className="p-6 flex flex-col justify-between h-[220px]">
+                <div>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {post.date}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {post.readTime}
+                    </span>
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-accent transition-colors duration-300">
+                    {post.title}
+                  </h3>
+                  
+                  {/* Excerpt */}
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                    {post.excerpt}
+                  </p>
                 </div>
-                
-                <h3 className="font-display text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-accent transition-colors">
-                  {post.title}
-                </h3>
-                
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                  {post.excerpt}
-                </p>
-                
-                <Link 
-                  href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
-                >
-                  Read More
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+
+                {/* Smooth Sliding Arrow Indicator on Hover */}
+                <div className="inline-flex items-center gap-1.5 text-sm font-medium text-accent opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                  <span>View Details</span>
+                  <ArrowRight className="h-4 w-4" />
+                </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 
@@ -237,7 +241,7 @@ export function BlogPageContent() {
             className="bg-red-500 hover:bg-red-600 text-white rounded-full px-8"
             asChild
           >
-            <a href="https://www.youtube.com/@vishalkumar9004" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@visionsecure_tech" target="_blank" rel="noopener noreferrer">
               <Youtube className="mr-2 h-5 w-5" />
               Subscribe on YouTube
             </a>

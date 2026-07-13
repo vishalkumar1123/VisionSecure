@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { FaWhatsapp } from "react-icons/fa"
 
 const slides = [
   {
@@ -133,6 +134,7 @@ export function HeroSlider() {
                 asChild
               >
                 <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp className="h-5 w-5 text-green-500" />
                   WhatsApp Now
                 </a>
               </Button>

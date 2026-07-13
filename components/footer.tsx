@@ -48,7 +48,7 @@ const footerLinks = {
 const socialLinks = [
   {
     icon: Youtube,
-    href: "https://www.youtube.com/@vishalkumar9004",
+    href: "https://www.youtube.com/@visionsecure_tech",
     label: "YouTube",
     hover: "hover:bg-red-500",
   },

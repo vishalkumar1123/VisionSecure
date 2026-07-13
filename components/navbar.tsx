@@ -51,10 +51,10 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <Image
-              src="/images/logo.png"
+              src="/images/Visionsecuretech_logo.png"
               alt="VisionSecure Smart Technologies"
-              width={200}
-              height={60}
+              width={300}
+              height={80}
               className="h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
               priority
             />

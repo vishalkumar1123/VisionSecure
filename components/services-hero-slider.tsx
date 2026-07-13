@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-
+import { FaWhatsapp } from "react-icons/fa"
 import {
   ShieldCheck,
   ChevronLeft,
@@ -196,6 +196,7 @@ export function ServicesHeroSlider() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <FaWhatsapp className="h-5 w-5 text-green-500" />
                   Chat on WhatsApp
                 </a>
               </Button>

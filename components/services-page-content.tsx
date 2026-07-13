@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { FaWhatsapp } from "react-icons/fa"
 import {
   Camera,
   Fingerprint,
@@ -84,7 +85,7 @@ const services = [
     shortDesc: "Reliable Connectivity",
     description:
       "Professional networking solutions including WiFi setup, structured cabling, router configuration, and enterprise security infrastructure.",
-    image: "/images/service-networking.jpg",
+    image: "/images/Networking_blog.png",
     features: [
       "Structured Cabling",
       "WiFi Setup",
@@ -432,6 +433,7 @@ export function ServicesPageContent() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
+                        <FaWhatsapp className="h-4 w-4" />
                         Chat on WhatsApp
                       </a>
                     </Button>
@@ -498,6 +500,7 @@ export function ServicesPageContent() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaWhatsapp className="h-5 w-5 text-green-500" />
                 Chat on WhatsApp
               </a>
             </Button>

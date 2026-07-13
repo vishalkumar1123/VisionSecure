@@ -177,9 +177,9 @@ export function GalleryHeroSlider() {
                 className="rounded-full border-white/30 bg-white/10 px-8 text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20"
                 asChild
               >
-                <Link href="/projects">
+                <Link href="/services">
 
-                  View Projects
+                  View Our Services
 
                 </Link>
               </Button>
