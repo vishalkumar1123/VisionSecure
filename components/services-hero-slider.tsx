@@ -34,35 +34,35 @@ const slides = [
     title: "Access Control & Smart Entry Solutions",
     subtitle:
       "Secure your premises using RFID systems, smart locks, boom barriers, and intelligent access control technologies.",
-    image: "/images/FL200.png",
+    image: "/images/Essl_Biom.png",
   },
 
   {
     title: "Professional Networking Solutions",
     subtitle:
       "Enterprise-grade WiFi setup, structured cabling, server configuration, and secure networking infrastructure.",
-    image: "/images/service-networking.jpg",
+    image: "/images/Networking_blog.png",
   },
 
   {
     title: "Smart Home Automation Solutions",
     subtitle:
       "Control lighting, curtains, climate, appliances, and security systems with advanced smart home automation.",
-    image: "/images/service-automation.jpg",
+    image: "/images/Smart_home.png",
   },
 
   {
     title: "Video Door Phone Security Systems",
     subtitle:
       "HD video door phones with mobile connectivity, two-way communication, and smart entrance security.",
-    image: "/images/Door bell.jpg",
+    image: "/images/VideoDoor_Bell.png",
   },
 
   {
     title: "Advanced Fire Alarm Systems",
     subtitle:
       "Reliable fire detection systems with smoke sensors, emergency alerts, and complete fire safety protection.",
-    image: "/images/Smoke Detector.jpeg",
+    image: "/images/Smoke Detector.png",
   },
 
   {

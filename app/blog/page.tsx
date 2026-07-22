@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 import { BlogHeroSlider } from "@/components/blog-hero-slider"
-import { BlogPageContent } from "@/components/blog-page-content"
+import BlogPageContent from "@/components/blog-page-content"
 
 export const metadata: Metadata = {
   title: "Blog & News | VisionSecure Smart Technologies",

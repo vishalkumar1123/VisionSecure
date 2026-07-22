@@ -50,7 +50,7 @@ const slides = [
     subtitle:
       "Explore networking infrastructure, WiFi setup, home automation, smart security integration, and AMC support services.",
 
-    image: "/images/service-networking.jpg",
+    image: "/images/Networking_blog.png",
   },
 ]
 

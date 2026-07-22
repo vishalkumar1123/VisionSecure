@@ -45,7 +45,7 @@ const slides = [
     subtitle:
       "Explore modern biometric attendance systems, face recognition devices, and intelligent access control technologies.",
 
-    image: "/images/service-biometric.jpg",
+    image: "/images/Essl_Biom.png",
   },
 
   {
@@ -54,7 +54,7 @@ const slides = [
     subtitle:
       "Discover advanced smart home technologies, automation systems, networking infrastructure, and IoT security.",
 
-    image: "/images/service-automation.jpg",
+    image: "/images/Smart_home.png",
   },
 ]
 

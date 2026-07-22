@@ -40,22 +40,22 @@ const slides = [
     title: "Smart Biometric & Access Control",
     subtitle:
       "Modern attendance systems, smart locks, boom barriers, and intelligent access management solutions.",
-    image: "/images/service-biometric.jpg",
+    image: "/images/Essl_Biom.png",
   },
 
   {
     title: "Networking & Server Infrastructure",
     subtitle:
       "Reliable structured cabling, WiFi networking, server rooms, and enterprise-grade infrastructure setup.",
-    image: "/images/service-networking.jpg",
+    image: "/images/Networking_blog.png",
   },
 
   {
     title: "Smart Home & Automation Solutions",
     subtitle:
       "Luxury smart home automation with lighting control, video door phones, and integrated security systems.",
-    image: "/images/service-automation.jpg",
-  },
+      image: "/images/Smart_home.png",
+    },
 ]
 
 export function GalleryHeroSlider() {

@@ -104,7 +104,7 @@ const services = [
     shortDesc: "Smart Living Experience",
     description:
       "Upgrade your home with intelligent automation systems including smart lighting, voice assistants, curtains, and climate control.",
-    image: "/images/service-automation.jpg",
+    image: "/images/Smart_home.png",
     features: [
       "Smart Lighting",
       "Voice Control",

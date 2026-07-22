@@ -69,6 +69,7 @@
     "react-icons": "^5.7.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.0",
+    "resend": "^6.17.2",
     "sonner": "^1.7.4",
     "sweetalert2": "^11.26.25",
     "tailwind-merge": "^3.3.1",

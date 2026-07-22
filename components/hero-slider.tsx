@@ -10,25 +10,25 @@ import { FaWhatsapp } from "react-icons/fa"
 
 const slides = [
   {
-    image: "/images/hero-home.jpg",
+    image: "/images/CCTV_Camera.png",
     headline: "Smart Security Solutions for Your Safety",
     subheading: "Protect your home and business with advanced CCTV surveillance systems",
     accent: "CCTV Surveillance",
   },
   {
-    image: "/images/service-biometric.jpg",
+    image: "/images/Essl_Biom.png",
     headline: "Advanced Biometric & Access Control",
     subheading: "Secure your premises with fingerprint, face recognition & card access systems",
     accent: "Biometric Systems",
   },
   {
-    image: "/images/service-automation.jpg",
+    image: "/images/Smart_home.png",
     headline: "Complete Smart Home Automation",
     subheading: "Control your security, lighting, and appliances from anywhere",
     accent: "Home Automation",
   },
   {
-    image: "/images/service-networking.jpg",
+    image: "/images/Networking_blog.png",
     headline: "Professional Networking Solutions",
     subheading: "Reliable structured cabling and network infrastructure for your business",
     accent: "Networking",

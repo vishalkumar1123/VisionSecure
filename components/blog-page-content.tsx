@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils"
 
 const categories = ["All", "CCTV", "Biometric", "Automation", "Access Control", "Fire Safety", "Networking"]
 
-export function BlogPageContent() {
+export default function BlogPageContent() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeCategory, setActiveCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
