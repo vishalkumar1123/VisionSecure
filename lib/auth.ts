@@ -1,9 +1,19 @@
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs"
+import { timingSafeEqual } from "crypto"
 
 import { connectDB } from "@/lib/mongodb"
 import User from "@/models/User"
+import { ADMIN_IDLE_TIMEOUT_MS } from "@/lib/session-security"
+
+const BCRYPT_HASH = /^\$2[aby]\$\d{2}\$/
+
+function matchesLegacyPassword(candidate: string, stored: string) {
+  const candidateBuffer = Buffer.from(candidate)
+  const storedBuffer = Buffer.from(stored)
+  return candidateBuffer.length === storedBuffer.length && timingSafeEqual(candidateBuffer, storedBuffer)
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -42,46 +52,32 @@ export const authOptions: NextAuthOptions = {
           const user = await User.findOne({
             email,
           }).select("+password")
-          console.log("========== LOGIN DEBUG ==========")
-          console.log("EMAIL:", email)
-          console.log("USER:", user)
-          console.log("================================")
-          console.log(
-            "LOGIN EMAIL:",
-            email
-          )
-
-          console.log(
-            "USER FOUND:",
-            user?.email
-          )
-
           if (!user) {
-            console.log("User not found")
             return null
           }
 
           if (!user.isActive) {
-            console.log(
-              "Account disabled"
-            )
             return null
-          }         
+          }
 
-          const isPasswordCorrect =
-            await bcrypt.compare(
-              credentials.password,
-              user.password
-            )
-
-          console.log(
-            "PASSWORD MATCH:",
-            isPasswordCorrect
-          )
+          const isBcryptPassword = BCRYPT_HASH.test(user.password)
+          const isPasswordCorrect = isBcryptPassword
+            ? await bcrypt.compare(credentials.password, user.password)
+            : matchesLegacyPassword(credentials.password, user.password)
 
           if (!isPasswordCorrect) {
             return null
           }
+
+          // Older records in this project stored passwords without bcrypt.
+          // Upgrade a verified legacy credential immediately and never expose
+          // or retain the plain-text value after a successful login.
+          if (!isBcryptPassword) {
+            user.password = await bcrypt.hash(credentials.password, 12)
+          }
+
+          user.lastLoginAt = new Date()
+          await user.save()
 
           return {
             id: user._id.toString(),
@@ -103,13 +99,23 @@ export const authOptions: NextAuthOptions = {
 
   session: {
     strategy: "jwt",
+    maxAge: 8 * 60 * 60,
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
+      if (!user && (typeof token.exp !== "number" || token.exp * 1000 <= Date.now())) {
+        return {}
+      }
+
       if (user) {
         token.id = String(user.id)
         token.role = String(user.role)
+        token.lastActivity = Date.now()
+      } else if (trigger === "update") {
+        token.lastActivity = Date.now()
+      } else if (typeof token.lastActivity !== "number" || Date.now() - token.lastActivity >= ADMIN_IDLE_TIMEOUT_MS) {
+        return {}
       }
 
       return token
@@ -134,5 +140,5 @@ export const authOptions: NextAuthOptions = {
 
   secret: process.env.NEXTAUTH_SECRET,
 
-  debug: true,
+  debug: false,
 }

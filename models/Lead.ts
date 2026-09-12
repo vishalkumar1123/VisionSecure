@@ -114,6 +114,8 @@ const LeadSchema = new Schema(
   "Installation Scheduled",
   "Converted",
   "Closed",
+  "Installed Successfully",
+  "Cancelled",
 ],
 
       default: "New",
@@ -149,6 +151,8 @@ const LeadSchema = new Schema(
     "Call",
     "Reference",
     "Manual",
+    "AI Chat",
+    "AI Assistant",
   ],
   default: "Website",
 },

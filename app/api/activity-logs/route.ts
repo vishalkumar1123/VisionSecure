@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server"
 import { getToken } from "next-auth/jwt"
+import { isSessionTokenActive } from "@/lib/session-security"
 
 import { ActivityLogService } from "@/services/activity-log-service"
 
@@ -16,7 +17,7 @@ export async function GET(req: NextRequest) {
       secret: process.env.NEXTAUTH_SECRET,
     })
 
-    if (!token) {
+    if (!isSessionTokenActive(token)) {
       return new Response("Unauthorized", {
         status: 401,
       })

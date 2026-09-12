@@ -95,7 +95,7 @@ export default function AnalyticsPage() {
 
       <div className="rounded-xl border border-white/10 bg-zinc-900 p-5">
         <p className="text-sm text-zinc-400">
-          Converted
+          Installed Successfully
         </p>
 
         <h3 className="mt-2 text-3xl font-bold text-green-400">
@@ -105,7 +105,7 @@ export default function AnalyticsPage() {
 
       <div className="rounded-xl border border-white/10 bg-zinc-900 p-5">
         <p className="text-sm text-zinc-400">
-          Closed
+          Cancelled
         </p>
 
         <h3 className="mt-2 text-3xl font-bold text-red-400">
@@ -248,12 +248,12 @@ export default function AnalyticsPage() {
           </div>
 
           <div className="flex justify-between text-green-400">
-            <span>Converted</span>
+            <span>Installed Successfully</span>
             <span>{data.convertedLeads}</span>
           </div>
 
           <div className="flex justify-between text-red-400">
-            <span>Closed</span>
+            <span>Cancelled</span>
             <span>{data.closedLeads}</span>
           </div>
 

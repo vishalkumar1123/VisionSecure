@@ -5,6 +5,7 @@
 
 import { NextRequest } from "next/server"
 import { getToken } from "next-auth/jwt"
+import { isSessionTokenActive } from "@/lib/session-security"
 import { z } from "zod"
 import { UserService } from "@/services/user-service"
 import { successResponse, handleApiError } from "@/middleware/error-handler"
@@ -26,7 +27,7 @@ export async function POST(
       secret: process.env.NEXTAUTH_SECRET,
     })
 
-    if (!token) {
+    if (!isSessionTokenActive(token)) {
       return new Response("Unauthorized", { status: 401 })
     }
 

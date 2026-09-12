@@ -1,9 +1,6 @@
 "use client"
 
-import {
-  useMemo,
-  useState,
-} from "react"
+import { useState } from "react"
 
 import { AgGridReact } from "ag-grid-react"
 
@@ -12,7 +9,9 @@ import {
   Trash2,
   Phone,
   Mail,
+  Eye,
 } from "lucide-react"
+import Link from "next/link"
 
 import Swal from "sweetalert2"
 
@@ -49,8 +48,8 @@ const LEAD_STATUSES = [
   "Follow-Up",
   "Quotation Sent",
   "Installation Scheduled",
-  "Converted",
-  "Closed",
+  "Installed Successfully",
+  "Cancelled",
 ]
 
 const STATUS_COLORS: Record<
@@ -69,10 +68,10 @@ const STATUS_COLORS: Record<
   "Follow-Up":
     "bg-orange-500/20 text-orange-400",
 
-  Converted:
+  "Installed Successfully":
     "bg-green-500/20 text-green-400",
 
-  Closed:
+  Cancelled:
     "bg-red-500/20 text-red-400",
 }
 
@@ -217,10 +216,7 @@ export default function LeadsGrid({
   |--------------------------------------------------------------------------
   */
 
-  const columns = useMemo<
-    ColDef<Lead>[]
-  >(
-    () => [
+  const columns: ColDef<Lead>[] = [
 
       {
         headerName: "Name",
@@ -344,7 +340,11 @@ export default function LeadsGrid({
           params: any
         ) => (
 
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
+
+            <Link href={`/admin/leads/${params.data._id}`} aria-label={`Track ${params.data.name}`} className="rounded-lg bg-cyan-600 p-2 text-white transition hover:bg-cyan-500">
+              <Eye className="h-4 w-4" />
+            </Link>
 
             <button
               onClick={() =>
@@ -363,9 +363,7 @@ export default function LeadsGrid({
         ),
       },
 
-    ],
-    []
-  )
+    ]
 
   return (
 

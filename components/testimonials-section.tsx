@@ -108,13 +108,13 @@ export function TestimonialsSection() {
             <div
               key={testimonial.name}
               className={cn(
-                "group relative p-6 lg:p-8 rounded-2xl bg-card border border-border/50 hover:border-accent/50 transition-all duration-500 hover:-translate-y-2",
+                "group relative overflow-hidden p-6 lg:p-8 rounded-2xl bg-card border border-border/50 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-accent/50 hover:shadow-xl hover:shadow-primary/10",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Quote Icon */}
-              <div className="absolute top-6 right-6 text-accent/20 group-hover:text-accent/40 transition-colors">
+              <div className="absolute top-6 right-6 text-accent/20 transition-all duration-500 group-hover:scale-110 group-hover:text-accent/50">
                 <Quote className="h-8 w-8" />
               </div>
               
@@ -132,7 +132,7 @@ export function TestimonialsSection() {
               
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent font-semibold">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/10 font-semibold text-accent transition-transform duration-500 group-hover:scale-110">
                   {testimonial.avatar}
                 </div>
                 <div>

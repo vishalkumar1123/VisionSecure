@@ -158,7 +158,7 @@ export function LeadPopup() {
 
     try {
       const message = `
-Hello VisionSecure,
+Hello VisionSecure Smart Technologies,
 
 I am interested in your services.
 

@@ -1,0 +1,119 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { ChevronLeft, ChevronRight, ShieldCheck } from "lucide-react"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+
+type ServiceDetailHeroSliderProps = {
+  title: string
+  category: string
+  summary: string
+  image: string
+  solutions: string[]
+  benefits: string[]
+}
+
+export function ServiceDetailHeroSlider({
+  title,
+  category,
+  summary,
+  image,
+  solutions,
+  benefits,
+}: ServiceDetailHeroSliderProps) {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const reduceMotion = useReducedMotion()
+  const slides = [
+    { eyebrow: category, title: `${title} Solutions`, description: summary },
+    { eyebrow: "Explore options", title: solutions.slice(0, 2).join(" & "), description: `We help select the right setup based on your site, usage and requirement.` },
+    { eyebrow: "Plan with confidence", title: "Installation and support that fits your site.", description: benefits.slice(0, 2).join(" • ") },
+  ]
+
+  useEffect(() => {
+    if (reduceMotion || paused) return
+    const timer = window.setInterval(() => setCurrentSlide((slide) => (slide + 1) % slides.length), 6000)
+    return () => window.clearInterval(timer)
+  }, [paused, reduceMotion, slides.length])
+
+  const changeSlide = (direction: 1 | -1) => {
+    setCurrentSlide((slide) => (slide + direction + slides.length) % slides.length)
+  }
+
+  return (
+    <section onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") changeSlide(-1); if (event.key === "ArrowRight") changeSlide(1) }} className="relative isolate min-h-[640px] overflow-hidden bg-[#061B38] pt-24 text-white sm:min-h-[680px]" aria-roledescription="carousel" aria-label={`${title} highlights`}>
+      <AnimatePresence initial={false} mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={reduceMotion ? false : { opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={reduceMotion ? undefined : { opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.7, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={image}
+            alt={`${title} solution overview`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,27,56,.98)_0%,rgba(11,47,99,.88)_48%,rgba(11,47,99,.44)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(8,168,232,.2),transparent_28%)]" />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="page-container relative z-10 flex min-h-[640px] items-center py-20 sm:min-h-[680px]">
+        <div className="max-w-3xl">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 backdrop-blur">
+            <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+            {slides[currentSlide].eyebrow}
+          </div>
+          <h1 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">{title} Solutions</h1>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
+              transition={{ duration: reduceMotion ? 0 : 0.35 }}
+              className="mt-5"
+            >
+              <p className="max-w-2xl font-display text-xl font-semibold text-cyan-100 sm:text-2xl">{slides[currentSlide].title}</p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg">{slides[currentSlide].description}</p>
+            </motion.div>
+          </AnimatePresence>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href={`/contact?service=${encodeURIComponent(title)}`} className="rounded-xl bg-[#79C914] px-5 py-3 font-semibold text-white shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-[#65AE0B]">
+              Get free site visit
+            </Link>
+            <Link href="/services" className="rounded-lg border border-white/30 bg-white/10 px-5 py-3 font-semibold backdrop-blur transition hover:bg-white/20">
+              Explore services
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2" aria-label="Hero slides">
+        {slides.map((slide, index) => (
+          <button
+            key={slide.title}
+            type="button"
+            aria-label={`Show slide ${index + 1}: ${slide.title}`}
+            aria-current={currentSlide === index ? "true" : undefined}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 ${currentSlide === index ? "w-9 bg-cyan-300" : "w-2.5 bg-white/50 hover:bg-white"}`}
+          />
+        ))}
+      </div>
+      <div className="absolute bottom-5 right-4 z-10 flex gap-2 sm:right-8">
+        <button type="button" onClick={() => changeSlide(-1)} aria-label="Previous slide" className="rounded-full border border-white/25 bg-slate-950/45 p-3 backdrop-blur transition hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200"><ChevronLeft className="h-5 w-5" /></button>
+        <button type="button" onClick={() => changeSlide(1)} aria-label="Next slide" className="rounded-full border border-white/25 bg-slate-950/45 p-3 backdrop-blur transition hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200"><ChevronRight className="h-5 w-5" /></button>
+      </div>
+      {!reduceMotion && !paused && <div key={currentSlide} className="absolute inset-x-0 bottom-0 z-10 h-1 origin-left animate-[service-progress_6s_linear_forwards] bg-cyan-300" aria-hidden="true" />}
+    </section>
+  )
+}

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { signOut } from "next-auth/react"
 
@@ -50,19 +51,14 @@ export default function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="flex min-h-screen w-[280px] flex-col border-r border-white/10 bg-zinc-950">
+    <aside className="flex min-h-screen w-[280px] flex-col border-r border-cyan-300/10 bg-[#061526] shadow-2xl shadow-black/20">
 
       {/* HEADER */}
-      <div className="border-b border-white/10 p-6">
-
-        <h2 className="text-3xl font-bold tracking-tight text-white">
-          VisionSecure
-        </h2>
-
-        <p className="mt-1 text-sm text-zinc-400">
-          Admin Panel
-        </p>
-
+      <div className="border-b border-white/10 p-5">
+        <Link href="/admin/dashboard" className="block rounded-xl bg-white p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300" aria-label="VisionSecure Admin Dashboard">
+          <Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={230} height={64} priority className="h-12 w-auto object-contain" />
+        </Link>
+        <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[.2em] text-zinc-400">Admin Panel</p>
       </div>
 
       {/* MENU */}
@@ -86,8 +82,8 @@ export default function AdminSidebar() {
                 
                 ${
                   isActive
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                    : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                    ? "bg-cyan-300 text-[#061526] shadow-lg shadow-cyan-400/15"
+                    : "text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-100"
                 }
                 `}
               >

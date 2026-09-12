@@ -1,197 +1,54 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, Phone } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
+import { services } from "@/lib/services"
 import { cn } from "@/lib/utils"
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  // { href: "/projects", label: "Projects" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/blog", label: "Blog" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
-]
+const navLinks = [{ href: "/gallery", label: "Gallery" }, { href: "/blog", label: "Blog" }, { href: "/faq", label: "FAQ" }, { href: "/contact", label: "Contact" }]
+const categories = ["Security & Surveillance", "Networking & IT", "Smart Technology", "Alarm & Safety"] as const
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
+  const cancelClose = () => { if (closeTimer.current) clearTimeout(closeTimer.current) }
+  const scheduleClose = () => { cancelClose(); closeTimer.current = setTimeout(() => setServicesOpen(false), 200) }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  useEffect(() => { const update = () => setScrolled(window.scrollY > 16); update(); window.addEventListener("scroll", update, { passive: true }); return () => window.removeEventListener("scroll", update) }, [])
+  useEffect(() => { setMobileOpen(false); setServicesOpen(false) }, [pathname])
+  useEffect(() => { document.body.style.overflow = mobileOpen ? "hidden" : ""; return () => { document.body.style.overflow = "" } }, [mobileOpen])
+  useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") { setServicesOpen(false); setMobileOpen(false) } }; document.addEventListener("keydown", close); return () => document.removeEventListener("keydown", close) }, [])
+  useEffect(() => { const outside = (event: MouseEvent) => { if (!menuRef.current?.contains(event.target as Node)) setServicesOpen(false) }; document.addEventListener("mousedown", outside); return () => document.removeEventListener("mousedown", outside) }, [])
 
-  // Route चेंज होने पर मोबाइल मेनू बंद करें
-  useEffect(() => {
-    setIsMobileMenuOpen(false)
-  }, [pathname])
+  const serviceActive = pathname === "/services" || pathname.startsWith("/services/")
 
-  return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled
-          ? "bg-white/98 backdrop-blur-md border-b border-slate-200 shadow-md shadow-slate-200/50"
-          : "bg-transparent"
-      )}
-    >
-      <nav className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <Image
-              src="/images/Visionsecuretech_logo.png"
-              alt="VisionSecure Smart Technologies"
-              width={300}
-              height={80}
-              className="h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
-              priority
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg",
-                    isScrolled
-                      ? isActive
-                        ? "text-green-600"
-                        : "text-slate-800 hover:text-green-600"
-                      : isActive
-                        ? "text-white"
-                        : "text-white/90 hover:text-green-300"
-                  )}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span className={cn(
-                      "absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full",
-                      isScrolled ? "bg-green-600" : "bg-white"
-                    )} />
-                  )}
-                </Link>
-              )
-            })}
-          </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "p-0 hover:bg-transparent transition-colors",
-                isScrolled
-                  ? "text-slate-800 hover:text-green-600"
-                  : "text-white hover:text-green-300"
-              )}
-              asChild
-            >
-              <a href="tel:+919872133840" className="flex items-center gap-2 whitespace-nowrap font-medium">
-                <Phone className="h-4 w-4 shrink-0" />
-                <span>+91 98721 33840</span>
-              </a>
-            </Button>
-            
-            <Button
-              size="sm"
-              className="rounded-full px-6 bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/20 hover:scale-105 transition-all duration-300"
-              asChild
-            >
-              <Link href="/contact">Get Free Quote</Link>
-            </Button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn(
-              "lg:hidden relative p-2 rounded-md transition-colors",
-              isScrolled ? "text-slate-800" : "text-white"
-            )}
-            aria-label="Toggle menu"
-          >
-            <div className="relative w-6 h-6">
-              <Menu
-                className={cn(
-                  "absolute inset-0 transition-all duration-300",
-                  isMobileMenuOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"
-                )}
-              />
-              <X
-                className={cn(
-                  "absolute inset-0 transition-all duration-300",
-                  isMobileMenuOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90"
-                )}
-              />
-            </div>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={cn(
-            "lg:hidden overflow-hidden transition-all duration-500 ease-out bg-white rounded-b-xl shadow-xl",
-            isMobileMenuOpen ? "max-h-[500px] opacity-100 border-t border-slate-100" : "max-h-0 opacity-0"
-          )}
-        >
-          <div className="py-4 space-y-1 px-2">
-            {navLinks.map((link, index) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300",
-                    isActive
-                      ? "bg-green-50 text-green-600 font-semibold"
-                      : "text-slate-700 hover:bg-slate-50 hover:text-green-600"
-                  )}
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  {link.label}
-                </Link>
-              )
-            })}
-            
-            <div className="pt-4 px-4 space-y-4 border-t border-slate-100 mt-2">
-              <a
-                href="tel:+919872133840"
-                className="flex items-center gap-2 text-slate-700 hover:text-green-600 transition-colors font-medium whitespace-nowrap"
-              >
-                <Phone className="h-4 w-4 text-green-600 shrink-0" />
-                <span>+91 98721 33840</span>
-              </a>
-              
-              <Button
-                className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full shadow-md shadow-green-600/10 py-5"
-                asChild
-              >
-                <Link href="/contact">Get Free Quote</Link>
-              </Button>
-            </div>
+  return <header className={cn("fixed inset-x-0 top-0 z-50 border-b transition duration-300", scrolled ? "border-border/80 bg-background/95 shadow-lg shadow-black/10 backdrop-blur-md" : "border-transparent bg-[#eef5fa]/95")}>
+    <nav className="page-container flex h-[72px] items-center justify-between" aria-label="Primary navigation">
+      <Link href="/" className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent" aria-label="VisionSecure home"><Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={250} height={70} priority className="h-11 w-auto object-contain sm:h-12" /></Link>
+      <div className="hidden items-center gap-5 xl:flex">
+        <Link href="/" className={cn("nav-link", pathname === "/" && "nav-link-active")}>Home</Link>
+        <Link href="/about" className={cn("nav-link", pathname === "/about" && "nav-link-active")}>About</Link>
+        <div ref={menuRef} className="relative" onMouseEnter={() => { cancelClose(); setServicesOpen(true) }} onMouseLeave={scheduleClose} onFocusCapture={() => { cancelClose(); setServicesOpen(true) }} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) scheduleClose() }}>
+          <button type="button" onClick={() => setServicesOpen((value) => !value)} onKeyDown={(event) => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); setServicesOpen(true) } }} aria-expanded={servicesOpen} aria-haspopup="true" aria-controls="services-mega-menu" className={cn("nav-link inline-flex items-center gap-1", serviceActive && "nav-link-active")}>Services <ChevronDown className={cn("h-4 w-4 transition", servicesOpen && "rotate-180")} /></button>
+          <div id="services-mega-menu" aria-hidden={!servicesOpen} className={cn("absolute left-1/2 top-[calc(100%+18px)] w-[820px] -translate-x-1/2 rounded-2xl border border-slate-700/70 bg-[#07182b] p-6 text-white shadow-2xl shadow-black/35 transition duration-200", servicesOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0")}>
+            <div className="mb-5 flex items-end justify-between border-b border-white/10 pb-4"><div><p className="text-sm font-semibold uppercase tracking-[.16em] text-cyan-300">Services</p><p className="mt-1 text-sm text-slate-300">Complete Security, Networking, IT & Smart Solutions</p></div><Link href="/services" className="inline-flex items-center gap-1 rounded text-sm font-semibold text-cyan-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300">View all services <ArrowRight className="h-4 w-4" /></Link></div>
+            <div className="grid grid-cols-2 gap-x-9 gap-y-5">{categories.map((category) => <section key={category}><h2 className="mb-2 text-xs font-semibold uppercase tracking-[.14em] text-slate-400">{category}</h2>{services.filter((service) => service.category === category).map((service) => { const Icon = service.icon; return <Link key={service.slug} href={`/services/${service.slug}`} className="group flex min-h-10 items-center gap-2 rounded-lg px-2 py-2 text-sm text-slate-100 transition hover:bg-cyan-300/10 hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300"><Icon className="h-4 w-4 shrink-0 text-cyan-300 transition group-hover:scale-110" aria-hidden="true" />{service.title}<ArrowRight className="ml-auto h-3.5 w-3.5 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100" aria-hidden="true" /></Link> })}</section>)}</div>
           </div>
         </div>
-      </nav>
-    </header>
-  )
+        {navLinks.map((link) => <Link key={link.href} href={link.href} className={cn("nav-link", pathname === link.href && "nav-link-active")}>{link.label}</Link>)}
+      </div>
+      <div className="hidden items-center gap-4 xl:flex"><a href="tel:+919872133840" className="flex items-center gap-2 rounded-xl border border-[#0B2F63] px-3 py-2 text-sm font-bold text-[#0B2F63] transition hover:bg-[#F3F8FC]"><Phone size={15} />Call Now</a><Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-[#79C914] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-[#65AE0B]"><ArrowRight size={15} />Get Free Site Visit</Link></div>
+      <button onClick={() => setMobileOpen((value) => !value)} className="rounded-lg p-2 text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent xl:hidden" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation">{mobileOpen ? <X /> : <Menu />}</button>
+    </nav>
+    <div id="mobile-navigation" className={cn("overflow-y-auto border-t border-border/70 bg-background transition-all duration-300 xl:hidden", mobileOpen ? "max-h-[calc(100dvh-72px)] opacity-100" : "max-h-0 opacity-0")}><div className="page-container py-3"><Link href="/" className="mobile-nav-link">Home</Link><Link href="/about" className="mobile-nav-link">About</Link><div className="border-b border-border/50"><button type="button" onClick={() => setMobileServicesOpen((value) => !value)} aria-expanded={mobileServicesOpen} className="mobile-nav-link flex w-full items-center justify-between">Services <ChevronDown className={cn("h-4 w-4 transition", mobileServicesOpen && "rotate-180")} /></button>{mobileServicesOpen && <div className="ml-3 border-l border-border pb-2 pl-3">{categories.map((category) => <div key={category} className="py-2"><p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{category}</p>{services.filter((service) => service.category === category).map((service) => <Link key={service.slug} href={`/services/${service.slug}`} className="block min-h-11 py-3 text-sm hover:text-accent">{service.title}</Link>)}</div>)}<Link href="/services" className="block py-3 text-sm font-semibold text-accent">View all services →</Link></div>}</div>{navLinks.map((link) => <Link key={link.href} href={link.href} className="mobile-nav-link">{link.label}</Link>)}<Link href="/contact" className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground"><ArrowRight size={16} />Get a Quote</Link></div></div>
+  </header>
 }

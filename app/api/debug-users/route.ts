@@ -1,23 +1,8 @@
 // app/api/debug-users/route.ts
 
-import { connectDB } from "@/lib/mongodb"
-import User from "@/models/User"
+import { NextResponse } from "next/server"
 
 export async function GET() {
-  try {
-    await connectDB()
-
-    const users = await User.find({})
-      .select("+password")
-
-    return Response.json({
-      count: users.length,
-      users,
-    })
-  } catch (error) {
-    return Response.json(
-      { error: String(error) },
-      { status: 500 }
-    )
-  }
+  // Diagnostic endpoint intentionally disabled: it previously exposed passwords.
+  return NextResponse.json({ error: "Not found" }, { status: 404 })
 }

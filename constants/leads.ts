@@ -8,8 +8,8 @@ export const LEAD_STATUSES = [
   'Follow-Up',
   'Quotation Sent',
   'Installation Scheduled',
-  'Converted',
-  'Closed',
+  'Installed Successfully',
+  'Cancelled',
 ] as const
 
 export const LEAD_PRIORITIES = [
@@ -28,6 +28,8 @@ export const LEAD_SOURCES = [
   'Call',
   'Reference',
   'Manual',
+  'AI Chat',
+  'AI Assistant',
 ] as const
 
 export const LEAD_STATUS_COLORS: Record<string, string> = {
@@ -36,8 +38,8 @@ export const LEAD_STATUS_COLORS: Record<string, string> = {
   'Follow-Up': 'bg-purple-100 text-purple-800',
   'Quotation Sent': 'bg-orange-100 text-orange-800',
   'Installation Scheduled': 'bg-cyan-100 text-cyan-800',
-  'Converted': 'bg-green-100 text-green-800',
-  'Closed': 'bg-gray-100 text-gray-800',
+  'Installed Successfully': 'bg-green-100 text-green-800',
+  'Cancelled': 'bg-red-100 text-red-800',
 }
 
 export const PRIORITY_COLORS: Record<string, string> = {

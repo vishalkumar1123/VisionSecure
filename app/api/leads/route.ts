@@ -3,11 +3,29 @@ import { NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
 
 import Lead from "@/models/Lead"
+import { NotificationService } from "@/notification/services/notification.service"
+import { NotificationActivityLogService } from "@/notification/services/activity-log.service"
+import { allowRateLimitedRequest } from "@/notification/utils/rate-limit"
+import { requireAdmin } from "@/lib/admin-auth"
+import { z } from "zod"
+
+const createLeadSchema = z.object({
+  name: z.string().trim().min(2, "Please enter your name").max(100),
+  phone: z.string().transform((phone) => phone.replace(/\D/g, "")).pipe(z.string().regex(/^[6-9]\d{9}$/, "Please enter a valid 10-digit Indian mobile number")),
+  email: z.string().trim().email("Please enter a valid email address").max(254).optional().or(z.literal("")),
+  service: z.string().trim().min(2, "Please select a service or requirement").max(160),
+  budget: z.string().trim().max(100).optional().default(""),
+  message: z.string().trim().max(3000).optional().default(""),
+  source: z.enum(["Website", "AI Chat", "AI Assistant"]).optional().default("Website"),
+})
 
 
 
 // GET ALL LEADS
 export async function GET() {
+
+  const { response } = await requireAdmin()
+  if (response) return response
 
   try {
 
@@ -44,22 +62,34 @@ export async function POST(
   req: Request
 ) {
   try {
-    await connectDB()
+    const forwardedFor = req.headers.get("x-forwarded-for")
+    const requestIp = forwardedFor?.split(",")[0]?.trim() || "unknown"
+    if (!allowRateLimitedRequest(`lead:${requestIp}`)) {
+      return NextResponse.json({ success: false, error: "Too many requests. Please try again shortly." }, { status: 429 })
+    }
 
-    const body = await req.json()
+    let requestBody: unknown
+    try {
+      requestBody = await req.json()
+    } catch {
+      return NextResponse.json({ success: false, error: "Invalid JSON request body" }, { status: 400 })
+    }
 
-    if (!body.name || !body.phone) {
+    const parsed = createLeadSchema.safeParse(requestBody)
+    if (!parsed.success) {
       return NextResponse.json(
         {
           success: false,
-          error:
-            "Name and phone are required",
+          error: parsed.error.issues[0]?.message || "Invalid lead information",
         },
         {
           status: 400,
         }
       )
     }
+    const body = parsed.data
+
+    await connectDB()
 // CHECK DUPLICATE LEAD
 const last24Hours = new Date()
 
@@ -100,16 +130,35 @@ if (existingLead) {
         status: "New",
 
         // FIXED
-        source: "Website",
+        source: body.source,
       })
+
+    const notificationPayload = {
+      name: newLead.name,
+      phone: newLead.phone,
+      email: newLead.email,
+      requirement: newLead.message || newLead.service,
+      service: newLead.service,
+      source: newLead.source,
+      priority: newLead.priority,
+      status: newLead.status,
+      createdAt: newLead.createdAt,
+    }
+
+    // VNC is deliberately isolated: delivery failures never change a saved lead response.
+    console.info("Lead created", { leadId: newLead._id.toString() })
+    await NotificationActivityLogService.record("LEAD_CREATED", { leadId: newLead._id.toString() })
+    await NotificationService.notifyNewLead(newLead._id.toString(), notificationPayload).catch((error: unknown) => {
+      console.error("VNC notification dispatch failed", { leadId: newLead._id.toString(), error: error instanceof Error ? error.message : "unknown" })
+    })
 
     return NextResponse.json({
       success: true,
       message:
         "Lead created successfully",
-      lead: newLead,
+      leadId: newLead._id.toString(),
     })
-  } catch (error: any) {
+  } catch (error: unknown) {
 
   console.error(
     "CREATE LEAD ERROR FULL:",
@@ -119,15 +168,7 @@ if (existingLead) {
   return NextResponse.json(
     {
       success: false,
-      error:
-        error?.message ||
-        "Failed to create lead",
-
-      stack:
-        process.env.NODE_ENV ===
-        "development"
-          ? error?.stack
-          : undefined,
+        error: "Failed to create lead",
     },
     {
       status: 500,

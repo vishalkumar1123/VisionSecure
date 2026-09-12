@@ -3,10 +3,14 @@ import { NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
 
 import Lead from "@/models/Lead"
+import { requireAdmin } from "@/lib/admin-auth"
 
 
 
 export async function GET() {
+
+  const { response } = await requireAdmin()
+  if (response) return response
 
   try {
 
@@ -64,7 +68,7 @@ export async function GET() {
     // CONVERTED LEADS
     const convertedLeads =
       await Lead.countDocuments({
-        status: "Converted",
+        status: { $in: ["Installed Successfully", "Converted"] },
       })
 
 
@@ -72,7 +76,7 @@ export async function GET() {
     // CLOSED LEADS
     const closedLeads =
       await Lead.countDocuments({
-        status: "Closed",
+        status: { $in: ["Cancelled", "Closed"] },
       })
 
 
@@ -208,12 +212,12 @@ export async function GET() {
       },
 
       {
-        name: "Converted",
+        name: "Installed Successfully",
         total: convertedLeads,
       },
 
       {
-        name: "Closed",
+        name: "Cancelled",
         total: closedLeads,
       },
     ]
@@ -313,6 +317,32 @@ export async function GET() {
           )
         : 0
 
+    const thirtyDaysAgo = new Date()
+    thirtyDaysAgo.setHours(0, 0, 0, 0)
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 29)
+    const previousPeriodStart = new Date(thirtyDaysAgo)
+    previousPeriodStart.setDate(previousPeriodStart.getDate() - 30)
+
+    const [dailyRows, current30Days, previous30Days, sourceStats] = await Promise.all([
+      Lead.aggregate([
+        { $match: { createdAt: { $gte: thirtyDaysAgo } } },
+        { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt", timezone: "Asia/Kolkata" } }, total: { $sum: 1 } } },
+        { $sort: { _id: 1 } },
+      ]),
+      Lead.countDocuments({ createdAt: { $gte: thirtyDaysAgo } }),
+      Lead.countDocuments({ createdAt: { $gte: previousPeriodStart, $lt: thirtyDaysAgo } }),
+      Lead.aggregate([{ $group: { _id: "$source", total: { $sum: 1 } } }, { $sort: { total: -1 } }]),
+    ])
+
+    const dailyMap = new Map(dailyRows.map((row) => [row._id, row.total]))
+    const dailyTrend = Array.from({ length: 30 }, (_, index) => {
+      const day = new Date(thirtyDaysAgo)
+      day.setDate(day.getDate() + index)
+      const key = day.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" })
+      return { date: key, label: day.toLocaleDateString("en-IN", { day: "2-digit", month: "short", timeZone: "Asia/Kolkata" }), total: dailyMap.get(key) || 0 }
+    })
+    const leadTrendPercentage = previous30Days > 0 ? Number((((current30Days - previous30Days) / previous30Days) * 100).toFixed(1)) : current30Days > 0 ? 100 : 0
+
 
 
     return NextResponse.json({
@@ -353,6 +383,11 @@ export async function GET() {
   statusStats,
 
   conversionRate,
+  dailyTrend,
+  current30Days,
+  previous30Days,
+  leadTrendPercentage,
+  sourceStats,
 })
 
   } catch (error) {

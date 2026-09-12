@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSlider } from "@/components/hero-slider"
 import { TrustSection } from "@/components/trust-section"
-import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { ProjectsSection } from "@/components/projects-section"
@@ -11,6 +10,7 @@ import { CTABanner } from "@/components/cta-banner"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { LeadPopup } from "@/components/lead-popup"
+import { OfficeMap } from "@/components/office-map"
 
 export default function Home() {
   return (
@@ -19,13 +19,13 @@ export default function Home() {
       <HeroSlider />
       <TrustSection />      
       <ServicesSection />
-      <AboutSection />
       <WhyChooseUs />
       {/* <ProjectsSection /> */}
       <TestimonialsSection />
       <BrandsSection />
       <CTABanner />
       <ContactSection />
+      <section className="page-container pb-20"><OfficeMap /></section>
       <Footer />
       <LeadPopup />
     </main>

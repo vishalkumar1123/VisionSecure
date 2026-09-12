@@ -22,6 +22,9 @@ export default function BlogPageContent() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeCategory, setActiveCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
+  const [newsletterEmail, setNewsletterEmail] = useState("")
+  const [newsletterMessage, setNewsletterMessage] = useState("")
+  const [isSubscribing, setIsSubscribing] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -51,6 +54,19 @@ export default function BlogPageContent() {
 
   const featuredPost = blogPosts.find((post) => post.featured)
   const regularPosts = filteredPosts.filter((post) => !post.featured)
+
+  const subscribe = async (event: React.FormEvent) => {
+    event.preventDefault()
+    setNewsletterMessage("")
+    try {
+      setIsSubscribing(true)
+      const response = await fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: newsletterEmail }) })
+      const data = await response.json() as { error?: string }
+      if (!response.ok) throw new Error(data.error || "Subscription failed")
+      setNewsletterEmail("")
+      setNewsletterMessage("Thank you — you’re subscribed.")
+    } catch (error) { setNewsletterMessage(error instanceof Error ? error.message : "Subscription failed") } finally { setIsSubscribing(false) }
+  }
 
   return (
     <section ref={sectionRef} className="py-24 lg:py-32">
@@ -259,18 +275,21 @@ export default function BlogPageContent() {
           <p className="text-muted-foreground max-w-xl mx-auto mb-6">
             Get the latest security tips and industry news delivered to your inbox.
           </p>
-          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={subscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <Input
               type="email"
               placeholder="Enter your email"
+              value={newsletterEmail}
+              onChange={(event) => setNewsletterEmail(event.target.value)}
               className="flex-1 bg-background border-border/50"
               aria-label="Email address for newsletter"
               required
             />
-            <Button type="submit" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8">
-              Subscribe
+            <Button type="submit" disabled={isSubscribing} className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8">
+              {isSubscribing ? "Subscribing..." : "Subscribe"}
             </Button>
           </form>
+          {newsletterMessage && <p className="mt-4 text-sm text-muted-foreground" aria-live="polite">{newsletterMessage}</p>}
         </div>
       </div>
     </section>

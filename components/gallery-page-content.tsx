@@ -27,7 +27,7 @@ export function GalleryPageContent() {
   }
 
   return (
-    <section className="py-24 lg:py-32 bg-zinc-950 text-white min-h-screen">
+    <section className="section-space min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* HEADING SECTION */}
@@ -36,7 +36,7 @@ export function GalleryPageContent() {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent lg:text-6xl"
+            className="font-display text-4xl font-bold tracking-tight text-foreground lg:text-6xl"
           >
             Our Installation Gallery
           </motion.h2>
@@ -45,7 +45,7 @@ export function GalleryPageContent() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mx-auto mt-4 max-w-2xl text-lg text-zinc-400"
+            className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground"
           >
             Explore our premium security system installations and smart technology projects.
           </motion.p>
@@ -61,7 +61,7 @@ export function GalleryPageContent() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
               onClick={() => setSelectedItem(item)} 
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/50 cursor-pointer shadow-lg hover:shadow-2xl hover:border-white/20 transition-all duration-300"
+              className="group relative cursor-pointer overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:shadow-lg"
             >
               <div className="relative h-[300px] w-full overflow-hidden flex items-center justify-center bg-black">
                 
@@ -92,11 +92,11 @@ export function GalleryPageContent() {
                 )}
 
                 {/* Hover Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 
                 {/* Text Details on Hover */}
                 <div className="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 z-20">
-                  <p className="text-sm font-semibold tracking-wider text-amber-400 uppercase mb-1">Project</p>
+                  <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-accent">Project</p>
                   <h3 className="text-xl font-bold text-white">{item.title}</h3>
                 </div>
               </div>

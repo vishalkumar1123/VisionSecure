@@ -34,6 +34,7 @@ import {
   BadgeCheck,
   Wrench,
 } from "lucide-react"
+import { OfficeMap } from "@/components/office-map"
 
 const services = [
   "CCTV Surveillance",
@@ -76,7 +77,7 @@ const contactInfo = [
     details: [
       "153, Pili Market, Near Ram Lal Marriage Lawn",
       "Narouna, Kakori Mod, Mohan Road",
-      "Lucknow, Uttar Pradesh - 226017",
+      "Lucknow, Uttar Pradesh - 227107",
     ],
     // Official Google Maps Place link using exact CID key
     action: "https://maps.google.com/?cid=5167156942475472384",
@@ -227,7 +228,7 @@ export function ContactPageContent() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-xs sm:text-sm font-semibold text-cyan-400 backdrop-blur-md shadow-inner shadow-cyan-500/5">
             <ShieldCheck className="h-4 w-4 animate-pulse" />
-            Contact VisionSecure
+            Contact VisionSecure Smart Technologies
           </span>
           <h2 className="mt-6 text-4xl font-black tracking-tight text-white lg:text-6xl bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent">
             Let's Secure Your Space
@@ -328,7 +329,7 @@ export function ContactPageContent() {
                     <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">{errorMessage}</div>
                   )}
 
-                  <Button type="submit" disabled={isSubmitting} className="h-14 w-full rounded-full bg-cyan-500 text-base font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.01] hover:bg-cyan-400 cursor-pointer">
+                  <Button type="submit" disabled={isSubmitting} className="h-14 w-full rounded-full bg-primary text-base font-bold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 cursor-pointer">
                     {isSubmitting ? (
                       <span className="flex items-center gap-2"><Loader2 className="h-5 w-5 animate-spin" /> Submitting...</span>
                     ) : (
@@ -464,18 +465,9 @@ export function ContactPageContent() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={fadeInUp}
-          className="mt-20 overflow-hidden rounded-[32px] border border-white/10 shadow-2xl shadow-black/80 hover:border-cyan-500/20 transition-all duration-500"
+          className="mt-20"
         >
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.8967520078714!2d80.82292243488771!3d26.839472199999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bffb95a7796ab%3A0x47b556f7ff8cee00!2sVisionSecure%20Smart%20Technologies!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
-            width="100%" 
-            height="485" 
-            style={{ border: 0, filter: "grayscale(0.3) contrast(1.1) invert(0.9)" }}
-            allowFullScreen 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade" 
-            title="VisionSecure Smart Technologies Location Map" 
-          />
+          <OfficeMap />
         </motion.div>
       </div>
     </section>

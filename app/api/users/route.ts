@@ -8,6 +8,7 @@
 
 import { NextRequest } from "next/server"
 import { getToken } from "next-auth/jwt"
+import { isSessionTokenActive } from "@/lib/session-security"
 import { UserService } from "@/services/user-service"
 import { createUserSchema } from "@/lib/validation-user"
 import { successResponse, createdResponse, handleApiError } from "@/middleware/error-handler"
@@ -24,7 +25,7 @@ export async function GET(req: NextRequest) {
       secret: process.env.NEXTAUTH_SECRET,
     })
 
-    if (!token) {
+    if (!isSessionTokenActive(token)) {
       return new Response("Unauthorized", { status: 401 })
     }
 
@@ -67,7 +68,7 @@ export async function POST(req: NextRequest) {
       secret: process.env.NEXTAUTH_SECRET,
     })
 
-    if (!token) {
+    if (!isSessionTokenActive(token)) {
       return new Response("Unauthorized", { status: 401 })
     }
 

@@ -212,7 +212,7 @@ export function ServicesHeroSlider() {
 
                   <CheckCircle2 className="h-4 w-4 text-green-400" />
 
-                  150+ Installations
+                  Requirement-Based Solutions
 
                 </div>
 
@@ -248,7 +248,7 @@ export function ServicesHeroSlider() {
 
                   <CheckCircle2 className="h-4 w-4 text-green-400" />
 
-                  PAN India Support
+                  Ongoing Support Options
 
                 </div>
 

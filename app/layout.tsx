@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
-import { Inter, Space_Grotesk } from "next/font/google"
+import { Inter, Manrope } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Providers from "@/components/providers"
 import { Toaster } from "sonner"
 import GoogleAnalytics from "@/components/google-analytics"
 import ClarityProvider from "@/components/clarity"
 import Schema from "@/components/schema"
+import { FloatingSupport } from "@/components/floating-support"
+import { SiteMotionEffects } from "@/components/site-motion-effects"
 
 import "./globals.css"
 
@@ -14,11 +16,12 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
-const spaceGrotesk = Space_Grotesk({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-manrope",
 })
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://visionsecuretech.in"),
   title:
     "VisionSecure Smart Technologies | CCTV, Biometric & Security Solutions",
 
@@ -74,17 +77,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="dark scroll-smooth"
+      className="scroll-smooth"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-black text-white`}
+        className={`${inter.variable} ${manrope.variable} font-sans antialiased`}
       >
       <ClarityProvider />
        <Schema />
          <Providers>
+          <SiteMotionEffects />
           {children}
+          <FloatingSupport />
           <Toaster richColors position="top-right" />
          </Providers>
          <GoogleAnalytics />
