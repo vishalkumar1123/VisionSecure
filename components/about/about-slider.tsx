@@ -348,14 +348,14 @@ export function AboutSlider() {
   const Icon = slide.icon
 
   return (
-    <main className="overflow-hidden bg-slate-950">
+    <main className="overflow-hidden bg-background">
 
       {/* =========================================================
           01 — WHO WE ARE
           ========================================================= */}
 
       <section
-        className="relative isolate overflow-hidden bg-slate-950"
+        className="relative isolate overflow-hidden bg-background"
         aria-labelledby="about-slider-heading"
         aria-roledescription="carousel"
         aria-label="About VisionSecure Smart Technologies"
@@ -382,11 +382,11 @@ export function AboutSlider() {
         </div>
         {/* Overlays */}
 
-        <div className="absolute inset-0 bg-slate-950/70" />
+        <div className="absolute inset-0 bg-background/70" />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/30" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
 
         {/* Grid */}
 
@@ -404,12 +404,12 @@ export function AboutSlider() {
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-40 top-1/4 h-[420px] w-[420px] rounded-full bg-blue-500/10 blur-[120px]"
+          className="pointer-events-none absolute -left-40 top-1/4 h-[420px] w-[420px] rounded-full bg-primary/10 blur-[120px]"
         />
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-[120px]"
+          className="pointer-events-none absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full bg-highlight/10 blur-[120px]"
         />
 
         {/* Content */}
@@ -423,7 +423,7 @@ export function AboutSlider() {
                 key={`${slide.eyebrow}-eyebrow`}
                 className="animate-[aboutFadeUp_0.7s_ease-out_both]"
               >
-                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.07] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-cyan-300 backdrop-blur-md">
+                <span className="inline-flex items-center gap-2 rounded-full border border-highlight/20 bg-highlight/[0.07] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-highlight-ink backdrop-blur-md">
                   <Icon className="h-4 w-4" />
                   {slide.eyebrow}
                 </span>
@@ -432,14 +432,14 @@ export function AboutSlider() {
               <h1
                 id="about-slider-heading"
                 key={`${slide.title}-title`}
-                className="mt-6 text-balance animate-[aboutFadeUp_0.8s_0.08s_ease-out_both] text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
+                className="mt-6 text-balance animate-[aboutFadeUp_0.8s_0.08s_ease-out_both] text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
               >
                 {slide.title}
               </h1>
 
               <p
                 key={`${slide.text}-text`}
-                className="mt-6 max-w-2xl animate-[aboutFadeUp_0.8s_0.16s_ease-out_both] text-base leading-7 text-slate-300 sm:text-lg sm:leading-8"
+                className="mt-6 max-w-2xl animate-[aboutFadeUp_0.8s_0.16s_ease-out_both] text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
               >
                 {slide.text}
               </p>
@@ -448,7 +448,7 @@ export function AboutSlider() {
 
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-500/25"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-500/25"
                 >
                   Discuss Your Requirement
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -456,7 +456,7 @@ export function AboutSlider() {
 
                 <Link
                   href="/services"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.09]"
+                  className="group inline-flex items-center gap-2 rounded-xl border border-border bg-card/[0.05] px-5 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:bg-card/[0.09]"
                 >
                   Explore Our Services
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -472,12 +472,12 @@ export function AboutSlider() {
 
           <div className="absolute bottom-8 left-4 right-4 flex items-center justify-between sm:left-8 sm:right-8">
 
-            <div className="hidden text-sm font-medium text-slate-400 sm:block">
-              <span className="text-white">
+            <div className="hidden text-sm font-medium text-muted-foreground sm:block">
+              <span className="text-foreground">
                 {String(active + 1).padStart(2, "0")}
               </span>
 
-              <span className="mx-2 text-slate-600">/</span>
+              <span className="mx-2 text-muted-foreground">/</span>
 
               <span>
                 {String(slides.length).padStart(2, "0")}
@@ -504,8 +504,8 @@ export function AboutSlider() {
                   className={cn(
                     "h-2 rounded-full transition-all duration-500",
                     index === active
-                      ? "w-10 bg-cyan-300 shadow-[0_0_16px_rgba(103,232,249,0.45)]"
-                      : "w-2 bg-white/30 hover:bg-white/60"
+                      ? "w-10 bg-highlight shadow-[0_0_16px_rgba(103,232,249,0.45)]"
+                      : "w-2 bg-card/30 hover:bg-card/60"
                   )}
                 />
               ))}
@@ -518,7 +518,7 @@ export function AboutSlider() {
                 onClick={previous}
                 disabled={isAnimating}
                 aria-label="Previous slide"
-                className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:border-cyan-300/40 hover:bg-cyan-300/10 disabled:opacity-50"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/[0.04] text-foreground backdrop-blur-md transition-all duration-300 hover:-translate-x-1 hover:border-highlight/40 hover:bg-highlight/80 disabled:opacity-50"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
@@ -528,7 +528,7 @@ export function AboutSlider() {
                 onClick={next}
                 disabled={isAnimating}
                 aria-label="Next slide"
-                className="group flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white backdrop-blur-md transition-all duration-300 hover:translate-x-1 hover:border-cyan-300/40 hover:bg-cyan-300/10 disabled:opacity-50"
+                className="group flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/[0.04] text-foreground backdrop-blur-md transition-all duration-300 hover:translate-x-1 hover:border-highlight/40 hover:bg-highlight/80 disabled:opacity-50"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -540,7 +540,7 @@ export function AboutSlider() {
         {!paused && (
           <div
             key={active}
-            className="absolute bottom-0 left-0 h-[2px] animate-[aboutProgress_6.5s_linear_forwards] bg-cyan-300"
+            className="absolute bottom-0 left-0 h-[2px] animate-[aboutProgress_6.5s_linear_forwards] bg-highlight"
           />
         )}
       </section>
@@ -549,11 +549,11 @@ export function AboutSlider() {
           02 — COMPANY STORY
           ========================================================= */}
 
-      <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-28">
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
 
         <div
           aria-hidden="true"
-          className="absolute left-1/2 top-0 h-[450px] w-[650px] -translate-x-1/2 rounded-full bg-blue-500/[0.05] blur-[140px]"
+          className="absolute left-1/2 top-0 h-[450px] w-[650px] -translate-x-1/2 rounded-full bg-primary/[0.05] blur-[140px]"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
@@ -564,16 +564,16 @@ export function AboutSlider() {
 
             <div>
 
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-ink">
                 <Building2 className="h-4 w-4" />
                 About VisionSecure Smart Technologies
               </span>
 
-              <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                 A technology partner focused on practical solutions.
               </h2>
 
-              <div className="mt-6 space-y-5 text-base leading-8 text-slate-400 sm:text-lg">
+              <div className="mt-6 space-y-5 text-base leading-8 text-muted-foreground sm:text-lg">
 
                 <p>
                   VisionSecure Smart Technologies helps customers bring
@@ -601,19 +601,19 @@ export function AboutSlider() {
 
             <div className="relative">
 
-              <div className="absolute -inset-4 rounded-[2rem] bg-blue-500/[0.05] blur-2xl" />
+              <div className="absolute -inset-4 rounded-[2rem] bg-primary/[0.05] blur-2xl" />
 
-              <article className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.025] p-8 backdrop-blur-md sm:p-10">
+              <article className="relative overflow-hidden rounded-3xl border border-border/[0.08] bg-card/[0.025] p-8 backdrop-blur-md sm:p-10">
 
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.07] text-cyan-300">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-highlight/20 bg-highlight/[0.07] text-highlight-ink">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
 
-                <h3 className="mt-7 text-2xl font-bold text-white">
+                <h3 className="mt-7 text-2xl font-bold text-foreground">
                   Security. Connectivity. Technology.
                 </h3>
 
-                <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
+                <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
                   Our focus is not simply on installing products. We aim to
                   create complete, usable solutions that fit the customer,
                   property, and application.
@@ -629,9 +629,9 @@ export function AboutSlider() {
                   ].map((item) => (
                     <div
                       key={item}
-                      className="flex items-center gap-3 text-sm text-slate-300"
+                      className="flex items-center gap-3 text-sm text-muted-foreground"
                     >
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-300" />
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-highlight-ink" />
                       {item}
                     </div>
                   ))}
@@ -651,22 +651,22 @@ export function AboutSlider() {
           03 — WHAT WE STAND FOR
           ========================================================= */}
 
-      <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#07111f] py-24 sm:py-28">
+      <section className="relative overflow-hidden border-y border-border/[0.06] bg-background py-24 sm:py-28">
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
 
           <div className="mx-auto max-w-3xl text-center">
 
-            <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-highlight/20 bg-highlight/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-highlight-ink">
               <ShieldCheck className="h-4 w-4" />
               What We Stand For
             </span>
 
-            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               Technology should make things simpler, safer, and more reliable.
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
               We believe good technology is not about adding more products.
               It is about choosing the right technology and making it work
               properly for the people who use it.
@@ -682,22 +682,22 @@ export function AboutSlider() {
               return (
                 <article
                   key={item.title}
-                  className="group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/25 hover:bg-white/[0.045] hover:shadow-2xl hover:shadow-cyan-950/20"
+                  className="group relative overflow-hidden rounded-2xl border border-border/[0.07] bg-card/[0.025] p-6 transition-all duration-500 hover:-translate-y-2 hover:border-highlight/25 hover:bg-card/[0.045] hover:shadow-2xl hover:shadow-cyan-950/20"
                 >
 
-                  <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-cyan-400/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-highlight/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative">
 
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-400/15 bg-cyan-400/[0.06] text-cyan-300 transition-all duration-300 group-hover:border-cyan-400/30 group-hover:bg-cyan-500 group-hover:text-white">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-highlight/15 bg-highlight/[0.06] text-highlight-ink transition-all duration-300 group-hover:border-highlight/30 group-hover:bg-highlight group-hover:text-foreground">
                       <StrengthIcon className="h-5 w-5" />
                     </div>
 
-                    <h3 className="mt-5 text-lg font-bold text-white transition-colors group-hover:text-cyan-300">
+                    <h3 className="mt-5 text-lg font-bold text-foreground transition-colors group-hover:text-highlight-ink">
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 text-sm leading-6 text-slate-500">
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
                       {item.description}
                     </p>
 
@@ -716,11 +716,11 @@ export function AboutSlider() {
           04 — GOAL
           ========================================================= */}
 
-      <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-28">
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
 
         <div
           aria-hidden="true"
-          className="absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-blue-500/[0.06] blur-[140px]"
+          className="absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-primary/[0.06] blur-[140px]"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
@@ -729,20 +729,20 @@ export function AboutSlider() {
 
             <div>
 
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-ink">
                 <Target className="h-4 w-4" />
                 Our Goal
               </span>
 
-              <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
                 To become a trusted technology partner for the long term.
               </h2>
 
             </div>
 
-            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.025] p-8 backdrop-blur-md sm:p-10">
+            <div className="rounded-3xl border border-border/[0.08] bg-card/[0.025] p-8 backdrop-blur-md sm:p-10">
 
-              <p className="text-base leading-8 text-slate-400 sm:text-lg">
+              <p className="text-base leading-8 text-muted-foreground sm:text-lg">
                 Our goal is to build VisionSecure Smart Technologies into a dependable technology
                 partner for homes and businesses by delivering solutions that
                 are practical, scalable, and easier to manage. We want our
@@ -759,7 +759,7 @@ export function AboutSlider() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-xl border border-white/[0.07] bg-white/[0.025] px-4 py-3 text-center text-sm font-semibold text-slate-300 transition-all duration-300 hover:border-blue-400/25 hover:text-white"
+                    className="rounded-xl border border-border/[0.07] bg-card/[0.025] px-4 py-3 text-center text-sm font-semibold text-muted-foreground transition-all duration-300 hover:border-primary/25 hover:text-foreground"
                   >
                     {item}
                   </div>
@@ -778,7 +778,7 @@ export function AboutSlider() {
           05 — VISION & MISSION
           ========================================================= */}
 
-      <section className="relative overflow-hidden bg-[#07111f] py-24 sm:py-28">
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
 
@@ -786,26 +786,26 @@ export function AboutSlider() {
 
             {/* Vision */}
 
-            <article className="group relative overflow-hidden rounded-3xl border border-blue-400/10 bg-blue-500/[0.04] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:bg-blue-500/[0.06] sm:p-10">
+            <article className="group relative overflow-hidden rounded-3xl border border-primary/10 bg-primary/[0.04] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:bg-primary/[0.06] sm:p-10">
 
-              <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-blue-500/10 blur-[70px]" />
+              <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-primary/10 blur-[70px]" />
 
               <div className="relative">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/20 bg-blue-400/[0.08] text-blue-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-brand-ink">
                   <Target className="h-5 w-5" />
                 </div>
 
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+                <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-brand-ink">
                   Our Vision
                 </p>
 
-                <h2 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">
+                <h2 className="mt-3 text-2xl font-extrabold text-foreground sm:text-3xl">
                   Making dependable technology easier to access and easier to
                   trust.
                 </h2>
 
-                <p className="mt-5 text-base leading-7 text-slate-400">
+                <p className="mt-5 text-base leading-7 text-muted-foreground">
                   We envision a technology company that customers can rely on
                   for security, connectivity, IT infrastructure, and smart
                   technology — with solutions that are understandable,
@@ -818,26 +818,26 @@ export function AboutSlider() {
 
             {/* Mission */}
 
-            <article className="group relative overflow-hidden rounded-3xl border border-cyan-400/10 bg-cyan-400/[0.035] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400/25 hover:bg-cyan-400/[0.055] sm:p-10">
+            <article className="group relative overflow-hidden rounded-3xl border border-highlight/10 bg-highlight/[0.035] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-highlight/25 hover:bg-highlight/[0.055] sm:p-10">
 
-              <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-cyan-400/10 blur-[70px]" />
+              <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-highlight/10 blur-[70px]" />
 
               <div className="relative">
 
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/[0.08] text-cyan-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-highlight/20 bg-highlight/[0.08] text-highlight-ink">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
 
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">
+                <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-highlight-ink">
                   Our Mission
                 </p>
 
-                <h2 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">
+                <h2 className="mt-3 text-2xl font-extrabold text-foreground sm:text-3xl">
                   Understand first. Recommend right. Deliver properly. Support
                   continuously.
                 </h2>
 
-                <p className="mt-5 text-base leading-7 text-slate-400">
+                <p className="mt-5 text-base leading-7 text-muted-foreground">
                   Our mission is to understand each customer&apos;s
                   requirement, recommend suitable technology, execute the work
                   professionally, and provide responsive support throughout
@@ -857,7 +857,7 @@ export function AboutSlider() {
           06 — HOW WE WORK
           ========================================================= */}
 
-      <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-28">
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
 
         <div
           aria-hidden="true"
@@ -873,16 +873,16 @@ export function AboutSlider() {
 
           <div className="mx-auto max-w-3xl text-center">
 
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-ink">
               <Settings2 className="h-4 w-4" />
               How We Work
             </span>
 
-            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               A clear process from the first conversation to ongoing support.
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
               We keep the process straightforward, transparent, and focused
               on the actual requirement.
             </p>
@@ -897,30 +897,30 @@ export function AboutSlider() {
               return (
                 <article
                   key={step.title}
-                  className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-blue-400/25 hover:bg-white/[0.045] hover:shadow-2xl hover:shadow-blue-950/30"
+                  className="group relative overflow-hidden rounded-2xl border border-border/[0.08] bg-card/[0.025] p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:bg-card/[0.045] hover:shadow-2xl hover:shadow-blue-950/30"
                 >
 
-                  <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-blue-500/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative">
 
                     <div className="flex items-center justify-between">
 
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-400/15 bg-blue-400/[0.07] text-blue-300 transition-all duration-300 group-hover:border-blue-400/30 group-hover:bg-blue-500 group-hover:text-white">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/15 bg-primary/[0.07] text-brand-ink transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary hover:text-primary-foreground group-hover:text-foreground">
                         <StepIcon className="h-5 w-5" />
                       </div>
 
-                      <span className="text-xs font-bold text-slate-700">
+                      <span className="text-xs font-bold text-muted-foreground">
                         {String(index + 1).padStart(2, "0")}
                       </span>
 
                     </div>
 
-                    <h3 className="mt-5 text-lg font-bold text-white transition-colors duration-300 group-hover:text-blue-300">
+                    <h3 className="mt-5 text-lg font-bold text-foreground transition-colors duration-300 group-hover:text-brand-ink">
                       {step.title}
                     </h3>
 
-                    <p className="mt-3 text-sm leading-6 text-slate-400">
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
                       {step.description}
                     </p>
 
@@ -936,7 +936,7 @@ export function AboutSlider() {
 
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-500/20"
+              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-500/20"
             >
               Discuss Your Requirement
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -952,18 +952,18 @@ export function AboutSlider() {
           ALL SERVICES + LINKS
           ========================================================= */}
 
-      <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#07111f] py-24 sm:py-28">
+      <section className="relative overflow-hidden border-y border-border/[0.06] bg-background py-24 sm:py-28">
 
         {/* Ambient Glows */}
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-cyan-500/[0.05] blur-[120px]"
+          className="pointer-events-none absolute -left-40 top-20 h-[400px] w-[400px] rounded-full bg-highlight/[0.05] blur-[120px]"
         />
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-40 bottom-20 h-[400px] w-[400px] rounded-full bg-blue-500/[0.06] blur-[120px]"
+          className="pointer-events-none absolute -right-40 bottom-20 h-[400px] w-[400px] rounded-full bg-primary/[0.06] blur-[120px]"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
@@ -974,16 +974,16 @@ export function AboutSlider() {
 
             <div className="max-w-3xl">
 
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-highlight/20 bg-highlight/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-highlight-ink">
                 <ShieldCheck className="h-4 w-4" />
                 Selected Solutions
               </span>
 
-              <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                 Security, Networking, IT & Smart Technology
               </h2>
 
-              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
                 Explore the technology solutions we provide for homes,
                 offices, shops, commercial spaces, and growing businesses.
               </p>
@@ -992,7 +992,7 @@ export function AboutSlider() {
 
             <Link
               href="/services"
-              className="group inline-flex shrink-0 items-center gap-2 self-start rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.08] md:self-auto"
+              className="group inline-flex shrink-0 items-center gap-2 self-start rounded-xl border border-border bg-card/[0.04] px-5 py-3 text-sm font-bold text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:bg-card/[0.08] md:self-auto"
             >
               View All Services
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -1014,11 +1014,11 @@ export function AboutSlider() {
 
                   <div className="mb-5 flex items-center gap-3">
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/15 bg-cyan-400/[0.06] text-cyan-300">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-highlight/15 bg-highlight/[0.06] text-highlight-ink">
                       <CategoryIcon className="h-5 w-5" />
                     </div>
 
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-xl font-bold text-foreground">
                       {category.title}
                     </h3>
 
@@ -1035,24 +1035,24 @@ export function AboutSlider() {
                         <Link
                           key={service.title}
                           href={service.href}
-                          className="group relative flex min-h-[86px] items-center justify-between overflow-hidden rounded-xl border border-white/[0.09] bg-white/[0.02] px-5 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-cyan-400/[0.05] hover:shadow-xl hover:shadow-cyan-950/20"
+                          className="group relative flex min-h-[86px] items-center justify-between overflow-hidden rounded-xl border border-border/[0.09] bg-card/[0.02] px-5 py-4 transition-all duration-300 hover:-translate-y-1 hover:border-highlight/40 hover:bg-highlight/[0.05] hover:shadow-xl hover:shadow-cyan-950/20"
                         >
 
                           <div className="flex min-w-0 items-center gap-3">
 
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.035] text-slate-300 transition-all duration-300 group-hover:border-cyan-400/30 group-hover:bg-cyan-400/10 group-hover:text-cyan-300">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/[0.08] bg-card/[0.035] text-muted-foreground transition-all duration-300 group-hover:border-highlight/30 group-hover:bg-highlight/80 group-hover:text-highlight-ink">
 
                               <ServiceIcon className="h-5 w-5" />
 
                             </div>
 
-                            <span className="text-sm font-bold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            <span className="text-sm font-bold text-foreground transition-colors duration-300 group-hover:text-highlight-ink">
                               {service.title}
                             </span>
 
                           </div>
 
-                          <ArrowRight className="ml-3 h-4 w-4 shrink-0 text-slate-600 transition-all duration-300 group-hover:translate-x-1 group-hover:text-cyan-300" />
+                          <ArrowRight className="ml-3 h-4 w-4 shrink-0 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-highlight-ink" />
 
                         </Link>
                       )
@@ -1073,25 +1073,25 @@ export function AboutSlider() {
           08 — FINAL CTA
           ========================================================= */}
 
-      <section className="relative overflow-hidden bg-slate-950 py-24 sm:py-28">
+      <section className="relative overflow-hidden bg-background py-24 sm:py-28">
 
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-blue-600/[0.08] via-transparent to-cyan-500/[0.08]"
+          className="absolute inset-0 bg-gradient-to-r from-primary/[0.08] via-transparent to-highlight/[0.08]"
         />
 
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-8">
 
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-ink">
             <MessageCircle className="h-4 w-4" />
             Let&apos;s Work Together
           </span>
 
-          <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-5 text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Have a requirement? Let&apos;s find the right solution.
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
             Tell us what you need. We&apos;ll understand the requirement,
             discuss the right approach, and help you take the next step with
             confidence.
@@ -1101,7 +1101,7 @@ export function AboutSlider() {
 
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-500/25"
+              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-500/25"
             >
               Discuss Your Requirement
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -1109,7 +1109,7 @@ export function AboutSlider() {
 
             <Link
               href="/services"
-              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/[0.08]"
+              className="group inline-flex items-center gap-2 rounded-xl border border-border bg-card/[0.04] px-6 py-3.5 text-sm font-bold text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-highlight/30 hover:bg-card/[0.08]"
             >
               Explore Services
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

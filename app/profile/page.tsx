@@ -20,11 +20,11 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-muted py-8 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
-          <p className="text-gray-600 mt-2">Manage your account settings</p>
+          <h1 className="text-3xl font-bold text-foreground">My Profile</h1>
+          <p className="text-muted-foreground mt-2">Manage your account settings</p>
         </div>
 
         <Tabs defaultValue="profile" className="w-full">
@@ -45,20 +45,20 @@ export default function ProfilePage() {
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Name</label>
-                    <p className="text-lg font-semibold text-gray-900">{session.user?.name}</p>
+                    <label className="text-sm font-medium text-muted-foreground">Name</label>
+                    <p className="text-lg font-semibold text-foreground">{session.user?.name}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Email</label>
-                    <p className="text-lg font-semibold text-gray-900">{session.user?.email}</p>
+                    <label className="text-sm font-medium text-muted-foreground">Email</label>
+                    <p className="text-lg font-semibold text-foreground">{session.user?.email}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Mobile</label>
-                    <p className="text-lg font-semibold text-gray-900">{session.user?.mobile}</p>
+                    <label className="text-sm font-medium text-muted-foreground">Mobile</label>
+                    <p className="text-lg font-semibold text-foreground">{session.user?.mobile}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Role</label>
-                    <p className="text-lg font-semibold capitalize text-gray-900">
+                    <label className="text-sm font-medium text-muted-foreground">Role</label>
+                    <p className="text-lg font-semibold capitalize text-foreground">
                       {session.user?.role?.replace(/_/g, " ")}
                     </p>
                   </div>

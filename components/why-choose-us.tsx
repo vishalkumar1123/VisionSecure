@@ -89,7 +89,7 @@ export function WhyChooseUs() {
     <section
       ref={sectionRef}
       aria-labelledby="why-choose-us-heading"
-      className="relative isolate overflow-hidden border-y border-slate-200/70 bg-slate-50 py-20 dark:border-white/[0.06] dark:bg-[#07111f] sm:py-24 lg:py-28"
+      className="relative isolate overflow-hidden border-y border-border bg-muted py-20 dark:border-border/[0.06] dark:bg-background sm:py-24 lg:py-28"
     >
       {/* ---------------------------------------------------------
           Background atmosphere
@@ -110,9 +110,9 @@ export function WhyChooseUs() {
         />
 
         {/* Brand atmosphere */}
-        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-blue-500/[0.07] blur-[120px] dark:bg-blue-500/[0.10]" />
+        <div className="absolute -left-32 -top-32 h-[420px] w-[420px] rounded-full bg-primary/[0.07] blur-[120px] dark:bg-primary/[0.10]" />
 
-        <div className="absolute -bottom-40 -right-32 h-[460px] w-[460px] rounded-full bg-cyan-500/[0.05] blur-[130px] dark:bg-cyan-500/[0.07]" />
+        <div className="absolute -bottom-40 -right-32 h-[460px] w-[460px] rounded-full bg-highlight/[0.05] blur-[130px] dark:bg-highlight/[0.07]" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,22 +128,22 @@ export function WhyChooseUs() {
               : "translate-y-6 opacity-0"
           )}
         >
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/15 bg-blue-500/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-600 dark:border-blue-400/20 dark:bg-blue-400/[0.08] dark:text-blue-400">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-ink dark:border-primary/20 dark:bg-primary/[0.08] dark:text-brand-ink">
             <ShieldCheck className="h-3.5 w-3.5" />
             Why Choose Us
           </div>
 
           <h2
             id="why-choose-us-heading"
-            className="text-balance text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl dark:text-white"
+            className="text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl dark:text-foreground"
           >
             Security Solutions Built Around{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent">
               Your Needs
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-400">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg dark:text-muted-foreground">
             We combine trusted technology, professional installation,
             customized solutions, and responsive support to help protect
             homes, offices, shops, and businesses.
@@ -156,7 +156,7 @@ export function WhyChooseUs() {
 
         <div
           className={cn(
-            "mx-auto mb-14 grid max-w-4xl grid-cols-2 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/70 shadow-sm backdrop-blur-sm transition-all duration-700 sm:grid-cols-4 dark:border-white/[0.07] dark:bg-white/[0.025]",
+            "mx-auto mb-14 grid max-w-4xl grid-cols-2 overflow-hidden rounded-2xl border border-border bg-card/70 shadow-sm backdrop-blur-sm transition-all duration-700 sm:grid-cols-4 dark:border-border/[0.07] dark:bg-card/[0.025]",
             isVisible
               ? "translate-y-0 opacity-100"
               : "translate-y-6 opacity-0"
@@ -167,12 +167,12 @@ export function WhyChooseUs() {
             <div
               key={point}
               className={cn(
-                "flex items-center justify-center gap-2 px-4 py-4 text-center text-xs font-semibold text-slate-700 sm:text-sm dark:text-slate-300",
-                index !== 0 && "border-slate-200/80 sm:border-l dark:border-white/[0.07]",
+                "flex items-center justify-center gap-2 px-4 py-4 text-center text-xs font-semibold text-muted-foreground sm:text-sm dark:text-muted-foreground",
+                index !== 0 && "border-border sm:border-l dark:border-border/[0.07]",
                 index >= 2 && "border-t sm:border-t-0"
               )}
             >
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" />
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-ink dark:text-brand-ink" />
               <span>{point}</span>
             </div>
           ))}
@@ -190,7 +190,7 @@ export function WhyChooseUs() {
               <article
                 key={feature.title}
                 className={cn(
-                  "group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-blue-500/30 hover:shadow-[0_18px_45px_rgba(15,23,42,0.09)] dark:border-white/[0.07] dark:bg-white/[0.025] dark:shadow-none dark:hover:border-blue-400/25 dark:hover:bg-white/[0.045]",
+                  "group relative overflow-hidden rounded-2xl border border-border bg-card/80 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[0_18px_45px_rgba(15,23,42,0.09)] dark:border-border/[0.07] dark:bg-card/[0.025] dark:shadow-none dark:hover:border-primary/25 dark:hover:bg-card/[0.045]",
                   isVisible
                     ? "translate-y-0 opacity-100"
                     : "translate-y-8 opacity-0"
@@ -202,21 +202,21 @@ export function WhyChooseUs() {
                 {/* Subtle hover glow */}
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-blue-500/[0.08] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                  className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-primary/[0.08] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
                 />
 
                 {/* Icon */}
-                <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-blue-500/15 bg-blue-500/[0.07] text-blue-600 transition-all duration-300 group-hover:border-blue-500/30 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-600/20 dark:border-blue-400/15 dark:bg-blue-400/[0.08] dark:text-blue-400">
+                <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-primary/15 bg-primary/[0.07] text-brand-ink transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary hover:text-primary-foreground group-hover:text-foreground group-hover:shadow-lg group-hover:shadow-blue-600/20 dark:border-primary/15 dark:bg-primary/[0.08] dark:text-brand-ink">
                   <Icon className="h-5 w-5" strokeWidth={2} />
                 </div>
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="mb-3 text-lg font-bold tracking-tight text-slate-950 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                  <h3 className="mb-3 text-lg font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-brand-ink dark:text-foreground dark:group-hover:text-brand-ink">
                     {feature.title}
                   </h3>
 
-                  <p className="text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  <p className="text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
                     {feature.description}
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export function WhyChooseUs() {
                 {/* Bottom accent */}
                 <div
                   aria-hidden="true"
-                  className="absolute bottom-0 left-6 right-6 h-px origin-left scale-x-0 bg-gradient-to-r from-blue-500 to-cyan-400 transition-transform duration-500 group-hover:scale-x-100"
+                  className="absolute bottom-0 left-6 right-6 h-px origin-left scale-x-0 bg-gradient-to-r from-primary to-highlight transition-transform duration-500 group-hover:scale-x-100"
                 />
               </article>
             )
@@ -244,7 +244,7 @@ export function WhyChooseUs() {
           )}
           style={{ transitionDelay: "700ms" }}
         >
-          <p className="text-sm leading-6 text-slate-500 dark:text-slate-500">
+          <p className="text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
             From initial consultation to installation and ongoing support,
             we focus on delivering practical solutions that fit your
             requirements.

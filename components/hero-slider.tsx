@@ -106,7 +106,7 @@ export function HeroSlider() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                 </span>
-                <span className="text-sm font-medium text-accent">{slides[currentSlide].accent}</span>
+                <span className="text-sm font-medium text-brand-green">{slides[currentSlide].accent}</span>
               </div>
 
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-balance">
@@ -134,7 +134,7 @@ export function HeroSlider() {
                 asChild
               >
                 <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
-                <FaWhatsapp className="h-5 w-5 text-green-500" />
+                <FaWhatsapp className="h-5 w-5 text-brand-green" />
                   WhatsApp Now
                 </a>
               </Button>
@@ -191,19 +191,19 @@ export function HeroSlider() {
                 <h3 className="font-display text-2xl font-bold text-center">Why Choose Us?</h3>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-accent">100+</div>
+                    <div className="text-3xl font-bold text-brand-green">100+</div>
                     <div className="text-sm text-muted-foreground">Projects Completed</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-accent">5+</div>
+                    <div className="text-3xl font-bold text-brand-green">5+</div>
                     <div className="text-sm text-muted-foreground">Years Experience</div>
                   </div>
                   <div className="text-center">
-                  <div className="text-2xl font-bold text-accent tracking-tight">Reliable</div>
+                  <div className="text-2xl font-bold text-brand-green tracking-tight">Reliable</div>
                   <div className="text-sm text-muted-foreground">Expert Support</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-accent">100%</div>
+                    <div className="text-3xl font-bold text-brand-green">100%</div>
                     <div className="text-sm text-muted-foreground">Client Satisfaction</div>
                   </div>
                 </div>

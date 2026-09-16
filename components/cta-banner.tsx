@@ -40,7 +40,7 @@ export function CTABanner() {
       </div>
       
       {/* Floating Elements */}
-      <div className="absolute top-1/4 left-10 w-20 h-20 bg-white/10 rounded-full blur-2xl animate-float" />
+      <div className="absolute top-1/4 left-10 w-20 h-20 bg-card/10 rounded-full blur-2xl animate-float" />
       <div className="absolute bottom-1/4 right-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '-2s' }} />
       
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -49,15 +49,15 @@ export function CTABanner() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
           {/* Icon */}
-          <div className="inline-flex p-4 rounded-full bg-white/10 backdrop-blur-sm mb-8">
-            <Shield className="h-10 w-10 text-white" />
+          <div className="inline-flex p-4 rounded-full bg-card/10 backdrop-blur-sm mb-8">
+            <Shield className="h-10 w-10 text-foreground" />
           </div>
           
           {/* Content */}
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 text-balance leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6 text-balance leading-tight">
             Ready to Secure Your Property?
           </h2>
-          <p className="text-lg lg:text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
             Get a free site visit and customized security plan from our experts. No obligations, just solutions.
           </p>
           
@@ -65,7 +65,7 @@ export function CTABanner() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 rounded-full px-8 h-14 text-base font-semibold shadow-lg shadow-black/20 hover:scale-105 transition-all duration-300"
+              className="w-full sm:w-auto bg-card text-brand-ink hover:bg-card/90 rounded-full px-8 h-14 text-base font-semibold shadow-lg shadow-black/20 hover:scale-105 transition-all duration-300"
               asChild
             >
               <a href="/contact">
@@ -76,7 +76,7 @@ export function CTABanner() {
             <Button
               size="lg"
               variant="outline"
-              className="w-full sm:w-auto border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-14 text-base font-semibold hover:scale-105 transition-all duration-300"
+              className="w-full sm:w-auto border-border text-foreground hover:bg-card/10 rounded-full px-8 h-14 text-base font-semibold hover:scale-105 transition-all duration-300"
               asChild
             >
               <a href="tel:+919872133840">
@@ -87,17 +87,17 @@ export function CTABanner() {
           </div>
           
           {/* Trust Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-white/60 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-foreground/60 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <div className="w-2 h-2 rounded-full bg-accent" />
               <span>Free Consultation</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <div className="w-2 h-2 rounded-full bg-accent" />
               <span>Expert Installation</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
+              <div className="w-2 h-2 rounded-full bg-accent" />
               <span>Warranty Included</span>
             </div>
           </div>

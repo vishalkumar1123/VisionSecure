@@ -43,7 +43,7 @@ export function ServiceDetailHeroSlider({
   }
 
   return (
-    <section onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") changeSlide(-1); if (event.key === "ArrowRight") changeSlide(1) }} className="relative isolate min-h-[640px] overflow-hidden bg-[#061B38] pt-24 text-white sm:min-h-[680px]" aria-roledescription="carousel" aria-label={`${title} highlights`}>
+    <section onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={() => setPaused(false)} onKeyDown={(event) => { if (event.key === "ArrowLeft") changeSlide(-1); if (event.key === "ArrowRight") changeSlide(1) }} className="relative isolate min-h-[640px] overflow-hidden bg-background pt-24 text-foreground sm:min-h-[680px]" aria-roledescription="carousel" aria-label={`${title} highlights`}>
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={currentSlide}
@@ -61,14 +61,14 @@ export function ServiceDetailHeroSlider({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,27,56,.98)_0%,rgba(11,47,99,.88)_48%,rgba(11,47,99,.44)_100%)]" />
+          <div className="absolute inset-0 bg-linear-to-r from-background/98 via-background/90 to-background/50" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(8,168,232,.2),transparent_28%)]" />
         </motion.div>
       </AnimatePresence>
 
       <div className="page-container relative z-10 flex min-h-[640px] items-center py-20 sm:min-h-[680px]">
         <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 backdrop-blur">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-highlight/30 bg-highlight/10 px-4 py-2 text-sm font-semibold text-highlight-ink backdrop-blur">
             <ShieldCheck className="h-4 w-4" aria-hidden="true" />
             {slides[currentSlide].eyebrow}
           </div>
@@ -82,15 +82,15 @@ export function ServiceDetailHeroSlider({
               transition={{ duration: reduceMotion ? 0 : 0.35 }}
               className="mt-5"
             >
-              <p className="max-w-2xl font-display text-xl font-semibold text-cyan-100 sm:text-2xl">{slides[currentSlide].title}</p>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200 sm:text-lg">{slides[currentSlide].description}</p>
+              <p className="max-w-2xl font-display text-xl font-semibold text-highlight-ink sm:text-2xl">{slides[currentSlide].title}</p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-foreground sm:text-lg">{slides[currentSlide].description}</p>
             </motion.div>
           </AnimatePresence>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={`/contact?service=${encodeURIComponent(title)}`} className="rounded-xl bg-[#79C914] px-5 py-3 font-semibold text-white shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-[#65AE0B]">
+            <Link href={`/contact?service=${encodeURIComponent(title)}`} className="rounded-xl bg-accent px-5 py-3 font-semibold text-accent-foreground shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-brand-hover">
               Get free site visit
             </Link>
-            <Link href="/services" className="rounded-lg border border-white/30 bg-white/10 px-5 py-3 font-semibold backdrop-blur transition hover:bg-white/20">
+            <Link href="/services" className="rounded-lg border border-border bg-card/10 px-5 py-3 font-semibold backdrop-blur transition hover:bg-card/20">
               Explore services
             </Link>
           </div>
@@ -105,15 +105,15 @@ export function ServiceDetailHeroSlider({
             aria-label={`Show slide ${index + 1}: ${slide.title}`}
             aria-current={currentSlide === index ? "true" : undefined}
             onClick={() => setCurrentSlide(index)}
-            className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-200 ${currentSlide === index ? "w-9 bg-cyan-300" : "w-2.5 bg-white/50 hover:bg-white"}`}
+            className={`h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-highlight ${currentSlide === index ? "w-9 bg-highlight" : "w-2.5 bg-card/50 hover:bg-card"}`}
           />
         ))}
       </div>
       <div className="absolute bottom-5 right-4 z-10 flex gap-2 sm:right-8">
-        <button type="button" onClick={() => changeSlide(-1)} aria-label="Previous slide" className="rounded-full border border-white/25 bg-slate-950/45 p-3 backdrop-blur transition hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200"><ChevronLeft className="h-5 w-5" /></button>
-        <button type="button" onClick={() => changeSlide(1)} aria-label="Next slide" className="rounded-full border border-white/25 bg-slate-950/45 p-3 backdrop-blur transition hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-200"><ChevronRight className="h-5 w-5" /></button>
+        <button type="button" onClick={() => changeSlide(-1)} aria-label="Previous slide" className="rounded-full border border-border bg-background/45 p-3 backdrop-blur transition hover:bg-card/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-highlight"><ChevronLeft className="h-5 w-5" /></button>
+        <button type="button" onClick={() => changeSlide(1)} aria-label="Next slide" className="rounded-full border border-border bg-background/45 p-3 backdrop-blur transition hover:bg-card/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-highlight"><ChevronRight className="h-5 w-5" /></button>
       </div>
-      {!reduceMotion && !paused && <div key={currentSlide} className="absolute inset-x-0 bottom-0 z-10 h-1 origin-left animate-[service-progress_6s_linear_forwards] bg-cyan-300" aria-hidden="true" />}
+      {!reduceMotion && !paused && <div key={currentSlide} className="absolute inset-x-0 bottom-0 z-10 h-1 origin-left animate-[service-progress_6s_linear_forwards] bg-highlight" aria-hidden="true" />}
     </section>
   )
 }

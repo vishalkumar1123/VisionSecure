@@ -49,8 +49,12 @@ export const registerSchema = z
 export const changePasswordSchema = z
   .object({
     currentPassword: z.string().min(1, 'Current password is required'),
-    newPassword: passwordSchema,
+    newPassword: passwordSchema.refine((value) => new TextEncoder().encode(value).length <= 72, "New password must be at most 72 bytes"),
     confirmPassword: z.string(),
+  })
+  .refine((data) => data.newPassword !== data.currentPassword, {
+    message: 'Choose a different password from your current password',
+    path: ['newPassword'],
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords don't match",

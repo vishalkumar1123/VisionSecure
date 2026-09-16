@@ -83,7 +83,7 @@ export function RegisterForm() {
           placeholder="John Doe"
           disabled={loading}
         />
-        {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+        {errors.name && <p className="mt-1 text-sm text-destructive">{errors.name}</p>}
       </div>
 
       <div>
@@ -97,7 +97,7 @@ export function RegisterForm() {
           placeholder="john@example.com"
           disabled={loading}
         />
-        {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+        {errors.email && <p className="mt-1 text-sm text-destructive">{errors.email}</p>}
       </div>
 
       <div>
@@ -111,7 +111,7 @@ export function RegisterForm() {
           maxLength={10}
           disabled={loading}
         />
-        {errors.mobile && <p className="mt-1 text-sm text-red-500">{errors.mobile}</p>}
+        {errors.mobile && <p className="mt-1 text-sm text-destructive">{errors.mobile}</p>}
       </div>
 
       <div>
@@ -125,10 +125,10 @@ export function RegisterForm() {
           placeholder="Enter password"
           disabled={loading}
         />
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-muted-foreground">
           Must contain: uppercase, lowercase, number, special character (!@#$%^&*), min 8 chars
         </p>
-        {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password}</p>}
+        {errors.password && <p className="mt-1 text-sm text-destructive">{errors.password}</p>}
       </div>
 
       <div>
@@ -143,7 +143,7 @@ export function RegisterForm() {
           disabled={loading}
         />
         {errors.confirmPassword && (
-          <p className="mt-1 text-sm text-red-500">{errors.confirmPassword}</p>
+          <p className="mt-1 text-sm text-destructive">{errors.confirmPassword}</p>
         )}
       </div>
 
@@ -151,9 +151,9 @@ export function RegisterForm() {
         {loading ? "Creating account..." : "Create Account"}
       </Button>
 
-      <p className="text-center text-sm text-gray-500">
+      <p className="text-center text-sm text-muted-foreground">
         Already have an account?{" "}
-        <a href="/admin/login" className="text-blue-600 hover:underline">
+        <a href="/admin/login" className="text-brand-ink hover:underline">
           Sign in
         </a>
       </p>

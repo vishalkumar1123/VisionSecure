@@ -204,14 +204,14 @@ Service: ${formData.service}
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-background/70 backdrop-blur-sm"
         onClick={handleClose}
       />
 
       {/* Popup */}
       <div
         className={cn(
-          "relative w-full max-w-md overflow-visible rounded-3xl border border-zinc-800 bg-zinc-950 shadow-2xl transition-all duration-300",
+          "relative w-full max-w-md overflow-visible rounded-3xl border border-border bg-background shadow-2xl transition-all duration-300",
           isVisible
             ? "translate-y-0 scale-100"
             : "translate-y-4 scale-95"
@@ -220,13 +220,13 @@ Service: ${formData.service}
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute right-4 top-4 z-20 rounded-full p-2 text-white hover:bg-white/10"
+          className="absolute right-4 top-4 z-20 rounded-full p-2 text-foreground hover:bg-card/10"
         >
           <X className="h-5 w-5" />
         </button>
 
         {/* Header */}
-        <div className="rounded-t-3xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 pb-6 pt-8 text-white">
+        <div className="rounded-t-3xl bg-gradient-to-r from-primary to-primary px-6 pb-6 pt-8 text-foreground">
           <div className="mb-4 flex items-center gap-3">
             <Link href="/">
               <Image
@@ -248,7 +248,7 @@ Service: ${formData.service}
             Get Free Security Consultation
           </h3>
 
-          <p className="mt-2 text-white/80">
+          <p className="mt-2 text-foreground/80">
             Fill details & get call within 24 hours
           </p>
         </div>
@@ -262,7 +262,7 @@ Service: ${formData.service}
           <FieldGroup>
             {/* Name */}
             <Field>
-              <FieldLabel className="text-white">
+              <FieldLabel className="text-foreground">
                 Name
               </FieldLabel>
 
@@ -273,11 +273,11 @@ Service: ${formData.service}
                   handleChange("name", e.target.value)
                 }
                 placeholder="Enter your name"
-                className="h-12 border-zinc-700 bg-zinc-900 text-white"
+                className="h-12 border-border bg-card text-foreground"
               />
 
               {errors.name && (
-                <p className="mt-1 text-sm text-red-500">
+                <p className="mt-1 text-sm text-destructive">
                   {errors.name}
                 </p>
               )}
@@ -285,12 +285,12 @@ Service: ${formData.service}
 
             {/* Mobile */}
             <Field>
-              <FieldLabel className="text-white">
+              <FieldLabel className="text-foreground">
                 Mobile Number
               </FieldLabel>
 
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 
                 <Input
                   type="tel"
@@ -301,12 +301,12 @@ Service: ${formData.service}
                     handleChange("phone", e.target.value)
                   }
                   placeholder="Enter your mobile number"
-                  className="h-12 border-zinc-700 bg-zinc-900 pl-10 text-white"
+                  className="h-12 border-border bg-card pl-10 text-foreground"
                 />
               </div>
 
               {errors.phone && (
-                <p className="mt-1 text-sm text-red-500">
+                <p className="mt-1 text-sm text-destructive">
                   {errors.phone}
                 </p>
               )}
@@ -314,7 +314,7 @@ Service: ${formData.service}
 
             {/* Services */}
             <Field>
-              <FieldLabel className="text-white">
+              <FieldLabel className="text-foreground">
                 Select Service
               </FieldLabel>
 
@@ -324,11 +324,11 @@ Service: ${formData.service}
                   handleChange("service", value)
                 }
               >
-                <SelectTrigger className="h-12 border-zinc-700 bg-zinc-900 text-white">
+                <SelectTrigger className="h-12 border-border bg-card text-foreground">
                   <SelectValue placeholder="Choose Service" />
                 </SelectTrigger>
 
-                <SelectContent className="z-[9999] border border-zinc-700 bg-zinc-900 text-white">
+                <SelectContent className="z-[9999] border border-border bg-card text-foreground">
                   {services.map((service) => (
                     <SelectItem
                       key={service}
@@ -342,7 +342,7 @@ Service: ${formData.service}
               </Select>
 
               {errors.service && (
-                <p className="mt-1 text-sm text-red-500">
+                <p className="mt-1 text-sm text-destructive">
                   {errors.service}
                 </p>
               )}
@@ -353,7 +353,7 @@ Service: ${formData.service}
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="h-14 w-full rounded-full bg-blue-600 text-lg font-semibold text-white hover:bg-blue-700"
+            className="h-14 w-full rounded-full bg-primary text-lg font-semibold text-primary-foreground hover:bg-primary hover:text-primary-foreground"
           >
             {isSubmitting ? (
               "Submitting..."
@@ -365,7 +365,7 @@ Service: ${formData.service}
             )}
           </Button>
 
-          <p className="text-center text-xs text-zinc-400">
+          <p className="text-center text-xs text-muted-foreground">
             We respect your privacy. No spam calls.
           </p>
         </form>

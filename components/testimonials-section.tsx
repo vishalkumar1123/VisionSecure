@@ -88,7 +88,7 @@ export function TestimonialsSection() {
           "max-w-3xl mx-auto text-center mb-16 lg:mb-20 transition-all duration-700",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-brand-green text-sm font-medium mb-4">
             Testimonials
           </span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
@@ -114,14 +114,14 @@ export function TestimonialsSection() {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Quote Icon */}
-              <div className="absolute top-6 right-6 text-accent/20 transition-all duration-500 group-hover:scale-110 group-hover:text-accent/50">
+              <div className="absolute top-6 right-6 text-brand-green/20 transition-all duration-500 group-hover:scale-110 group-hover:text-brand-green/50">
                 <Quote className="h-8 w-8" />
               </div>
               
               {/* Rating */}
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="h-4 w-4 fill-warning text-warning" />
                 ))}
               </div>
               
@@ -132,13 +132,13 @@ export function TestimonialsSection() {
               
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/10 font-semibold text-accent transition-transform duration-500 group-hover:scale-110">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/10 font-semibold text-brand-green transition-transform duration-500 group-hover:scale-110">
                   {testimonial.avatar}
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">{testimonial.name}</div>
                   <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                  <div className="text-xs text-accent">{testimonial.company}</div>
+                  <div className="text-xs text-brand-green">{testimonial.company}</div>
                 </div>
               </div>
             </div>

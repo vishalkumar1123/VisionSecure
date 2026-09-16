@@ -60,11 +60,11 @@ export default function LeadsPage() {
 
         <div>
 
-          <h1 className="text-4xl font-bold text-white">
+          <h1 className="text-4xl font-bold text-foreground">
             Leads Management
           </h1>
 
-          <p className="mt-2 text-zinc-400">
+          <p className="mt-2 text-muted-foreground">
             Manage CRM leads professionally
           </p>
 
@@ -74,7 +74,7 @@ export default function LeadsPage() {
 
       {loading ? (
 
-        <div className="text-white">
+        <div className="text-foreground">
           Loading leads...
         </div>
 

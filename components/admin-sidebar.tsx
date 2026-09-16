@@ -51,14 +51,14 @@ export default function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="flex min-h-screen w-[280px] flex-col border-r border-cyan-300/10 bg-[#061526] shadow-2xl shadow-black/20">
+    <aside className="flex min-h-screen w-[280px] flex-col border-r border-highlight/10 bg-sidebar shadow-2xl shadow-black/20">
 
       {/* HEADER */}
-      <div className="border-b border-white/10 p-5">
-        <Link href="/admin/dashboard" className="block rounded-xl bg-white p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300" aria-label="VisionSecure Admin Dashboard">
+      <div className="border-b border-border p-5">
+        <Link href="/admin/dashboard" className="block rounded-xl bg-white p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-highlight" aria-label="VisionSecure Admin Dashboard">
           <Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={230} height={64} priority className="h-12 w-auto object-contain" />
         </Link>
-        <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[.2em] text-zinc-400">Admin Panel</p>
+        <p className="mt-3 text-center text-xs font-semibold uppercase tracking-[.2em] text-muted-foreground">Admin Panel</p>
       </div>
 
       {/* MENU */}
@@ -82,8 +82,8 @@ export default function AdminSidebar() {
                 
                 ${
                   isActive
-                    ? "bg-cyan-300 text-[#061526] shadow-lg shadow-cyan-400/15"
-                    : "text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-100"
+                    ? "bg-highlight text-accent-foreground shadow-lg shadow-cyan-400/15"
+                    : "text-muted-foreground hover:bg-highlight/80 hover:text-highlight-ink"
                 }
                 `}
               >
@@ -101,7 +101,7 @@ export default function AdminSidebar() {
       </div>
 
       {/* FOOTER */}
-      <div className="border-t border-white/10 p-4">
+      <div className="border-t border-border p-4">
 
         <button
           onClick={() =>
@@ -109,7 +109,7 @@ export default function AdminSidebar() {
               callbackUrl: "/admin/login",
             })
           }
-          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-red-600 px-4 py-3 font-medium text-white transition-all duration-300 hover:bg-red-700"
+          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-destructive px-4 py-3 font-medium text-destructive-foreground transition-all duration-300 hover:bg-destructive"
         >
           <LogOut className="h-5 w-5" />
 

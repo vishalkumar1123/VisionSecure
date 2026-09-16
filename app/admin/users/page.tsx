@@ -317,11 +317,11 @@ async function deleteUser(user: any) {
           params: any
         ) =>
           params.value ? (
-            <span className="font-medium text-green-500">
+            <span className="font-medium text-brand-green">
               Active
             </span>
           ) : (
-            <span className="font-medium text-red-500">
+            <span className="font-medium text-destructive">
               Disabled
             </span>
           ),
@@ -347,7 +347,7 @@ async function deleteUser(user: any) {
                   params.data.role
                 )
               }}
-              className="rounded bg-blue-600 p-2 text-white"
+              className="rounded bg-primary p-2 text-primary-foreground"
             >
               <UserCog size={16} />
             </button>
@@ -358,7 +358,7 @@ async function deleteUser(user: any) {
     params.data
   )
 }
-              className="rounded bg-yellow-600 p-2 text-white"
+              className="rounded bg-warning p-2 text-foreground"
             >
               <Shield size={16} />
             </button>
@@ -369,7 +369,7 @@ async function deleteUser(user: any) {
                   params.data
                 )
               }
-              className="rounded bg-red-600 p-2 text-white"
+              className="rounded bg-destructive p-2 text-destructive-foreground"
             >
               <Trash2 size={16} />
             </button>
@@ -386,18 +386,18 @@ async function deleteUser(user: any) {
       <div className="flex items-center justify-between">
 
         <div>
-          <h1 className="text-4xl font-bold text-white">
+          <h1 className="text-4xl font-bold text-foreground">
             User Management
           </h1>
 
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             Manage CRM Users
           </p>
         </div>
 
         <Link
           href="/admin/users/create"
-          className="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-white hover:bg-blue-700"
+          className="flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-primary-foreground hover:bg-primary hover:text-primary-foreground"
         >
           <Plus size={18} />
           Create User
@@ -414,7 +414,7 @@ async function deleteUser(user: any) {
             e.target.value
           )
         }
-        className="w-full rounded-xl border border-white/10 bg-zinc-900 p-4 text-white"
+        className="w-full rounded-xl border border-border bg-card p-4 text-foreground"
       />
 
       <div
@@ -448,7 +448,7 @@ async function deleteUser(user: any) {
           setSelectedUser(null)
         }
       >
-        <DialogContent className="bg-zinc-900 text-white">
+        <DialogContent className="bg-card text-foreground">
           <DialogHeader>
             <DialogTitle>
               Update User Role
@@ -491,7 +491,7 @@ async function deleteUser(user: any) {
               onClick={
                 updateUserRole
               }
-              className="w-full rounded-xl bg-blue-600 py-3 text-white"
+              className="w-full rounded-xl bg-primary py-3 text-primary-foreground"
             >
               Update Role
             </button>

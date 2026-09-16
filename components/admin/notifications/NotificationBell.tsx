@@ -45,16 +45,16 @@ export function NotificationBell() {
           setOpen((value) => !value)
           if (permission === "default") void requestPermission()
         }}
-        className="relative rounded-xl border border-white/10 bg-zinc-900 p-2.5 text-zinc-200 transition hover:border-cyan-400/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+        className="relative rounded-xl border border-border bg-card p-2.5 text-foreground transition hover:border-highlight/50 hover:text-foreground focus:outline-none focus:ring-2 focus:ring-highlight"
         aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ""}`}
         aria-expanded={open}
         title={permission === "granted" ? "Notifications enabled" : "Enable browser notifications"}
       >
         <Bell className={`h-5 w-5 ${unreadCount ? "animate-[pulse_1s_ease-in-out_1]" : ""}`} />
-        {unreadCount > 0 && <span className="absolute -right-2 -top-2 min-w-5 rounded-full bg-cyan-400 px-1 text-center text-xs font-bold leading-5 text-slate-950" aria-hidden="true">{unreadCount > 99 ? "99+" : unreadCount}</span>}
+        {unreadCount > 0 && <span className="absolute -right-2 -top-2 min-w-5 rounded-full bg-highlight px-1 text-center text-xs font-bold leading-5 text-accent-foreground" aria-hidden="true">{unreadCount > 99 ? "99+" : unreadCount}</span>}
       </button>
       {permission === "denied" && (
-        <p className="absolute right-0 top-12 z-40 w-64 rounded-lg border border-amber-400/30 bg-zinc-950 p-3 text-xs text-amber-100 shadow-xl">
+        <p className="absolute right-0 top-12 z-40 w-64 rounded-lg border border-warning/30 bg-background p-3 text-xs text-warning shadow-xl">
           Browser notifications are blocked. Enable them for this site in your browser settings.
         </p>
       )}

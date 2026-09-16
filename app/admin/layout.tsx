@@ -1,5 +1,6 @@
 "use client"
 
+import { ThemeToggle } from "@/components/theme-toggle"
 import AdminSidebar from "@/components/admin-sidebar"
 import { NotificationBell } from "@/components/admin/notifications/NotificationBell"
 import { usePathname, useRouter } from "next/navigation"
@@ -72,19 +73,20 @@ export default function AdminLayout({
   // after an unauthenticated user has requested an admin URL.
   if (!isAdmin && !authorizedOnce.current) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#071528] px-4 text-sm text-slate-300">
+      <div className="flex min-h-screen items-center justify-center bg-background px-4 text-sm text-muted-foreground">
         Checking secure access…
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-screen bg-[#04101f]">
+    <div className="flex min-h-screen bg-background">
 
       <AdminSidebar />
 
       <main className="flex-1 overflow-auto p-8">
-        <div className="mb-4 flex justify-end">
+        <div className="mb-4 flex items-center justify-end gap-3">
+          <ThemeToggle />
           <NotificationBell />
         </div>
         {children}

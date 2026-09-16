@@ -64,9 +64,9 @@ export default async function BlogDetail({ params }: Props) {
       // Status Checkmarks (✔ Feature Item)
       if (trimmed.startsWith("✔ ")) {
         return (
-          <div key={index} className="flex items-center gap-3 my-3 bg-emerald-500/5 text-muted-foreground p-4 rounded-xl border border-emerald-500/10 shadow-xs">
-            <div className="h-5 w-5 bg-emerald-500/10 rounded-full flex items-center justify-center shrink-0">
-              <Check className="h-3 w-3 text-emerald-500 stroke-[3]" />
+          <div key={index} className="flex items-center gap-3 my-3 bg-accent/5 text-muted-foreground p-4 rounded-xl border border-accent/10 shadow-xs">
+            <div className="h-5 w-5 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
+              <Check className="h-3 w-3 text-brand-green stroke-[3]" />
             </div>
             <span className="text-sm md:text-base font-medium text-foreground/90">{trimmed.replace("✔ ", "")}</span>
           </div>
@@ -77,7 +77,7 @@ export default async function BlogDetail({ params }: Props) {
       if (trimmed.startsWith("• ") || trimmed.startsWith("- ")) {
         return (
           <div key={index} className="flex items-start gap-3 my-3 pl-1">
-            <Zap className="h-4 w-4 text-accent mt-1 shrink-0" />
+            <Zap className="h-4 w-4 text-brand-green mt-1 shrink-0" />
             <span className="text-muted-foreground leading-relaxed text-[15px] md:text-[16px]">
               {trimmed.substring(2)}
             </span>
@@ -128,14 +128,14 @@ export default async function BlogDetail({ params }: Props) {
           
           <Link 
             href="/blog" 
-            className="inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground hover:text-accent transition-colors mb-6 bg-card border border-border/40 px-4 py-2 rounded-full w-fit shadow-xs group"
+            className="inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground hover:text-brand-green transition-colors mb-6 bg-card border border-border/40 px-4 py-2 rounded-full w-fit shadow-xs group"
           >
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Back to Tech Insights
           </Link>
 
           <div className="mb-4">
-            <span className="bg-accent/10 text-accent text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-md border border-accent/20">
+            <span className="bg-accent/10 text-brand-green text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-md border border-accent/20">
               {blog.category}
             </span>
           </div>
@@ -147,7 +147,7 @@ export default async function BlogDetail({ params }: Props) {
           {/* Meta Info Bar */}
           <div className="flex flex-wrap items-center gap-y-3 gap-x-6 text-sm text-muted-foreground pt-4 border-t border-border/40">
             <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-full bg-accent/10 text-accent flex items-center justify-center font-bold text-xs">
+              <div className="h-8 w-8 rounded-full bg-accent/10 text-brand-green flex items-center justify-center font-bold text-xs">
                 <User className="h-4 w-4" />
               </div>
               <span className="font-semibold text-foreground">{blog.author}</span>
@@ -185,9 +185,9 @@ export default async function BlogDetail({ params }: Props) {
             {/* Bottom Conversion Lead Card */}
             <div className="mt-16 p-8 rounded-3xl bg-gradient-to-br from-accent/[0.08] via-card to-muted border border-accent/20 shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none select-none">
-                <ShieldCheck className="h-40 w-40 text-accent" />
+                <ShieldCheck className="h-40 w-40 text-brand-green" />
               </div>
-              <ShieldCheck className="h-12 w-12 text-accent mb-4" />
+              <ShieldCheck className="h-12 w-12 text-brand-green mb-4" />
               <h3 className="text-2xl font-extrabold tracking-tight text-foreground mb-2 font-display">
                 Secure Your Premises Today
               </h3>
@@ -211,7 +211,7 @@ export default async function BlogDetail({ params }: Props) {
           <aside className="lg:col-span-4 space-y-6">
             <div className="bg-card border border-border/50 rounded-2xl p-6 shadow-xs lg:sticky lg:top-28">
               <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4 flex items-center gap-2">
-                <Tag className="h-4 w-4 text-accent" /> Related Keywords
+                <Tag className="h-4 w-4 text-brand-green" /> Related Keywords
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {blog.tags.map((tag) => (
@@ -227,7 +227,7 @@ export default async function BlogDetail({ params }: Props) {
               {/* Extra Security Trust Badge inside sidebar */}
               <div className="mt-8 pt-6 border-t border-border/60 text-xs text-muted-foreground flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-foreground font-semibold">
-                  <ShieldCheck className="h-4 w-4 text-emerald-500" />
+                  <ShieldCheck className="h-4 w-4 text-brand-green" />
                   <span>Verified Security Guide</span>
                 </div>
                 Aapke residential aur commercial assets ki security automation technology ke liye absolute professional advice.

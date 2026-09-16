@@ -57,22 +57,22 @@ const STATUS_COLORS: Record<
   string
 > = {
   New:
-    "bg-yellow-500/20 text-yellow-400",
+    "bg-warning/20 text-warning",
 
   "In Discussion":
-    "bg-blue-500/20 text-blue-400",
+    "bg-primary/20 text-brand-ink",
 
   "Quotation Sent":
-    "bg-purple-500/20 text-purple-400",
+    "bg-status-purple/20 text-status-purple",
 
   "Follow-Up":
-    "bg-orange-500/20 text-orange-400",
+    "bg-warning/20 text-warning",
 
   "Installed Successfully":
-    "bg-green-500/20 text-green-400",
+    "bg-accent/20 text-brand-green",
 
   Cancelled:
-    "bg-red-500/20 text-red-400",
+    "bg-destructive/20 text-destructive",
 }
 
 export default function LeadsGrid({
@@ -235,7 +235,7 @@ export default function LeadsGrid({
 
           <div className="flex items-center gap-2">
 
-            <Phone className="h-4 w-4 text-green-400" />
+            <Phone className="h-4 w-4 text-brand-green" />
 
             <span>
               {params.value}
@@ -256,7 +256,7 @@ export default function LeadsGrid({
 
           <div className="flex items-center gap-2">
 
-            <Mail className="h-4 w-4 text-blue-400" />
+            <Mail className="h-4 w-4 text-brand-ink" />
 
             <span>
               {params.value || "-"}
@@ -294,7 +294,7 @@ export default function LeadsGrid({
                   e.target.value
                 )
               }
-              className={`w-full rounded-lg border border-white/10 px-3 py-2 text-sm font-medium outline-none ${STATUS_COLORS[status]}`}
+              className={`w-full rounded-lg border border-border px-3 py-2 text-sm font-medium outline-none ${STATUS_COLORS[status]}`}
             >
 
               {LEAD_STATUSES.map(
@@ -342,7 +342,7 @@ export default function LeadsGrid({
 
           <div className="flex items-center gap-2">
 
-            <Link href={`/admin/leads/${params.data._id}`} aria-label={`Track ${params.data.name}`} className="rounded-lg bg-cyan-600 p-2 text-white transition hover:bg-cyan-500">
+            <Link href={`/admin/leads/${params.data._id}`} aria-label={`Track ${params.data.name}`} className="rounded-lg bg-highlight p-2 text-accent-foreground transition hover:bg-highlight">
               <Eye className="h-4 w-4" />
             </Link>
 
@@ -352,7 +352,7 @@ export default function LeadsGrid({
                   params.data._id
                 )
               }
-              className="rounded-lg bg-red-600 p-2 text-white transition hover:bg-red-700"
+              className="rounded-lg bg-destructive p-2 text-destructive-foreground transition hover:bg-destructive"
             >
 
               <Trash2 className="h-4 w-4" />
@@ -368,7 +368,7 @@ export default function LeadsGrid({
   return (
 
     <div
-      className="ag-theme-quartz-dark overflow-hidden rounded-2xl border border-white/10"
+      className="ag-theme-quartz-dark overflow-hidden rounded-2xl border border-border"
       style={{
         height: 650,
         width: "100%",

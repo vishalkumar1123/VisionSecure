@@ -73,7 +73,7 @@ export default function EditUserDialog({
       onOpenChange={onClose}
     >
 
-      <DialogContent className="border-white/10 bg-zinc-950 text-white">
+      <DialogContent className="border-border bg-background text-foreground">
 
         <DialogHeader>
           <DialogTitle>
@@ -94,7 +94,7 @@ export default function EditUserDialog({
               onChange={(e) =>
                 setRole(e.target.value)
               }
-              className="w-full rounded-xl border border-white/10 bg-zinc-900 p-3"
+              className="w-full rounded-xl border border-border bg-card p-3"
             >
               <option value="admin">
                 Admin
@@ -133,7 +133,7 @@ export default function EditUserDialog({
                     "active"
                 )
               }
-              className="w-full rounded-xl border border-white/10 bg-zinc-900 p-3"
+              className="w-full rounded-xl border border-border bg-card p-3"
             >
               <option value="active">
                 Active
@@ -148,7 +148,7 @@ export default function EditUserDialog({
 
           <button
             onClick={updateUser}
-            className="w-full rounded-xl bg-blue-600 py-3 font-semibold hover:bg-blue-700"
+            className="w-full rounded-xl bg-primary py-3 font-semibold hover:bg-primary hover:text-primary-foreground"
           >
             Update User
           </button>

@@ -56,9 +56,9 @@ export function PageHero({ title, subtitle, breadcrumbs, backgroundImage }: Page
               <span key={crumb.href} className="flex items-center gap-2">
                 {index > 0 && <ChevronRight className="h-4 w-4" />}
                 {index === breadcrumbs.length - 1 ? (
-                  <span className="text-accent font-medium">{crumb.label}</span>
+                  <span className="text-brand-green font-medium">{crumb.label}</span>
                 ) : (
-                  <Link href={crumb.href} className="hover:text-accent transition-colors">
+                  <Link href={crumb.href} className="hover:text-brand-green transition-colors">
                     {crumb.label}
                   </Link>
                 )}

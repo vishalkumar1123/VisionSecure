@@ -128,7 +128,7 @@ export function TrustSection() {
                 <div className="absolute inset-0 rounded-2xl bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative space-y-4">
-                  <div className="inline-flex p-3 rounded-xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
+                  <div className="inline-flex p-3 rounded-xl bg-accent/10 text-brand-green group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
                     <Icon className="h-6 w-6" />
                   </div>
                   

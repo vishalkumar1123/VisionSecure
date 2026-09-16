@@ -84,7 +84,7 @@ export function ProjectsSection() {
           "max-w-3xl mx-auto text-center mb-16 lg:mb-20 transition-all duration-700",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-brand-green text-sm font-medium mb-4">
             Our Projects
           </span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
@@ -126,7 +126,7 @@ export function ProjectsSection() {
               
               {/* Content */}
               <div className="p-6">
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                <h3 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-brand-green transition-colors">
                   {project.title}
                 </h3>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -134,7 +134,7 @@ export function ProjectsSection() {
                     <MapPin className="h-4 w-4" />
                     <span>{project.location}</span>
                   </div>
-                  <span className="text-accent">{project.cameras}</span>
+                  <span className="text-brand-green">{project.cameras}</span>
                 </div>
               </div>
               

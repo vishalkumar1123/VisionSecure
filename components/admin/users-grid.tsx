@@ -184,7 +184,7 @@ export default function UsersGrid({
         cellRenderer: (params: any) => {
 
           return (
-            <span className="rounded-full bg-blue-600/20 px-3 py-1 text-xs font-semibold text-blue-400">
+            <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-brand-ink">
               {params.value}
             </span>
           )
@@ -198,11 +198,11 @@ export default function UsersGrid({
         cellRenderer: (params: any) => {
 
           return params.value ? (
-            <span className="font-semibold text-green-400">
+            <span className="font-semibold text-brand-green">
               Active
             </span>
           ) : (
-            <span className="font-semibold text-red-400">
+            <span className="font-semibold text-destructive">
               Disabled
             </span>
           )
@@ -223,7 +223,7 @@ export default function UsersGrid({
                 onClick={() =>
                   openEdit(user)
                 }
-                className="rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-700"
+                className="rounded-lg bg-primary p-2 text-primary-foreground hover:bg-primary hover:text-primary-foreground"
               >
                 <UserCog className="h-4 w-4" />
               </button>
@@ -232,7 +232,7 @@ export default function UsersGrid({
                 onClick={() =>
                   toggleStatus(user)
                 }
-                className="rounded-lg bg-yellow-600 p-2 text-white hover:bg-yellow-700"
+                className="rounded-lg bg-warning p-2 text-foreground hover:bg-warning"
               >
                 <Shield className="h-4 w-4" />
               </button>
@@ -241,7 +241,7 @@ export default function UsersGrid({
                 onClick={() =>
                   deleteUser(user)
                 }
-                className="rounded-lg bg-red-600 p-2 text-white hover:bg-red-700"
+                className="rounded-lg bg-destructive p-2 text-destructive-foreground hover:bg-destructive"
               >
                 <Trash2 className="h-4 w-4" />
               </button>

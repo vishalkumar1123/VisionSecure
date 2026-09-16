@@ -379,7 +379,7 @@ export function ContactSection() {
       ref={sectionRef}
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative isolate overflow-hidden border-t border-slate-200/70 bg-slate-50 py-20 dark:border-white/[0.06] dark:bg-[#07111f] sm:py-24 lg:py-28"
+      className="relative isolate overflow-hidden border-t border-border bg-muted py-20 dark:border-border/[0.06] dark:bg-background sm:py-24 lg:py-28"
     >
       {/* =====================================================
           BACKGROUND
@@ -402,11 +402,11 @@ export function ContactSection() {
 
         {/* Blue Glow */}
 
-        <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/[0.07] blur-[140px] dark:bg-blue-500/[0.10]" />
+        <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/[0.07] blur-[140px] dark:bg-primary/[0.10]" />
 
         {/* Cyan Glow */}
 
-        <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-cyan-500/[0.05] blur-[140px] dark:bg-cyan-500/[0.07]" />
+        <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-highlight/[0.05] blur-[140px] dark:bg-highlight/[0.07]" />
       </div>
 
       {/* =====================================================
@@ -427,7 +427,7 @@ export function ContactSection() {
               : "translate-y-6 opacity-0"
           )}
         >
-          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/15 bg-blue-500/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-600 dark:border-blue-400/20 dark:bg-blue-400/[0.08] dark:text-blue-400">
+          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-ink dark:border-primary/20 dark:bg-primary/[0.08] dark:text-brand-ink">
             <MessageCircle className="h-3.5 w-3.5" />
 
             Get In Touch
@@ -435,15 +435,15 @@ export function ContactSection() {
 
           <h2
             id="contact-heading"
-            className="text-balance text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl dark:text-white"
+            className="text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl dark:text-foreground"
           >
             Let&apos;s Discuss Your{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent">
               Requirement
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-400">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg dark:text-muted-foreground">
             Tell us what you need. Our team will understand
             your requirement and help you choose the right
             security or IT solution.
@@ -475,7 +475,7 @@ export function ContactSection() {
                 <article
                   key={info.title}
                   className={cn(
-                    "group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/25 hover:shadow-lg hover:shadow-slate-900/[0.05] dark:border-white/[0.07] dark:bg-white/[0.025] dark:hover:border-blue-400/20 dark:hover:bg-white/[0.04]",
+                    "group relative overflow-hidden rounded-2xl border border-border bg-card/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/25 hover:shadow-lg hover:shadow-slate-900/[0.05] dark:border-border/[0.07] dark:bg-card/[0.025] dark:hover:border-primary/20 dark:hover:bg-card/[0.04]",
                     isVisible
                       ? "translate-y-0 opacity-100"
                       : "translate-y-6 opacity-0"
@@ -488,14 +488,14 @@ export function ContactSection() {
 
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-blue-500/[0.08] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                    className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-primary/[0.08] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
                   />
 
                   <div className="relative flex gap-4">
 
                     {/* Icon */}
 
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-500/15 bg-blue-500/[0.07] text-blue-600 transition-all duration-300 group-hover:border-blue-500/30 group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-600/20 dark:border-blue-400/15 dark:bg-blue-400/[0.08] dark:text-blue-400">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-primary/[0.07] text-brand-ink transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary hover:text-primary-foreground group-hover:text-foreground group-hover:shadow-lg group-hover:shadow-blue-600/20 dark:border-primary/15 dark:bg-primary/[0.08] dark:text-brand-ink">
                       <Icon
                         className="h-5 w-5"
                         strokeWidth={2}
@@ -506,7 +506,7 @@ export function ContactSection() {
 
                     <div className="min-w-0 flex-1">
 
-                      <h3 className="text-base font-bold text-slate-950 dark:text-white">
+                      <h3 className="text-base font-bold text-foreground dark:text-foreground">
                         {info.title}
                       </h3>
 
@@ -519,14 +519,14 @@ export function ContactSection() {
                               <a
                                 key={detail}
                                 href={info.href}
-                                className="block break-words text-sm leading-6 text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                                className="block break-words text-sm leading-6 text-muted-foreground transition-colors hover:text-brand-ink dark:text-muted-foreground dark:hover:text-brand-ink"
                               >
                                 {detail}
                               </a>
                             ) : (
                               <p
                                 key={detail}
-                                className="break-words text-sm leading-6 text-slate-600 dark:text-slate-400"
+                                className="break-words text-sm leading-6 text-muted-foreground dark:text-muted-foreground"
                               >
                                 {detail}
                               </p>
@@ -538,7 +538,7 @@ export function ContactSection() {
                       {/* Working Hours */}
 
                       {info.type === "hours" && (
-                        <div className="mt-3 overflow-hidden rounded-xl border border-slate-200/70 bg-slate-50/70 dark:border-white/[0.06] dark:bg-white/[0.02]">
+                        <div className="mt-3 overflow-hidden rounded-xl border border-border bg-muted/70 dark:border-border/[0.06] dark:bg-card/[0.02]">
 
                           {info.details.map(
                             (schedule, scheduleIndex) => {
@@ -552,24 +552,24 @@ export function ContactSection() {
 
                                     scheduleIndex !==
                                       info.details.length - 1 &&
-                                      "border-b border-slate-200/60 dark:border-white/[0.05]",
+                                      "border-b border-border dark:border-border/[0.05]",
 
                                     isToday
-                                      ? "relative bg-[#79C914]/10 ring-1 ring-inset ring-[#79C914]/35"
-                                      : "hover:bg-[#08A8E8]/[0.035]"
+                                      ? "relative bg-accent/10 ring-1 ring-inset ring-accent/35"
+                                      : "hover:bg-highlight/[0.035]"
                                   )}
                                 >
                                   <span
                                     className={cn(
                                       "font-medium",
                                       isToday
-                                        ? "font-bold text-[#0B2F63]"
-                                        : "text-slate-700 dark:text-slate-300"
+                                        ? "font-bold text-brand-ink"
+                                        : "text-muted-foreground dark:text-muted-foreground"
                                     )}
                                   >
                                     {schedule.day}
                                     {isToday && (
-                                      <span className="ml-2 inline-flex rounded-full bg-[#79C914] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                                      <span className="ml-2 inline-flex rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-accent-foreground">
                                         Today
                                       </span>
                                     )}
@@ -579,8 +579,8 @@ export function ContactSection() {
                                     className={cn(
                                       "whitespace-nowrap text-right text-xs sm:text-sm",
                                       isToday
-                                        ? "font-bold text-[#65AE0B]"
-                                        : "text-slate-500 dark:text-slate-400"
+                                        ? "font-bold text-brand-green"
+                                        : "text-muted-foreground dark:text-muted-foreground"
                                     )}
                                   >
                                     {schedule.hours}
@@ -603,7 +603,7 @@ export function ContactSection() {
 
             <div
               className={cn(
-                "mx-auto w-full max-w-md rounded-2xl border border-slate-200/80 bg-white/85 p-6 text-center shadow-sm backdrop-blur-md transition-all duration-700 hover:-translate-y-1 hover:border-blue-500/20 hover:shadow-lg dark:border-white/[0.07] dark:bg-white/[0.025]",
+                "mx-auto w-full max-w-md rounded-2xl border border-border bg-card/85 p-6 text-center shadow-sm backdrop-blur-md transition-all duration-700 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg dark:border-border/[0.07] dark:bg-card/[0.025]",
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-6 opacity-0"
@@ -617,15 +617,15 @@ export function ContactSection() {
 
               <div className="flex flex-col items-center">
 
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/[0.08] text-blue-600 transition-all duration-300 hover:scale-110 dark:bg-blue-400/[0.08] dark:text-blue-400">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/[0.08] text-brand-ink transition-all duration-300 hover:scale-110 dark:bg-primary/[0.08] dark:text-brand-ink">
                   <MessageCircle className="h-5 w-5" />
                 </span>
 
-                <p className="mt-3 text-base font-bold text-slate-900 dark:text-white">
+                <p className="mt-3 text-base font-bold text-foreground dark:text-foreground">
                   Connect With Us
                 </p>
 
-                <p className="mt-1 max-w-xs text-sm leading-6 text-slate-500 dark:text-slate-400">
+                <p className="mt-1 max-w-xs text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
                   Follow VisionSecure Smart Technologies for updates, solutions,
                   and security tips.
                 </p>
@@ -649,7 +649,7 @@ export function ContactSection() {
                       aria-label={`Visit VisionSecure  on ${social.label}`}
                       title={social.label}
                       className={cn(
-                        "group/social relative flex min-h-11 items-center justify-center gap-2 overflow-hidden rounded-xl border bg-white px-3.5 transition-all duration-300 hover:-translate-y-1.5 hover:text-white hover:shadow-xl focus:outline-none focus:ring-4 dark:bg-white/[0.03]",
+                        "group/social relative flex min-h-11 items-center justify-center gap-2 overflow-hidden rounded-xl border bg-card px-3.5 transition-all duration-300 hover:-translate-y-1.5 hover:text-foreground hover:shadow-xl focus:outline-none focus:ring-4 dark:bg-card/[0.03]",
 
                         /* Facebook */
 
@@ -659,12 +659,12 @@ export function ContactSection() {
                         /* Instagram */
 
                         social.color === "instagram" &&
-                          "border-pink-500/20 text-[#E4405F] hover:border-[#E4405F] hover:bg-gradient-to-br hover:from-[#F58529] hover:via-[#E4405F] hover:to-[#833AB4] hover:shadow-pink-500/25 focus:ring-pink-500/20 dark:border-pink-400/20",
+                          "border-status-pink/20 text-[#E4405F] hover:border-[#E4405F] hover:bg-gradient-to-br hover:from-[#F58529] hover:via-[#E4405F] hover:to-[#833AB4] hover:shadow-pink-500/25 focus:ring-status-pink/20 dark:border-status-pink/20",
 
                         /* YouTube */
 
                         social.color === "youtube" &&
-                          "border-[#FF0000]/20 text-[#FF0000] hover:border-[#FF0000] hover:bg-[#FF0000] hover:shadow-red-500/25 focus:ring-red-500/20 dark:border-[#FF0000]/25",
+                          "border-[#FF0000]/20 text-[#FF0000] hover:border-[#FF0000] hover:bg-[#FF0000] hover:shadow-red-500/25 focus:ring-destructive/20 dark:border-[#FF0000]/25",
 
                         /* WhatsApp */
 
@@ -682,7 +682,7 @@ export function ContactSection() {
 
                       <span
                         aria-hidden="true"
-                        className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/social:translate-x-full"
+                        className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-background/20 to-transparent transition-transform duration-700 group-hover/social:translate-x-full"
                       />
                     </a>
                   )
@@ -691,11 +691,11 @@ export function ContactSection() {
 
               {/* Divider */}
 
-              <div className="mx-auto mt-5 h-px w-16 bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+              <div className="mx-auto mt-5 h-px w-16 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
               {/* Footer Text */}
 
-              <p className="mt-4 text-xs font-medium uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">
+              <p className="mt-4 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground dark:text-muted-foreground">
                 Stay Connected • Stay Secure
               </p>
             </div>
@@ -716,13 +716,13 @@ export function ContactSection() {
               transitionDelay: "150ms",
             }}
           >
-            <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white/90 p-6 shadow-[0_20px_70px_rgba(15,23,42,0.07)] backdrop-blur-sm sm:p-8 dark:border-white/[0.07] dark:bg-[#0b1727]/80 dark:shadow-none">
+            <div className="relative overflow-hidden rounded-3xl border border-border bg-card/90 p-6 shadow-[0_20px_70px_rgba(15,23,42,0.07)] backdrop-blur-sm sm:p-8 dark:border-border/[0.07] dark:bg-card/80 dark:shadow-none">
 
               {/* Background glow */}
 
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-blue-500/[0.07] blur-[90px]"
+                className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-primary/[0.07] blur-[90px]"
               />
 
               <div className="relative">
@@ -731,15 +731,15 @@ export function ContactSection() {
 
                 <div className="mb-7">
 
-                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 dark:text-blue-400">
+                  <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-ink dark:text-brand-ink">
                     Send An Enquiry
                   </span>
 
-                  <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                  <h3 className="mt-2 text-2xl font-bold tracking-tight text-foreground dark:text-foreground">
                     Tell Us What You Need
                   </h3>
 
-                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
                     Share a few details and our team will get
                     back to you.
                   </p>
@@ -761,10 +761,10 @@ export function ContactSection() {
                     <div>
                       <label
                         htmlFor="name"
-                        className="mb-2 block text-sm font-semibold text-slate-800 dark:text-slate-200"
+                        className="mb-2 block text-sm font-semibold text-foreground dark:text-foreground"
                       >
                         Full Name{" "}
-                        <span className="text-red-500">
+                        <span className="text-destructive">
                           *
                         </span>
                       </label>
@@ -778,17 +778,17 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Your name"
-                        className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/10"
+                        className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-border/[0.08] dark:bg-card/[0.03] dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-primary dark:focus:ring-primary/10"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="email"
-                        className="mb-2 block text-sm font-semibold text-slate-800 dark:text-slate-200"
+                        className="mb-2 block text-sm font-semibold text-foreground dark:text-foreground"
                       >
                         Email{" "}
-                        <span className="text-red-500">
+                        <span className="text-destructive">
                           *
                         </span>
                       </label>
@@ -802,7 +802,7 @@ export function ContactSection() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="you@example.com"
-                        className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/10"
+                        className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-border/[0.08] dark:bg-card/[0.03] dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-primary dark:focus:ring-primary/10"
                       />
                     </div>
                   </div>
@@ -814,10 +814,10 @@ export function ContactSection() {
                     <div>
                       <label
                         htmlFor="phone"
-                        className="mb-2 block text-sm font-semibold text-slate-800 dark:text-slate-200"
+                        className="mb-2 block text-sm font-semibold text-foreground dark:text-foreground"
                       >
                         Mobile Number{" "}
-                        <span className="text-red-500">
+                        <span className="text-destructive">
                           *
                         </span>
                       </label>
@@ -843,17 +843,17 @@ export function ContactSection() {
                           }))
                         }}
                         placeholder="10-digit mobile number"
-                        className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/10"
+                        className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-border/[0.08] dark:bg-card/[0.03] dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-primary dark:focus:ring-primary/10"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="requirement"
-                        className="mb-2 block text-sm font-semibold text-slate-800 dark:text-slate-200"
+                        className="mb-2 block text-sm font-semibold text-foreground dark:text-foreground"
                       >
                         Requirement{" "}
-                        <span className="text-red-500">
+                        <span className="text-destructive">
                           *
                         </span>
                       </label>
@@ -864,7 +864,7 @@ export function ContactSection() {
                         required
                         value={formData.requirement}
                         onChange={handleChange}
-                        className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/[0.08] dark:bg-[#0b1727] dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-400/10"
+                        className="h-12 w-full rounded-xl border border-border bg-card px-4 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-border/[0.08] dark:bg-card dark:text-foreground dark:focus:border-primary dark:focus:ring-primary/10"
                       >
                         <option value="">
                           Select a service
@@ -910,7 +910,7 @@ export function ContactSection() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="mb-2 block text-sm font-semibold text-slate-800 dark:text-slate-200"
+                      className="mb-2 block text-sm font-semibold text-foreground dark:text-foreground"
                     >
                       Tell Us More
                     </label>
@@ -922,7 +922,7 @@ export function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell us about your property, approximate requirements, or anything else we should know..."
-                      className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/10"
+                      className="w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm leading-6 text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/10 dark:border-border/[0.08] dark:bg-card/[0.03] dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-primary dark:focus:ring-primary/10"
                     />
                   </div>
 
@@ -932,14 +932,14 @@ export function ContactSection() {
                     type="submit"
                     disabled={isSubmitting}
                     className={cn(
-                      "group inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/25 focus:outline-none focus:ring-4 focus:ring-blue-500/20 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60",
+                      "group inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-600/25 focus:outline-none focus:ring-4 focus:ring-primary/20 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60",
                       isSubmitting &&
                         "hover:translate-y-0"
                     )}
                   >
                     {isSubmitting ? (
                       <>
-                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-border border-t-white" />
                         Submitting...
                       </>
                     ) : (
@@ -953,7 +953,7 @@ export function ContactSection() {
 
                   {/* Privacy / information */}
 
-                  <p className="text-center text-xs leading-5 text-slate-500 dark:text-slate-500">
+                  <p className="text-center text-xs leading-5 text-muted-foreground dark:text-muted-foreground">
                     By submitting this form, you&apos;re
                     requesting a consultation from VisionSecure
                     Smart Technologies.

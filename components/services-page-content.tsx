@@ -27,7 +27,7 @@ export function ServicesPageContent() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(56,199,233,0.1),transparent_24%),radial-gradient(circle_at_90%_80%,rgba(37,119,230,0.12),transparent_28%)]" />
       <div className="page-container relative">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Solutions we provide</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-green">Solutions we provide</p>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
             Security, connectivity and smart technology—planned around your site.
           </h2>
@@ -77,23 +77,23 @@ export function ServicesPageContent() {
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 rounded-xl border border-white/10 bg-background/85 p-2.5 text-accent backdrop-blur">
+                  <div className="absolute bottom-3 left-3 rounded-xl border border-border bg-background/85 p-2.5 text-brand-green backdrop-blur">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{service.category}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-green">{service.category}</p>
                   <h3 className="mt-2 font-display text-xl font-bold">{service.title}</h3>
                   <p className="mt-3 leading-6 text-muted-foreground">{service.summary}</p>
                   <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
                     {service.solutions.slice(0, 2).map((solution) => (
                       <li key={solution} className="flex gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-green" aria-hidden="true" />
                         {solution}
                       </li>
                     ))}
                   </ul>
-                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent">
+                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-green">
                     Explore service <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </span>
                 </div>

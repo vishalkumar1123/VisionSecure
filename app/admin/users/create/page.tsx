@@ -49,7 +49,7 @@ export default function CreateUserPage() {
   return (
     <div className="max-w-2xl">
 
-      <h1 className="mb-8 text-4xl font-bold text-white">
+      <h1 className="mb-8 text-4xl font-bold text-foreground">
         Create User
       </h1>
 
@@ -68,7 +68,7 @@ export default function CreateUserPage() {
               name: e.target.value,
             })
           }
-          className="w-full rounded-xl bg-zinc-900 p-4 text-white"
+          className="w-full rounded-xl bg-card p-4 text-foreground"
         />
 <input
   type="text"
@@ -80,7 +80,7 @@ export default function CreateUserPage() {
       mobile: e.target.value,
     })
   }
-  className="w-full rounded-xl bg-zinc-900 p-4 text-white"
+  className="w-full rounded-xl bg-card p-4 text-foreground"
 />
         <input
           type="email"
@@ -92,7 +92,7 @@ export default function CreateUserPage() {
               email: e.target.value,
             })
           }
-          className="w-full rounded-xl bg-zinc-900 p-4 text-white"
+          className="w-full rounded-xl bg-card p-4 text-foreground"
         />
 
         <input
@@ -105,7 +105,7 @@ export default function CreateUserPage() {
               password: e.target.value,
             })
           }
-          className="w-full rounded-xl bg-zinc-900 p-4 text-white"
+          className="w-full rounded-xl bg-card p-4 text-foreground"
         />
 
        <select
@@ -140,7 +140,7 @@ export default function CreateUserPage() {
 
         <button
           type="submit"
-          className="rounded-xl bg-blue-600 px-6 py-3 text-white"
+          className="rounded-xl bg-primary px-6 py-3 text-primary-foreground"
         >
           Create User
         </button>

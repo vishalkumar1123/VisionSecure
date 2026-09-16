@@ -50,7 +50,7 @@ export function BrandsSection() {
           "text-center mb-12 lg:mb-16 transition-all duration-700",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-brand-green text-sm font-medium mb-4">
             Trusted Partners
           </span>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground text-balance">

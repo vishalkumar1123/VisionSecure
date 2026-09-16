@@ -190,7 +190,7 @@ export function FAQPageContent() {
               
               {/* Quick Contact */}
               <div className="mt-8 p-4 rounded-xl bg-card border border-border/50">
-                <HelpCircle className="h-8 w-8 text-accent mb-3" />
+                <HelpCircle className="h-8 w-8 text-brand-green mb-3" />
                 <h4 className="font-semibold text-foreground mb-2">Still have questions?</h4>
                 <p className="text-sm text-muted-foreground mb-4">
                   Our team is here to help you.
@@ -209,7 +209,7 @@ export function FAQPageContent() {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="w-full rounded-full border-green-500/50 text-green-500 hover:bg-green-500/10"
+                    className="w-full rounded-full border-accent/50 text-brand-green hover:bg-accent/10"
                     asChild
                   >
                     <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
@@ -252,7 +252,7 @@ export function FAQPageContent() {
                       <ChevronDown
                         className={cn(
                           "h-5 w-5 text-muted-foreground flex-shrink-0 transition-transform duration-300",
-                          isOpen && "rotate-180 text-accent"
+                          isOpen && "rotate-180 text-brand-green"
                         )}
                       />
                     </button>

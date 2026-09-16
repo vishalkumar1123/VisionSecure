@@ -88,7 +88,7 @@ export function ProjectsHeroSlider() {
   }
 
   return (
-    <section className="relative h-[95vh] overflow-hidden bg-black">
+    <section className="relative h-[95vh] overflow-hidden bg-background">
 
       {/* BACKGROUND SLIDER */}
       <AnimatePresence mode="wait">
@@ -110,15 +110,15 @@ export function ProjectsHeroSlider() {
           />
 
           {/* OVERLAY */}
-          <div className="absolute inset-0 bg-black/75" />
+          <div className="absolute inset-0 bg-background/75" />
 
           {/* GRADIENT */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-blue-950/70 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/60" />
 
           {/* GLOW EFFECT */}
-          <div className="absolute -top-24 right-0 h-[450px] w-[450px] rounded-full bg-blue-500/20 blur-3xl animate-pulse" />
+          <div className="absolute -top-24 right-0 h-[450px] w-[450px] rounded-full bg-primary/20 blur-3xl animate-pulse" />
 
-          <div className="absolute bottom-0 left-0 h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 left-0 h-[350px] w-[350px] rounded-full bg-highlight/10 blur-3xl animate-pulse" />
 
         </motion.div>
 
@@ -138,7 +138,7 @@ export function ProjectsHeroSlider() {
           >
 
             {/* BADGE */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-5 py-2 text-sm font-medium text-blue-300 backdrop-blur-md">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-5 py-2 text-sm font-medium text-brand-ink backdrop-blur-md">
 
               <ShieldCheck className="h-4 w-4" />
 
@@ -147,14 +147,14 @@ export function ProjectsHeroSlider() {
             </div>
 
             {/* TITLE */}
-            <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-7xl">
+            <h1 className="text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-7xl">
 
               {slides[currentSlide].title}
 
             </h1>
 
             {/* SUBTITLE */}
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-300 lg:text-xl">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground lg:text-xl">
 
               {slides[currentSlide].subtitle}
 
@@ -165,7 +165,7 @@ export function ProjectsHeroSlider() {
 
               <Button
                 size="lg"
-                className="rounded-full bg-blue-600 px-8 text-white shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:bg-blue-700"
+                className="rounded-full bg-primary px-8 text-primary-foreground shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
                 <Link href="/contact">
@@ -178,7 +178,7 @@ export function ProjectsHeroSlider() {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-full border-white/30 bg-white/10 px-8 text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                className="rounded-full border-border bg-card/10 px-8 text-foreground backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-card/20"
                 asChild
               >
                 <a
@@ -193,13 +193,13 @@ export function ProjectsHeroSlider() {
             </div>
 
             {/* STATS */}
-            <div className="mt-12 grid grid-cols-2 gap-4 text-sm text-zinc-300 lg:grid-cols-4">
+            <div className="mt-12 grid grid-cols-2 gap-4 text-sm text-muted-foreground lg:grid-cols-4">
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+              <div className="rounded-2xl border border-border bg-card/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-card/10">
 
                 <div className="flex items-center gap-2">
 
-                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <CheckCircle2 className="h-4 w-4 text-brand-green" />
 
                   500+ Projects
 
@@ -207,11 +207,11 @@ export function ProjectsHeroSlider() {
 
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+              <div className="rounded-2xl border border-border bg-card/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-card/10">
 
                 <div className="flex items-center gap-2">
 
-                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <CheckCircle2 className="h-4 w-4 text-brand-green" />
 
                   10,000+ Cameras
 
@@ -219,11 +219,11 @@ export function ProjectsHeroSlider() {
 
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+              <div className="rounded-2xl border border-border bg-card/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-card/10">
 
                 <div className="flex items-center gap-2">
 
-                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <CheckCircle2 className="h-4 w-4 text-brand-green" />
 
                   Expert Engineers
 
@@ -231,11 +231,11 @@ export function ProjectsHeroSlider() {
 
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+              <div className="rounded-2xl border border-border bg-card/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-card/10">
 
                 <div className="flex items-center gap-2">
 
-                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <CheckCircle2 className="h-4 w-4 text-brand-green" />
 
                   PAN India Support
 
@@ -254,7 +254,7 @@ export function ProjectsHeroSlider() {
       {/* LEFT BUTTON */}
       <button
         onClick={prevSlide}
-        className="absolute left-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-blue-600"
+        className="absolute left-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/40 text-foreground backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-primary-foreground"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
@@ -262,7 +262,7 @@ export function ProjectsHeroSlider() {
       {/* RIGHT BUTTON */}
       <button
         onClick={nextSlide}
-        className="absolute right-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-blue-600"
+        className="absolute right-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/40 text-foreground backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-primary hover:text-primary-foreground"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
@@ -276,8 +276,8 @@ export function ProjectsHeroSlider() {
             onClick={() => setCurrentSlide(index)}
             className={`transition-all duration-300 ${
               currentSlide === index
-                ? "h-3 w-10 rounded-full bg-blue-500"
-                : "h-3 w-3 rounded-full bg-white/40 hover:bg-white"
+                ? "h-3 w-10 rounded-full bg-primary"
+                : "h-3 w-3 rounded-full bg-card/40 hover:bg-card"
             }`}
           />
         ))}

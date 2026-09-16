@@ -98,25 +98,25 @@ const socialLinks = [
     icon: Youtube,
     href: "https://www.youtube.com/@vishalkumar9004",
     label: "YouTube",
-    hover: "hover:bg-red-500 hover:border-red-500",
+    hover: "hover:bg-destructive hover:border-destructive",
   },
   {
     icon: Instagram,
     href: "https://www.instagram.com/visionsecure_tech/",
     label: "Instagram",
-    hover: "hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-600 hover:border-pink-500",
+    hover: "hover:bg-gradient-to-br hover:from-status-pink hover:to-status-purple hover:border-status-pink",
   },
   {
     icon: Facebook,
     href: "https://www.facebook.com/profile.php?id=61584897029759",
     label: "Facebook",
-    hover: "hover:bg-blue-600 hover:border-blue-600",
+    hover: "hover:bg-primary hover:text-primary-foreground hover:border-primary",
   },
   {
     icon: FaWhatsapp,
     href: "https://wa.me/919872133840",
     label: "WhatsApp",
-    hover: "hover:bg-green-500 hover:border-green-500",
+    hover: "hover:bg-accent hover:border-accent",
   },
 ]
 
@@ -213,7 +213,7 @@ export function ContactPageContent() {
   }
 
   return (
-    <section id="contact-section" className="relative overflow-hidden bg-slate-950 py-24 lg:py-32">
+    <section id="contact-section" className="relative overflow-hidden bg-background py-24 lg:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(6,182,212,0.18),transparent_50%),radial-gradient(circle_at_0%_100%,rgba(59,130,246,0.1),transparent_40%)] pointer-events-none" />
 
       <div className="relative container mx-auto px-4 lg:px-8">
@@ -226,14 +226,14 @@ export function ContactPageContent() {
           variants={fadeInUp}
           className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-xs sm:text-sm font-semibold text-cyan-400 backdrop-blur-md shadow-inner shadow-cyan-500/5">
+          <span className="inline-flex items-center gap-2 rounded-full border border-highlight/30 bg-highlight/10 px-5 py-2 text-xs sm:text-sm font-semibold text-highlight-ink backdrop-blur-md shadow-inner shadow-cyan-500/5">
             <ShieldCheck className="h-4 w-4 animate-pulse" />
             Contact VisionSecure Smart Technologies
           </span>
-          <h2 className="mt-6 text-4xl font-black tracking-tight text-white lg:text-6xl bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent">
+          <h2 className="mt-6 text-4xl font-black tracking-tight text-foreground lg:text-6xl bg-gradient-to-b from-background to-background bg-clip-text text-transparent">
             Let's Secure Your Space
           </h2>
-          <p className="mt-5 text-base sm:text-lg leading-relaxed text-zinc-400 max-w-2xl mx-auto">
+          <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
             Professional CCTV, biometric, networking, automation, and smart security solutions custom-tailored for your absolute peace of mind.
           </p>
         </motion.div>
@@ -249,10 +249,10 @@ export function ContactPageContent() {
             variants={fadeInUp}
             className="lg:col-span-3"
           >
-            <div className="rounded-[32px] border border-white/10 bg-slate-900/40 p-6 sm:p-8 backdrop-blur-xl lg:p-10 shadow-2xl shadow-black/40 hover:border-cyan-500/20 transition-all duration-500">
+            <div className="rounded-[32px] border border-border bg-card/40 p-6 sm:p-8 backdrop-blur-xl lg:p-10 shadow-2xl shadow-black/40 hover:border-highlight/20 transition-all duration-500">
               <div className="mb-8">
-                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">Send Your Requirement</h3>
-                <p className="mt-2 text-sm text-zinc-400">Fill out the form below and our engineering team will get in touch shortly.</p>
+                <h3 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">Send Your Requirement</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Fill out the form below and our engineering team will get in touch shortly.</p>
               </div>
 
               {isSubmitted ? (
@@ -261,12 +261,12 @@ export function ContactPageContent() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-14 text-center"
                 >
-                  <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-inner">
-                    <CheckCircle2 className="h-10 w-10 text-emerald-400 animate-bounce" />
+                  <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 border border-accent/20 shadow-inner">
+                    <CheckCircle2 className="h-10 w-10 text-brand-green animate-bounce" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Requirement Submitted Successfully!</h3>
-                  <p className="mt-3 text-sm text-zinc-400 max-w-sm mx-auto">Thank you for reaching out to VisionSecure Smart Technologies. We will review your project needs immediately.</p>
-                  <Button onClick={() => setIsSubmitted(false)} className="mt-8 rounded-full bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400 transition-all">
+                  <h3 className="text-2xl font-bold text-foreground">Requirement Submitted Successfully!</h3>
+                  <p className="mt-3 text-sm text-muted-foreground max-w-sm mx-auto">Thank you for reaching out to VisionSecure Smart Technologies. We will review your project needs immediately.</p>
+                  <Button onClick={() => setIsSubmitted(false)} className="mt-8 rounded-full bg-highlight text-accent-foreground font-bold hover:bg-highlight transition-all">
                     Submit Another Requirement
                   </Button>
                 </motion.div>
@@ -275,44 +275,44 @@ export function ContactPageContent() {
                   <FieldGroup className="space-y-5">
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field>
-                        <FieldLabel className="text-zinc-300 font-medium mb-1.5 block text-sm">Full Name *</FieldLabel>
-                        <Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter full name" required className="h-12 border-white/10 bg-slate-950 text-white placeholder:text-zinc-600 focus:border-cyan-500 transition-colors rounded-xl" />
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Full Name *</FieldLabel>
+                        <Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter full name" required className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                       </Field>
                       <Field>
-                        <FieldLabel className="text-zinc-300 font-medium mb-1.5 block text-sm">Phone Number *</FieldLabel>
-                        <Input name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="+91 XXXXX XXXXX" required className="h-12 border-white/10 bg-slate-950 text-white placeholder:text-zinc-600 focus:border-cyan-500 transition-colors rounded-xl" />
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Phone Number *</FieldLabel>
+                        <Input name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="+91 XXXXX XXXXX" required className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                       </Field>
                     </div>
 
                     <Field>
-                      <FieldLabel className="text-zinc-300 font-medium mb-1.5 block text-sm">Email Address</FieldLabel>
-                      <Input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="h-12 border-white/10 bg-slate-950 text-white placeholder:text-zinc-600 focus:border-cyan-500 transition-colors rounded-xl" />
+                      <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Email Address</FieldLabel>
+                      <Input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                     </Field>
 
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field>
-                        <FieldLabel className="text-zinc-300 font-medium mb-1.5 block text-sm">Service Required *</FieldLabel>
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Service Required *</FieldLabel>
                         <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                          <SelectTrigger className="h-12 border-white/10 bg-slate-950 text-white focus:border-cyan-500 rounded-xl">
+                          <SelectTrigger className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
                             <SelectValue placeholder="Select Service" />
                           </SelectTrigger>
-                          <SelectContent className="bg-slate-900 border-white/10 text-white">
+                          <SelectContent className="bg-card border-border text-foreground">
                             {services.map((service) => (
-                              <SelectItem key={service} value={service} className="focus:bg-cyan-500 focus:text-slate-950 cursor-pointer">{service}</SelectItem>
+                              <SelectItem key={service} value={service} className="focus:bg-highlight focus:text-foreground cursor-pointer">{service}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </Field>
 
                       <Field>
-                        <FieldLabel className="text-zinc-300 font-medium mb-1.5 block text-sm">Budget Range</FieldLabel>
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Budget Range</FieldLabel>
                         <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
-                          <SelectTrigger className="h-12 border-white/10 bg-slate-950 text-white focus:border-cyan-500 rounded-xl">
+                          <SelectTrigger className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
                             <SelectValue placeholder="Select Budget" />
                           </SelectTrigger>
-                          <SelectContent className="bg-slate-900 border-white/10 text-white">
+                          <SelectContent className="bg-card border-border text-foreground">
                             {budgets.map((budget) => (
-                              <SelectItem key={budget} value={budget} className="focus:bg-cyan-500 focus:text-slate-950 cursor-pointer">{budget}</SelectItem>
+                              <SelectItem key={budget} value={budget} className="focus:bg-highlight focus:text-foreground cursor-pointer">{budget}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -320,13 +320,13 @@ export function ContactPageContent() {
                     </div>
 
                     <Field>
-                      <FieldLabel className="text-zinc-300 font-medium mb-1.5 block text-sm">Your Requirement</FieldLabel>
-                      <Textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Tell us more about your installation or maintenance project..." className="resize-none border-white/10 bg-slate-950 text-white placeholder:text-zinc-600 focus:border-cyan-500 transition-colors rounded-xl" />
+                      <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Your Requirement</FieldLabel>
+                      <Textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Tell us more about your installation or maintenance project..." className="resize-none border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                     </Field>
                   </FieldGroup>
 
                   {errorMessage && (
-                    <div className="rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">{errorMessage}</div>
+                    <div className="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">{errorMessage}</div>
                   )}
 
                   <Button type="submit" disabled={isSubmitting} className="h-14 w-full rounded-full bg-primary text-base font-bold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 cursor-pointer">
@@ -350,17 +350,17 @@ export function ContactPageContent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="rounded-[32px] border border-cyan-500/20 bg-gradient-to-br from-cyan-950/80 to-slate-900 p-7 text-white shadow-2xl"
+              className="rounded-[32px] border border-highlight/20 bg-gradient-to-br from-highlight/80 to-background p-7 text-foreground shadow-2xl"
             >
               <h3 className="text-2xl font-black tracking-tight">Need Quick Support?</h3>
-              <p className="mt-2 text-sm text-cyan-300/80">Connect instantly with our executive expert team.</p>
+              <p className="mt-2 text-sm text-highlight-ink/80">Connect instantly with our executive expert team.</p>
               <div className="mt-6 space-y-3">
-                <Button asChild size="lg" className="h-12 w-full rounded-full bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400 shadow-md">
+                <Button asChild size="lg" className="h-12 w-full rounded-full bg-highlight text-accent-foreground font-bold hover:bg-highlight shadow-md">
                   <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
                     <FaWhatsapp className="mr-2 h-5 w-5" /> WhatsApp Now
                   </a>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="h-12 w-full rounded-full border-white/10 bg-white/5 text-white hover:bg-white/10 hover:border-white/20 backdrop-blur-md">
+                <Button asChild size="lg" variant="outline" className="h-12 w-full rounded-full border-border bg-card/5 text-foreground hover:bg-card/10 hover:border-border backdrop-blur-md">
                   <a href="tel:+919872133840"><Phone className="mr-2 h-5 w-5" /> Call Us Directly</a>
                 </Button>
               </div>
@@ -376,17 +376,17 @@ export function ContactPageContent() {
                   whileInView="visible"
                   viewport={{ once: true, margin: "-100px" }}
                   variants={fadeInUp}
-                  className="group rounded-[28px] border border-white/10 bg-slate-900/40 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-500/30 shadow-lg shadow-black/20"
+                  className="group rounded-[28px] border border-border bg-card/40 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-highlight/30 shadow-lg shadow-black/20"
                 >
                   <div className="flex gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-highlight/10 text-highlight-ink group-hover:bg-highlight group-hover:text-foreground transition-all duration-300">
                       <Icon className="h-6 w-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white tracking-tight">{item.title}</h4>
+                      <h4 className="text-lg font-bold text-foreground tracking-tight">{item.title}</h4>
                       <div className="mt-2 space-y-0.5">
                         {item.details.map((detail) => (
-                          <p key={detail} className="text-sm leading-6 text-zinc-400 font-medium group-hover:text-zinc-300 transition-colors">{detail}</p>
+                          <p key={detail} className="text-sm leading-6 text-muted-foreground font-medium group-hover:text-muted-foreground transition-colors">{detail}</p>
                         ))}
                       </div>
                       {item.action && (
@@ -394,7 +394,7 @@ export function ContactPageContent() {
                           href={item.action} 
                           target={item.action.startsWith("http") ? "_blank" : undefined} 
                           rel={item.action.startsWith("http") ? "noopener noreferrer" : undefined} 
-                          className="mt-3 inline-flex items-center text-sm font-bold text-cyan-400 transition hover:text-cyan-300"
+                          className="mt-3 inline-flex items-center text-sm font-bold text-highlight-ink transition hover:text-highlight-ink"
                         >
                           {item.actionLabel} <span className="ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
                         </a>
@@ -411,15 +411,15 @@ export function ContactPageContent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="rounded-[28px] border border-white/10 bg-slate-900/40 p-6 backdrop-blur-xl"
+              className="rounded-[28px] border border-border bg-card/40 p-6 backdrop-blur-xl"
             >
-              <h3 className="mb-5 text-xl font-bold text-white tracking-tight">Why Choose Us?</h3>
+              <h3 className="mb-5 text-xl font-bold text-foreground tracking-tight">Why Choose Us?</h3>
               <ul className="space-y-4">
                 {benefits.map((item) => {
                   const Icon = item.icon
                   return (
-                    <li key={item.text} className="flex items-center gap-3 text-sm text-zinc-300 font-medium">
-                      <div className="p-1 rounded-full bg-emerald-500/10 text-emerald-400">
+                    <li key={item.text} className="flex items-center gap-3 text-sm text-muted-foreground font-medium">
+                      <div className="p-1 rounded-full bg-accent/10 text-brand-green">
                         <Icon className="h-4 w-4" /> 
                       </div>
                       {item.text}
@@ -435,9 +435,9 @@ export function ContactPageContent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="rounded-[28px] border border-white/10 bg-slate-900/40 p-6 backdrop-blur-xl"
+              className="rounded-[28px] border border-border bg-card/40 p-6 backdrop-blur-xl"
             >
-              <h3 className="mb-5 text-xl font-bold text-white tracking-tight">Follow Our Updates</h3>
+              <h3 className="mb-5 text-xl font-bold text-foreground tracking-tight">Follow Our Updates</h3>
               <div className="flex flex-wrap gap-4">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
@@ -448,7 +448,7 @@ export function ContactPageContent() {
                       target="_blank" 
                       rel="noopener noreferrer" 
                       aria-label={social.label} 
-                      className={`flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-slate-950 text-zinc-400 transition-all duration-300 hover:scale-110 hover:text-white ${social.hover}`}
+                      className={`flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-background text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-foreground ${social.hover}`}
                     >
                       <Icon className="h-6 w-6" />
                     </a>

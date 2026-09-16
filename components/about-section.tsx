@@ -42,7 +42,7 @@ export function AboutSection() {
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
           )}>
             <div>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-brand-green text-sm font-medium mb-4">
                 About Us
               </span>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance leading-tight">
@@ -81,11 +81,11 @@ export function AboutSection() {
             {/* Mission Card */}
             <div className="group p-8 rounded-2xl bg-card border border-border/50 hover:border-accent/50 transition-all duration-500 hover:-translate-y-1">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-3 rounded-xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
+                <div className="flex-shrink-0 p-3 rounded-xl bg-accent/10 text-brand-green group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
                   <Target className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-brand-green transition-colors">
                     Our Mission
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -99,11 +99,11 @@ export function AboutSection() {
             {/* Vision Card */}
             <div className="group p-8 rounded-2xl bg-card border border-border/50 hover:border-accent/50 transition-all duration-500 hover:-translate-y-1">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-3 rounded-xl bg-accent/10 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
+                <div className="flex-shrink-0 p-3 rounded-xl bg-accent/10 text-brand-green group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300">
                   <Eye className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors">
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-3 group-hover:text-brand-green transition-colors">
                     Our Vision
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -115,16 +115,16 @@ export function AboutSection() {
             </div>
 
             {/* Experience Card */}
-            <div className="group p-8 rounded-2xl bg-gradient-to-br from-primary to-accent text-white transition-all duration-500 hover:-translate-y-1">
+            <div className="group p-8 rounded-2xl bg-gradient-to-br from-primary to-accent text-foreground transition-all duration-500 hover:-translate-y-1">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-3 rounded-xl bg-white/10">
+                <div className="flex-shrink-0 p-3 rounded-xl bg-card/10">
                   <Award className="h-6 w-6" />
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-semibold mb-3">
                     5+ Years of Excellence
                   </h3>
-                  <p className="text-white/80 leading-relaxed">
+                  <p className="text-foreground/80 leading-relaxed">
                     VisionSecure Smart Technologies has successfully completed numerous security and surveillance projects for residential, commercial, educational and industrial clients over the years.
                     We have developed long-term relationships with customers who trust us for their security needs through our commitment to quality products, professional installation and reliable after-sales support.
                     Whether it’s CCTV installations, biometric systems, networking or smart automation, we continue to provide reliable solutions integrating technology, safety and performance.

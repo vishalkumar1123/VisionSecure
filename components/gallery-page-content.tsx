@@ -63,7 +63,7 @@ export function GalleryPageContent() {
               onClick={() => setSelectedItem(item)} 
               className="group relative cursor-pointer overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:shadow-lg"
             >
-              <div className="relative h-[300px] w-full overflow-hidden flex items-center justify-center bg-black">
+              <div className="relative h-[300px] w-full overflow-hidden flex items-center justify-center bg-background">
                 
                 {isVideo(item.src) ? (
                   <video
@@ -86,7 +86,7 @@ export function GalleryPageContent() {
 
                 {/* Video Indicator Icon */}
                 {isVideo(item.src) && (
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white p-2 rounded-full z-10 text-xs font-semibold uppercase tracking-wider border border-white/10">
+                  <div className="absolute top-4 right-4 bg-background/60 backdrop-blur-md text-foreground p-2 rounded-full z-10 text-xs font-semibold uppercase tracking-wider border border-border">
                     ▶ Video
                   </div>
                 )}
@@ -96,8 +96,8 @@ export function GalleryPageContent() {
                 
                 {/* Text Details on Hover */}
                 <div className="absolute inset-x-0 bottom-0 p-6 translate-y-4 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 z-20">
-                  <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-accent">Project</p>
-                  <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                  <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-brand-green">Project</p>
+                  <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
                 </div>
               </div>
             </motion.div>
@@ -113,12 +113,12 @@ export function GalleryPageContent() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedItem(null)} 
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-10 cursor-zoom-out"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-md p-4 md:p-10 cursor-zoom-out"
           >
             {/* Close Button */}
             <button 
               onClick={() => setSelectedItem(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all duration-200 z-50 text-xl font-bold"
+              className="absolute top-6 right-6 text-foreground/70 hover:text-foreground bg-card/10 hover:bg-card/20 p-3 rounded-full transition-all duration-200 z-50 text-xl font-bold"
               aria-label="Close Lightbox"
             >
               ✕
@@ -131,7 +131,7 @@ export function GalleryPageContent() {
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 150 }}
               onClick={(e) => e.stopPropagation()} 
-              className="relative max-w-5xl w-full h-[70vh] md:h-[80vh] overflow-hidden rounded-2xl bg-zinc-900 border border-white/10 shadow-2xl cursor-default flex items-center justify-center"
+              className="relative max-w-5xl w-full h-[70vh] md:h-[80vh] overflow-hidden rounded-2xl bg-card border border-border shadow-2xl cursor-default flex items-center justify-center"
             >
               {isVideo(selectedItem.src) ? (
                 <video
@@ -153,8 +153,8 @@ export function GalleryPageContent() {
               )}
               
               {/* Bottom Caption in Lightbox */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-6 text-center z-10 pointer-events-none">
-                <h3 className="text-lg md:text-2xl font-semibold text-white tracking-wide">
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-background/90 to-transparent p-6 text-center z-10 pointer-events-none">
+                <h3 className="text-lg md:text-2xl font-semibold text-foreground tracking-wide">
                   {selectedItem.title}
                 </h3>
               </div>

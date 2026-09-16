@@ -70,7 +70,7 @@ export function ContactHeroSlider() {
   }
 
   return (
-    <section className="relative h-[95vh] w-full overflow-hidden bg-slate-950">
+    <section className="relative h-[95vh] w-full overflow-hidden bg-background">
 
       {/* BACKGROUND SLIDER WITH ANIMATION */}
       <AnimatePresence mode="wait">
@@ -91,12 +91,12 @@ export function ContactHeroSlider() {
           />
 
           {/* DUAL LAYER CINEMATIC OVERLAY */}
-          <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/75 to-transparent" />
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent" />
 
           {/* DYNAMIC GLOW ORBS */}
-          <div className="absolute -top-24 right-0 h-[500px] w-[500px] rounded-full bg-cyan-500/15 blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none" />
+          <div className="absolute -top-24 right-0 h-[500px] w-[500px] rounded-full bg-highlight/15 blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
         </motion.div>
       </AnimatePresence>
 
@@ -113,18 +113,18 @@ export function ContactHeroSlider() {
               className="max-w-4xl"
             >
               {/* BRAND BADGE */}
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-xs sm:text-sm font-semibold text-cyan-400 backdrop-blur-md shadow-inner shadow-cyan-500/5">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-highlight/30 bg-highlight/10 px-5 py-2 text-xs sm:text-sm font-semibold text-highlight-ink backdrop-blur-md shadow-inner shadow-cyan-500/5">
                 <ShieldCheck className="h-4 w-4 animate-pulse" />
                 VisionSecure Smart Technologies
               </div>
 
               {/* HEADING */}
-              <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl leading-[1.1] text-balance">
+              <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1] text-balance">
                 {slides[currentSlide].title}
               </h1>
 
               {/* SUBTITLE */}
-              <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-300 font-medium">
+              <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground font-medium">
                 {slides[currentSlide].subtitle}
               </p>
 
@@ -132,7 +132,7 @@ export function ContactHeroSlider() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Button
                   size="lg"
-                  className="rounded-full bg-cyan-500 px-8 py-6 text-base font-bold text-slate-950 shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:scale-105 hover:bg-cyan-400"
+                  className="rounded-full bg-highlight px-8 py-6 text-base font-bold text-accent-foreground shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:scale-105 hover:bg-highlight"
                   asChild
                 >
                   <a
@@ -148,7 +148,7 @@ export function ContactHeroSlider() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-full border-white/20 bg-white/5 px-8 py-6 text-base font-bold text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:border-white/40"
+                  className="rounded-full border-border bg-card/5 px-8 py-6 text-base font-bold text-foreground backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-card/10 hover:border-border"
                   asChild
                 >
                   <a href="tel:+919872133840">
@@ -159,24 +159,24 @@ export function ContactHeroSlider() {
               </div>
 
               {/* KEY HIGHLIGHTS WITH PROPER GOOGLE MAPS INTEGRATION */}
-              <div className="mt-14 grid grid-cols-2 gap-4 text-xs sm:text-sm text-zinc-300 lg:grid-cols-4">
-                <div className="rounded-2xl border border-white/5 bg-slate-900/40 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/20 hover:bg-slate-900/60">
+              <div className="mt-14 grid grid-cols-2 gap-4 text-xs sm:text-sm text-muted-foreground lg:grid-cols-4">
+                <div className="rounded-2xl border border-border bg-card/40 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-highlight/20 hover:bg-card/60">
                   <div className="flex items-center gap-2 font-medium">
-                    <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-400" />
+                    <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-brand-green" />
                     <span>Free Consultation</span>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-white/5 bg-slate-900/40 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/20 hover:bg-slate-900/60">
+                <div className="rounded-2xl border border-border bg-card/40 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-highlight/20 hover:bg-card/60">
                   <div className="flex items-center gap-2 font-medium">
-                    <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-400" />
+                    <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-brand-green" />
                     <span>Expert Engineers</span>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-white/5 bg-slate-900/40 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/20 hover:bg-slate-900/60">
+                <div className="rounded-2xl border border-border bg-card/40 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-highlight/20 hover:bg-card/60">
                   <div className="flex items-center gap-2 font-medium">
-                    <Wrench className="h-4 w-4 flex-shrink-0 text-cyan-400" />
+                    <Wrench className="h-4 w-4 flex-shrink-0 text-highlight-ink" />
                     <span>Same-Day Support</span>
                   </div>
                 </div>
@@ -186,10 +186,10 @@ export function ContactHeroSlider() {
                   href="https://maps.google.com/?q=VisionSecure+Smart+Technologies+Lucknow" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-500/15 group block cursor-pointer"
+                  className="rounded-2xl border border-highlight/20 bg-highlight/5 p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-highlight/15 group block cursor-pointer"
                 >
-                  <div className="flex items-center gap-2 font-bold text-cyan-300 group-hover:text-white transition-colors">
-                    <MapPin className="h-4 w-4 flex-shrink-0 text-cyan-400 group-hover:animate-bounce" />
+                  <div className="flex items-center gap-2 font-bold text-highlight-ink group-hover:text-foreground transition-colors">
+                    <MapPin className="h-4 w-4 flex-shrink-0 text-highlight-ink group-hover:animate-bounce" />
                     <span>Lucknow, UP, India</span>
                   </div>
                 </a>
@@ -203,7 +203,7 @@ export function ContactHeroSlider() {
       <button
         onClick={prevSlide}
         aria-label="Previous Slide"
-        className="absolute left-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-500"
+        className="absolute left-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/40 text-foreground backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-highlight hover:text-foreground hover:border-highlight"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
@@ -211,7 +211,7 @@ export function ContactHeroSlider() {
       <button
         onClick={nextSlide}
         aria-label="Next Slide"
-        className="absolute right-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-500"
+        className="absolute right-5 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/40 text-foreground backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-highlight hover:text-foreground hover:border-highlight"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
@@ -225,8 +225,8 @@ export function ContactHeroSlider() {
             aria-label={`Go to slide ${index + 1}`}
             className={`transition-all duration-500 ${
               currentSlide === index
-                ? "h-2.5 w-10 rounded-full bg-cyan-500 shadow-lg shadow-cyan-500/50"
-                : "h-2.5 w-2.5 rounded-full bg-white/20 hover:bg-white/50"
+                ? "h-2.5 w-10 rounded-full bg-highlight shadow-lg shadow-cyan-500/50"
+                : "h-2.5 w-2.5 rounded-full bg-card/20 hover:bg-card/50"
             }`}
           />
         ))}
@@ -236,14 +236,14 @@ export function ContactHeroSlider() {
       <div className="absolute bottom-16 left-1/2 z-30 -translate-x-1/2 hidden md:block">
         <Link
           href="#contact-section"
-          className="flex flex-col items-center text-xs font-semibold uppercase tracking-widest text-white/50 transition hover:text-cyan-400 group"
+          className="flex flex-col items-center text-xs font-semibold uppercase tracking-widest text-foreground/50 transition hover:text-highlight-ink group"
         >
           <span className="mb-2">Explore Form</span>
-          <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/30 p-1 group-hover:border-cyan-500/50">
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-border p-1 group-hover:border-highlight/50">
             <motion.div 
               animate={{ y: [0, 14, 0] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              className="h-2 w-1.5 rounded-full bg-white group-hover:bg-cyan-400"
+              className="h-2 w-1.5 rounded-full bg-card group-hover:bg-highlight"
             />
           </div>
         </Link>

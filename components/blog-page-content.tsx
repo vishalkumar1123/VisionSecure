@@ -147,7 +147,7 @@ export default function BlogPageContent() {
                     {featuredPost.readTime}
                   </span>
                 </div>
-                <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
+                <h2 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-4 group-hover:text-brand-green transition-colors duration-300">
                   {featuredPost.title}
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed line-clamp-3">
@@ -155,7 +155,7 @@ export default function BlogPageContent() {
                 </p>
                 
                 {/* Clean Indicator instead of Button */}
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-accent">
+                <div className="inline-flex items-center gap-2 text-sm font-medium text-brand-green">
                   <span>Read Article</span>
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </div>
@@ -204,7 +204,7 @@ export default function BlogPageContent() {
                   </div>
                   
                   {/* Title */}
-                  <h3 className="font-display text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-accent transition-colors duration-300">
+                  <h3 className="font-display text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-brand-green transition-colors duration-300">
                     {post.title}
                   </h3>
                   
@@ -215,7 +215,7 @@ export default function BlogPageContent() {
                 </div>
 
                 {/* Smooth Sliding Arrow Indicator on Hover */}
-                <div className="inline-flex items-center gap-1.5 text-sm font-medium text-accent opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                <div className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-green opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
                   <span>View Details</span>
                   <ArrowRight className="h-4 w-4" />
                 </div>
@@ -242,10 +242,10 @@ export default function BlogPageContent() {
 
         {/* YouTube CTA */}
         <div className={cn(
-          "mt-20 p-8 lg:p-12 rounded-3xl bg-gradient-to-br from-red-500/10 via-red-600/5 to-red-500/10 border border-red-500/20 text-center transition-all duration-700",
+          "mt-20 p-8 lg:p-12 rounded-3xl bg-gradient-to-br from-destructive/10 via-destructive/5 to-destructive/10 border border-destructive/20 text-center transition-all duration-700",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
-          <Youtube className="h-12 w-12 text-red-500 mx-auto mb-6" />
+          <Youtube className="h-12 w-12 text-destructive mx-auto mb-6" />
           <h3 className="font-display text-2xl lg:text-3xl font-bold text-foreground mb-4">
             Watch Our Video Tutorials
           </h3>
@@ -254,7 +254,7 @@ export default function BlogPageContent() {
           </p>
           <Button
             size="lg"
-            className="bg-red-500 hover:bg-red-600 text-white rounded-full px-8"
+            className="bg-destructive hover:bg-destructive text-destructive-foreground rounded-full px-8"
             asChild
           >
             <a href="https://www.youtube.com/@visionsecure_tech" target="_blank" rel="noopener noreferrer">

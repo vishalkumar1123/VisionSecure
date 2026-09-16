@@ -202,7 +202,7 @@ export function ProjectsPageContent() {
               className="p-6 rounded-2xl bg-card border border-border/50 text-center"
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="text-3xl lg:text-4xl font-bold text-accent mb-2">{stat.value}</div>
+              <div className="text-3xl lg:text-4xl font-bold text-brand-green mb-2">{stat.value}</div>
               <div className="text-sm text-muted-foreground">{stat.label}</div>
             </div>
           ))}
@@ -243,7 +243,7 @@ export function ProjectsPageContent() {
 
               {/* Content */}
               <div className="p-6 space-y-4">
-                <h3 className="font-display text-xl font-bold text-foreground group-hover:text-accent transition-colors">
+                <h3 className="font-display text-xl font-bold text-foreground group-hover:text-brand-green transition-colors">
                   {project.title}
                 </h3>
                 
