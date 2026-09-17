@@ -26,7 +26,7 @@ export class ActivityLogService {
     try {
       await connectDB()
 
-      await ActivityLog.create({
+      const activity = await ActivityLog.create({
         userId: data.userId,
         action: data.action,
         resourceType: data.resourceType || "System",
@@ -37,8 +37,25 @@ export class ActivityLogService {
         status: data.status || "success",
         errorMessage: data.errorMessage || null,
       })
+      // Only meaningful business events generate email. No page-view or UI events.
+      const eventMap: Partial<Record<ActivityAction, import("@/lib/email-config/shared").EmailEvent>> = {
+        LEAD_ASSIGNED: "leadAssigned", LEAD_STATUS_CHANGED: "leadStatusChanged", USER_CREATED: "userCreated",
+        USER_DELETED: "userAccessChanged", PASSWORD_RESET: "passwordReset", QUOTATION_CREATED: "quotation",
+      }
+      const eventTypes: import("@/lib/email-config/shared").EmailEvent[] = []
+      if (data.action === "USER_UPDATED") {
+        if (data.changes?.fields?.includes("role")) eventTypes.push("userRoleChanged")
+        if (data.changes?.fields?.includes("isActive")) eventTypes.push("userAccessChanged")
+      } else if (eventMap[data.action]) eventTypes.push(eventMap[data.action]!)
+      if (eventTypes.length) {
+        const { notifyEmail } = await import("@/lib/email-config/delivery")
+        for (const eventType of eventTypes) await notifyEmail({ eventKey: `activity:${activity._id}:${eventType}`, eventType, entityId: data.resourceId || data.userId,
+          subject: `VisionSecure: ${data.action.replaceAll("_", " ").toLowerCase()}`,
+          text: `Event: ${data.action}. Resource: ${data.resourceType || "System"}. ID: ${data.resourceId || data.userId}. Open the admin dashboard to review details. No passwords or confidential record contents are included.` })
+      }
+
     } catch (error) {
-      console.error("Failed to log activity:", error)
+      console.error("Activity logging unavailable")
       // Don't throw - logging failures shouldn't break the application
     }
   }

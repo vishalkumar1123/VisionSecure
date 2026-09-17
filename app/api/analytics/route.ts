@@ -2,6 +2,8 @@ import { NextResponse } from "next/server"
 
 import { connectDB } from "@/lib/mongodb"
 
+import User from "@/models/User"
+import ActivityLog from "@/models/ActivityLog"
 import Lead from "@/models/Lead"
 import { requireAdmin } from "@/lib/admin-auth"
 
@@ -17,6 +19,15 @@ export async function GET() {
     await connectDB()
 
 
+
+    const [totalUsers, activeUsers, roleStats, recentActivity] = await Promise.all([
+      User.countDocuments(),
+      User.countDocuments({ isActive: true }),
+      User.aggregate([{ $group: { _id: "$role", total: { $sum: 1 } } }, { $sort: { total: -1 } }]),
+      ActivityLog.find().sort({ createdAt: -1, _id: -1 }).limit(5)
+        .select("_id action resourceType status createdAt userId")
+        .populate("userId", "name").lean(),
+    ])
 
     // TOTAL LEADS
     const totalLeads =
@@ -133,6 +144,8 @@ export async function GET() {
           createdAt: -1,
         })
         .limit(5)
+        .select("_id name phone service status createdAt")
+        .lean()
 
 
 
@@ -347,6 +360,8 @@ export async function GET() {
 
     return NextResponse.json({
   success: true,
+  userSummary: { total: totalUsers, active: activeUsers, inactive: totalUsers - activeUsers, roles: roleStats },
+  recentActivity,
 
   totalLeads,
 

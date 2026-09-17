@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { services } from "@/lib/services"
+import { LanguageSwitch } from "@/components/language-switch"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 
@@ -34,7 +35,7 @@ export function Navbar() {
 
   return <header className={cn("fixed inset-x-0 top-0 z-50 border-b transition duration-300", scrolled ? "border-border/80 bg-background/95 shadow-lg shadow-black/10 backdrop-blur-md" : "border-transparent bg-secondary/95")}>
     <nav className="page-container flex h-[72px] items-center justify-between" aria-label="Primary navigation">
-      <Link href="/" className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent" aria-label="VisionSecure home"><Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={250} height={70} priority className="h-11 w-auto object-contain sm:h-12 dark:rounded-md dark:bg-white dark:p-1" /></Link>
+      <Link href="/" className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent" aria-label="VisionSecure home"><Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={250} height={70} priority className="h-12 max-w-[120px] min-[375px]:max-w-[155px] w-auto object-contain sm:max-w-[210px] sm:h-14 dark:rounded-md dark:bg-white dark:p-1" /></Link>
       <div className="hidden items-center gap-5 xl:flex">
         <Link href="/" className={cn("nav-link", pathname === "/" && "nav-link-active")}>Home</Link>
         <Link href="/about" className={cn("nav-link", pathname === "/about" && "nav-link-active")}>About</Link>
@@ -48,7 +49,7 @@ export function Navbar() {
         {navLinks.map((link) => <Link key={link.href} href={link.href} className={cn("nav-link", pathname === link.href && "nav-link-active")}>{link.label}</Link>)}
       </div>
       <div className="hidden items-center gap-4 xl:flex"><a href="tel:+919872133840" className="flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-sm font-bold text-brand-ink transition hover:bg-muted"><Phone size={15} />Call Now</a><Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-brand-hover"><ArrowRight size={15} />Get Free Site Visit</Link></div>
-      <div className="flex items-center gap-2"><ThemeToggle />
+      <div className="flex items-center gap-2"><LanguageSwitch /><ThemeToggle />
       <button onClick={() => setMobileOpen((value) => !value)} className="rounded-lg p-2 text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent xl:hidden" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation">{mobileOpen ? <X /> : <Menu />}</button></div>
     </nav>
     <div id="mobile-navigation" className={cn("overflow-y-auto border-t border-border/70 bg-background transition-all duration-300 xl:hidden", mobileOpen ? "max-h-[calc(100dvh-72px)] opacity-100" : "max-h-0 opacity-0")}><div className="page-container py-3"><Link href="/" className="mobile-nav-link">Home</Link><Link href="/about" className="mobile-nav-link">About</Link><div className="border-b border-border/50"><button type="button" onClick={() => setMobileServicesOpen((value) => !value)} aria-expanded={mobileServicesOpen} className="mobile-nav-link flex w-full items-center justify-between">Services <ChevronDown className={cn("h-4 w-4 transition", mobileServicesOpen && "rotate-180")} /></button>{mobileServicesOpen && <div className="ml-3 border-l border-border pb-2 pl-3">{categories.map((category) => <div key={category} className="py-2"><p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{category}</p>{services.filter((service) => service.category === category).map((service) => <Link key={service.slug} href={`/services/${service.slug}`} className="block min-h-11 py-3 text-sm hover:text-brand-green">{service.title}</Link>)}</div>)}<Link href="/services" className="block py-3 text-sm font-semibold text-brand-green">View all services →</Link></div>}</div>{navLinks.map((link) => <Link key={link.href} href={link.href} className="mobile-nav-link">{link.label}</Link>)}<Link href="/contact" className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground"><ArrowRight size={16} />Get a Quote</Link></div></div>

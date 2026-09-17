@@ -4,9 +4,11 @@ const NotificationSchema = new Schema(
   {
     recipientId: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
     type: { type: String, required: true, enum: ["NEW_LEAD", "FOLLOW_UP", "QUOTATION", "INSTALLATION", "COMPLAINT", "PAYMENT", "SYSTEM"] },
+    severity: { type: String, enum: ["success", "information", "warning", "error"], default: "information" },
+    actionUrl: String,
     title: { type: String, required: true, trim: true, maxlength: 160 },
     message: { type: String, required: true, trim: true, maxlength: 500 },
-    referenceType: { type: String, required: true, enum: ["LEAD"] },
+    referenceType: { type: String, required: true, enum: ["LEAD", "EMAIL"] },
     referenceId: { type: Schema.Types.ObjectId, ref: "Lead", required: true },
     isRead: { type: Boolean, default: false },
     readAt: { type: Date, default: null },

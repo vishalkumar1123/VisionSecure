@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState } from "react"
 import { KeyRound, Eye, EyeOff, Loader2 } from "lucide-react"
+import Swal from "sweetalert2"
 import { toast } from "sonner"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -62,7 +63,8 @@ export function UserPasswordAction({ user }: { user: PasswordUser }) {
         toast.error(message, { id: notification }); return
       }
       setForm(empty); setVisible({ newPassword: false, confirmPassword: false }); setOpen(false)
-      toast.success(`Password changed for ${name}`, { id: notification, description: "Use the new password at the next sign-in." })
+      toast.dismiss(notification)
+      await Swal.fire({ title: "Password updated", text: `Password changed for ${name}. Use the new password at the next sign-in.`, icon: "success" })
     } catch {
       const message = "We could not confirm the update. Check your connection and try again."
       setFailure(message); toast.error(message, { id: notification })

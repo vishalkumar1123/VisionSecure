@@ -20,6 +20,6 @@ export function ThemeToggle() {
 
 export function StandaloneThemeToggle() {
   const path = usePathname()
-  if (!(path === "/admin/login" || path === "/profile" || path === "/register" || path.startsWith("/blog/"))) return null
+  if (!(path === "/admin/login" || path === "/profile" || path === "/register")) return null
   return <div className="fixed right-4 top-4 z-50"><ThemeToggle /></div>
 }

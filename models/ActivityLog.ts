@@ -40,6 +40,7 @@ const ActivityLogSchema = new Schema<IActivityLog>(
         "USER_DELETED",
         "PASSWORD_RESET",
         "EMAIL_VERIFIED",
+        "EMAIL_SERVICE",
         "QUOTATION_CREATED",
         "SERVICE_TICKET_CREATED",
       ],

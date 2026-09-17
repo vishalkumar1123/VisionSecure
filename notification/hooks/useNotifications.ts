@@ -6,6 +6,8 @@ export type ClientNotification = {
   _id: string
   title: string
   message: string
+  actionUrl?: string
+  severity?: "success" | "information" | "warning" | "error"
   referenceId: string
   isRead: boolean
   createdAt: string

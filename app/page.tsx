@@ -3,7 +3,6 @@ import { HeroSlider } from "@/components/hero-slider"
 import { TrustSection } from "@/components/trust-section"
 import { ServicesSection } from "@/components/services-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
-import { ProjectsSection } from "@/components/projects-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { BrandsSection } from "@/components/brands-section"
 import { CTABanner } from "@/components/cta-banner"
@@ -20,7 +19,6 @@ export default function Home() {
       <TrustSection />      
       <ServicesSection />
       <WhyChooseUs />
-      {/* <ProjectsSection /> */}
       <TestimonialsSection />
       <BrandsSection />
       <CTABanner />

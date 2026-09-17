@@ -16,6 +16,10 @@ type Lead = {
 }
 
 type AnalyticsData = {
+  userSummary: { total: number; active: number; inactive: number; roles: Array<{ _id: string; total: number }> }
+  recentActivity: Array<{ _id: string; action: string; resourceType: string; status: string; createdAt: string; userId?: { name: string } | null }>
+  serviceStats: Array<{ _id: string | null; total: number }>
+  discussionLeads: number
   totalLeads: number
   activeLeads: number
   newLeads: number
@@ -67,10 +71,12 @@ export default function DashboardPage() {
 
   const pipeline = useMemo(() => [
     { label: "New", value: data?.newLeads ?? 0, color: "bg-highlight" },
+    { label: "In discussion", value: data?.discussionLeads ?? 0, color: "bg-status-purple" },
     { label: "Follow-ups", value: data?.followUpLeads ?? 0, color: "bg-warning" },
     { label: "Quotations", value: data?.quotationLeads ?? 0, color: "bg-status-purple" },
     { label: "Installation", value: data?.installationLeads ?? 0, color: "bg-highlight" },
     { label: "Installed", value: data?.convertedLeads ?? 0, color: "bg-accent" },
+    { label: "Cancelled", value: data?.closedLeads ?? 0, color: "bg-destructive" },
   ], [data])
   const pipelineMax = Math.max(1, ...pipeline.map((item) => item.value))
 
@@ -89,10 +95,10 @@ export default function DashboardPage() {
 
   return (
     <div className="mx-auto max-w-7xl space-y-7 pb-8 text-foreground">
-      <header className="flex flex-col justify-between gap-5 rounded-3xl border border-border bg-[radial-gradient(circle_at_top_right,rgba(56,199,233,.16),transparent_35%),var(--card)] p-6 shadow-xl shadow-black/10 sm:p-8 lg:flex-row lg:items-end">
+      <header className="flex flex-col justify-between gap-5 rounded-3xl border border-border bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,.13),transparent_35%),var(--card)] p-6 shadow-xl shadow-black/10 sm:p-8 lg:flex-row lg:items-end">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[.16em] text-highlight-ink">VisionSecure control center</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Business overview</h1>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Admin dashboard</h1>
           <p className="mt-3 max-w-xl leading-7 text-muted-foreground">Track incoming requirements, lead progress and operational work from one place.</p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -107,6 +113,10 @@ export default function DashboardPage() {
           return <motion.div key={card.label} initial={reduceMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : .28, delay: reduceMotion ? 0 : index * .05 }}><Link href={card.href} className="group block rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:border-highlight/35 hover:bg-muted"><div className="flex items-start justify-between"><p className="text-sm font-medium text-muted-foreground">{card.label}</p><Icon className={`h-5 w-5 ${card.color}`} /></div><p className="mt-5 text-4xl font-bold tracking-tight">{card.value}</p><p className="mt-3 flex items-center gap-1 text-sm text-muted-foreground">{card.detail}<ArrowRight className="h-3.5 w-3.5 opacity-0 transition group-hover:translate-x-1 group-hover:opacity-100" /></p></Link></motion.div>
         })}
       </section>
+
+      <nav aria-label="Management shortcuts" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[["Lead management", "Assign leads and track follow-ups", "/admin/leads"], ["User management", "Manage team accounts and access", "/admin/users"], ["Analytics", "Explore performance and sources", "/admin/analytics"], ["Email settings", "Monitor notification delivery", "/admin/settings/email"]].map(([title, description, href]) => <Link key={href} href={href} className="group rounded-2xl border border-border bg-card p-5 transition hover:border-emerald-600"><span className="flex items-center justify-between font-semibold">{title}<ArrowRight size={17} className="text-brand-green" /></span><span className="mt-2 block text-sm text-muted-foreground">{description}</span></Link>)}
+      </nav>
 
       <section className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
         <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
@@ -127,9 +137,22 @@ export default function DashboardPage() {
       </section>
 
       <section className="rounded-2xl border border-border bg-card p-6 sm:p-7">
-        <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-semibold uppercase tracking-[.14em] text-highlight-ink">Recent activity</p><h2 className="mt-2 text-xl font-bold">Latest customer requirements</h2></div><Link href="/admin/leads" className="text-sm font-semibold text-highlight-ink transition hover:text-highlight-ink">Open lead manager <ArrowRight className="ml-1 inline h-4 w-4" /></Link></div>
-        {data.latestLeads.length === 0 ? <div className="mt-7 rounded-xl border border-dashed border-border p-10 text-center text-muted-foreground">No leads yet. New website enquiries will appear here.</div> : <div className="mt-6 overflow-x-auto"><table className="w-full min-w-[650px] text-left"><thead className="border-b border-border text-xs uppercase tracking-[.12em] text-muted-foreground"><tr><th className="pb-3 font-medium">Customer</th><th className="pb-3 font-medium">Service</th><th className="pb-3 font-medium">Status</th><th className="pb-3 text-right font-medium">Action</th></tr></thead><tbody>{data.latestLeads.map((lead) => <tr key={lead._id} className="border-b border-border last:border-0"><td className="py-4"><p className="font-semibold text-foreground">{lead.name}</p><p className="mt-1 text-sm text-muted-foreground">{lead.phone}</p></td><td className="py-4 text-sm text-muted-foreground">{lead.service || "General enquiry"}</td><td className="py-4"><span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${statusClass[lead.status || ""] || "bg-card/5 text-muted-foreground ring-border"}`}>{lead.status || "New"}</span></td><td className="py-4 text-right"><Link href={`/admin/leads/${lead._id}`} className="text-sm font-semibold text-highlight-ink hover:text-highlight-ink">View</Link></td></tr>)}</tbody></table></div>}
+        <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-semibold uppercase tracking-[.14em] text-highlight-ink">Lead management</p><h2 className="mt-2 text-xl font-bold">5 recent leads</h2><p className="mt-2 text-sm text-muted-foreground">Newest enquiries first. Open a lead to assign, follow up or update its status.</p></div><Link href="/admin/leads" className="text-sm font-semibold text-highlight-ink transition hover:text-highlight-ink">Open lead manager <ArrowRight className="ml-1 inline h-4 w-4" /></Link></div>
+        {data.latestLeads.length === 0 ? <div className="mt-7 rounded-xl border border-dashed border-border p-10 text-center text-muted-foreground">No leads yet. New website enquiries will appear here.</div> : <div className="mt-6 overflow-x-auto"><table className="w-full min-w-[650px] text-left"><thead className="border-b border-border text-xs uppercase tracking-[.12em] text-muted-foreground"><tr><th className="pb-3 font-medium">Customer</th><th className="pb-3 font-medium">Service</th><th className="pb-3 font-medium">Status</th><th className="pb-3 font-medium">Received</th><th className="pb-3 text-right font-medium">Action</th></tr></thead><tbody>{data.latestLeads.slice(0, 5).map((lead) => <tr key={lead._id} className="border-b border-border last:border-0"><td className="py-4"><p className="font-semibold text-foreground">{lead.name}</p><p className="mt-1 text-sm text-muted-foreground">{lead.phone}</p></td><td className="py-4 text-sm text-muted-foreground">{lead.service || "General enquiry"}</td><td className="py-4"><span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${statusClass[lead.status || ""] || "bg-card/5 text-muted-foreground ring-border"}`}>{lead.status || "New"}</span></td><td className="py-4 text-sm text-muted-foreground">{lead.createdAt ? new Date(lead.createdAt).toLocaleDateString("en-IN") : "Not recorded"}</td><td className="py-4 text-right"><Link href={`/admin/leads/${lead._id}`} className="text-sm font-semibold text-highlight-ink hover:text-highlight-ink">View</Link></td></tr>)}</tbody></table></div>}
       </section>
+      <section className="grid gap-6 lg:grid-cols-2">
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="flex items-center justify-between gap-3"><h2 className="text-xl font-bold">User management</h2><Link href="/admin/users" className="text-sm font-semibold text-brand-green">Manage users <ArrowRight className="inline h-4 w-4" /></Link></div>
+          <div className="mt-6 grid grid-cols-3 gap-3">{[["Total users", data.userSummary.total], ["Active", data.userSummary.active], ["Inactive", data.userSummary.inactive]].map(([label,value]) => <div key={label} className="rounded-xl bg-muted p-4"><p className="text-2xl font-bold">{value}</p><p className="mt-1 text-xs text-muted-foreground">{label}</p></div>)}</div>
+          <h3 className="mt-6 text-sm font-semibold">Team by role</h3><div className="mt-3 space-y-3">{data.userSummary.roles.map(role => <div key={role._id} className="flex justify-between border-b border-border pb-3 text-sm"><span className="capitalize text-muted-foreground">{role._id.replaceAll("_", " ")}</span><span className="font-semibold">{role.total}</span></div>)}</div>
+        </div>
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="flex items-center justify-between gap-3"><h2 className="text-xl font-bold">Recent activity</h2><Link href="/admin/activity-logs" className="text-sm font-semibold text-brand-green">View all</Link></div>
+          <p className="mt-2 text-sm text-muted-foreground">Latest five recorded account and business actions.</p>
+          {!data.recentActivity.length ? <p className="py-10 text-center text-muted-foreground">No activity recorded yet.</p> : <ol className="mt-5 divide-y divide-border">{data.recentActivity.map(item => <li key={item._id} className="flex gap-3 py-4"><span className={`mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${item.status === "failed" ? "bg-destructive/10 text-destructive" : "bg-accent/10 text-brand-green"}`}><Activity size={16} /></span><div className="min-w-0 flex-1"><p className="text-sm font-semibold capitalize">{item.action.toLowerCase().replaceAll("_", " ")}</p><p className="mt-1 break-words text-sm text-muted-foreground">{item.userId?.name || "Deleted user"} ? {item.resourceType || "System"}</p><time className="mt-1 block text-xs text-muted-foreground" dateTime={item.createdAt}>{new Date(item.createdAt).toLocaleString("en-IN")}</time></div><span className={`text-xs ${item.status === "failed" ? "text-destructive" : "text-brand-green"}`}>{item.status}</span></li>)}</ol>}
+        </div>
+      </section>
+      <section className="rounded-2xl border border-border bg-card p-6"><div className="flex flex-wrap items-center justify-between gap-3"><div><h2 className="text-xl font-bold">Service demand</h2><p className="mt-2 text-sm text-muted-foreground">Top five services by enquiry volume, across all leads.</p></div><Link href="/admin/analytics" className="text-sm font-semibold text-brand-green">Explore analytics</Link></div><div className="mt-6 grid gap-5 sm:grid-cols-2">{data.serviceStats.slice(0,5).map(item => <div key={item._id || "general"}><div className="mb-2 flex justify-between gap-3 text-sm"><span>{item._id || "General enquiry"}</span><span className="font-semibold">{item.total}</span></div><div className="h-2 rounded-full bg-muted"><div className="h-2 rounded-full bg-emerald-600" style={{width: `${data.totalLeads ? item.total / data.totalLeads * 100 : 0}%`}} /></div></div>)}</div>{!data.serviceStats.length && <p className="py-6 text-muted-foreground">Service insights will appear as enquiries arrive.</p>}</section>
     </div>
   )
 }

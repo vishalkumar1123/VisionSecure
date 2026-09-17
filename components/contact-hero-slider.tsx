@@ -91,7 +91,7 @@ export function ContactHeroSlider() {
           />
 
           {/* DUAL LAYER CINEMATIC OVERLAY */}
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-background/10" />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/75 to-transparent" />
 
           {/* DYNAMIC GLOW ORBS */}

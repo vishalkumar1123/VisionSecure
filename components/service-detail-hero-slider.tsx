@@ -61,7 +61,7 @@ export function ServiceDetailHeroSlider({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-background/98 via-background/90 to-background/50" />
+          <div className="absolute inset-0 bg-linear-to-r from-background/98 via-background/60 to-background/10" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(8,168,232,.2),transparent_28%)]" />
         </motion.div>
       </AnimatePresence>

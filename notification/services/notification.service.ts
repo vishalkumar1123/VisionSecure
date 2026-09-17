@@ -31,28 +31,12 @@ export class NotificationService {
       }
     }))
 
-    const recipients = [
-      process.env.LEAD_NOTIFICATION_EMAILS,
-      process.env.ADMIN_NOTIFICATION_EMAILS,
-      process.env.ADMIN_NOTIFICATION_EMAIL,
-      process.env.ADMIN_RECEIVER_EMAIL,
-    ].filter(Boolean).join(",").split(",").map((email) => email.trim().toLowerCase()).filter((email, index, list) => email && list.indexOf(email) === index)
     const notificationQuery = { referenceId: new Types.ObjectId(leadId), type: "NEW_LEAD" }
     const emailInput = inputFor(adminUsers[0]?._id.toString() || new Types.ObjectId().toString())
-
-    if (recipients.length === 0) {
-      await Notification.updateMany(notificationQuery, { $set: { "deliveryStatus.email": "skipped" } })
-    } else {
-      try {
-        const result = await new EmailNotificationChannel().deliver(emailInput, recipients)
-        await Notification.updateMany(notificationQuery, { $set: { "channels.email": true, "deliveryStatus.email": "sent" } })
-        await NotificationActivityLogService.record("EMAIL_SENT", { leadId, provider: result.provider, messageId: result.messageId, recipients: String(result.recipients) })
-      } catch (error) {
-        await Notification.updateMany(notificationQuery, { $set: { "deliveryStatus.email": "failed" } }).catch(() => undefined)
-        console.error("Lead email notification failed", { leadId, error: error instanceof Error ? error.message : "unknown" })
-        await NotificationActivityLogService.record("EMAIL_FAILED", { leadId })
-      }
-    }
+    const result = await new EmailNotificationChannel().deliver(emailInput)
+    const emailState = result.status === "sent" ? "sent" : result.status === "skipped" ? "skipped" : result.status === "pending" ? "pending" : "failed"
+    await Notification.updateMany(notificationQuery, { $set: { "channels.email": emailState === "sent", "deliveryStatus.email": emailState } }).catch(() => undefined)
+    if (emailState !== "pending") await NotificationActivityLogService.record(emailState === "sent" ? "EMAIL_SENT" : emailState === "skipped" ? "EMAIL_SKIPPED" : "EMAIL_FAILED", { leadId })
 
     const whatsappRecipients = (process.env.ADMIN_NOTIFICATION_WHATSAPP || process.env.ADMIN_RECEIVER_PHONE || "")
       .split(",")

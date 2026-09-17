@@ -26,7 +26,7 @@ const slides = [
     title: "Our Security Installation Gallery",
     subtitle:
       "Explore our premium CCTV, biometric, networking, fire alarm, and smart automation projects installed across homes, offices, schools, hospitals, and industries.",
-    image: "/images/gallery-1.jpg",
+    image: "/images/project-1.jpg",
   },
 
   {
@@ -104,10 +104,10 @@ export function GalleryHeroSlider() {
           />
 
           {/* OVERLAY */}
-          <div className="absolute inset-0 bg-background/75" />
+          <div className="absolute inset-0 bg-background/10" />
 
           {/* GRADIENT */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/10" />
 
           {/* GLOW EFFECTS */}
           <div className="absolute -top-20 right-0 h-[450px] w-[450px] rounded-full bg-primary/20 blur-3xl" />
@@ -159,7 +159,7 @@ export function GalleryHeroSlider() {
 
               <Button
                 size="lg"
-                className="rounded-full bg-primary px-8 text-foreground shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:bg-primary"
+                className="rounded-full bg-primary px-8 text-primary-foreground shadow-2xl shadow-primary/20 transition-all duration-300 hover:scale-105 hover:bg-primary"
                 asChild
               >
                 <Link href="/contact">

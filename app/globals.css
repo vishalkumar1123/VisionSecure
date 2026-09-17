@@ -57,34 +57,39 @@
 }
 .dark {
   color-scheme: dark;
-  --background: #061B38;
-  --foreground: #EDF4FC;
-  --card: #0C2748;
-  --card-foreground: #EDF4FC;
-  --popover: #102F52;
-  --popover-foreground: #EDF4FC;
-  --secondary: #102F52;
-  --secondary-foreground: #EDF4FC;
-  --muted: #153757;
-  --muted-foreground: #AABCD0;
-  --brand-ink: #9AC9FF;
-  --brand-green: #94D947;
-  --highlight-ink: #61CEFA;
+  --vs-navy: #C9AB78;
+  --vs-navy-dark: #191916;
+  --vs-cyan: #D4B483;
+  --background: #171816;
+  --foreground: #F5F2EB;
+  --card: #21231F;
+  --card-foreground: #F5F2EB;
+  --popover: #292B26;
+  --popover-foreground: #F5F2EB;
+  --primary: #D4B483;
+  --primary-foreground: #191916;
+  --secondary: #252722;
+  --secondary-foreground: #F5F2EB;
+  --muted: #30332C;
+  --muted-foreground: #BBBDB3;
+  --brand-ink: #E1C79E;
+  --brand-green: #A9D974;
+  --highlight-ink: #E1C79E;
   --success: #A5DF6D;
   --warning: #F6C16A;
   --status-purple: #C3A1F0;
   --status-pink: #F29CCE;
   --destructive: #FA8A8A;
-  --destructive-foreground: #061B38;
-  --border: #294460;
-  --input: #3B5672;
-  --chart-1: #80B7F5;
+  --destructive-foreground: #191916;
+  --border: #3C4036;
+  --input: #505548;
+  --chart-1: #D4B483;
   --chart-5: #C3A1F0;
-  --sidebar: #09213F;
-  --sidebar-foreground: #EDF4FC;
-  --sidebar-accent: #153757;
-  --sidebar-accent-foreground: #EDF4FC;
-  --sidebar-border: #294460;
+  --sidebar: #1D1F1B;
+  --sidebar-foreground: #F5F2EB;
+  --sidebar-accent: #30332C;
+  --sidebar-accent-foreground: #F5F2EB;
+  --sidebar-border: #3C4036;
 }
 
 @theme inline {
@@ -361,3 +366,11 @@
 .swal2-input, .swal2-textarea { color: var(--foreground); background: var(--background); border-color: var(--input); }
 .recharts-default-tooltip { background: var(--popover) !important; color: var(--popover-foreground) !important; border-color: var(--border) !important; }
 .theme-toggle { min-width: 44px; min-height: 44px; }
+
+.dark body { background-image: radial-gradient(circle at 80% 0%, #d4b4830d, transparent 33%); }
+.swal2-container { z-index: 10000; }
+.swal2-confirm { background: var(--primary) !important; color: var(--primary-foreground) !important; }
+.swal2-cancel { background: var(--muted) !important; color: var(--foreground) !important; }
+@keyframes ambient-glow { 0%, 100% { opacity: .25; } 50% { opacity: .65; } }
+.vs-reveal.is-visible { position: relative; }
+.vs-reveal.is-visible::after { content: ""; position: absolute; pointer-events: none; right: 5%; top: 1rem; width: 5rem; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: ambient-glow 7s ease-in-out infinite; }

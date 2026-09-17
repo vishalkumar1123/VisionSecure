@@ -26,6 +26,14 @@ export type Permission =
   | 'settings.view'
   | 'settings.update'
   | 'activity.view'
+  | 'email.settings.read'
+  | 'email.settings.update'
+  | 'email.settings.verify'
+  | 'email.settings.test'
+  | 'email.settings.activate'
+  | 'email.settings.disable'
+  | 'email.logs.read'
+  | 'email.logs.retry'
 
 export type ActivityAction = 
   | 'LOGIN'
@@ -40,6 +48,7 @@ export type ActivityAction =
   | 'USER_DELETED'
   | 'PASSWORD_RESET'
   | 'EMAIL_VERIFIED'
+  | 'EMAIL_SERVICE'
   | 'QUOTATION_CREATED'
   | 'SERVICE_TICKET_CREATED'
 

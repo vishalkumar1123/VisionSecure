@@ -15,6 +15,8 @@ const faqCategories = [
     id: "general",
     title: "General Questions",
     faqs: [
+      {"question": "What should I share to get a quotation?", "answer": "Tell us your location, property type, areas to cover and approximate budget. Photos or a floor plan can help us suggest a suitable setup."},
+
       {
         question: "What types of security systems do you install?",
         answer: "We install a comprehensive range of security systems including CCTV cameras (analog, IP, PTZ), biometric attendance systems, access control systems (RFID, smart locks, boom barriers), video door phones, fire alarm systems, and complete home automation solutions."
@@ -37,6 +39,10 @@ const faqCategories = [
     id: "cctv",
     title: "CCTV & Surveillance",
     faqs: [
+      {"question": "Will CCTV record without internet?", "answer": "Many DVR and NVR systems can record locally without internet while power is available. Remote mobile viewing needs an internet connection. Cloud-only cameras may behave differently."},
+      {"question": "What happens during a power cut?", "answer": "Cameras and the recorder need power. A suitable UPS can keep the system running for a limited time; backup duration depends on the equipment and battery size."},
+      {"question": "How many cameras will my home need?", "answer": "Start with entrances, parking and important shared areas. The number depends on the layout and blind spots, so a site assessment is more useful than choosing a fixed package."},
+
       {
         question: "What is the difference between analog and IP cameras?",
         answer: "Analog cameras transmit video over coaxial cables and require a DVR, while IP cameras transmit digital video over network cables and use an NVR. IP cameras typically offer higher resolution (4K), better image quality, and advanced features like AI analytics, but cost more than analog systems."
@@ -113,6 +119,10 @@ const faqCategories = [
     id: "support",
     title: "Support & Service",
     faqs: [
+      {"question": "My mobile app shows the camera offline. What should I check?", "answer": "Check power to the camera and recorder, then check your router and internet connection. Avoid a factory reset. If it stays offline, share the device model and error screenshot with our team."},
+      {"question": "How do I keep my camera account secure?", "answer": "Use a strong, unique password, enable two-step verification if supported and share access only with trusted people. Never share your password or OTP in chat."},
+      {"question": "Can I get help learning to use the system?", "answer": "Ask our team to walk you through live view, playback and saving a recording. Tell us your device model so we can guide you through the correct steps."},
+
       {
         question: "Do you provide remote support?",
         answer: "Yes, many issues can be resolved remotely. Our technical team can access your system (with your permission) to troubleshoot software issues, adjust settings, and guide you through the mobile app. This saves time and provides quick resolutions."
@@ -246,6 +256,8 @@ export function FAQPageContent() {
                   >
                     <button
                       onClick={() => toggleQuestion(questionId)}
+                      aria-expanded={isOpen}
+                      aria-controls={`answer-${questionId}`}
                       className="w-full flex items-center justify-between p-6 text-left"
                     >
                       <span className="font-medium text-foreground pr-4">{faq.question}</span>
@@ -257,6 +269,8 @@ export function FAQPageContent() {
                       />
                     </button>
                     <div
+                      id={`answer-${questionId}`}
+                      aria-hidden={!isOpen}
                       className={cn(
                         "overflow-hidden transition-all duration-300",
                         isOpen ? "max-h-96" : "max-h-0"

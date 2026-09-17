@@ -7,6 +7,7 @@ import GoogleAnalytics from "@/components/google-analytics"
 import ClarityProvider from "@/components/clarity"
 import Schema from "@/components/schema"
 import { FloatingSupport } from "@/components/floating-support"
+import { SiteLanguage } from "@/components/site-language"
 import { SiteMotionEffects } from "@/components/site-motion-effects"
 
 import "./globals.css"
@@ -88,6 +89,7 @@ export default function RootLayout({
        <Schema />
          <Providers>
           <SiteMotionEffects />
+          <SiteLanguage />
           {children}
           <FloatingSupport />
           <Toaster richColors position="top-right" />

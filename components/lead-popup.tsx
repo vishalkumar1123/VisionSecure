@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/field"
 
 import { X, Phone, ArrowRight } from "lucide-react"
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
 const services = [
@@ -196,18 +197,10 @@ Service: ${formData.service}
   if (!mounted || !isOpen) return null
 
   return (
-    <div
-      className={cn(
-        "fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-300",
-        isVisible ? "opacity-100" : "opacity-0"
-      )}
-    >
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-background/70 backdrop-blur-sm"
-        onClick={handleClose}
-      />
-
+    <Dialog open={isOpen} onOpenChange={(open) => { if (!open) handleClose() }}>
+      <DialogContent showCloseButton={false} className="z-[100] max-h-[90dvh] overflow-y-auto border-0 bg-transparent p-0 sm:max-w-md">
+      <DialogTitle className="sr-only">Free security consultation</DialogTitle>
+      <DialogDescription className="sr-only">Share your requirements with VisionSecure on WhatsApp.</DialogDescription>
       {/* Popup */}
       <div
         className={cn(
@@ -220,13 +213,14 @@ Service: ${formData.service}
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute right-4 top-4 z-20 rounded-full p-2 text-foreground hover:bg-card/10"
+          aria-label="Close consultation"
+          className="absolute right-4 top-4 z-20 rounded-full p-2 text-white hover:bg-white/15"
         >
           <X className="h-5 w-5" />
         </button>
 
         {/* Header */}
-        <div className="rounded-t-3xl bg-gradient-to-r from-primary to-primary px-6 pb-6 pt-8 text-foreground">
+        <div className="rounded-t-3xl bg-gradient-to-br from-[#273a2c] to-[#17241b] px-6 pb-6 pt-8 text-white">
           <div className="mb-4 flex items-center gap-3">
             <Link href="/">
               <Image
@@ -234,7 +228,7 @@ Service: ${formData.service}
                 alt="VisionSecure"
                 width={50}
                 height={50}
-                className="h-12 w-auto"
+                className="h-14 w-14 rounded-xl bg-white object-contain p-1"
                 priority
               />
             </Link>
@@ -248,8 +242,8 @@ Service: ${formData.service}
             Get Free Security Consultation
           </h3>
 
-          <p className="mt-2 text-foreground/80">
-            Fill details & get call within 24 hours
+          <p className="mt-2 text-white/80">
+            Share your details with our team on WhatsApp.
           </p>
         </div>
 
@@ -359,7 +353,7 @@ Service: ${formData.service}
               "Submitting..."
             ) : (
               <>
-                Request Callback
+                Continue on WhatsApp
                 <ArrowRight className="ml-2 h-5 w-5" />
               </>
             )}
@@ -370,6 +364,7 @@ Service: ${formData.service}
           </p>
         </form>
       </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   )
 }

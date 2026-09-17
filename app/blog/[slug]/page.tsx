@@ -1,3 +1,5 @@
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -120,9 +122,10 @@ export default async function BlogDetail({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-background pb-24 selection:bg-accent/30">
+    <main className="min-h-screen bg-background selection:bg-accent/30">
       
       {/* Article Header */}
+      <Navbar />
       <header className="bg-gradient-to-b from-muted/60 via-muted/10 to-transparent pt-28 pb-6">
         <div className="container mx-auto px-4 max-w-4xl">
           
@@ -237,6 +240,7 @@ export default async function BlogDetail({ params }: Props) {
 
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

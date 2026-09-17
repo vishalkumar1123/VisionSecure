@@ -7,6 +7,14 @@ import type { UserRole, Permission } from '@/types'
 
 export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   super_admin: [
+    'email.settings.read',
+    'email.settings.update',
+    'email.settings.verify',
+    'email.settings.test',
+    'email.settings.activate',
+    'email.settings.disable',
+    'email.logs.read',
+    'email.logs.retry',
     // Leads
     'lead.create',
     'lead.read',
@@ -36,6 +44,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
     'activity.view',
   ],
   admin: [
+    'email.settings.read', 'email.logs.read',
     // Leads
     'lead.create',
     'lead.read',

@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { AgGridReact } from "ag-grid-react"
 import type { ColDef } from "ag-grid-community"
 import { LockKeyhole, UnlockKeyhole, UserCog, UserX } from "lucide-react"
+import Swal from "sweetalert2"
 import { toast } from "sonner"
 import EditUserDialog from "./edit-user-dialog"
 import { UserPasswordAction } from "./user-password-action"
@@ -25,16 +26,19 @@ export default function UsersGrid({ users, refreshUsers, searchText = "", loadin
     if (!actorId || user.id === actorId) { toast.error("You cannot lock/unlock your own account."); return }
     if (pending.current) return
     const locked = deactivate || user.isActive
-    if (!window.confirm(`${locked ? "Lock" : "Unlock"} ${user.name}?`)) return
     pending.current = true; setBusy(true)
+    const action = deactivate ? "Deactivate" : locked ? "Lock" : "Unlock"
+    const confirmation = await Swal.fire({ title: `${action} account?`, text: `${user.name}: ${locked ? "This user will lose account access. You can unlock the account later." : "This user will be able to sign in again."}`, icon: "warning", showCancelButton: true, confirmButtonText: `${action} account`, cancelButtonText: "Cancel", focusCancel: true })
+    if (!confirmation.isConfirmed) { pending.current = false; setBusy(false); return }
     const notification = toast.loading(`${locked ? "Locking" : "Unlocking"} ${user.name}...`)
     try {
       const response = await fetch(`/api/users/${encodeURIComponent(user.id)}`, { method: deactivate ? "DELETE" : "PATCH", headers: { "Content-Type": "application/json" }, ...(deactivate ? {} : { body: JSON.stringify({ isActive: !locked }) }) })
       const data = await response.json().catch(() => null)
       if (!response.ok || !data?.success) throw new Error(data?.error || "Unable to update account access.")
       toast.success(`${user.name} ${locked ? "locked" : "unlocked"} successfully`, { id: notification })
+      await Swal.fire({ title: `Account ${locked ? "locked" : "unlocked"}`, text: `${user.name} has been updated successfully.`, icon: "success" })
       await refreshUsers()
-    } catch (failure) { toast.error(failure instanceof Error ? failure.message : "Unable to update user.", { id: notification }) }
+    } catch (failure) { const message = failure instanceof Error ? failure.message : "Unable to update user."; toast.dismiss(notification); await Swal.fire({ title: "Account update failed", text: message, icon: "error" }) }
     finally { pending.current = false; setBusy(false) }
   }, [actorId, refreshUsers])
 

@@ -3,6 +3,7 @@ type NotificationActivity =
   | "NOTIFICATION_CREATED"
   | "EMAIL_SENT"
   | "EMAIL_FAILED"
+  | "EMAIL_SKIPPED"
   | "WHATSAPP_SENT"
   | "WHATSAPP_FAILED"
   | "WHATSAPP_SKIPPED"

@@ -1,0 +1,38 @@
+const { test, expect } = require("@playwright/test")
+test.use({ launchOptions: { executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe", args: ["--no-sandbox"] } })
+const base = process.env.TEST_BASE_URL || "http://localhost:3010"
+test("Hindi works locally, switches back, survives navigation; full-width hero", async ({ page }) => {
+  const errors=[]; page.on("pageerror", error=>errors.push(error.message))
+  await page.addInitScript(() => sessionStorage.setItem("leadPopupShown","true"))
+  await page.goto(base)
+  await page.getByRole("button", { name:"Choose language: English or Hindi" }).click()
+  await page.getByRole("menuitem", { name:"\u0939\u093f\u0928\u094d\u0926\u0940" }).click()
+  await expect(page.locator("html")).toHaveAttribute("lang","hi")
+  await expect(page.locator("#home h1")).toContainText(/[\u0900-\u097f]/)
+  expect(page.url()).toBe(base+"/")
+  const dimensions = await page.locator("#home img").first().boundingBox()
+  expect(dimensions.width).toBeGreaterThanOrEqual(1200)
+  await page.getByRole("button", { name:"Choose language: English or Hindi" }).click()
+  await page.getByRole("menuitem", { name:"English", exact:true }).click()
+  await expect(page.locator("#home h1")).toContainText(/Security|Biometric|Home|Networking/)
+  await page.getByRole("button", { name:"Choose language: English or Hindi" }).click()
+  await page.getByRole("menuitem", { name:"\u0939\u093f\u0928\u094d\u0926\u0940" }).click()
+  await page.locator('header a[href="/faq"]').first().click()
+  await expect(page.locator("html")).toHaveAttribute("lang","hi")
+  await expect(page.getByText("\u0938\u093e\u092e\u093e\u0928\u094d\u092f \u0938\u0935\u093e\u0932",{exact:true}).first()).toBeVisible()
+  expect(errors).toEqual([])
+})
+test("mobile hero and navbar fit viewport; startup dialog usable", async ({ page }) => {
+  await page.setViewportSize({ width:375,height:812 }); await page.goto(base)
+  await expect(page.getByRole("dialog")).toBeVisible({ timeout:15000 })
+  await page.getByRole("button",{name:"Close consultation"}).click()
+  await expect(page.getByRole("dialog")).not.toBeVisible()
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(375)
+  await page.screenshot({path:"test-results/home-mobile.png",fullPage:false})
+})
+test("email API denies unauthenticated browser; no secrets in public bundles", async ({ page, request }) => {
+  for(const suffix of ["","/health","/logs"]) { const response=await request.get(base+"/api/admin/settings/email"+suffix); expect(response.status()).toBe(401) }
+  await page.goto(base)
+  const scripts=await page.locator("script[src]").evaluateAll(nodes=>nodes.map(n=>n.src))
+  for(const src of scripts) { const response=await request.get(src); const source=await response.text(); expect(source).not.toContain("EMAIL_CONFIG_ENCRYPTION_KEY"); expect(source).not.toContain("createDecipheriv") }
+})

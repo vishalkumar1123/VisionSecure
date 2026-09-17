@@ -101,6 +101,7 @@ export default function LeadsGrid({
           "This action cannot be undone.",
         icon: "warning",
         showCancelButton: true,
+        focusCancel: true,
         confirmButtonColor:
           "#dc2626",
         background: "#18181b",
@@ -126,27 +127,20 @@ export default function LeadsGrid({
       const data =
         await res.json()
 
-      if (data.success) {
+      if (res.ok && data.success) {
 
-        toast.success(
-          "Lead deleted successfully"
-        )
+        await Swal.fire({ title: "Lead deleted", text: "The lead has been deleted successfully.", icon: "success" })
 
         refreshLeads()
 
       } else {
 
-        toast.error(
-          data.error ||
-            "Delete failed"
-        )
+        await Swal.fire({ title: "Delete failed", text: data.error || "Please try again.", icon: "error" })
       }
 
     } catch (error) {
 
-      toast.error(
-        "Delete failed"
-      )
+      await Swal.fire({ title: "Delete failed", text: "Check your connection and try again.", icon: "error" })
 
     } finally {
 
@@ -186,7 +180,7 @@ export default function LeadsGrid({
       const data =
         await res.json()
 
-      if (data.success) {
+      if (res.ok && data.success) {
 
         toast.success(
           `Lead moved to "${status}"`

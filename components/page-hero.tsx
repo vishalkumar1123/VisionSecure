@@ -32,7 +32,7 @@ export function PageHero({ title, subtitle, breadcrumbs, backgroundImage }: Page
           priority
         />
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
 

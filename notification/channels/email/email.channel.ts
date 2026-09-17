@@ -1,14 +1,11 @@
-import { getEmailTransporter } from "@/lib/email/transporter"
+import "server-only"
+import { notifyEmail } from "@/lib/email-config/delivery"
 import { newLeadEmailTemplate } from "./templates/new-lead.template"
 import type { CreateNotificationInput } from "@/notification/types/notification.types"
-
 export class EmailNotificationChannel {
-  async deliver(input: CreateNotificationInput, recipients?: string[]) {
-    const { transporter, config } = getEmailTransporter()
-    const deliveryRecipients = recipients?.length ? recipients : config.recipients
+  async deliver(input: CreateNotificationInput) {
     const template = newLeadEmailTemplate(input.referenceId, input.payload ?? { name: "Customer", phone: "" })
-    const response = await transporter.sendMail({ from: `VisionSecure Smart Technologies <${config.from}>`, to: deliveryRecipients, subject: template.subject, html: template.html, text: template.text })
-    console.info("Lead notification email sent successfully", { leadId: input.referenceId, messageId: response.messageId, recipients: deliveryRecipients.length })
-    return { provider: "zoho-smtp", messageId: response.messageId, recipients: deliveryRecipients.length }
+    const result = await notifyEmail({ eventKey: `lead-created:${input.referenceId}`, eventType: "leadCreated", entityId: input.referenceId, ...template })
+    return { provider: "configured-smtp", status: result?.status || "failed", messageId: result?.providerMessageIds?.[0], recipients: result?.recipients?.length || 0 }
   }
 }

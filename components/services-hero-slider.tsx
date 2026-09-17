@@ -117,14 +117,14 @@ export function ServicesHeroSlider() {
             alt={slides[currentSlide].title}
             fill
             priority
-            className="object-cover transition-transform duration-[7000ms] scale-105 hover:scale-110"
+            className="object-cover"
           />
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-background/75" />
+          <div className="absolute inset-0 bg-background/10" />
 
           {/* Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/10" />
 
           {/* Glow Effects */}
           <div className="absolute -top-24 right-0 h-[450px] w-[450px] rounded-full bg-primary/20 blur-3xl animate-pulse" />
@@ -175,7 +175,7 @@ export function ServicesHeroSlider() {
 
               <Button
                 size="lg"
-                className="rounded-full bg-primary px-8 text-primary-foreground shadow-2xl shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-primary-foreground"
+                className="rounded-full bg-primary px-8 text-primary-foreground shadow-2xl shadow-primary/20 transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
                 <Link href="/contact">

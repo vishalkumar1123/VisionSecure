@@ -16,3 +16,7 @@ node_modules
 .DS_Store
 .vercel
 .env
+
+# Local browser verification output
+test-results/
+playwright-report/

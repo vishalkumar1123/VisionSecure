@@ -54,10 +54,14 @@ export const authOptions: NextAuthOptions = {
             email,
           }).select("+password")
           if (!user) {
+            const { failedLoginEmail } = await import("@/lib/email-config/security-event")
+            await failedLoginEmail(email).catch(() => undefined)
             return null
           }
 
           if (!user.isActive) {
+            const { failedLoginEmail } = await import("@/lib/email-config/security-event")
+            await failedLoginEmail(email).catch(() => undefined)
             return null
           }
 
@@ -67,6 +71,8 @@ export const authOptions: NextAuthOptions = {
             : matchesLegacyPassword(credentials.password, user.password)
 
           if (!isPasswordCorrect) {
+            const { failedLoginEmail } = await import("@/lib/email-config/security-event")
+            await failedLoginEmail(String(user._id)).catch(() => undefined)
             return null
           }
 

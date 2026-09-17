@@ -384,7 +384,7 @@ export function AboutSlider() {
 
         <div className="absolute inset-0 bg-background/70" />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-background/10" />
 
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
 
@@ -448,7 +448,7 @@ export function AboutSlider() {
 
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-500/25"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-primary/20"
                 >
                   Discuss Your Requirement
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -897,7 +897,7 @@ export function AboutSlider() {
               return (
                 <article
                   key={step.title}
-                  className="group relative overflow-hidden rounded-2xl border border-border/[0.08] bg-card/[0.025] p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:bg-card/[0.045] hover:shadow-2xl hover:shadow-blue-950/30"
+                  className="group relative overflow-hidden rounded-2xl border border-border/[0.08] bg-card/[0.025] p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:bg-card/[0.045] hover:shadow-2xl hover:shadow-black/20"
                 >
 
                   <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
@@ -936,7 +936,7 @@ export function AboutSlider() {
 
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-500/20"
+              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-primary/20"
             >
               Discuss Your Requirement
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -1101,7 +1101,7 @@ export function AboutSlider() {
 
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-blue-500/25"
+              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-primary/20"
             >
               Discuss Your Requirement
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
