@@ -70,3 +70,11 @@ export type LoginInput = z.infer<typeof loginSchema>
 export type RegisterInput = z.infer<typeof registerSchema>
 export type ChangePasswordInput = z.infer<typeof changePasswordSchema>
 export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>
+
+/** Shared validation for the administrator's per-user reset dialog and API. */
+export const adminResetPasswordSchema = z.object({
+  newPassword: passwordSchema.refine((value) => new TextEncoder().encode(value).length <= 72, "Password must be at most 72 bytes"),
+  confirmPassword: z.string(),
+}).refine((data) => data.newPassword === data.confirmPassword, {
+  message: "Passwords don't match", path: ["confirmPassword"],
+})

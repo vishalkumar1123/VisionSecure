@@ -6,13 +6,12 @@
  * Create new user
  */
 
-import { NextRequest } from "next/server"
-import { getToken } from "next-auth/jwt"
-import { isSessionTokenActive } from "@/lib/session-security"
+import { NextRequest, NextResponse } from "next/server"
+import { requireAdmin } from "@/lib/admin-auth"
+import { ActivityLogService } from "@/services/activity-log-service"
 import { UserService } from "@/services/user-service"
 import { createUserSchema } from "@/lib/validation-user"
 import { successResponse, createdResponse, handleApiError } from "@/middleware/error-handler"
-import { canUserPerform } from "@/constants/permissions"
 import type { UserRole } from "@/types"
 
 /**
@@ -20,24 +19,14 @@ import type { UserRole } from "@/types"
  */
 export async function GET(req: NextRequest) {
   try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-
-    if (!isSessionTokenActive(token)) {
-      return new Response("Unauthorized", { status: 401 })
-    }
-
-    // Check permission
-    if (!canUserPerform(token.role as UserRole, "user.read")) {
-      return new Response("Forbidden", { status: 403 })
-    }
+    const { response } = await requireAdmin()
+    if (response) return response
 
     // Get query params
     const searchParams = req.nextUrl.searchParams
-    const page = parseInt(searchParams.get("page") || "1")
-    const limit = parseInt(searchParams.get("limit") || "10")
+    const page = Number(searchParams.get("page") || "1")
+    const limit = Number(searchParams.get("limit") || "10")
+    if (!Number.isSafeInteger(page) || page < 1 || !Number.isSafeInteger(limit) || limit < 1 || limit > 100) return NextResponse.json({ error: "Invalid pagination." }, { status: 400 })
     const search = searchParams.get("search") || undefined
     const role = searchParams.get("role") || undefined
     const isActive = searchParams.get("isActive")
@@ -63,20 +52,10 @@ export async function GET(req: NextRequest) {
  */
 export async function POST(req: NextRequest) {
   try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-
-    if (!isSessionTokenActive(token)) {
-      return new Response("Unauthorized", { status: 401 })
-    }
-
-    // Check permission
-    if (!canUserPerform(token.role as UserRole, "user.create")) {
-      return new Response("Forbidden", { status: 403 })
-    }
-
+    const { user: actor, response } = await requireAdmin()
+    if (response) return response
+    const origin = req.headers.get("origin")
+    if (origin && origin !== req.nextUrl.origin) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 })
     const body = await req.json()
     const validatedData = createUserSchema.parse(body)
 
@@ -85,6 +64,7 @@ export async function POST(req: NextRequest) {
       role: validatedData.role as UserRole,
     })
 
+    if (actor) await ActivityLogService.log({ userId: actor.id, action: "USER_CREATED", resourceType: "User", resourceId: user.id })
     return createdResponse(user, "User created successfully")
   } catch (error) {
     return handleApiError(error)

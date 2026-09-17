@@ -12,6 +12,7 @@ import {
   Settings,
   LogOut,
   UserCog,
+  History,
 } from "lucide-react"
 
 const menus = [
@@ -44,6 +45,7 @@ const menus = [
     href: "/admin/settings",
     icon: Settings,
   },
+  { title: "Activity Log", href: "/admin/activity-logs", icon: History },
 ]
 
 export default function AdminSidebar() {

@@ -1,52 +1,32 @@
-/**
- * POST /api/users/[id]/reset-password
- * Admin resets a user's password
- */
-
-import { NextRequest } from "next/server"
-import { getToken } from "next-auth/jwt"
-import { isSessionTokenActive } from "@/lib/session-security"
-import { z } from "zod"
+/** Administrator resets a selected user's password. */
+import { NextRequest, NextResponse } from "next/server"
+import { requireAdmin } from "@/lib/admin-auth"
+import { adminResetPasswordSchema } from "@/lib/validation-auth"
 import { UserService } from "@/services/user-service"
-import { successResponse, handleApiError } from "@/middleware/error-handler"
-import { canUserPerform } from "@/constants/permissions"
-import type { UserRole } from "@/types"
+import { ActivityLogService } from "@/services/activity-log-service"
+import { allowRateLimitedRequest } from "@/notification/utils/rate-limit"
+import User from "@/models/User"
 
-const resetPasswordSchema = z.object({
-  newPassword: z.string().min(8, "Password must be at least 8 characters"),
-})
-
-export async function POST(
-  req: NextRequest,
-  // 1. Change this to expect context with a Promise
-  context: { params: Promise<{ id: string }> }
-) {
+export async function POST(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-
-    if (!isSessionTokenActive(token)) {
-      return new Response("Unauthorized", { status: 401 })
-    }
-
-    // Check permission
-    if (!canUserPerform(token.role as UserRole, "user.update")) {
-      return new Response("Forbidden", { status: 403 })
-    }
-
-    const body = await req.json()
-    const validatedData = resetPasswordSchema.parse(body)
-
-    // 2. Await the context params here
+    const { user: actor, response } = await requireAdmin()
+    if (response) return response
+    if (!actor) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    const origin = req.headers.get("origin")
+    if (origin && origin !== req.nextUrl.origin) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 })
     const { id } = await context.params
-
-    // 3. Use the awaited 'id' variable
-    const user = await UserService.resetUserPassword(id, validatedData.newPassword)
-    
-    return successResponse(user, "Password reset successfully")
-  } catch (error) {
-    return handleApiError(error)
+    if (!/^[a-f0-9]{24}$/i.test(id)) return NextResponse.json({ error: "Invalid user." }, { status: 400 })
+    if (!allowRateLimitedRequest(`admin-password-reset:${actor.id}`, 10, 5 * 60_000)) {
+      return NextResponse.json({ error: "Too many attempts. Please try again in 5 minutes." }, { status: 429, headers: { "Retry-After": "300" } })
+    }
+    const parsed = adminResetPasswordSchema.safeParse(await req.json().catch(() => null))
+    if (!parsed.success) return NextResponse.json({ error: "Please check the password requirements.", errors: parsed.error.flatten().fieldErrors }, { status: 400 })
+    const target = await User.findById(id).select("_id role")
+    if (!target) return NextResponse.json({ error: "User not found." }, { status: 404 })
+    await UserService.resetUserPassword(id, parsed.data.newPassword)
+    await ActivityLogService.log({ userId: actor.id, action: "PASSWORD_RESET", resourceType: "User", resourceId: id })
+    return NextResponse.json({ success: true, message: "Password changed successfully." })
+  } catch {
+    return NextResponse.json({ error: "Unable to change the password right now. Please try again." }, { status: 500 })
   }
 }

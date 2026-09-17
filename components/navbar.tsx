@@ -34,7 +34,7 @@ export function Navbar() {
 
   return <header className={cn("fixed inset-x-0 top-0 z-50 border-b transition duration-300", scrolled ? "border-border/80 bg-background/95 shadow-lg shadow-black/10 backdrop-blur-md" : "border-transparent bg-secondary/95")}>
     <nav className="page-container flex h-[72px] items-center justify-between" aria-label="Primary navigation">
-      <Link href="/" className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent" aria-label="VisionSecure home"><Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={250} height={70} priority className="h-11 w-auto object-contain sm:h-12" /></Link>
+      <Link href="/" className="shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent" aria-label="VisionSecure home"><Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={250} height={70} priority className="h-11 w-auto object-contain sm:h-12 dark:rounded-md dark:bg-white dark:p-1" /></Link>
       <div className="hidden items-center gap-5 xl:flex">
         <Link href="/" className={cn("nav-link", pathname === "/" && "nav-link-active")}>Home</Link>
         <Link href="/about" className={cn("nav-link", pathname === "/about" && "nav-link-active")}>About</Link>

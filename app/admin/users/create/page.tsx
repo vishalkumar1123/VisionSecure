@@ -1,15 +1,17 @@
 "use client"
 
 import { useState } from "react"
+import { toast } from "sonner"
 
 export default function CreateUserPage() {
+  const [loading, setLoading] = useState(false)
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     mobile: "",
     password: "",
-    role: "sales",
+    role: "sales_executive",
   })
 
   async function handleSubmit(
@@ -18,32 +20,17 @@ export default function CreateUserPage() {
 
     e.preventDefault()
 
-    const response = await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-
-    const data = await response.json()
-
-    if (data.success) {
-
-      alert("User created successfully")
-
-      setFormData({
-        name: "",
-        email: "",
-        mobile: "",
-        password: "",
-        role: "sales",
-      })
-
-    } else {
-
-      alert(data.error)
-    }
+    if (loading) return
+    setLoading(true)
+    const notice = toast.loading("Creating user...")
+    try {
+      const response = await fetch("/api/users", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) })
+      const data = await response.json().catch(() => null)
+      if (!response.ok || !data?.success) throw new Error(data?.error || "Unable to create user.")
+      toast.success("User created successfully", { id: notice })
+      setFormData({ name: "", email: "", mobile: "", password: "", role: "sales_executive" })
+    } catch (failure) { toast.error(failure instanceof Error ? failure.message : "Unable to create user.", { id: notice }) }
+    finally { setLoading(false) }
   }
 
   return (
@@ -140,9 +127,10 @@ export default function CreateUserPage() {
 
         <button
           type="submit"
+          disabled={loading}
           className="rounded-xl bg-primary px-6 py-3 text-primary-foreground"
         >
-          Create User
+          {loading ? "Creating..." : "Create User"}
         </button>
 
       </form>

@@ -230,7 +230,7 @@ export function ContactPageContent() {
             <ShieldCheck className="h-4 w-4 animate-pulse" />
             Contact VisionSecure Smart Technologies
           </span>
-          <h2 className="mt-6 text-4xl font-black tracking-tight text-foreground lg:text-6xl bg-gradient-to-b from-background to-background bg-clip-text text-transparent">
+          <h2 className="mt-6 text-4xl font-black tracking-tight text-foreground lg:text-6xl">
             Let's Secure Your Space
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
@@ -249,7 +249,7 @@ export function ContactPageContent() {
             variants={fadeInUp}
             className="lg:col-span-3"
           >
-            <div className="rounded-[32px] border border-border bg-card/40 p-6 sm:p-8 backdrop-blur-xl lg:p-10 shadow-2xl shadow-black/40 hover:border-highlight/20 transition-all duration-500">
+            <div className="rounded-[32px] border border-border bg-card p-6 sm:p-8 backdrop-blur-xl lg:p-10 shadow-2xl shadow-black/10 hover:border-highlight/20 transition-all duration-500">
               <div className="mb-8">
                 <h3 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">Send Your Requirement</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Fill out the form below and our engineering team will get in touch shortly.</p>
@@ -266,7 +266,7 @@ export function ContactPageContent() {
                   </div>
                   <h3 className="text-2xl font-bold text-foreground">Requirement Submitted Successfully!</h3>
                   <p className="mt-3 text-sm text-muted-foreground max-w-sm mx-auto">Thank you for reaching out to VisionSecure Smart Technologies. We will review your project needs immediately.</p>
-                  <Button onClick={() => setIsSubmitted(false)} className="mt-8 rounded-full bg-highlight text-accent-foreground font-bold hover:bg-highlight transition-all">
+                  <Button onClick={() => setIsSubmitted(false)} className="mt-8 rounded-full bg-accent text-accent-foreground font-bold hover:bg-brand-hover transition-all">
                     Submit Another Requirement
                   </Button>
                 </motion.div>
@@ -298,7 +298,7 @@ export function ContactPageContent() {
                           </SelectTrigger>
                           <SelectContent className="bg-card border-border text-foreground">
                             {services.map((service) => (
-                              <SelectItem key={service} value={service} className="focus:bg-highlight focus:text-foreground cursor-pointer">{service}</SelectItem>
+                              <SelectItem key={service} value={service} className="focus:bg-accent focus:text-accent-foreground cursor-pointer">{service}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -312,7 +312,7 @@ export function ContactPageContent() {
                           </SelectTrigger>
                           <SelectContent className="bg-card border-border text-foreground">
                             {budgets.map((budget) => (
-                              <SelectItem key={budget} value={budget} className="focus:bg-highlight focus:text-foreground cursor-pointer">{budget}</SelectItem>
+                              <SelectItem key={budget} value={budget} className="focus:bg-accent focus:text-accent-foreground cursor-pointer">{budget}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
@@ -350,12 +350,12 @@ export function ContactPageContent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="rounded-[32px] border border-highlight/20 bg-gradient-to-br from-highlight/80 to-background p-7 text-foreground shadow-2xl"
+              className="rounded-[32px] border border-highlight/20 bg-gradient-to-br from-accent/10 to-card p-7 text-foreground shadow-2xl"
             >
               <h3 className="text-2xl font-black tracking-tight">Need Quick Support?</h3>
-              <p className="mt-2 text-sm text-highlight-ink/80">Connect instantly with our executive expert team.</p>
+              <p className="mt-2 text-sm text-muted-foreground">Connect instantly with our executive expert team.</p>
               <div className="mt-6 space-y-3">
-                <Button asChild size="lg" className="h-12 w-full rounded-full bg-highlight text-accent-foreground font-bold hover:bg-highlight shadow-md">
+                <Button asChild size="lg" className="h-12 w-full rounded-full bg-accent text-accent-foreground font-bold hover:bg-brand-hover shadow-md">
                   <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
                     <FaWhatsapp className="mr-2 h-5 w-5" /> WhatsApp Now
                   </a>
@@ -376,7 +376,7 @@ export function ContactPageContent() {
                   whileInView="visible"
                   viewport={{ once: true, margin: "-100px" }}
                   variants={fadeInUp}
-                  className="group rounded-[28px] border border-border bg-card/40 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-highlight/30 shadow-lg shadow-black/20"
+                  className="group rounded-[28px] border border-border bg-card p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-highlight/30 shadow-lg shadow-black/5"
                 >
                   <div className="flex gap-4">
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-highlight/10 text-highlight-ink group-hover:bg-highlight group-hover:text-foreground transition-all duration-300">
@@ -411,7 +411,7 @@ export function ContactPageContent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="rounded-[28px] border border-border bg-card/40 p-6 backdrop-blur-xl"
+              className="rounded-[28px] border border-border bg-card p-6 backdrop-blur-xl"
             >
               <h3 className="mb-5 text-xl font-bold text-foreground tracking-tight">Why Choose Us?</h3>
               <ul className="space-y-4">
@@ -435,7 +435,7 @@ export function ContactPageContent() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeInUp}
-              className="rounded-[28px] border border-border bg-card/40 p-6 backdrop-blur-xl"
+              className="rounded-[28px] border border-border bg-card p-6 backdrop-blur-xl"
             >
               <h3 className="mb-5 text-xl font-bold text-foreground tracking-tight">Follow Our Updates</h3>
               <div className="flex flex-wrap gap-4">

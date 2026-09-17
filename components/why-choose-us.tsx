@@ -138,7 +138,7 @@ export function WhyChooseUs() {
             className="text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl dark:text-foreground"
           >
             Security Solutions Built Around{" "}
-            <span className="bg-gradient-to-r from-primary to-highlight bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-ink to-highlight-ink bg-clip-text text-transparent">
               Your Needs
             </span>
           </h2>

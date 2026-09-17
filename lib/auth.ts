@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { timingSafeEqual } from "crypto"
 
 import { connectDB } from "@/lib/mongodb"
+import { ActivityLogService } from "@/services/activity-log-service"
 import User from "@/models/User"
 import { ADMIN_IDLE_TIMEOUT_MS } from "@/lib/session-security"
 
@@ -118,6 +119,14 @@ export const authOptions: NextAuthOptions = {
         return {}
       }
 
+      if (!user) {
+        try {
+          await connectDB()
+          const currentUser = await User.findById(String(token.id || token.sub)).select("role isActive").lean()
+          if (!currentUser?.isActive) return {}
+          token.role = String(currentUser.role)
+        } catch { return {} }
+      }
       return token
     },
 
@@ -131,6 +140,17 @@ export const authOptions: NextAuthOptions = {
       }
 
       return session
+    },
+  },
+
+  events: {
+    async signIn({ user }) {
+      await ActivityLogService.log({ userId: user.id, action: "LOGIN" })
+    },
+    async signOut(message) {
+      if ("token" in message && message.token?.sub) {
+        await ActivityLogService.log({ userId: message.token.sub, action: "LOGOUT" })
+      }
     },
   },
 

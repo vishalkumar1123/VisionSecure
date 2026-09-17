@@ -4,6 +4,7 @@
  */
 
 import { connectDB } from "@/lib/mongodb"
+import "@/models/User"
 import ActivityLog from "@/models/ActivityLog"
 import type { ActivityAction } from "@/types"
 
@@ -88,10 +89,10 @@ export class ActivityLogService {
       const total = await ActivityLog.countDocuments(query)
       const logs = await ActivityLog.find(query)
         .populate("userId", "name email role")
-        .populate("resourceId")
+        .select("userId action resourceType resourceId status createdAt")
         .limit(limit)
         .skip((page - 1) * limit)
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: -1, _id: -1 })
 
       return {
         data: logs,
@@ -118,7 +119,7 @@ export class ActivityLogService {
       const logs = await ActivityLog.find({
         userId,
         createdAt: { $gte: startDate },
-      }).sort({ createdAt: -1 })
+      }).sort({ createdAt: -1, _id: -1 })
 
       const summary = {
         totalActions: logs.length,

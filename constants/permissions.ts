@@ -42,8 +42,10 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
     'lead.update',
     'lead.assign',
     // Users
+    'user.create',
     'user.read',
     'user.update',
+    'user.delete',
     // Analytics
     'analytics.view',
     // Quotations

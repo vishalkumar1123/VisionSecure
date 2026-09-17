@@ -1,112 +1,26 @@
-/**
- * GET /api/users/[id]
- * Get user details
- *
- * PATCH /api/users/[id]
- * Update user
- *
- * DELETE /api/users/[id]
- * Delete user (soft delete by deactivating)
- */
-
-import { NextRequest } from "next/server"
-import { getToken } from "next-auth/jwt"
-import { isSessionTokenActive } from "@/lib/session-security"
+import { NextRequest, NextResponse } from "next/server"
+import { requireAdmin } from "@/lib/admin-auth"
 import { UserService } from "@/services/user-service"
-import { updateUserSchema } from "@/lib/validation-user"
-import { successResponse, handleApiError } from "@/middleware/error-handler"
-import { canUserPerform } from "@/constants/permissions"
-import type { UserRole } from "@/types"
+import { successResponse } from "@/middleware/error-handler"
+import { updateManagedUser } from "@/lib/user-management"
+import User from "@/models/User"
 
-/**
- * GET /api/users/[id]
- */
-export async function GET(
-  req: NextRequest,
-  context: { params: Promise<{ id: string }> } // Updated to Promise
-) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-
-    if (!isSessionTokenActive(token)) {
-      return new Response("Unauthorized", { status: 401 })
-    }
-
-    if (!canUserPerform(token.role as UserRole, "user.read")) {
-      return new Response("Forbidden", { status: 403 })
-    }
-
-    // Await the context params
+    const { response } = await requireAdmin()
+    if (response) return response
     const { id } = await context.params
-    const user = await UserService.getUserById(id)
-    return successResponse(user, "User fetched successfully")
-  } catch (error) {
-    return handleApiError(error)
-  }
+    if (!/^[a-f0-9]{24}$/i.test(id)) return NextResponse.json({ error: "Invalid user ID." }, { status: 400 })
+    if (!await User.findById(id).select("_id")) return NextResponse.json({ error: "User not found." }, { status: 404 })
+    return successResponse(await UserService.getUserById(id), "User fetched successfully")
+  } catch { return NextResponse.json({ error: "Unable to load user." }, { status: 500 }) }
 }
 
-/**
- * PATCH /api/users/[id]
- */
-export async function PATCH(
-  req: NextRequest,
-  context: { params: Promise<{ id: string }> } // Updated to Promise
-) {
-  try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-
-    if (!isSessionTokenActive(token)) {
-      return new Response("Unauthorized", { status: 401 })
-    }
-
-    if (!canUserPerform(token.role as UserRole, "user.update")) {
-      return new Response("Forbidden", { status: 403 })
-    }
-
-    const body = await req.json()
-    const validatedData = updateUserSchema.parse(body)
-
-    // Await the context params
-    const { id } = await context.params
-    const user = await UserService.updateUser(id, { ...validatedData, role: validatedData.role as UserRole })
-    return successResponse(user, "User updated successfully")
-  } catch (error) {
-    return handleApiError(error)
-  }
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  return updateManagedUser(req, (await context.params).id)
 }
 
-/**
- * DELETE /api/users/[id]
- */
-export async function DELETE(
-  req: NextRequest,
-  context: { params: Promise<{ id: string }> } // Updated to Promise
-) {
-  try {
-    const token = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-
-    if (!isSessionTokenActive(token)) {
-      return new Response("Unauthorized", { status: 401 })
-    }
-
-    if (!canUserPerform(token.role as UserRole, "user.delete")) {
-      return new Response("Forbidden", { status: 403 })
-    }
-
-    // Await the context params
-    const { id } = await context.params
-    const user = await UserService.deactivateUser(id)
-    return successResponse(user, "User deactivated")
-  } catch (error) {
-    return handleApiError(error)
-  }
+/** Existing delete is a reversible deactivation, so self-protection applies. */
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  return updateManagedUser(req, (await context.params).id, { isActive: false })
 }

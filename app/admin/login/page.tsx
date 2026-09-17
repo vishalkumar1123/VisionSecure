@@ -59,7 +59,7 @@ export default function LoginPage() {
         className="relative w-full max-w-md rounded-[30px] border border-border bg-card/10 p-8 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:p-10"
       >
         <div className="mb-8 text-center">
-          <Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={190} height={64} priority className="mx-auto mb-5 h-14 w-auto object-contain" />
+          <Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={190} height={64} priority className="mx-auto mb-5 h-14 w-auto object-contain dark:rounded-md dark:bg-white dark:p-1" />
           <h1 className="text-3xl font-bold tracking-wide text-foreground">Secure Admin Portal</h1>
           <p className="mt-2 text-sm text-muted-foreground">Authorized VisionSecure staff only</p>
         </div>

@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
-import { ChangePasswordForm } from "@/components/auth/ChangePasswordForm"
+import Link from "next/link"
 
 export default async function SettingsPage() {
   const session = await getServerSession(authOptions)
@@ -18,9 +18,9 @@ export default async function SettingsPage() {
         <p className="mt-6 text-sm leading-6 text-muted-foreground">Use the sun or moon icon in the toolbar to change your theme. Your choice also applies to the public website on this browser.</p>
       </section>
       <section className="rounded-2xl border border-border bg-card p-6">
-        <h2 className="text-2xl font-semibold">Change Password</h2>
-        <p className="mb-6 mt-2 text-sm text-muted-foreground">Confirm your current password to securely update your account.</p>
-        <ChangePasswordForm />
+        <h2 className="text-2xl font-semibold">User Passwords</h2>
+        <p className="mb-6 mt-2 text-sm text-muted-foreground">Manage passwords from the key icon in each user's Actions column.</p>
+        <Link href="/admin/users" className="inline-flex rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground hover:bg-brand-hover">Go to Users</Link>
       </section>
     </div>
   </div>

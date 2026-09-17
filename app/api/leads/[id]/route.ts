@@ -3,6 +3,7 @@ import { requireAdmin } from "@/lib/admin-auth"
 
 import { connectDB } from "@/lib/mongodb"
 
+import { ActivityLogService } from "@/services/activity-log-service"
 import Lead from "@/models/Lead"
 
 
@@ -119,6 +120,8 @@ export async function PATCH(
 
 
 
+    const previousStatus = lead.status
+
     // TIMELINE TRACKING
     if (
       update.status &&
@@ -158,6 +161,16 @@ export async function PATCH(
     }
 
     await lead.save()
+    if (user?.id) {
+      await ActivityLogService.log({
+        userId: user.id,
+        action: update.status && update.status !== previousStatus ? "LEAD_STATUS_CHANGED" : "LEAD_UPDATED",
+        resourceType: "Lead", resourceId: id,
+      })
+      if (typeof update.note === "string" && update.note.trim()) {
+        await ActivityLogService.log({ userId: user.id, action: "NOTE_ADDED", resourceType: "Lead", resourceId: id })
+      }
+    }
 
 
 

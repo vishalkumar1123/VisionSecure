@@ -98,7 +98,8 @@ export class UserService {
     try {
       await connectDB()
 
-      const user = await User.findByIdAndUpdate(userId, data, {
+      const updates = data.role ? { ...data, permissions: ROLE_PERMISSIONS[data.role] || [] } : data
+      const user = await User.findByIdAndUpdate(userId, updates, {
         new: true,
         runValidators: true,
       })
