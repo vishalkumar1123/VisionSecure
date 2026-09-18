@@ -25,6 +25,11 @@ export async function health() {
   return { configurationExists: !!config?.smtpHost, verified: !!config?.isVerified, active: config?.status === "ACTIVE", lastSuccessfulDelivery: lastSuccess?.sentAt || null, lastFailedDelivery: lastFailure?.updatedAt || null, sentToday, pending, failed, failed24h, encryptionKeyConfigured: encryptionReady() }
 }
 export async function configurationAction(action: string, actor: Actor, body?: unknown) {
+  // A missing deployment secret must not invalidate a shared, working configuration.
+  if (["save", "verify", "test", "activate"].includes(action) && !encryptionReady()) {
+    await emailAudit(actor, `${action.toUpperCase()}_BLOCKED`, "failed", [], "ENCRYPTION_KEY_NOT_CONFIGURED")
+    throw new EmailError("ENCRYPTION_KEY_NOT_CONFIGURED", 503)
+  }
   await Configuration.updateOne({ _id: "primary" }, { $setOnInsert: { createdBy: actor.id, status: "NOT_CONFIGURED", revision: 0 } }, { upsert: true })
   const token = randomUUID()
   const config = await Configuration.findOneAndUpdate({ _id: "primary", $or: [{ lockUntil: { $lt: new Date() } }, { lockUntil: null }] }, { $set: { lockToken: token, lockUntil: new Date(Date.now() + 600_000) } }, { new: true }).select("+usernameEncrypted +passwordEncrypted")
