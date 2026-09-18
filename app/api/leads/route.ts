@@ -8,6 +8,7 @@ import { NotificationActivityLogService } from "@/notification/services/activity
 import { allowRateLimitedRequest } from "@/notification/utils/rate-limit"
 import { requireAdmin } from "@/lib/admin-auth"
 import { z } from "zod"
+import { businessDay, CLOSED_STATUSES } from "@/lib/dashboard-time"
 
 const createLeadSchema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
@@ -22,7 +23,7 @@ const createLeadSchema = z.object({
 
 
 // GET ALL LEADS
-export async function GET() {
+export async function GET(request: Request) {
 
   const { response } = await requireAdmin()
   if (response) return response
@@ -31,7 +32,25 @@ export async function GET() {
 
     await connectDB()
 
-    const leads = await Lead.find()
+    const params = new URL(request.url).searchParams
+    const search = (params.get("q") || "").trim().slice(0,100)
+    const status = params.get("status")
+    const filter = params.get("filter")
+    const { start, end } = businessDay()
+    const query: Record<string, unknown> = {}
+    if (status) query.status = status
+    if (filter === "active") query.status = { $nin: CLOSED_STATUSES }
+    if (filter === "won") query.status = { $in: ["Converted", "Installed Successfully"] }
+    if (filter === "today") query.createdAt = { $gte: start, $lt: end }
+    if (filter === "due" || filter === "overdue") {
+      query.status = { $nin: CLOSED_STATUSES }
+      query.followUpDate = filter === "due" ? { $gte: start, $lt: end } : { $lt: start, $ne: null }
+    }
+    if (search) {
+      const literal = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      query.$or = ["name","phone","email","service"].map(field => ({ [field]: { $regex: literal, $options: "i" } }))
+    }
+    const leads = await Lead.find(query)
       .sort({
         createdAt: -1,
       })

@@ -48,12 +48,12 @@ const menus = [
   { title: "Activity Log", href: "/admin/activity-logs", icon: History },
 ]
 
-export default function AdminSidebar() {
+export default function AdminSidebar({ onNavigate }: { onNavigate?: () => void }) {
 
   const pathname = usePathname()
 
   return (
-    <aside className="flex min-h-screen w-[280px] flex-col border-r border-highlight/10 bg-sidebar shadow-2xl shadow-black/20">
+    <aside className="flex h-full min-h-0 w-full flex-col border-r border-border bg-sidebar">
 
       {/* HEADER */}
       <div className="border-b border-border p-5">
@@ -79,13 +79,15 @@ export default function AdminSidebar() {
             return (
               <Link
                 key={menu.href}
+                onClick={onNavigate}
+                aria-current={isActive ? "page" : undefined}
                 href={menu.href}
                 className={`group flex items-center gap-4 rounded-2xl px-4 py-3 text-[15px] font-medium transition-all duration-300
                 
                 ${
                   isActive
-                    ? "bg-highlight text-accent-foreground shadow-lg shadow-cyan-400/15"
-                    : "text-muted-foreground hover:bg-highlight/80 hover:text-highlight-ink"
+                    ? "bg-accent text-accent-foreground shadow-sm"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }
                 `}
               >

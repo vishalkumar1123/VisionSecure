@@ -135,3 +135,28 @@ Live verification, inbox receipt, activation and business-event delivery remain 
 
 ## Disabled save root cause
 The local server encryption key was missing. Generated a cryptographically random 32-byte key in ignored .env.local without displaying it or rotating an existing key. Verified Next.js loads a valid key and restarted port 3011. Changed components/admin/email-configuration.tsx to use dark green / white primary save controls and explain inactive-service skipped logs. Production build (including TypeScript) and five mocked browser tests passed. Live SMTP and inbox delivery remain unverified; activation gates are preserved. The generated environment key must be retained to decrypt future saved credentials; hosted environments need their own securely provisioned key.
+
+
+## Live Admin Dashboard - 18 September 2026
+
+Implemented the existing dashboard as a daily Business Control Center with real database queries, six KPIs, clickable Action Center, chronological follow-up schedule, 7/30/90-day trend, service demand, five recent leads, user summary and recent activity. Added local live greeting/date/clock, responsive navigation drawer, functional lead search, account avatar and 60-second visible-tab refresh. Existing authentication, dark-theme persistence, notifications and SMTP implementation remain in place.
+
+Full changed-file list, component architecture, calculations, query security, preserved functionality and schema limitations: [DASHBOARD_IMPLEMENTATION.md](DASHBOARD_IMPLEMENTATION.md). No fake production metrics or new external dependencies. Site visit dates, installation dates and confirmed revenue are absent from the schema and are not fabricated. Add New Lead reuses the existing contact enquiry form.
+
+Final verification:
+- npm run lint: passed, zero warnings.
+- npx tsc --noEmit: passed; final production build also passed TypeScript.
+- node tests/dashboard.test.cjs: passed authorization, filtering/search escaping, projections, partial failures, counts, zero baseline, range validation and India date/greeting boundaries.
+- node tests/account-activity.test.cjs: passed existing account/activity regressions.
+- npx playwright test tests/dashboard-ui.spec.cjs --workers=1 --reporter=list: 18 passed. All eight requested widths in both themes, notification dropdown, drawer, theme persistence, search, empty/error states, noon greeting and midnight rollover. Browser/API tests use mocked data and do not send emails or mutate live business records.
+- npm run build: passed, 61 generated pages; existing next-sitemap environment interpolation warning remains, sitemap generation exited successfully.
+- Live local unauthenticated GET /api/admin/dashboard and /api/leads?filter=due both returned 401.
+- Desktop/mobile screenshots visually reviewed; local production preview running on http://localhost:3011/admin/dashboard.
+
+A real signed-in production-account acceptance session was not performed. Live business data visibility after sign-in remains an acceptance check for the owner; no claim of end-to-end production-account verification is made.
+
+## Branded analog dashboard clock
+Replaced the digital date tile with an SVG analog clock matching the supplied reference: cream dial in light mode, existing dark-theme surface, green ring, readable hour marks, three live hands and the original VisionSecure logo at the center. Digital time, local date, hydration safety and the existing one-second timer are preserved. Files: components/admin/dashboard/analog-clock.tsx, components/admin/dashboard/live-header.tsx, tests/dashboard-ui.spec.cjs (deterministic paused clock test), and this report. Production build including TypeScript and lint passed. Light/dark browser checks at 375px and 1440px passed; greeting/noon/midnight regression passed after removing a test timing race. Local preview restarted on port 3011. No backend or email changes.
+
+## Clock refinement
+Clock now uses the existing shield artwork from public/images/logo.png through an SVG viewport, with hands and center pin rendered above the logo. SMART TECHNOLOGIES sits below the center, digital time uses the 24-hour h23 format, and the face is reduced to 160px desktop / 176px mobile. The second hand uses a cancellable one-second linear Web Animation, with reduced-motion fallback. Light/dark browser checks and the dedicated 24-hour/logo/animation check passed; close-up screenshot reviewed. Lint passed. Changed analog-clock.tsx and dashboard-ui.spec.cjs; no backend changes.
