@@ -100,6 +100,10 @@ export default function AdminSidebar({ onNavigate }: { onNavigate?: () => void }
             )
           })}
 
+          <details open={pathname.startsWith("/admin/website-analytics")} className="rounded-2xl border border-border p-2">
+            <summary className="cursor-pointer px-2 py-3 text-sm font-semibold">Website &amp; Marketing</summary>
+            <div className="space-y-1">{[["", "Website Overview"], ["/traffic", "Traffic Analytics"], ["/search", "Google Search"], ["/keywords", "Keywords"], ["/pages", "Pages"], ["/indexing", "Indexing"], ["/performance", "Site Performance"]].map(([suffix, title]) => <Link key={suffix} href={`/admin/website-analytics${suffix}`} onClick={onNavigate} aria-current={pathname === `/admin/website-analytics${suffix}` ? "page" : undefined} className={`block rounded-xl px-3 py-2 text-sm ${pathname === `/admin/website-analytics${suffix}` ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:bg-muted"}`}>{title}</Link>)}</div>
+          </details>
         </nav>
 
       </div>

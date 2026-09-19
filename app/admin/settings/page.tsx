@@ -8,6 +8,7 @@ export default async function SettingsPage() {
     <h1 className="text-4xl font-bold">Settings</h1>
     <p className="mt-3 text-muted-foreground">Manage your account and security preferences.</p>
     <Link href="/admin/settings/email" className="mt-8 inline-flex rounded-xl bg-accent px-5 py-3 font-semibold text-accent-foreground">Email Configuration</Link>
+    <Link href="/admin/settings/integrations" className="ml-3 mt-3 inline-flex rounded-xl border border-border bg-card px-5 py-3 font-semibold">Google Integrations</Link>
     <div className="mt-10 grid items-start gap-6 md:grid-cols-2">
       <section className="rounded-2xl border border-border bg-card p-6">
         <h2 className="text-2xl font-semibold">Admin Profile</h2>
