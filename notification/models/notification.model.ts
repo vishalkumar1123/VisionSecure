@@ -8,7 +8,7 @@ const NotificationSchema = new Schema(
     actionUrl: String,
     title: { type: String, required: true, trim: true, maxlength: 160 },
     message: { type: String, required: true, trim: true, maxlength: 500 },
-    referenceType: { type: String, required: true, enum: ["LEAD", "EMAIL"] },
+    referenceType: { type: String, required: true, enum: ["LEAD", "EMAIL", "CUSTOMER_CENTER"] },
     referenceId: { type: Schema.Types.ObjectId, ref: "Lead", required: true },
     isRead: { type: Boolean, default: false },
     readAt: { type: Date, default: null },

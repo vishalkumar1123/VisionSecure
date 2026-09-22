@@ -1,5 +1,6 @@
 import "server-only"
 import { createCipheriv, createDecipheriv, randomBytes, createHash } from "node:crypto"
+import { appUrl } from "@/lib/app-url"
 
 export class GoogleError extends Error {
   constructor(public code: string, public status = 503) { super(code) }
@@ -10,7 +11,8 @@ function key() {
   return Buffer.from(value, "hex")
 }
 export function configurationMissing() {
-  return [!process.env.GOOGLE_CLIENT_ID && "GOOGLE_CLIENT_ID", !process.env.GOOGLE_CLIENT_SECRET && "GOOGLE_CLIENT_SECRET", !/^[a-f\d]{64}$/i.test(process.env.GOOGLE_TOKEN_ENCRYPTION_KEY || "") && "GOOGLE_TOKEN_ENCRYPTION_KEY"].filter(Boolean) as string[]
+  let ready = true; try { key() } catch { ready = false }
+  return [!process.env.GOOGLE_CLIENT_ID && "GOOGLE_CLIENT_ID", !process.env.GOOGLE_CLIENT_SECRET && "GOOGLE_CLIENT_SECRET", !ready && "GOOGLE_TOKEN_ENCRYPTION_KEY"].filter(Boolean) as string[]
 }
 export function encryptToken(value: string) {
   const iv = randomBytes(12), cipher = createCipheriv("aes-256-gcm", key(), iv)
@@ -29,8 +31,9 @@ export function decryptToken(value: string) {
 }
 export const digest = (value: string) => createHash("sha256").update(value).digest("hex")
 export function appOrigin(request: Request) {
-  const origin = new URL(request.url).origin
-  const allowed = process.env.NODE_ENV === "production" ? ["https://visionsecuretech.in"] : ["http://localhost:3000", "http://127.0.0.1:3000", "https://visionsecuretech.in"]
-  if (!allowed.includes(origin)) throw new GoogleError("UNTRUSTED_ORIGIN", 403)
-  return origin
+  try {
+    const origin = appUrl()
+    if (new URL(request.url).origin !== origin) throw new GoogleError("UNTRUSTED_ORIGIN", 403)
+    return origin
+  } catch (error) { if (error instanceof GoogleError) throw error; throw new GoogleError("APP_URL_REQUIRED") }
 }

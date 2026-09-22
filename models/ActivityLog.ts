@@ -21,7 +21,7 @@ const ActivityLogSchema = new Schema<IActivityLog>(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      required: function (this: { action: string }): boolean { return this.action !== "CUSTOMER_CENTER" },
       index: true,
     },
 
@@ -41,6 +41,7 @@ const ActivityLogSchema = new Schema<IActivityLog>(
         "PASSWORD_RESET",
         "EMAIL_VERIFIED",
         "EMAIL_SERVICE",
+        "CUSTOMER_CENTER",
         "QUOTATION_CREATED",
         "SERVICE_TICKET_CREATED",
       ],

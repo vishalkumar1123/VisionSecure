@@ -10,7 +10,7 @@ function load(file, mocks = {}) {
   vm.runInNewContext(js, { module: loaded, exports: loaded.exports, require: name => name === "server-only" ? {} : name in mocks ? mocks[name] : require(name), Buffer, process, URL, Date, AbortSignal, console, setTimeout }, { filename: file })
   return loaded.exports
 }
-const security = load("lib/google/security.ts")
+const security = load("lib/google/security.ts", { "@/lib/app-url": load("lib/app-url.ts") })
 const dates = load("lib/google/dates.ts")
 process.env.GOOGLE_TOKEN_ENCRYPTION_KEY = randomBytes(32).toString("hex")
 const secret = "test-only-refresh-token"
@@ -22,8 +22,17 @@ assert.throws(() => security.decryptToken(a.slice(0, -4) + "AAAA"))
 process.env.GOOGLE_TOKEN_ENCRYPTION_KEY = randomBytes(32).toString("hex")
 assert.throws(() => security.decryptToken(a))
 delete process.env.GOOGLE_TOKEN_ENCRYPTION_KEY
+delete process.env.NEXTAUTH_SECRET
 assert.throws(() => security.encryptToken(secret))
 assert(security.configurationMissing().includes("GOOGLE_TOKEN_ENCRYPTION_KEY"))
+process.env.NEXTAUTH_SECRET = randomBytes(32).toString("hex")
+assert.throws(() => security.encryptToken(secret))
+assert(security.configurationMissing().includes("GOOGLE_TOKEN_ENCRYPTION_KEY"))
+process.env.GOOGLE_TOKEN_ENCRYPTION_KEY = "invalid-dedicated-key"
+assert.throws(() => security.encryptToken(secret))
+delete process.env.GOOGLE_TOKEN_ENCRYPTION_KEY
+delete process.env.NEXTAUTH_SECRET
+process.env.AUTH_URL = "https://visionsecuretech.in"
 assert.throws(() => security.appOrigin(new Request("https://attacker.example/api")))
 assert.equal(security.appOrigin(new Request("https://visionsecuretech.in/api")), "https://visionsecuretech.in")
 assert.deepEqual(JSON.parse(JSON.stringify(dates.previousRange({ startDate: "2024-03-01", endDate: "2024-03-31" }))), { startDate: "2024-01-30", endDate: "2024-02-29" })
@@ -55,6 +64,7 @@ async function apiTests() {
   let active = 0, peak = 0
   const boundedReports = load("lib/google/reports.ts", {
     "@/models/GoogleIntegration": { GoogleReportCache: { findById: () => ({ lean: async () => null }), findOneAndUpdate: async () => {} } },
+    "@/lib/customer-center/events": { centerAudit: async () => {} },
     "./security": security, "./dates": dates,
     "./oauth": {
       propertyId: () => "544810814", siteUrl: () => "https://visionsecuretech.in/", safeError: error => error,
@@ -77,9 +87,11 @@ async function apiTests() {
     "next/headers": { cookies: async () => ({ get: () => ({ value: cookie }), delete: () => {}, set: () => {} }) },
     "next/server": { NextResponse }, "@/lib/admin-auth": { requireAdmin: async () => ({ user, response: user ? null : NextResponse.json({ error: "Unauthorized" }, { status: 401 }) }) },
     "@/models/GoogleIntegration": { __esModule: true, default: configModel, GoogleOAuthState: stateModel, GoogleReportCache: { deleteMany: async () => {} }, GoogleRateLimit: { findOneAndUpdate: async () => ({ count: 1 }) } },
+    "@/lib/customer-center/events": { centerAudit: async () => {} },
     "./security": security,
     "./oauth": {
       propertyId: () => "544810814", siteUrl: () => "https://visionsecuretech.in/",
+      setupStatus: async () => ({ missing: [], environment: true }),
       safeError: e => e instanceof security.GoogleError ? e : new security.GoogleError("FAILED"),
       verify: async () => ({ analytics: "Connected", search: "PERMISSION_OR_API_DISABLED", lastVerifiedAt: new Date() }),
       oauth: () => ({ getToken: async args => { providerCalls++; assert.equal(args.codeVerifier, "pkce-test-verifier"); return { tokens: { refresh_token: "test-refresh-secret", access_token: "test-access-secret", scope: "analytics.readonly" } } }, setCredentials: () => {}, revokeToken: async token => { revokedToken = token } }),
@@ -89,6 +101,8 @@ async function apiTests() {
   assert.equal((await integration.integrationAPI(req("status"), "status")).status, 401)
   user = { id: "admin-fixture", role: "admin" }
   assert.equal((await integration.integrationAPI(req("disconnect", { method: "POST", headers: { origin: "https://evil.example" } }), "disconnect")).status, 403)
+  assert.equal((await integration.integrationAPI(req("connect", { method: "POST", headers: { origin } }), "connect")).status, 403)
+  user.role = "super_admin"
   const invalid = await integration.integrationAPI(req("callback?state=wrong&code=test"), "callback")
   assert(invalid.headers.get("location").endsWith("google=invalid_state")); assert.equal(providerCalls, 0)
   cookie = "state"

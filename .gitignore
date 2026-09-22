@@ -20,3 +20,13 @@ node_modules
 # Local browser verification output
 test-results/
 playwright-report/
+
+# Secrets and runtime logs
+.env*
+!.env.example
+*.log
+
+# Secrets and runtime logs
+.env*
+!.env.example
+*.log

@@ -1,0 +1,28 @@
+import { Schema, model, models } from "mongoose"
+const identity = new Schema({ _id: String, channel: { type: String, enum: ["WHATSAPP", "INSTAGRAM", "FACEBOOK", "WEBSITE"] }, externalId: String, name: String, phone: String, optedOut: { type: Boolean, default: false }, leadId: { type: Schema.Types.ObjectId, ref: "Lead" } }, { timestamps: true })
+identity.index({ channel: 1, externalId: 1 }, { unique: true })
+export const ChannelIdentity = models.ChannelIdentity || model("ChannelIdentity", identity)
+
+const conversation = new Schema({ channel: { type: String, enum: ["WHATSAPP", "INSTAGRAM", "FACEBOOK", "WEBSITE"], default: "WHATSAPP" }, identityId: { type: String, required: true, unique: true }, customerName: String, phone: String, leadId: { type: Schema.Types.ObjectId, ref: "Lead" }, mode: { type: String, enum: ["AI_ACTIVE", "HUMAN_ACTIVE", "AI_PAUSED", "HUMAN_REQUIRED", "CLOSED"], default: "AI_ACTIVE" }, assignedTo: { type: Schema.Types.ObjectId, ref: "User", default: null }, version: { type: Number, default: 0 }, unread: { type: Number, default: 0 }, lastMessage: String, lastMessageAt: Date, lastInboundAt: Date, summary: String, summaryVersion: Number, suggestedAction: String, intent: String, priority: { type: String, default: "EARLY" }, draft: String, draftVersion: Number, knowledgeIds: [String], handoffReason: String, clarificationTurns: { type: Number, default: 0 }, sendLock: { type: String, default: null }, sendUntil: { type: Date, default: null } }, { timestamps: true })
+conversation.index({ lastMessageAt: -1, _id: -1 }); conversation.index({ mode: 1, assignedTo: 1 }); conversation.index({ leadId: 1 })
+export const Conversation = models.Conversation || model("Conversation", conversation)
+
+const message = new Schema({ conversationId: { type: Schema.Types.ObjectId, ref: "Conversation", required: true }, identityId: String, channel: { type: String, enum: ["WHATSAPP", "INSTAGRAM", "FACEBOOK", "WEBSITE"], default: "WHATSAPP" }, externalMessageId: { type: String }, idempotencyKey: { type: String, required: true, unique: true }, direction: { type: String, enum: ["INBOUND", "OUTBOUND"] }, senderType: { type: String, enum: ["CUSTOMER", "AI", "ADMIN", "EMPLOYEE", "SYSTEM"] }, senderId: String, content: { type: String, maxlength: 8000 }, messageType: { type: String, default: "text" }, mediaId: String, status: { type: String, enum: ["received", "queued", "sending", "sent", "delivered", "read", "failed", "uncertain", "cancelled"], default: "received" }, statusRank: { type: Number, default: 0 }, errorCategory: String, sentAt: Date, providerAt: Date, tokenUsage: Number }, { timestamps: true })
+message.index({ channel: 1, externalMessageId: 1 }, { unique: true, partialFilterExpression: { externalMessageId: { $type: "string" } } }); message.index({ conversationId: 1, createdAt: -1, _id: -1 })
+message.index({ conversationId: 1, _id: -1 })
+export const CustomerMessage = models.CustomerMessage || model("CustomerMessage", message)
+
+const knowledge = new Schema({ title: { type: String, required: true }, category: String, content: String, keywords: [String], replyEnglish: String, replyHinglish: String, state: { type: String, enum: ["DRAFT", "PUBLISHED", "ARCHIVED"], default: "DRAFT" }, source: String, revision: { type: Number, default: 1 } }, { timestamps: true })
+knowledge.index({ state: 1, category: 1 }); knowledge.index({ title: "text", content: "text", keywords: "text" })
+export const AIKnowledgeEntry = models.AIKnowledgeEntry || model("AIKnowledgeEntry", knowledge)
+
+const settings = new Schema({ _id: String, enabled: { type: Boolean, default: false }, mode: { type: String, enum: ["HUMAN_ONLY", "DRAFT", "AUTO"], default: "DRAFT" }, autoCategories: { type: [String], default: ["FAQ", "SERVICES", "BUSINESS_HOURS", "SERVICE_AREAS", "QUALIFICATION"] }, maxReplyLength: { type: Number, default: 600 }, maxClarifications: { type: Number, default: 3 }, allowAfterHours: { type: Boolean, default: false }, weekOpen: { type: String, default: "09:00" }, weekClose: { type: String, default: "20:30" }, sundayOpen: { type: String, default: "10:00" }, sundayClose: { type: String, default: "16:00" }, revision: { type: Number, default: 1 }, autoLease: { type: String, default: null }, autoLeaseUntil: Date, lastWebhookAt: Date, lastSendAt: Date, metaCheckedAt: Date, aiCheckedAt: Date, metaStatus: String, aiStatus: String, webhookVerifiedAt: Date, metaBusinessNumber: String }, { timestamps: true })
+export const AIAgentSettings = models.AIAgentSettings || model("AIAgentSettings", settings)
+
+const request = new Schema({ conversationId: { type: Schema.Types.ObjectId, ref: "Conversation" }, identityId: String, leadId: { type: Schema.Types.ObjectId, ref: "Lead" }, kind: { type: String, enum: ["SITE_VISIT", "SUPPORT", "COMPLAINT", "FOLLOW_UP"] }, state: { type: String, enum: ["REQUESTED", "PENDING_CONFIRMATION", "SCHEDULED", "ASSIGNED", "COMPLETED", "CANCELLED"], default: "REQUESTED" }, requirement: String, location: String, preferredWhen: String, confirmedAt: Date, assignedTo: { type: Schema.Types.ObjectId, ref: "User" }, dueAt: Date, idempotencyKey: { type: String, unique: true }, createdBy: String }, { timestamps: true })
+request.index({ conversationId: 1, createdAt: -1 }); request.index({ state: 1, dueAt: 1 })
+export const CustomerRequest = models.CustomerRequest || model("CustomerRequest", request)
+
+const job = new Schema({ _id: String, state: { type: String, default: "PENDING" }, revision: { type: Number, default: 0 }, dueAt: Date, lease: String, leaseUntil: Date, errorCategory: String }, { timestamps: true })
+job.index({ state: 1, dueAt: 1, leaseUntil: 1 })
+export const CustomerJob = models.CustomerJob || model("CustomerJob", job)

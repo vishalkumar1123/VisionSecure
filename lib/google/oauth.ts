@@ -1,19 +1,31 @@
 import "server-only"
 import { OAuth2Client } from "google-auth-library"
-import Integration from "@/models/GoogleIntegration"
+import Integration, { GoogleApplication } from "@/models/GoogleIntegration"
 import { decryptToken, GoogleError, configurationMissing } from "./security"
 
 export const scopes = ["https://www.googleapis.com/auth/analytics.readonly", "https://www.googleapis.com/auth/webmasters.readonly", "openid", "email"]
 export const propertyId = () => process.env.GA4_PROPERTY_ID || "544810814"
 export const siteUrl = () => process.env.GOOGLE_SEARCH_CONSOLE_SITE_URL || "https://visionsecuretech.in/"
-export function oauth(redirectUri?: string) {
-  if (configurationMissing().length) throw new GoogleError("CONFIGURATION_REQUIRED")
-  return new OAuth2Client(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, redirectUri)
+export async function applicationCredentials() {
+  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) return { clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET }
+  const app = await GoogleApplication.findById("primary").select("+secretEncrypted").lean()
+  return app ? { clientId: String(app.clientId), clientSecret: decryptToken(app.secretEncrypted) } : null
+}
+export async function setupStatus() {
+  const app = await GoogleApplication.findById("primary").lean()
+  const environment = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+  const missing = configurationMissing().filter(name => name === "GOOGLE_TOKEN_ENCRYPTION_KEY" || (!environment && !app))
+  return { missing, environment, savedClientId: app?.clientId || "" }
+}
+export async function oauth(redirectUri?: string) {
+  const app = await applicationCredentials()
+  if (!app || configurationMissing().includes("GOOGLE_TOKEN_ENCRYPTION_KEY")) throw new GoogleError("CONFIGURATION_REQUIRED")
+  return new OAuth2Client(app.clientId, app.clientSecret, redirectUri)
 }
 export async function credentials() {
   const record = await Integration.findById("primary").select("+encryptedRefreshToken").lean()
   if (!record?.encryptedRefreshToken) throw new GoogleError("NOT_CONNECTED", 409)
-  const client = oauth()
+  const client = await oauth()
   client.setCredentials({ refresh_token: decryptToken(record.encryptedRefreshToken) })
   return { client, revision: String(record.revision) }
 }
@@ -36,5 +48,7 @@ export async function verify(client: OAuth2Client) {
   const check = async (fn: () => Promise<unknown>) => { try { await fn(); return "Connected" } catch (error) { return safeError(error).code } }
   const analytics = await check(() => googleRequest(client, `https://analyticsdata.googleapis.com/v1beta/properties/${propertyId()}:runReport`, { dateRanges: [{ startDate: "7daysAgo", endDate: "yesterday" }], metrics: [{ name: "sessions" }], limit: 1 }))
   const search = await check(() => googleRequest(client, `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl())}`))
-  return { analytics, search, lastVerifiedAt: new Date() }
+  const lastVerifiedAt = new Date()
+  const complete = analytics === "Connected" && search === "Connected"
+  return { analytics, search, lastVerifiedAt, lastError: complete ? null : "GOOGLE_PARTIAL_ACCESS", ...(complete ? { lastSuccessfulAt: lastVerifiedAt } : {}) }
 }

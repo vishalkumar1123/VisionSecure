@@ -44,7 +44,7 @@ export async function connectDB() {
   } catch (error) {
     cached!.promise = null;
 
-    console.error("❌ MongoDB Connection Error:", error);
+    console.error("MongoDB connection failed");
 
     throw error;
   }

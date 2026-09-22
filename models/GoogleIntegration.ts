@@ -4,10 +4,12 @@ const integration = new Schema({
   _id: { type: String, default: "primary" },
   encryptedRefreshToken: { type: String, select: false },
   accountEmail: String, grantedScopes: [String], revision: String,
-  connectedAt: Date, lastVerifiedAt: Date,
+  connectedAt: Date, lastVerifiedAt: Date, lastSuccessfulAt: Date, lastError: String,
   analytics: String, search: String,
 }, { timestamps: true })
 export default models.GoogleIntegration || model("GoogleIntegration", integration)
+const application = new Schema({ _id: String, clientId: String, secretEncrypted: { type: String, select: false } }, { timestamps: true })
+export const GoogleApplication = models.GoogleApplication || model("GoogleApplication", application)
 
 const state = new Schema({ _id: String, userId: String, verifier: String, redirectUri: String, expiresAt: Date })
 state.index({ expiresAt: 1 }, { expireAfterSeconds: 0 })

@@ -6,6 +6,7 @@ import { encryptSecret, encryptionReady } from "./crypto"
 import { createSMTP } from "./transport"
 import { configSchema, canActivate, safeCategory } from "./shared"
 import { emailAudit, emailNotice, type Actor } from "./audit"
+import { emailSettingsAlert } from "@/lib/email/alert-template"
 import { queueEmail, notifyEmail } from "./delivery"
 export class EmailError extends Error { constructor(public category: string, public status = 400) { super(category) } }
 const safeKeys = ["revision", "provider", "smtpHost", "smtpPort", "encryption", "secure", "requireTLS", "authRequired", "usernameConfigured", "passwordConfigured", "fromName", "fromEmail", "replyTo", "recipients", "eventSettings", "failureThreshold", "status", "isVerified", "verifiedAt", "lastTestedAt", "lastTestStatus", "lastTestErrorCategory", "activatedAt", "disabledAt", "updatedAt"] as const
@@ -51,7 +52,7 @@ export async function configurationAction(action: string, actor: Actor, body?: u
       if (password) { config.passwordEncrypted = encryptSecret(password, "password"); config.passwordConfigured = true; fields.push("passwordReplaced") }
       config.set(normal); config.revision += 1; config.status = "SAVED_NOT_VERIFIED"; config.isVerified = false; config.verifiedAt = null; config.lastTestStatus = null; config.lastTestErrorCategory = null; config.activatedAt = null; config.updatedBy = actor.id
       await config.save()
-      await notifyEmail({ eventKey: `email-settings:${config.revision}`, eventType: "settingsChanged", entityId: "primary", subject: "VisionSecure email settings changed", text: "The email notification configuration was updated by a super-admin. Verification and a test are required before activation." })
+      await notifyEmail({ eventKey: `email-settings:${config.revision}`, eventType: "settingsChanged", entityId: "primary", ...emailSettingsAlert() })
       await emailAudit(actor, config.revision === 1 ? "CONFIGURATION_CREATED" : "CONFIGURATION_UPDATED", "success", fields)
       if (password) await emailAudit(actor, "PASSWORD_REPLACED")
       await emailNotice("Email configuration saved", "Email configuration changed. Verification and a new test email are required before activation.", "warning")

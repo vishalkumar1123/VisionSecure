@@ -49,9 +49,9 @@ export class ActivityLogService {
       } else if (eventMap[data.action]) eventTypes.push(eventMap[data.action]!)
       if (eventTypes.length) {
         const { notifyEmail } = await import("@/lib/email-config/delivery")
+        const { activityEmail } = await import("@/lib/email/activity-template")
         for (const eventType of eventTypes) await notifyEmail({ eventKey: `activity:${activity._id}:${eventType}`, eventType, entityId: data.resourceId || data.userId,
-          subject: `VisionSecure: ${data.action.replaceAll("_", " ").toLowerCase()}`,
-          text: `Event: ${data.action}. Resource: ${data.resourceType || "System"}. ID: ${data.resourceId || data.userId}. Open the admin dashboard to review details. No passwords or confidential record contents are included.` })
+          ...activityEmail(data) })
       }
 
     } catch (error) {
@@ -106,7 +106,7 @@ export class ActivityLogService {
       const total = await ActivityLog.countDocuments(query)
       const logs = await ActivityLog.find(query)
         .populate("userId", "name email role")
-        .select("userId action resourceType resourceId status createdAt")
+        .select("userId action resourceType resourceId status createdAt changes.event")
         .limit(limit)
         .skip((page - 1) * limit)
         .sort({ createdAt: -1, _id: -1 })

@@ -121,6 +121,7 @@ export async function PATCH(
 
 
     const previousStatus = lead.status
+    const previousFollowUp = lead.followUpDate ? new Date(lead.followUpDate).toISOString() : null
 
     // TIMELINE TRACKING
     if (
@@ -147,8 +148,10 @@ export async function PATCH(
       if (!update.followUpDate) {
         lead.followUpDate = null
       } else {
-        const followUpDate = new Date(String(update.followUpDate))
+        if (typeof update.followUpDate !== "string" || !/T.*(?:Z|[+-]\d{2}:\d{2})$/.test(update.followUpDate)) return NextResponse.json({ success: false, error: "Choose a follow-up date and time with a timezone" }, { status: 400 })
+        const followUpDate = new Date(update.followUpDate)
         if (Number.isNaN(followUpDate.getTime())) return NextResponse.json({ success: false, error: "Invalid follow-up date" }, { status: 400 })
+        if (+followUpDate <= Date.now()) return NextResponse.json({ success: false, error: "Choose a future follow-up time" }, { status: 400 })
         lead.followUpDate = followUpDate
       }
     }
@@ -160,12 +163,15 @@ export async function PATCH(
       lead.timeline.push({ action: "A follow-up note was added", status: lead.status, createdAt: new Date() })
     }
 
+    const nextFollowUp = lead.followUpDate ? new Date(lead.followUpDate).toISOString() : null
+    if ("followUpDate" in update && previousFollowUp !== nextFollowUp) lead.timeline.push({ action: nextFollowUp ? `Follow-up scheduled for ${new Date(nextFollowUp).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} IST` : "Follow-up schedule cleared", status: lead.status, createdAt: new Date() })
     await lead.save()
     if (user?.id) {
       await ActivityLogService.log({
         userId: user.id,
         action: update.status && update.status !== previousStatus ? "LEAD_STATUS_CHANGED" : "LEAD_UPDATED",
         resourceType: "Lead", resourceId: id,
+        changes: update.status && update.status !== previousStatus ? { previousStatus, newStatus: lead.status, customerName: lead.name, service: lead.service, actorName: user.name || "Administrator" } : undefined,
       })
       if (typeof update.note === "string" && update.note.trim()) {
         await ActivityLogService.log({ userId: user.id, action: "NOTE_ADDED", resourceType: "Lead", resourceId: id })

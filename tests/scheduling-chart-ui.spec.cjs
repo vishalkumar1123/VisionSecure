@@ -1,0 +1,28 @@
+const { test, expect } = require("@playwright/test"), { buildSync } = require("esbuild"), fs = require("node:fs"), path = require("node:path")
+test.use({ launchOptions: { executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe", args: ["--no-sandbox"] }, reducedMotion: "reduce", timezoneId: "America/Los_Angeles" })
+const script = buildSync({ stdin: { contents: `import React from "react";import{createRoot}from"react-dom/client";import Scheduler from"./components/admin/follow-up-scheduler";import{ServiceDemand}from"./components/admin/dashboard/charts";function App(){const[value,setValue]=React.useState(null);return <><section style={{padding:20}}><h1>Follow-up scheduling</h1><Scheduler key={value||"empty"} value={value} busy={false} save={async v=>{window.saved=v;setValue(v);return true}}/></section><section style={{padding:20}}><h2>Service demand</h2><ServiceDemand metrics={{total:14,services:[{_id:"CCTV",total:4},{_id:"Video Door Phones",total:3},{_id:"Biometric Systems",total:3},{_id:"Access Control",total:2},{_id:"Networking",total:2}]}}/></section></>};createRoot(document.getElementById("root")).render(<App/>);`, loader: "tsx", resolveDir: process.cwd() }, bundle: true, write: false, platform: "browser", define: { "process.env.NODE_ENV": '"production"' }, jsx: "automatic" }).outputFiles[0].text
+async function mount(page, theme) {
+  await page.setContent(`<html class="${theme}"><body><div id="root" style="max-width:760px;margin:auto"></div></body></html>`)
+  for (const file of fs.readdirSync(".next/static/chunks").filter(f => f.endsWith(".css"))) await page.addStyleTag({ content: fs.readFileSync(path.join(".next/static/chunks",file),"utf8") })
+  await page.addScriptTag({ content: script })
+}
+for (const width of [320,375,768,1440]) for (const theme of ["light","dark"]) test(`schedule and service demand ${width} ${theme}`, async ({page})=>{
+  await page.setViewportSize({width,height:1000});await mount(page,theme)
+  await page.getByLabel("Follow-up date",{exact:true}).fill("2030-09-21")
+  await expect(page.getByRole("button",{name:"Save follow-up",exact:true})).toBeDisabled()
+  await page.getByLabel("Follow-up time (IST)").fill("15:30")
+  expect(await page.evaluate(()=>window.saved)).toBeUndefined()
+  await page.getByRole("button",{name:"Save follow-up",exact:true}).click()
+  await expect.poll(()=>page.evaluate(()=>window.saved)).toBe("2030-09-21T10:00:00.000Z")
+  await expect(page.getByLabel("Follow-up time (IST)")).toHaveValue("15:30")
+  await page.getByRole("button",{name:/Biometric Systems/}).hover()
+  const detail=page.getByRole("status");await expect(detail).toContainText("Biometric Systems");await expect(detail).toContainText("3 leads")
+  const color=await detail.locator("span").evaluate(el=>getComputedStyle(el).backgroundColor)
+  expect(await page.getByRole("button",{name:/Biometric Systems/}).locator("span").first().evaluate(el=>getComputedStyle(el).backgroundColor)).toBe(color)
+  const chart=await page.getByRole("img",{name:"Service demand across 14 leads"}).boundingBox(), box=await detail.boundingBox()
+  expect(box.x>=chart.x+chart.width || box.y>=chart.y+chart.height).toBe(true)
+  await expect(page.getByText("Total leads",{exact:true})).toBeVisible()
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width)
+  if([375,1440].includes(width))await page.screenshot({path:`docs/previews/schedule-chart-${width}-${theme}.png`,fullPage:true})
+  await page.getByRole("button",{name:"Clear follow-up"}).click();await expect.poll(()=>page.evaluate(()=>window.saved)).toBe(null)
+})

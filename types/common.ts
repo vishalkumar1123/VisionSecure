@@ -49,6 +49,7 @@ export type ActivityAction =
   | 'PASSWORD_RESET'
   | 'EMAIL_VERIFIED'
   | 'EMAIL_SERVICE'
+  | 'CUSTOMER_CENTER'
   | 'QUOTATION_CREATED'
   | 'SERVICE_TICKET_CREATED'
 

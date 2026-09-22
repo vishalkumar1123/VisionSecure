@@ -1,0 +1,28 @@
+{
+  "scope": "Tracked and untracked source, root logs, ignored local environment, built browser JavaScript; no Git history rewrite",
+  "findings": [
+    {
+      "file": ".env.local",
+      "categories": [
+        "AUTH_SECRET",
+        "CRON_SECRET",
+        "EMAIL_CONFIG_ENCRYPTION_KEY",
+        "GOOGLE_TOKEN_ENCRYPTION_KEY",
+        "META_ACCESS_TOKEN",
+        "META_APP_SECRET",
+        "META_VERIFY_TOKEN",
+        "MONGODB_URI",
+        "Meta access token",
+        "MongoDB credential",
+        "NEXTAUTH_SECRET",
+        "OPENAI_API_KEY",
+        "OpenAI key",
+        "RESEND_API_KEY",
+        "Resend key",
+        "SMTP_PASSWORD"
+      ],
+      "tracked": false,
+      "action": "Rotate exposed credentials; retain local file ignored"
+    }
+  ]
+}

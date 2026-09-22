@@ -2,9 +2,10 @@
 
 import Script from "next/script"
 
-const GA_MEASUREMENT_ID = "G-XRYGR89Q5K"
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XRYGR89Q5K"
 
 export default function GoogleAnalytics() {
+  if (!/^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID)) return null
   return (
     <>
       <Script

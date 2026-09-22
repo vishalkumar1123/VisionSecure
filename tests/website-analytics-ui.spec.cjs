@@ -53,7 +53,7 @@ test("disconnected and partial permissions never display invented totals", async
 })
 test("configuration missing disables connect and disconnect requires confirmation", async ({ page }) => {
   await mount(page, connect, "dark", () => ({ json: { ...status, connected: false, missing: ["GOOGLE_CLIENT_ID"] } }))
-  await expect(page.getByRole("button", { name: "Connect Google", exact: true })).toBeDisabled()
+  await expect(page.getByRole("button", { name: "Sign in with Google", exact: true })).toBeDisabled()
 })
 test("disconnect cancel does not revoke; accepted dialog does", async ({ page }) => {
   const requests = await mount(page, connect)

@@ -10,6 +10,14 @@ The existing VisionSecure admin now has a separate Website & Marketing area. The
 - Existing `RequireAdmin`, sidebar, admin shell, next-themes provider and semantic CSS colors. No additional theme provider or chart library.
 - Existing CRM `/admin/analytics`, leads, email, notifications, users and authentication code are retained. Lead schema is unchanged.
 
+## Dashboard setup added September 2026
+
+The Analytics page now includes **Sign in with Google**. If no OAuth app is configured, open Settings → Integrations. A Super Admin can save the real Google Web application Client ID and Client Secret in **One-time Google app setup**, then administrators can sign in from the same screen. The app secret is encrypted in MongoDB and never returned by the status API. Environment-provided credentials take precedence; disconnect an existing integration before replacing saved app credentials.
+
+A dedicated 32-byte hexadecimal `GOOGLE_TOKEN_ENCRYPTION_KEY` is required. Auth-secret fallback is disabled. Before migrating old fallback-encrypted credentials, disconnect Google while the old deployment can still decrypt them; deploy the dedicated key, re-enter app credentials, and reconnect. Do not replace an existing dedicated key without a re-encryption plan. The email encryption key is not reused.
+
+Real Google Cloud registration, enabled APIs, matching callback URI and account consent are still required. A website cannot bypass those by displaying a sign-in button. No Google password belongs in this form. Existing admin sign-in remains unchanged.
+
 ## Activate locally and on Vercel
 
 1. In Google Cloud, enable **Google Analytics Data API**, **Google Search Console API**, and **PageSpeed Insights API**.
@@ -23,7 +31,7 @@ The existing VisionSecure admin now has a separate Website & Marketing area. The
 
    The optional local host alias `http://127.0.0.1:3000/api/admin/integrations/google/callback` is supported in development only if separately registered. Preview/arbitrary domains are deliberately not trusted callbacks.
 
-4. Set these server-side variables in `.env.local` and Vercel Production as appropriate:
+4. Either save Client ID/Secret using the Super Admin form above, or set these server-side variables in `.env.local` and Vercel Production as appropriate:
 
    ```dotenv
    GOOGLE_CLIENT_ID=<web-client-id>

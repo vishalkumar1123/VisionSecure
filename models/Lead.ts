@@ -60,6 +60,7 @@ const TimelineSchema = new Schema(
 const LeadSchema = new Schema(
   {
     // CUSTOMER INFO
+    customerCenterIdentity: { type: String, unique: true, sparse: true },
     name: {
       type: String,
       required: true,

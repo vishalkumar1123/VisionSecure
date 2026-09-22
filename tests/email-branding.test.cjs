@@ -1,0 +1,16 @@
+const assert = require("node:assert/strict"), fs = require("node:fs"), path = require("node:path"), vm = require("node:vm"), ts = require("typescript")
+function load(file) { const loaded = { exports: {} }; const code = ts.transpileModule(fs.readFileSync(file, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText; vm.runInNewContext(code, { module: loaded, exports: loaded.exports, process, Intl, Date, require: name => load((name.startsWith("@/") ? name.slice(2) : path.join(path.dirname(file), name)) + ".ts") }); return loaded.exports }
+const { newLeadEmailTemplate } = load("notification/channels/email/templates/new-lead.template.ts")
+const { activityEmail } = load("lib/email/activity-template.ts")
+const { securityAlertEmail, emailSettingsAlert } = load("lib/email/alert-template.ts")
+const alert = securityAlertEmail(new Date("2026-09-21T10:00:00Z"))
+assert(alert.html.includes("Visionsecuretech_logo.png")); assert(alert.text.includes("does not mean that an account was accessed")); assert(alert.html.includes("Review Account Activity")); assert(emailSettingsAlert().html.includes("Review Email Settings"))
+const lead = newLeadEmailTemplate("aaaaaaaaaaaaaaaaaaaaaaaa", { name: "Sample Customer", phone: "Sample phone", service: "CCTV installation", requirement: "Four cameras for a home. Please confirm indoor and outdoor coverage.", source: "Website", status: "New", priority: "Medium", createdAt: new Date("2026-09-20T05:30:00Z") })
+const changed = activityEmail({ action: "LEAD_STATUS_CHANGED", resourceType: "Lead", resourceId: "aaaaaaaaaaaaaaaaaaaaaaaa", changes: { customerName: "Sample Customer", service: "CCTV installation", previousStatus: "New", newStatus: "In Discussion", actorName: "Sample Administrator", password: "must-not-appear", internalMargin: "must-not-appear" } })
+for (const mail of [lead, changed]) { assert(mail.html.includes("Visionsecuretech_logo.png")); assert(mail.html.includes("#79C914")); assert(mail.html.includes("#061B38")); assert(mail.html.includes("Secure Today. Safe Tomorrow.")); assert(mail.text.includes("https://visionsecuretech.in/admin/leads/")); assert(!mail.html.includes("must-not-appear")); assert(!mail.text.includes("must-not-appear")) }
+const injected = newLeadEmailTemplate("test", { name: '<img src=x onerror="alert(1)">', phone: "123", requirement: "<script>secret()</script>" })
+assert(!injected.html.includes("<script>")); assert(!injected.html.includes("<img src=x")); assert(injected.html.includes("&lt;script&gt;"))
+assert(changed.html.includes("Previous status")); assert(changed.html.includes("In Discussion")); assert(!changed.text.includes("Event: LEAD_STATUS_CHANGED"))
+fs.mkdirSync("docs/previews", { recursive: true }); fs.writeFileSync("docs/previews/new-lead.html", lead.html); fs.writeFileSync("docs/previews/lead-status-change.html", changed.html)
+fs.writeFileSync("docs/previews/security-alert.html", alert.html)
+console.log("PASS branded email templates: logo, colors, useful lead/status fields, HTML escaping, secret allowlist, plaintext fallback. Sample previews written; no email sent.")
