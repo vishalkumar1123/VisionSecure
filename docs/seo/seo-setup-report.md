@@ -111,3 +111,5 @@ Five highest-priority pages for the next account setup stage:
 AMC (`/services/it-support-amc`) is also P1 for content/enquiry follow-up. The complete priority map covers every public page.
 
 Final delivery: isolated local commit and `docs/seo/visionsecure-seo.patch`. Remote PR availability is checked separately; production remains unchanged.
+
+Remote review result: feature branch pushed successfully. GitHub connector draft-PR creation returned HTTP 403, `Resource not accessible by integration`; no PR was created. Open https://github.com/vishalkumar1123/VisionSecure/compare/main...feat/lucknow-seo-enquiries?expand=1 and use `pull-request-description.md` to create a draft through an account with PR permission. This is an integration permission limit, not an automatic approval-review rejection. The patch includes all SEO commits since the baseline and excludes the nine pre-existing modified files.
