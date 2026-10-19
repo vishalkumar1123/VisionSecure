@@ -1,6 +1,6 @@
+import { pageMetadata } from "@/lib/seo"
 // app/contact/page.tsx
 
-import type { Metadata } from "next"
 
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -8,26 +8,11 @@ import { Footer } from "@/components/footer"
 import { ContactHeroSlider } from "@/components/contact-hero-slider"
 import { ContactPageContent } from "@/components/contact-page-content"
 
-export const metadata: Metadata = {
-  title: "Contact Us | VisionSecure Smart Technologies",
+export const metadata = pageMetadata("/contact")
 
-  description:
-    "Get in touch with VisionSecure Smart Technologies for CCTV installation, biometric systems, fire alarm systems, networking, smart home automation, and complete security solutions in Lucknow.",
-
-  keywords: [
-    "Contact VisionSecure",
-    "CCTV Installation Lucknow",
-    "Biometric Systems",
-    "Security Solutions",
-    "Fire Alarm Systems",
-    "Smart Home Automation",
-    "Access Control",
-    "Networking Services",
-    "VisionSecure Smart Technologies",
-  ],
-}
-
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string | string[] }> }) {
+  const selected = (await searchParams).service
+  const initialService = typeof selected === "string" ? selected : ""
   return (
     <main className="min-h-screen overflow-hidden bg-background">
       
@@ -38,7 +23,7 @@ export default function ContactPage() {
       <ContactHeroSlider />
 
       {/* CONTACT CONTENT */}
-      <ContactPageContent />
+      <ContactPageContent initialService={initialService} />
 
       {/* FOOTER */}
       <Footer />

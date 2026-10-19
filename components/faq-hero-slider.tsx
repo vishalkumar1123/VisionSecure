@@ -140,7 +140,7 @@ export function FAQHeroSlider() {
             {/* HEADING */}
             <h1 className="text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-7xl">
 
-              {slides[currentSlide].title}
+              Security installation and maintenance FAQs
 
             </h1>
 

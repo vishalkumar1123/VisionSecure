@@ -1,5 +1,8 @@
 "use client"
 
+import { resolveEnquiryService, enquiryServices as services } from "@/lib/enquiry-services"
+
+import { trackPublicEvent } from "@/lib/public-tracking"
 import { useState } from "react"
 import { FaWhatsapp } from "react-icons/fa"
 import { motion, Variants } from "framer-motion"
@@ -36,17 +39,6 @@ import {
 } from "lucide-react"
 import { OfficeMap } from "@/components/office-map"
 
-const services = [
-  "CCTV Surveillance",
-  "Biometric Systems",
-  "Access Control",
-  "Networking Solutions",
-  "Video Door Phones",
-  "Fire Alarm Systems",
-  "Home Automation",
-  "AMC / Maintenance",
-  "Other",
-]
 
 const budgets = [
   "Under ₹25,000",
@@ -87,8 +79,8 @@ const contactInfo = [
     icon: Clock,
     title: "Working Hours",
     details: [
-      "Monday - Saturday : 9:00 AM - 7:00 PM",
-      "Sunday : By Appointment",
+      "Monday - Saturday : 9:00 AM - 8:30 PM",
+      "Sunday : 10:00 AM - 4:00 PM",
     ],
   },
 ]
@@ -148,7 +140,7 @@ const fadeInUp: Variants = {
   },
 }
 
-export function ContactPageContent() {
+export function ContactPageContent({ initialService = "" }: { initialService?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
@@ -157,7 +149,8 @@ export function ContactPageContent() {
     name: "",
     phone: "",
     email: "",
-    service: "",
+    service: resolveEnquiryService(initialService),
+    locality: "",
     budget: "",
     message: "",
   })
@@ -173,6 +166,7 @@ export function ContactPageContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSubmitting) return
     setErrorMessage("")
 
     if (!formData.service) {
@@ -190,18 +184,20 @@ export function ContactPageContent() {
 
       const data = await response.json()
 
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
         setErrorMessage(data.error || "Failed to submit form")
         return
       }
 
+      trackPublicEvent("enquiry_saved", "contact")
       setIsSubmitted(true)
       setFormData({
         name: "",
         phone: "",
         email: "",
         service: "",
-        budget: "",
+        locality: "",
+    budget: "",
         message: "",
       })
     } catch (error) {
@@ -273,27 +269,28 @@ export function ContactPageContent() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <FieldGroup className="space-y-5">
+                    <Field><FieldLabel htmlFor="contact-locality">Locality / PIN</FieldLabel><Input id="contact-locality" name="locality" maxLength={160} value={formData.locality} onChange={handleInputChange} placeholder="Area or PIN code" /></Field>
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field>
-                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Full Name *</FieldLabel>
-                        <Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter full name" required className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-name">Full Name *</FieldLabel>
+                        <Input id="contact-name" name="name" minLength={2} maxLength={100} value={formData.name} onChange={handleInputChange} placeholder="Enter full name" required className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                       </Field>
                       <Field>
-                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Phone Number *</FieldLabel>
-                        <Input name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="+91 XXXXX XXXXX" required className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-phone">Phone Number *</FieldLabel>
+                        <Input id="contact-phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" maxLength={10} required className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                       </Field>
                     </div>
 
                     <Field>
-                      <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Email Address</FieldLabel>
-                      <Input name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
+                      <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-email">Email Address</FieldLabel>
+                      <Input id="contact-email" name="email" maxLength={254} type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                     </Field>
 
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field>
-                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Service Required *</FieldLabel>
-                        <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                          <SelectTrigger className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-service">Service Required *</FieldLabel>
+                        <Select value={formData.service} onValueChange={(value) => { if (value) setFormData(previous => ({ ...previous, service: value })) }}>
+                          <SelectTrigger id="contact-service" aria-label="Service required" className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
                             <SelectValue placeholder="Select Service" />
                           </SelectTrigger>
                           <SelectContent className="bg-card border-border text-foreground">
@@ -305,9 +302,9 @@ export function ContactPageContent() {
                       </Field>
 
                       <Field>
-                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Budget Range</FieldLabel>
+                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-budget">Budget Range</FieldLabel>
                         <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
-                          <SelectTrigger className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
+                          <SelectTrigger id="contact-budget" aria-label="Budget range" className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
                             <SelectValue placeholder="Select Budget" />
                           </SelectTrigger>
                           <SelectContent className="bg-card border-border text-foreground">
@@ -320,13 +317,13 @@ export function ContactPageContent() {
                     </div>
 
                     <Field>
-                      <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm">Your Requirement</FieldLabel>
-                      <Textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Tell us more about your installation or maintenance project..." className="resize-none border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
+                      <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-message">Your Requirement</FieldLabel>
+                      <Textarea id="contact-message" name="message" maxLength={3000} value={formData.message} onChange={handleInputChange} rows={5} placeholder="Tell us more about your installation or maintenance project..." className="resize-none border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                     </Field>
                   </FieldGroup>
 
                   {errorMessage && (
-                    <div className="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">{errorMessage}</div>
+                    <div role="alert" className="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">{errorMessage}</div>
                   )}
 
                   <Button type="submit" disabled={isSubmitting} className="h-14 w-full rounded-full bg-primary text-base font-bold text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/90 cursor-pointer">

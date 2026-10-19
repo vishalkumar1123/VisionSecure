@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+import { SITE_ORIGIN } from "@/lib/seo"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { notFound } from "next/navigation"
@@ -21,6 +23,16 @@ interface Props {
   params: Promise<{
     slug: string
   }>
+}
+
+export function generateStaticParams() { return blogPosts.map(({ slug }) => ({ slug })) }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug
+  const article = blogPosts.find(post => post.slug === slug)
+  if (!article) return {}
+  const title = `${article.title} | VisionSecure`
+  const url = `${SITE_ORIGIN}/blog/${article.slug}`
+  return { title, description: article.excerpt, alternates: { canonical: url }, robots: { index: true, follow: true }, openGraph: { title, description: article.excerpt, url, type: "article", images: [article.image] } }
 }
 
 export default async function BlogDetail({ params }: Props) {
@@ -240,6 +252,7 @@ export default async function BlogDetail({ params }: Props) {
 
         </div>
       </div>
+      <section className="page-container py-10"><h2 className="text-2xl font-bold">Planning an installation?</h2><p className="mt-3">Explore <Link className="underline" href="/services">security and networking services</Link> or <Link className="underline" href="/contact">discuss your requirements</Link>.</p></section>
       <Footer />
     </main>
   )

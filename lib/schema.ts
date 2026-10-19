@@ -8,12 +8,12 @@ export const organizationSchema = {
 
   url: "https://visionsecuretech.in",
 
-  logo: "https://visionsecuretech.in/images/logo.png",
+  logo: "https://visionsecuretech.in/images/Vision.png",
 
-  image: "https://visionsecuretech.in/images/logo.png",
+  image: "https://visionsecuretech.in/images/Vision.png",
 
   description:
-    "VisionSecure Smart Technologies provides CCTV Camera Installation, Biometric Attendance Systems, Access Control, Fire Alarm Systems, Networking, Smart Home Automation and Security Solutions across India.",
+    "VisionSecure Smart Technologies provides CCTV Camera Installation, Biometric Attendance Systems, Access Control, Fire Alarm Systems, Networking, Smart Home Automation and Security Solutions in Lucknow.",
 
   email: "info@visionsecuretech.in",
 
@@ -35,12 +35,5 @@ export const websiteSchema = {
 
   url: "https://visionsecuretech.in",
 
-  potentialAction: {
-    "@type": "SearchAction",
 
-    target:
-      "https://visionsecuretech.in/blog?search={search_term_string}",
-
-    "query-input": "required name=search_term_string"
-  }
 }

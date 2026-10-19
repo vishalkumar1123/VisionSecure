@@ -82,6 +82,8 @@ const LeadSchema = new Schema(
 
 
 
+    locality: { type: String, trim: true, default: "", maxlength: 160 },
+
     // SERVICE INFO
     service: {
       type: String,

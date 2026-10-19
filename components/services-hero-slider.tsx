@@ -159,7 +159,7 @@ export function ServicesHeroSlider() {
             {/* Heading */}
             <h1 className="text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-7xl">
 
-              {slides[currentSlide].title}
+              Security and IT services in Lucknow
 
             </h1>
 

@@ -149,7 +149,7 @@ export function ProjectsHeroSlider() {
             {/* TITLE */}
             <h1 className="text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-7xl">
 
-              {slides[currentSlide].title}
+              VisionSecure projects
 
             </h1>
 

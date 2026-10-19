@@ -1,3 +1,5 @@
+import { servicePlanning } from "@/lib/service-planning"
+import { pageMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
@@ -17,14 +19,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const service = serviceBySlug((await params).slug)
 
-  return service
-    ? {
-        title: `${service.title} | VisionSecure Smart Technologies`,
-        description: service.summary,
-        alternates: { canonical: `/services/${service.slug}` },
-        openGraph: { title: service.title, description: service.summary, images: [service.image] },
-      }
-    : {}
+  return service ? pageMetadata(`/services/${service.slug}`) : {}
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -46,6 +41,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <Navbar />
       <ServiceDetailHeroSlider
         title={service.title}
+        heading={String(pageMetadata(`/services/${service.slug}`).title).replace(" | VisionSecure", "")}
         category={service.category}
         summary={service.summary}
         image={service.image}
@@ -93,6 +89,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
+      {servicePlanning[service.slug] && <section className="page-container section-space"><h2 className="text-3xl font-bold">Selection and handover</h2>{servicePlanning[service.slug].map(paragraph => <p key={paragraph} className="mt-4 leading-7 text-muted-foreground">{paragraph}</p>)}</section>}
+      <section className="page-container section-space"><h2 className="text-3xl font-bold">Planning your {service.title.toLowerCase()} installation</h2><p className="mt-4 leading-7 text-muted-foreground">Start with {service.solutions.join(", ").toLowerCase()}. For {service.applications.join(", ").toLowerCase()}, confirm the number of devices or points, existing equipment and cable routes before selecting a system.</p><p className="mt-4 leading-7 text-muted-foreground">Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable.</p><p className="mt-4 leading-7 text-muted-foreground">Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed.</p></section>
       <ServiceTechnologyVisual category={service.category} title={service.title} />
 
       <section className="page-container section-space">

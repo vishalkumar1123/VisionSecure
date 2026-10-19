@@ -120,7 +120,7 @@ export function ContactHeroSlider() {
 
               {/* HEADING */}
               <h1 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1] text-balance">
-                {slides[currentSlide].title}
+                Contact VisionSecure in Lucknow
               </h1>
 
               {/* SUBTITLE */}

@@ -1,10 +1,13 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import Script from "next/script"
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XRYGR89Q5K"
 
 export default function GoogleAnalytics() {
+  const pathname = usePathname()
+  if (/^\/(admin|profile|register)(\/|$)/.test(pathname)) return null
   if (!/^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID)) return null
   return (
     <>
@@ -22,6 +25,9 @@ export default function GoogleAnalytics() {
 
           gtag('config', '${GA_MEASUREMENT_ID}', {
             page_path: window.location.pathname,
+            page_location: window.location.origin + window.location.pathname,
+            page_referrer: "",
+            send_page_view: true,
           });
         `}
       </Script>

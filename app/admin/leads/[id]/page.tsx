@@ -8,7 +8,7 @@ import { toast } from "sonner"
 import { LEAD_PRIORITIES, LEAD_STATUSES } from "@/constants/leads"
 
 type Lead = {
-  _id: string; name: string; phone: string; email?: string; service?: string; budget?: string; message?: string
+  _id: string; name: string; phone: string; email?: string; locality?: string; service?: string; budget?: string; message?: string
   source?: string; priority?: string; status?: string; followUpDate?: string | null; createdAt: string; updatedAt?: string
   notes?: Array<{ text: string; createdBy?: string; createdAt?: string }>
   timeline?: Array<{ action?: string; status?: string; createdAt?: string }>
@@ -51,7 +51,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
 
   const normalizedStatus = lead.status === "Converted" ? "Installed Successfully" : lead.status === "Closed" ? "Cancelled" : (lead.status || "New")
   const currentStep = Math.max(0, LEAD_STATUSES.indexOf(normalizedStatus as typeof LEAD_STATUSES[number]))
-  const details = [["Service", lead.service], ["Budget", lead.budget], ["Source", lead.source], ["Submitted", new Date(lead.createdAt).toLocaleString("en-IN")]]
+  const details = [["Service", lead.service], ["Budget", lead.budget], ["Locality / PIN", lead.locality], ["Source", lead.source], ["Submitted", new Date(lead.createdAt).toLocaleString("en-IN")]]
 
   return <div className="mx-auto max-w-7xl space-y-6 pb-10 text-foreground">
     <Link href="/admin/leads" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-highlight-ink"><ArrowLeft className="h-4 w-4" />Back to leads</Link>

@@ -434,7 +434,7 @@ export function AboutSlider() {
                 key={`${slide.title}-title`}
                 className="mt-6 text-balance animate-[aboutFadeUp_0.8s_0.08s_ease-out_both] text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
               >
-                {slide.title}
+                About VisionSecure Smart Technologies
               </h1>
 
               <p

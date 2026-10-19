@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Providers from "@/components/providers"
 import { Toaster } from "@/components/ui/sonner"
+import { PublicClickTracking } from "@/components/public-click-tracking"
 import GoogleAnalytics from "@/components/google-analytics"
 import ClarityProvider from "@/components/clarity"
 import Schema from "@/components/schema"
@@ -22,7 +23,7 @@ const manrope = Manrope({
   variable: "--font-manrope",
 })
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://visionsecuretech.in"),
+  metadataBase: new URL("https://visionsecuretech.in"),
   title:
     "VisionSecure Smart Technologies | CCTV, Biometric & Security Solutions",
 
@@ -94,6 +95,7 @@ export default function RootLayout({
           <FloatingSupport />
           <Toaster richColors position="top-right" />
          </Providers>
+         <PublicClickTracking />
          <GoogleAnalytics />
         {process.env.NODE_ENV === "production" && <Analytics />}
         

@@ -1,5 +1,9 @@
 "use client"
 
+import { trackPublicEvent } from "@/lib/public-tracking"
+
+import { enquiryServices as services } from "@/lib/enquiry-services"
+
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -25,20 +29,6 @@ import { X, Phone, ArrowRight } from "lucide-react"
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
-const services = [
-  "CCTV Surveillance",
-  "Biometric Systems",
-  "Access Control Systems",
-  "Networking Solutions",
-  "Video Door Phones",
-  "Fire Alarm Systems",
-  "Home Automation",
-  "EPABX Systems",
-  "PA Systems",
-  "Video Intercom",
-  "Attendance Systems",
-  "Smart Locks",
-]
 
 export function LeadPopup() {
   const [mounted, setMounted] = useState(false)
@@ -122,7 +112,7 @@ export function LeadPopup() {
     }
 
     // Name
-    if (!formData.name.trim()) {
+    if (formData.name.trim().length < 2) {
       newErrors.name = "Please enter your name"
       valid = false
     }
@@ -131,7 +121,7 @@ export function LeadPopup() {
     if (!formData.phone) {
       newErrors.phone = "Please enter mobile number"
       valid = false
-    } else if (formData.phone.length !== 10) {
+    } else if (! /^[6-9]\d{9}$/.test(formData.phone)) {
       newErrors.phone = "Mobile number must be 10 digits"
       valid = false
     }
@@ -152,31 +142,18 @@ export function LeadPopup() {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault()
+    if (isSubmitting) return
 
     if (!validateForm()) return
 
     setIsSubmitting(true)
 
     try {
-      const message = `
-Hello VisionSecure Smart Technologies,
-
-I am interested in your services.
-
-Name: ${formData.name}
-Mobile: ${formData.phone}
-Service: ${formData.service}
-      `
-
-      const whatsappUrl = `https://wa.me/919872133840?text=${encodeURIComponent(
-        message
-      )}`
-
-      window.open(whatsappUrl, "_blank")
-
-      await new Promise((resolve) =>
-        setTimeout(resolve, 1000)
-      )
+      const response = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) })
+      const data = await response.json()
+      if (!response.ok || !data.success) throw new Error(data.error || "Unable to save your enquiry")
+      trackPublicEvent("enquiry_saved", "popup")
+      alert("Your enquiry has been saved. Our team will review your requirement.")
 
       // Reset Form
       setFormData({
@@ -187,7 +164,7 @@ Service: ${formData.service}
 
       handleClose()
     } catch (error) {
-      console.log(error)
+      alert(error instanceof Error ? error.message : "Unable to save your enquiry. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -200,7 +177,7 @@ Service: ${formData.service}
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) handleClose() }}>
       <DialogContent showCloseButton={false} className="z-[100] max-h-[90dvh] overflow-y-auto border-0 bg-transparent p-0 sm:max-w-md">
       <DialogTitle className="sr-only">Free security consultation</DialogTitle>
-      <DialogDescription className="sr-only">Share your requirements with VisionSecure on WhatsApp.</DialogDescription>
+      <DialogDescription className="sr-only">Share your requirements with VisionSecure.</DialogDescription>
       {/* Popup */}
       <div
         className={cn(
@@ -261,7 +238,7 @@ Service: ${formData.service}
               </FieldLabel>
 
               <Input
-                type="text"
+                id="popup-name" aria-label="Full name" minLength={2} maxLength={100} type="text"
                 value={formData.name}
                 onChange={(e) =>
                   handleChange("name", e.target.value)
@@ -287,7 +264,7 @@ Service: ${formData.service}
                 <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 
                 <Input
-                  type="tel"
+                  id="popup-phone" aria-label="Mobile number" pattern="[6-9][0-9]{9}" type="tel"
                   inputMode="numeric"
                   maxLength={10}
                   value={formData.phone}
@@ -308,7 +285,7 @@ Service: ${formData.service}
 
             {/* Services */}
             <Field>
-              <FieldLabel className="text-foreground">
+              <FieldLabel htmlFor="popup-service" className="text-foreground">
                 Select Service
               </FieldLabel>
 
@@ -318,7 +295,7 @@ Service: ${formData.service}
                   handleChange("service", value)
                 }
               >
-                <SelectTrigger className="h-12 border-border bg-card text-foreground">
+                <SelectTrigger id="popup-service" aria-label="Service required" className="h-12 border-border bg-card text-foreground">
                   <SelectValue placeholder="Choose Service" />
                 </SelectTrigger>
 
@@ -353,7 +330,7 @@ Service: ${formData.service}
               "Submitting..."
             ) : (
               <>
-                Continue on WhatsApp
+                Submit enquiry
                 <ArrowRight className="ml-2 h-5 w-5" />
               </>
             )}
