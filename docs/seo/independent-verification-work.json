@@ -1,0 +1,17 @@
+{
+  "commit": "8e14b5a45fd076e5d436150070996469274d6c42",
+  "method": "git archive HEAD; separate directory; npm ci; synthetic environment only",
+  "directory": "C:\\Users\\visha\\AppData\\Local\\Temp\\visionsecure-seo-7in7ksxj",
+  "excluded_working_files_sha256_before": {
+    ".env.example": "835b9c3946e7a24d96daa85e43020dae1b8372ed52eb99e32b245d5c05c006d0",
+    "INTEGRATION_SETUP_CENTER.md": "f14f2d298d3cf2eb5dc140a06c224b67dad0333249ae9447d5ac091014c68916",
+    "components/admin/website-analytics/google-connect-card.tsx": "74e0e8d2a93e1726b1fe3bc757049638be63827adb1767f630ffb031c782e10a",
+    "docs/security-scan.json": "a6f88174632812562b5857ea90f804cac0b0feca6afae71de61f3291c8799efd",
+    "lib/google/integration-api.ts": "bfe6486cd07190e0d7958cb3be07ac684deaf6e93626e9d3b10702bf2dcda9d1",
+    "lib/google/oauth.ts": "9a4f9afcfedaf1bdf1d0ba5d9ebea91b3f2fc56327daf406d4117215003784e3",
+    "tests/google-services.test.cjs": "729ecb68e585131b5407b7618c99733576e4bc9fda612b78cb691ba4b82ff5f5",
+    "tests/website-analytics-ui.spec.cjs": "2fb545fdac5d707acd1d866e18303cfecc41202a2164884e1aaa53c38b815031",
+    "tsconfig.tsbuildinfo": "0dceea5f2c0762df8bb3b21c915cda1eb2e117a61e7dd6b37e16849ea26ee7ed"
+  },
+  "real_env_copied": false
+}
