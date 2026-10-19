@@ -5,7 +5,21 @@ def fetch(p):
  with urllib.request.urlopen(base+p['path'],timeout=15) as r:html=r.read().decode();status=r.status
  parser=Parser();parser.feed(html)
  schemas=[json.loads(x) for x in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',html,re.S)]
- row={'path':p['path'],'status':status,'title':parser.title,'description':parser.desc,'h1':parser.h1,'canonical':parser.canonical,'robots':parser.robots,'jsonld_count':len(schemas)}
+ entities=[entity for schema in schemas for entity in schema.get('@graph', [schema])]
+ business=[entity for entity in entities if entity.get('@type')=='LocalBusiness']
+ service=[entity for entity in entities if entity.get('@type')=='Service']
+ assert len(business)==1, p['path']+' requires exactly one LocalBusiness'
+ assert not any(entity.get('@type')=='Organization' for entity in entities), p['path']+' duplicate Organization'
+ assert business[0]['@id']=='https://visionsecuretech.in/#business'
+ ids=[entity['@id'] for entity in entities if '@id' in entity]
+ assert len(ids)==len(set(ids)), p['path']+' duplicate identity'
+ assert len(service)==(1 if p['type']=='service' else 0), p['path']+' Service scope mismatch'
+ if service:
+  assert service[0]['url']=='https://visionsecuretech.in'+p['path']
+  assert service[0]['provider']=={'@id':business[0]['@id']}
+  assert service[0]['description'] in html
+  assert service[0]['name'] in html
+ row={'path':p['path'],'status':status,'title':parser.title,'description':parser.desc,'h1':parser.h1,'canonical':parser.canonical,'robots':parser.robots,'jsonld_count':len(schemas),'schema_types':[entity['@type'] for entity in entities],'business_id':business[0]['@id'],'service_id':service[0]['@id'] if service else None}
  for key,a,b in [('title',parser.title,p['title']),('description',parser.desc,p['description']),('canonical',parser.canonical,'https://visionsecuretech.in'+p['path'])]:
   if a.rstrip('/')!=b.rstrip('/'):errors.append(p['path']+' '+key+' mismatch')
  if parser.h1!=[p['heading']]:errors.append(p['path']+' heading mismatch '+repr(parser.h1))

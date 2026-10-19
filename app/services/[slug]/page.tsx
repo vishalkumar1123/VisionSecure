@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/json-ld"
+import { serviceSchema } from "@/lib/schema"
 import { servicePlanning } from "@/lib/service-planning"
 import { pageMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
@@ -38,6 +40,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   return (
     <main className="min-h-screen bg-background">
+      <JsonLd data={serviceSchema(service)} />
       <Navbar />
       <ServiceDetailHeroSlider
         title={service.title}
