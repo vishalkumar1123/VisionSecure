@@ -1,4 +1,5 @@
 ﻿from pathlib import Path
+from html import unescape
 import runpy,json,urllib.request,urllib.error,concurrent.futures,re,urllib.parse
 ns=runpy.run_path('docs/seo/crawl-public.py');Parser=ns['Parser'];pages=ns['pages'];base='http://localhost:3013';known={p['path'] for p in pages};observed=[];links=set();assets=set();errors=[]
 def fetch(p):
@@ -17,8 +18,8 @@ def fetch(p):
  if service:
   assert service[0]['url']=='https://visionsecuretech.in'+p['path']
   assert service[0]['provider']=={'@id':business[0]['@id']}
-  assert service[0]['description'] in html
-  assert service[0]['name'] in html
+  assert service[0]['description'] in unescape(html)
+  assert service[0]['name'] in unescape(html)
  row={'path':p['path'],'status':status,'title':parser.title,'description':parser.desc,'h1':parser.h1,'canonical':parser.canonical,'robots':parser.robots,'jsonld_count':len(schemas),'schema_types':[entity['@type'] for entity in entities],'business_id':business[0]['@id'],'service_id':service[0]['@id'] if service else None}
  for key,a,b in [('title',parser.title,p['title']),('description',parser.desc,p['description']),('canonical',parser.canonical,'https://visionsecuretech.in'+p['path'])]:
   if a.rstrip('/')!=b.rstrip('/'):errors.append(p['path']+' '+key+' mismatch')

@@ -7,3 +7,5 @@ Contact preselects services and stores locality/PIN in the existing lead workflo
 Validation: lint, TypeScript, production build, mocked enquiry regression tests, four desktop/mobile browser tests, and rendered metadata/headings/schema/link/sitemap checks for all 28 public pages passed. Production was checked read-only; no real test leads or customer notifications were sent.
 
 See seo-setup-report.md for setup, remaining business-evidence checks, account-side actions and rollback. Pre-existing uncommitted integration work is excluded. Do not merge until reviewed; main merges automatically deploy according to the existing README.
+
+Structured-data completion adds one LocalBusiness/WebSite graph and 13 catalogue-matched Service entities referencing the same business @id, with owner-confirmed hours and safe shared serialization. Focused identity/content/script-safety checks and a committed-source-only build are documented in the handoff.

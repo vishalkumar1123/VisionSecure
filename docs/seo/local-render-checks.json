@@ -12,7 +12,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/about",
@@ -26,7 +32,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/services",
@@ -40,7 +52,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/contact",
@@ -54,7 +72,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/projects",
@@ -68,7 +92,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/gallery",
@@ -82,7 +112,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/faq",
@@ -96,7 +132,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog",
@@ -110,7 +152,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/services/cctv-surveillance",
@@ -124,7 +172,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/cctv-surveillance#service"
     },
     {
       "path": "/services/biometric-attendance",
@@ -138,7 +193,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/biometric-attendance#service"
     },
     {
       "path": "/services/access-control-system",
@@ -152,7 +214,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/access-control-system#service"
     },
     {
       "path": "/services/networking-solutions",
@@ -166,7 +235,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/networking-solutions#service"
     },
     {
       "path": "/services/wifi-mesh-networking",
@@ -180,7 +256,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/wifi-mesh-networking#service"
     },
     {
       "path": "/services/it-support-amc",
@@ -194,7 +277,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/it-support-amc#service"
     },
     {
       "path": "/services/server-networking-infrastructure",
@@ -208,7 +298,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/server-networking-infrastructure#service"
     },
     {
       "path": "/services/video-door-phone",
@@ -222,7 +319,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/video-door-phone#service"
     },
     {
       "path": "/services/smart-door-locks",
@@ -236,7 +340,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/smart-door-locks#service"
     },
     {
       "path": "/services/home-automation",
@@ -250,7 +361,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/home-automation#service"
     },
     {
       "path": "/services/speaker-solutions",
@@ -264,7 +382,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/speaker-solutions#service"
     },
     {
       "path": "/services/glass-break-alarm-system",
@@ -278,7 +403,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/glass-break-alarm-system#service"
     },
     {
       "path": "/services/emergency-alarm-system",
@@ -292,7 +424,14 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 2,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": "https://visionsecuretech.in/services/emergency-alarm-system#service"
     },
     {
       "path": "/blog/how-to-choose-the-right-cctv-camera",
@@ -306,7 +445,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog/biometric-attendance-vs-manual-attendance",
@@ -320,7 +465,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog/top-5-home-automation-features",
@@ -334,7 +485,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog/understanding-ip-vs-analog-cctv",
@@ -348,7 +505,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog/fire-safety-tips-commercial-buildings",
@@ -362,7 +525,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog/benefits-of-access-control-systems",
@@ -376,7 +545,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     },
     {
       "path": "/blog/networking-structured-cabling-and-server-setup-guide",
@@ -390,7 +565,13 @@
       "robots": [
         "index, follow"
       ],
-      "jsonld_count": 2
+      "jsonld_count": 1,
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "business_id": "https://visionsecuretech.in/#business",
+      "service_id": null
     }
   ],
   "mismatches": [],

@@ -1,93 +1,3 @@
-From 6c8648bf3db273607897ff986a88967030ec0e37 Mon Sep 17 00:00:00 2001
-From: Vishal <vishalkumar8603763@gmail.com>
-Date: Mon, 19 Oct 2026 20:49:47 +0530
-Subject: [PATCH 1/2] Improve Lucknow SEO and existing enquiry flows with
- verified handoff
-
----
- app/about/page.tsx                        |   4 +-
- app/admin/leads/[id]/page.tsx             |   4 +-
- app/api/leads/route.ts                    |   4 +-
- app/blog/[slug]/page.tsx                  |  13 +
- app/blog/page.tsx                         |  20 +-
- app/contact/page.tsx                      |  29 +-
- app/faq/page.tsx                          |  20 +-
- app/gallery/page.tsx                      |  20 +-
- app/layout.tsx                            |   4 +-
- app/page.tsx                              |   2 +
- app/projects/page.tsx                     |   8 +-
- app/robots.ts                             |  13 +-
- app/services/[slug]/page.tsx              |  14 +-
- app/services/page.tsx                     |   8 +-
- app/sitemap.ts                            |   7 +
- components/about/about-slider.tsx         |   2 +-
- components/blog-hero-slider.tsx           |   2 +-
- components/brands-section.tsx             |   2 +-
- components/clarity.tsx                    |   5 +-
- components/contact-hero-slider.tsx        |   2 +-
- components/contact-page-content.tsx       |  59 ++--
- components/contact-section.tsx            |  83 +----
- components/faq-hero-slider.tsx            |   2 +-
- components/gallery-hero-slider.tsx        |   2 +-
- components/google-analytics.tsx           |   6 +
- components/hero-slider.tsx                |   2 +-
- components/lead-popup.tsx                 |  61 +---
- components/projects-hero-slider.tsx       |   2 +-
- components/public-click-tracking.tsx      |  16 +
- components/schema.tsx                     |   4 +-
- components/service-detail-hero-slider.tsx |   4 +-
- components/services-hero-slider.tsx       |   2 +-
- docs/seo/check-local-render.py            |  35 ++
- docs/seo/crawl-public.py                  |  38 ++
- docs/seo/generate-handoff.py              |  20 ++
- docs/seo/live-url-checks.csv              |  32 ++
- docs/seo/local-pages.json                 | 254 ++++++++++++++
- docs/seo/local-render-checks.json         | 403 ++++++++++++++++++++++
- docs/seo/non-indexable-routes.csv         |  71 ++++
- docs/seo/priority-page-map.csv            |  29 ++
- docs/seo/public-url-inventory.csv         |  29 ++
- docs/seo/public-urls.txt                  |  28 ++
- docs/seo/seo-setup-report.md              | 113 ++++++
- lib/enquiry-services.ts                   |   9 +
- lib/public-tracking.ts                    |   8 +
- lib/schema.ts                             |  13 +-
- lib/seo-pages.json                        | 191 ++++++++++
- lib/seo.ts                                |   8 +
- lib/service-planning.ts                   |  26 ++
- lib/translations.ts                       |  27 ++
- models/Lead.ts                            |   2 +
- next-sitemap.config.js                    |  10 -
- next.config.mjs                           |   5 +
- package.json                              |   3 +-
- public/robots.txt                         |   9 -
- public/sitemap.xml                        |  25 --
- tests/seo-enquiries-ui.spec.cjs           |  44 +++
- tests/seo-enquiries.test.cjs              |  51 +++
- 58 files changed, 1585 insertions(+), 324 deletions(-)
- create mode 100644 app/sitemap.ts
- create mode 100644 components/public-click-tracking.tsx
- create mode 100644 docs/seo/check-local-render.py
- create mode 100644 docs/seo/crawl-public.py
- create mode 100644 docs/seo/generate-handoff.py
- create mode 100644 docs/seo/live-url-checks.csv
- create mode 100644 docs/seo/local-pages.json
- create mode 100644 docs/seo/local-render-checks.json
- create mode 100644 docs/seo/non-indexable-routes.csv
- create mode 100644 docs/seo/priority-page-map.csv
- create mode 100644 docs/seo/public-url-inventory.csv
- create mode 100644 docs/seo/public-urls.txt
- create mode 100644 docs/seo/seo-setup-report.md
- create mode 100644 lib/enquiry-services.ts
- create mode 100644 lib/public-tracking.ts
- create mode 100644 lib/seo-pages.json
- create mode 100644 lib/seo.ts
- create mode 100644 lib/service-planning.ts
- delete mode 100644 next-sitemap.config.js
- delete mode 100644 public/robots.txt
- delete mode 100644 public/sitemap.xml
- create mode 100644 tests/seo-enquiries-ui.spec.cjs
- create mode 100644 tests/seo-enquiries.test.cjs
-
 diff --git a/app/about/page.tsx b/app/about/page.tsx
 index 26b2d3b..11abd74 100644
 --- a/app/about/page.tsx
@@ -440,16 +350,18 @@ index 3441274..b5fb4ec 100644
 +  return { rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/admin/", "/profile", "/register"] }, sitemap: "https://visionsecuretech.in/sitemap.xml" }
 +}
 diff --git a/app/services/[slug]/page.tsx b/app/services/[slug]/page.tsx
-index a650563..05d64b8 100644
+index a650563..bd11cd8 100644
 --- a/app/services/[slug]/page.tsx
 +++ b/app/services/[slug]/page.tsx
-@@ -1,3 +1,5 @@
+@@ -1,3 +1,7 @@
++import { JsonLd } from "@/components/json-ld"
++import { serviceSchema } from "@/lib/schema"
 +import { servicePlanning } from "@/lib/service-planning"
 +import { pageMetadata } from "@/lib/seo"
  import type { Metadata } from "next"
  import { notFound } from "next/navigation"
  import Link from "next/link"
-@@ -17,14 +19,7 @@ export function generateStaticParams() {
+@@ -17,14 +21,7 @@ export function generateStaticParams() {
  export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
    const service = serviceBySlug((await params).slug)
  
@@ -465,7 +377,11 @@ index a650563..05d64b8 100644
  }
  
  export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-@@ -46,6 +41,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{
+@@ -43,9 +40,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{
+ 
+   return (
+     <main className="min-h-screen bg-background">
++      <JsonLd data={serviceSchema(service)} />
        <Navbar />
        <ServiceDetailHeroSlider
          title={service.title}
@@ -473,7 +389,7 @@ index a650563..05d64b8 100644
          category={service.category}
          summary={service.summary}
          image={service.image}
-@@ -93,6 +89,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{
+@@ -93,6 +92,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{
          </div>
        </section>
  
@@ -975,6 +891,17 @@ index 7746690..2c8e1cf 100644
                </h1>
  
                <p className="text-lg lg:text-xl text-white/85 max-w-xl leading-relaxed">
+diff --git a/components/json-ld.tsx b/components/json-ld.tsx
+new file mode 100644
+index 0000000..627571f
+--- /dev/null
++++ b/components/json-ld.tsx
+@@ -0,0 +1,5 @@
++﻿import { serializeJsonLd } from "@/lib/schema"
++
++export function JsonLd({ data }: { data: unknown }) {
++  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }} />
++}
 diff --git a/components/lead-popup.tsx b/components/lead-popup.tsx
 index 2f5c268..8125ea0 100644
 --- a/components/lead-popup.tsx
@@ -1165,26 +1092,41 @@ index 0000000..9dd6b17
 +  return null
 +}
 diff --git a/components/schema.tsx b/components/schema.tsx
-index f8b7da5..fb2f5c1 100644
+index f8b7da5..a432db3 100644
 --- a/components/schema.tsx
 +++ b/components/schema.tsx
-@@ -11,14 +11,14 @@ export default function Schema() {
-       <script
-         type="application/ld+json"
-         dangerouslySetInnerHTML={{
--          __html: JSON.stringify(organizationSchema),
-+          __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c"),
-         }}
-       />
+@@ -1,26 +1,6 @@
+-// components/schema.tsx
+-
+-import {
+-  organizationSchema,
+-  websiteSchema,
+-} from "@/lib/schema"
++﻿import { JsonLd } from "@/components/json-ld"
++import { siteSchema } from "@/lib/schema"
  
-       <script
-         type="application/ld+json"
-         dangerouslySetInnerHTML={{
+ export default function Schema() {
+-  return (
+-    <>
+-      <script
+-        type="application/ld+json"
+-        dangerouslySetInnerHTML={{
+-          __html: JSON.stringify(organizationSchema),
+-        }}
+-      />
+-
+-      <script
+-        type="application/ld+json"
+-        dangerouslySetInnerHTML={{
 -          __html: JSON.stringify(websiteSchema),
-+          __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
-         }}
-       />
-     </>
+-        }}
+-      />
+-    </>
+-  )
+-}
+\ No newline at end of file
++  return <JsonLd data={siteSchema} />
++}
 diff --git a/components/service-detail-hero-slider.tsx b/components/service-detail-hero-slider.tsx
 index a6d3eaf..1d973b6 100644
 --- a/components/service-detail-hero-slider.tsx
@@ -1229,18 +1171,33 @@ index fb0a074..48a223e 100644
  
 diff --git a/docs/seo/check-local-render.py b/docs/seo/check-local-render.py
 new file mode 100644
-index 0000000..316c17d
+index 0000000..0e4f05f
 --- /dev/null
 +++ b/docs/seo/check-local-render.py
-@@ -0,0 +1,35 @@
+@@ -0,0 +1,50 @@
 +﻿from pathlib import Path
++from html import unescape
 +import runpy,json,urllib.request,urllib.error,concurrent.futures,re,urllib.parse
 +ns=runpy.run_path('docs/seo/crawl-public.py');Parser=ns['Parser'];pages=ns['pages'];base='http://localhost:3013';known={p['path'] for p in pages};observed=[];links=set();assets=set();errors=[]
 +def fetch(p):
 + with urllib.request.urlopen(base+p['path'],timeout=15) as r:html=r.read().decode();status=r.status
 + parser=Parser();parser.feed(html)
 + schemas=[json.loads(x) for x in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',html,re.S)]
-+ row={'path':p['path'],'status':status,'title':parser.title,'description':parser.desc,'h1':parser.h1,'canonical':parser.canonical,'robots':parser.robots,'jsonld_count':len(schemas)}
++ entities=[entity for schema in schemas for entity in schema.get('@graph', [schema])]
++ business=[entity for entity in entities if entity.get('@type')=='LocalBusiness']
++ service=[entity for entity in entities if entity.get('@type')=='Service']
++ assert len(business)==1, p['path']+' requires exactly one LocalBusiness'
++ assert not any(entity.get('@type')=='Organization' for entity in entities), p['path']+' duplicate Organization'
++ assert business[0]['@id']=='https://visionsecuretech.in/#business'
++ ids=[entity['@id'] for entity in entities if '@id' in entity]
++ assert len(ids)==len(set(ids)), p['path']+' duplicate identity'
++ assert len(service)==(1 if p['type']=='service' else 0), p['path']+' Service scope mismatch'
++ if service:
++  assert service[0]['url']=='https://visionsecuretech.in'+p['path']
++  assert service[0]['provider']=={'@id':business[0]['@id']}
++  assert service[0]['description'] in unescape(html)
++  assert service[0]['name'] in unescape(html)
++ row={'path':p['path'],'status':status,'title':parser.title,'description':parser.desc,'h1':parser.h1,'canonical':parser.canonical,'robots':parser.robots,'jsonld_count':len(schemas),'schema_types':[entity['@type'] for entity in entities],'business_id':business[0]['@id'],'service_id':service[0]['@id'] if service else None}
 + for key,a,b in [('title',parser.title,p['title']),('description',parser.desc,p['description']),('canonical',parser.canonical,'https://visionsecuretech.in'+p['path'])]:
 +  if a.rstrip('/')!=b.rstrip('/'):errors.append(p['path']+' '+key+' mismatch')
 + if parser.h1!=[p['heading']]:errors.append(p['path']+' heading mismatch '+repr(parser.h1))
@@ -1314,7 +1271,7 @@ index 0000000..b9472c6
 + print('Discovered',len(pages),'public pages;',sum(r['http_status']!='Not verified' for r in results),'live responses;',len(results),'read-only requests.')
 diff --git a/docs/seo/generate-handoff.py b/docs/seo/generate-handoff.py
 new file mode 100644
-index 0000000..4331f73
+index 0000000..a61ff48
 --- /dev/null
 +++ b/docs/seo/generate-handoff.py
 @@ -0,0 +1,20 @@
@@ -1325,8 +1282,8 @@ index 0000000..4331f73
 +def priority(p):return 'P1' if p in p1 else ('P3' if p.startswith('/blog/') or p in ['/gallery','/faq'] else 'P2')
 +def save(name,rows):
 + with (out/name).open('w',newline='',encoding='utf-8-sig') as f:w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
-+save('public-url-inventory.csv',[dict(absolute_canonical_url=origin+p['path'],source=p['source'],page_type=p['type'],primary_topic=p['intent'],intended_location='Lucknow' if p['type']=='service' or p['path'] in ['/','/about','/contact','/services','/projects'] else 'Not location-specific',implemented_title=p['title'],implemented_description=p['description'],implemented_main_heading=p['heading'],implemented_canonical=origin+(p['path'] if p['path']!='/' else ''),declared_robots='index, follow',intended_indexability='Index',included_in_sitemap='Yes',recommended_primary_search_intent=p['intent'],remaining_issue='Deploy and inspect in Search Console; owner confirm business facts' if p['path'] in ['/','/contact'] else 'Deploy and inspect in Search Console',priority=priority(p['path']),verification_method='Local implemented values; rendered checks in local-render-checks.json; production recorded separately',verification_date=date,value_scope='Local implementation; not deployed') for p in pages])
-+save('priority-page-map.csv',[dict(existing_url=origin+p['path'],recommended_primary_search_intent=p['intent'],supporting_topics='Selection, compatibility, site requirements, installation, handover and maintenance scope' if p['type']=='service' else ('Educational equipment comparison and practical guidance' if p['type']=='blog' else p['description']),implemented_title=p['title'],implemented_heading=p['heading'],content_improvements='Distinct selection/handover guidance and quotation scope; existing FAQs retained' if p['type']=='service' else ('Article-specific metadata and contextual service links' if p['type']=='blog' else 'Stable heading and page-specific canonical metadata'),related_internal_links='/services; /contact' if p['type']!='service' else '/services; three related service pages; /contact',enquiry_destination='/contact?service='+p['path'].split('/')[-1] if p['type']=='service' else ('/contact' if p['path'] not in ['/faq','/blog'] else 'Contextual service links'),priority=priority(p['path']),implementation_status='Implemented locally; deployment and account verification pending') for p in pages])
++save('public-url-inventory.csv',[dict(absolute_canonical_url=origin+p['path'],source=p['source'],page_type=p['type'],primary_topic=p['intent'],intended_location='Lucknow' if p['type']=='service' or p['path'] in ['/','/about','/contact','/services','/projects'] else 'Not location-specific',implemented_title=p['title'],implemented_description=p['description'],implemented_main_heading=p['heading'],implemented_canonical=origin+(p['path'] if p['path']!='/' else ''),declared_robots='index, follow',intended_indexability='Index',included_in_sitemap='Yes',recommended_primary_search_intent=p['intent'],remaining_issue='Deploy and inspect in Search Console; owner confirm business facts' if p['path'] in ['/','/contact'] else 'Deploy and inspect in Search Console',priority=priority(p['path']),verification_method='Local implemented values; rendered checks in local-render-checks.json; production recorded separately',verification_date=date,structured_data_types='LocalBusiness; WebSite'+('; Service' if p['type']=='service' else ''),business_identity=origin+'/#business',service_identity=origin+p['path']+'#service' if p['type']=='service' else '',value_scope='Local implementation; not deployed') for p in pages])
++save('priority-page-map.csv',[dict(existing_url=origin+p['path'],recommended_primary_search_intent=p['intent'],supporting_topics='Selection, compatibility, site requirements, installation, handover and maintenance scope' if p['type']=='service' else ('Educational equipment comparison and practical guidance' if p['type']=='blog' else p['description']),implemented_title=p['title'],implemented_heading=p['heading'],content_improvements='Distinct selection/handover guidance and quotation scope; existing FAQs retained' if p['type']=='service' else ('Article-specific metadata and contextual service links' if p['type']=='blog' else 'Stable heading and page-specific canonical metadata'),related_internal_links='/services; /contact' if p['type']!='service' else '/services; three related service pages; /contact',enquiry_destination='/contact?service='+p['path'].split('/')[-1] if p['type']=='service' else ('/contact' if p['path'] not in ['/faq','/blog'] else 'Contextual service links'),priority=priority(p['path']),implementation_status='Implemented locally including shared LocalBusiness'+(' and page-specific Service schema' if p['type']=='service' else '')+'; deployment and account verification pending') for p in pages])
 +non=[]
 +for p in sorted(Path('app').rglob('*')):
 + if p.name not in ['page.tsx','route.ts']:continue
@@ -1338,6 +1295,87 @@ index 0000000..4331f73
 +for route,source in [('/robots.txt','app/robots.ts'),('/sitemap.xml','app/sitemap.ts'),('/_not-found','Next.js generated error route')]:non.append(dict(route_pattern=route,category='Metadata/error utility',source=source,intended_treatment='Not a public content landing page; excluded from sitemap',runtime_only_pattern='No'))
 +save('non-indexable-routes.csv',non)
 +print('Reports:',len(pages),'public pages;',len(non),'non-indexable/pattern/redirect rows')
+diff --git a/docs/seo/independent-build-verification.json b/docs/seo/independent-build-verification.json
+new file mode 100644
+index 0000000..3893e36
+--- /dev/null
++++ b/docs/seo/independent-build-verification.json
+@@ -0,0 +1,75 @@
++{
++  "verification_date": "2026-10-19",
++  "application_source_commit": "8e14b5a45fd076e5d436150070996469274d6c42",
++  "branch": "feat/lucknow-seo-enquiries",
++  "source_method": "git archive of the committed application source; complete separate source trees; no source symlinks",
++  "exact_branch_snapshot_build": {
++    "command": "npm run build",
++    "exit_code": 0,
++    "typescript": "passed",
++    "static_pages_generated": 82
++  },
++  "without_originally_excluded_integration_edits_build": {
++    "command": "npm run build",
++    "exit_code": 0,
++    "typescript": "passed",
++    "static_pages_generated": 82,
++    "restored_from_commit": "a93c581",
++    "restored_files": [
++      ".env.example",
++      "INTEGRATION_SETUP_CENTER.md",
++      "components/admin/website-analytics/google-connect-card.tsx",
++      "docs/security-scan.json",
++      "lib/google/integration-api.ts",
++      "lib/google/oauth.ts",
++      "tests/google-services.test.cjs",
++      "tests/website-analytics-ui.spec.cjs",
++      "tsconfig.tsbuildinfo"
++    ],
++    "typescript_cache": "removed from verification copy before build"
++  },
++  "dependencies": {
++    "method": "Existing dependency directory only via junction; installed package versions checked against committed lockfile. No working-tree source/environment shared.",
++    "locked_installed_package_versions_checked": 554,
++    "version_mismatches": [],
++    "separate_offline_install": "Stopped before completion; not claimed as a fresh-install verification"
++  },
++  "environment": {
++    "real_env_local_copied": false,
++    "synthetic_configuration_only": true,
++    "names": [
++      "MONGODB_URI",
++      "NEXTAUTH_URL",
++      "NEXTAUTH_SECRET",
++      "NEXT_PUBLIC_APP_URL",
++      "NEXT_PUBLIC_SITE_URL"
++    ],
++    "provider_behavior": "No real database, email or Google account calls; synthetic database endpoint points to loopback port 1"
++  },
++  "checks": {
++    "structured_data_tests": {
++      "passed": 5,
++      "failed": 0
++    },
++    "enquiry_regression": "passed with mocked providers",
++    "full_lint_on_archived_source": "passed",
++    "rendered_public_pages": 28,
++    "service_entities": 13,
++    "duplicate_business_entities": 0,
++    "browser_regressions": {
++      "passed": 4,
++      "failed": 0,
++      "method": "localhost desktop/mobile; API lead requests mocked; third-party requests blocked"
++    }
++  },
++  "original_excluded_file_hashes_preserved": true,
++  "externally_created_commits_preserved": [
++    "b7a5425",
++    "d5f7c79"
++  ],
++  "limitations": [
++    "Existing lockfile-matched dependencies were reused; no completed fresh npm ci.",
++    "Nested archive builds emit a multiple-lockfile workspace-root warning; source aliases resolve within each separate archived project.",
++    "Google Rich Results Test/Schema Markup Validator, indexing and Google account state are not verified."
++  ]
++}
 diff --git a/docs/seo/live-url-checks.csv b/docs/seo/live-url-checks.csv
 new file mode 100644
 index 0000000..49ea38b
@@ -1639,10 +1677,10 @@ index 0000000..8facff6
 \ No newline at end of file
 diff --git a/docs/seo/local-render-checks.json b/docs/seo/local-render-checks.json
 new file mode 100644
-index 0000000..c1487d5
+index 0000000..fb4d233
 --- /dev/null
 +++ b/docs/seo/local-render-checks.json
-@@ -0,0 +1,403 @@
+@@ -0,0 +1,584 @@
 +{
 +  "pages": [
 +    {
@@ -1657,7 +1695,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/about",
@@ -1671,7 +1715,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/services",
@@ -1685,7 +1735,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/contact",
@@ -1699,7 +1755,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/projects",
@@ -1713,7 +1775,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/gallery",
@@ -1727,7 +1795,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/faq",
@@ -1741,7 +1815,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog",
@@ -1755,7 +1835,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/services/cctv-surveillance",
@@ -1769,7 +1855,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/cctv-surveillance#service"
 +    },
 +    {
 +      "path": "/services/biometric-attendance",
@@ -1783,7 +1876,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/biometric-attendance#service"
 +    },
 +    {
 +      "path": "/services/access-control-system",
@@ -1797,7 +1897,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/access-control-system#service"
 +    },
 +    {
 +      "path": "/services/networking-solutions",
@@ -1811,7 +1918,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/networking-solutions#service"
 +    },
 +    {
 +      "path": "/services/wifi-mesh-networking",
@@ -1825,7 +1939,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/wifi-mesh-networking#service"
 +    },
 +    {
 +      "path": "/services/it-support-amc",
@@ -1839,7 +1960,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/it-support-amc#service"
 +    },
 +    {
 +      "path": "/services/server-networking-infrastructure",
@@ -1853,7 +1981,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/server-networking-infrastructure#service"
 +    },
 +    {
 +      "path": "/services/video-door-phone",
@@ -1867,7 +2002,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/video-door-phone#service"
 +    },
 +    {
 +      "path": "/services/smart-door-locks",
@@ -1881,7 +2023,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/smart-door-locks#service"
 +    },
 +    {
 +      "path": "/services/home-automation",
@@ -1895,7 +2044,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/home-automation#service"
 +    },
 +    {
 +      "path": "/services/speaker-solutions",
@@ -1909,7 +2065,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/speaker-solutions#service"
 +    },
 +    {
 +      "path": "/services/glass-break-alarm-system",
@@ -1923,7 +2086,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/glass-break-alarm-system#service"
 +    },
 +    {
 +      "path": "/services/emergency-alarm-system",
@@ -1937,7 +2107,14 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 2,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite",
++        "Service"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": "https://visionsecuretech.in/services/emergency-alarm-system#service"
 +    },
 +    {
 +      "path": "/blog/how-to-choose-the-right-cctv-camera",
@@ -1951,7 +2128,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog/biometric-attendance-vs-manual-attendance",
@@ -1965,7 +2148,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog/top-5-home-automation-features",
@@ -1979,7 +2168,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog/understanding-ip-vs-analog-cctv",
@@ -1993,7 +2188,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog/fire-safety-tips-commercial-buildings",
@@ -2007,7 +2208,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog/benefits-of-access-control-systems",
@@ -2021,7 +2228,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    },
 +    {
 +      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
@@ -2035,7 +2248,13 @@ index 0000000..c1487d5
 +      "robots": [
 +        "index, follow"
 +      ],
-+      "jsonld_count": 2
++      "jsonld_count": 1,
++      "schema_types": [
++        "LocalBusiness",
++        "WebSite"
++      ],
++      "business_id": "https://visionsecuretech.in/#business",
++      "service_id": null
 +    }
 +  ],
 +  "mismatches": [],
@@ -2126,74 +2345,74 @@ index 0000000..e87cb10
 +/_not-found,Metadata/error utility,Next.js generated error route,Not a public content landing page; excluded from sitemap,No
 diff --git a/docs/seo/priority-page-map.csv b/docs/seo/priority-page-map.csv
 new file mode 100644
-index 0000000..d3ddf61
+index 0000000..e2c3d7f
 --- /dev/null
 +++ b/docs/seo/priority-page-map.csv
 @@ -0,0 +1,29 @@
 +﻿existing_url,recommended_primary_search_intent,supporting_topics,implemented_title,implemented_heading,content_improvements,related_internal_links,enquiry_destination,priority,implementation_status
-+https://visionsecuretech.in/,Security and networking solutions in Lucknow,"CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",Security & Networking in Lucknow | VisionSecure,Security and networking solutions in Lucknow,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P1,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/about,About VisionSecure Smart Technologies,"Meet VisionSecure Smart Technologies, a Lucknow business providing security, networking and smart technology solutions.",About VisionSecure | Security & IT in Lucknow,About VisionSecure Smart Technologies,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services,Security and IT services in Lucknow,"Explore CCTV, biometric, LAN cabling, WiFi, access control, automation and maintenance services for homes and businesses in Lucknow.",Security & IT Installation Services in Lucknow | VisionSecure,Security and IT services in Lucknow,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/contact,Contact VisionSecure in Lucknow,"Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",Contact VisionSecure in Lucknow | Installation & AMC Enquiries,Contact VisionSecure in Lucknow,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P1,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/projects,VisionSecure projects,Explore VisionSecure security and networking project information and discuss the requirements for your own installation in Lucknow.,Security & Networking Projects | VisionSecure Lucknow,VisionSecure projects,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/gallery,Security and technology gallery,"Browse security, networking and smart technology images from VisionSecure. Explore the relevant services for your installation needs.",Security & Technology Gallery | VisionSecure,Security and technology gallery,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/faq,Security installation and maintenance FAQs,"Answers to common CCTV, biometric, networking and maintenance questions. Learn what to consider before discussing your installation.",Security Installation & AMC FAQs | VisionSecure,Security installation and maintenance FAQs,Stable heading and page-specific canonical metadata,/services; /contact,Contextual service links,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog,Security and networking guides,"Read practical CCTV, biometric, networking and home automation guides to understand equipment choices and installation requirements.",Security & Networking Guides | VisionSecure Blog,Security and networking guides,Stable heading and page-specific canonical metadata,/services; /contact,Contextual service links,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/cctv-surveillance,CCTV camera installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",CCTV camera installation in Lucknow | VisionSecure,CCTV camera installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=cctv-surveillance,P1,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/biometric-attendance,Biometric attendance installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Biometric attendance installation in Lucknow | VisionSecure,Biometric attendance installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=biometric-attendance,P1,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/access-control-system,Access control system installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Access control system installation in Lucknow | VisionSecure,Access control system installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=access-control-system,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/networking-solutions,LAN networking and structured cabling in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",LAN networking and structured cabling in Lucknow | VisionSecure,LAN networking and structured cabling in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=networking-solutions,P1,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/wifi-mesh-networking,WiFi and mesh network installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",WiFi and mesh network installation in Lucknow | VisionSecure,WiFi and mesh network installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=wifi-mesh-networking,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/it-support-amc,CCTV and IT maintenance / AMC in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",CCTV and IT maintenance / AMC in Lucknow | VisionSecure,CCTV and IT maintenance / AMC in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=it-support-amc,P1,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/server-networking-infrastructure,Server and network infrastructure setup in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Server and network infrastructure setup in Lucknow | VisionSecure,Server and network infrastructure setup in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=server-networking-infrastructure,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/video-door-phone,Video door phone installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Video door phone installation in Lucknow | VisionSecure,Video door phone installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=video-door-phone,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/smart-door-locks,Smart door lock installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Smart door lock installation in Lucknow | VisionSecure,Smart door lock installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=smart-door-locks,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/home-automation,Home automation installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Home automation installation in Lucknow | VisionSecure,Home automation installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=home-automation,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/speaker-solutions,PA system and speaker installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",PA system and speaker installation in Lucknow | VisionSecure,PA system and speaker installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=speaker-solutions,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/glass-break-alarm-system,Glass break alarm installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Glass break alarm installation in Lucknow | VisionSecure,Glass break alarm installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=glass-break-alarm-system,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/services/emergency-alarm-system,Emergency alarm installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Emergency alarm installation in Lucknow | VisionSecure,Emergency alarm installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=emergency-alarm-system,P2,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera,How to Choose the Right CCTV Camera for Your Home,Educational equipment comparison and practical guidance,How to Choose the Right CCTV Camera for Your Home | VisionSecure,How to Choose the Right CCTV Camera for Your Home,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance,Biometric Attendance vs Manual Attendance: Which is Better?,Educational equipment comparison and practical guidance,Biometric Attendance vs Manual Attendance: Which is Better? | VisionSecure,Biometric Attendance vs Manual Attendance: Which is Better?,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/top-5-home-automation-features,Top 5 Home Automation Features You Need in 2024,Educational equipment comparison and practical guidance,Top 5 Home Automation Features You Need in 2024 | VisionSecure,Top 5 Home Automation Features You Need in 2024,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv,Understanding IP vs Analog CCTV Systems,Educational equipment comparison and practical guidance,Understanding IP vs Analog CCTV Systems | VisionSecure,Understanding IP vs Analog CCTV Systems,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings,Fire Safety Tips for Commercial Buildings,Educational equipment comparison and practical guidance,Fire Safety Tips for Commercial Buildings | VisionSecure,Fire Safety Tips for Commercial Buildings,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/benefits-of-access-control-systems,Benefits of Access Control Systems for Offices,Educational equipment comparison and practical guidance,Benefits of Access Control Systems for Offices | VisionSecure,Benefits of Access Control Systems for Offices,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
-+https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide,The Complete Guide to Structured Network Cabling and Server Room Setup,Educational equipment comparison and practical guidance,The Complete Guide to Structured Network Cabling and Server Room Setup | VisionSecure,The Complete Guide to Structured Network Cabling and Server Room Setup,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally; deployment and account verification pending
++https://visionsecuretech.in/,Security and networking solutions in Lucknow,"CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",Security & Networking in Lucknow | VisionSecure,Security and networking solutions in Lucknow,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P1,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/about,About VisionSecure Smart Technologies,"Meet VisionSecure Smart Technologies, a Lucknow business providing security, networking and smart technology solutions.",About VisionSecure | Security & IT in Lucknow,About VisionSecure Smart Technologies,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P2,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/services,Security and IT services in Lucknow,"Explore CCTV, biometric, LAN cabling, WiFi, access control, automation and maintenance services for homes and businesses in Lucknow.",Security & IT Installation Services in Lucknow | VisionSecure,Security and IT services in Lucknow,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P2,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/contact,Contact VisionSecure in Lucknow,"Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",Contact VisionSecure in Lucknow | Installation & AMC Enquiries,Contact VisionSecure in Lucknow,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P1,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/projects,VisionSecure projects,Explore VisionSecure security and networking project information and discuss the requirements for your own installation in Lucknow.,Security & Networking Projects | VisionSecure Lucknow,VisionSecure projects,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P2,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/gallery,Security and technology gallery,"Browse security, networking and smart technology images from VisionSecure. Explore the relevant services for your installation needs.",Security & Technology Gallery | VisionSecure,Security and technology gallery,Stable heading and page-specific canonical metadata,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/faq,Security installation and maintenance FAQs,"Answers to common CCTV, biometric, networking and maintenance questions. Learn what to consider before discussing your installation.",Security Installation & AMC FAQs | VisionSecure,Security installation and maintenance FAQs,Stable heading and page-specific canonical metadata,/services; /contact,Contextual service links,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog,Security and networking guides,"Read practical CCTV, biometric, networking and home automation guides to understand equipment choices and installation requirements.",Security & Networking Guides | VisionSecure Blog,Security and networking guides,Stable heading and page-specific canonical metadata,/services; /contact,Contextual service links,P2,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/services/cctv-surveillance,CCTV camera installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",CCTV camera installation in Lucknow | VisionSecure,CCTV camera installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=cctv-surveillance,P1,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/biometric-attendance,Biometric attendance installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Biometric attendance installation in Lucknow | VisionSecure,Biometric attendance installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=biometric-attendance,P1,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/access-control-system,Access control system installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Access control system installation in Lucknow | VisionSecure,Access control system installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=access-control-system,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/networking-solutions,LAN networking and structured cabling in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",LAN networking and structured cabling in Lucknow | VisionSecure,LAN networking and structured cabling in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=networking-solutions,P1,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/wifi-mesh-networking,WiFi and mesh network installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",WiFi and mesh network installation in Lucknow | VisionSecure,WiFi and mesh network installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=wifi-mesh-networking,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/it-support-amc,CCTV and IT maintenance / AMC in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",CCTV and IT maintenance / AMC in Lucknow | VisionSecure,CCTV and IT maintenance / AMC in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=it-support-amc,P1,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/server-networking-infrastructure,Server and network infrastructure setup in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Server and network infrastructure setup in Lucknow | VisionSecure,Server and network infrastructure setup in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=server-networking-infrastructure,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/video-door-phone,Video door phone installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Video door phone installation in Lucknow | VisionSecure,Video door phone installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=video-door-phone,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/smart-door-locks,Smart door lock installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Smart door lock installation in Lucknow | VisionSecure,Smart door lock installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=smart-door-locks,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/home-automation,Home automation installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Home automation installation in Lucknow | VisionSecure,Home automation installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=home-automation,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/speaker-solutions,PA system and speaker installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",PA system and speaker installation in Lucknow | VisionSecure,PA system and speaker installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=speaker-solutions,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/glass-break-alarm-system,Glass break alarm installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Glass break alarm installation in Lucknow | VisionSecure,Glass break alarm installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=glass-break-alarm-system,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/services/emergency-alarm-system,Emergency alarm installation in Lucknow,"Selection, compatibility, site requirements, installation, handover and maintenance scope",Emergency alarm installation in Lucknow | VisionSecure,Emergency alarm installation in Lucknow,Distinct selection/handover guidance and quotation scope; existing FAQs retained,/services; three related service pages; /contact,/contact?service=emergency-alarm-system,P2,Implemented locally including shared LocalBusiness and page-specific Service schema; deployment and account verification pending
++https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera,How to Choose the Right CCTV Camera for Your Home,Educational equipment comparison and practical guidance,How to Choose the Right CCTV Camera for Your Home | VisionSecure,How to Choose the Right CCTV Camera for Your Home,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance,Biometric Attendance vs Manual Attendance: Which is Better?,Educational equipment comparison and practical guidance,Biometric Attendance vs Manual Attendance: Which is Better? | VisionSecure,Biometric Attendance vs Manual Attendance: Which is Better?,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog/top-5-home-automation-features,Top 5 Home Automation Features You Need in 2024,Educational equipment comparison and practical guidance,Top 5 Home Automation Features You Need in 2024 | VisionSecure,Top 5 Home Automation Features You Need in 2024,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv,Understanding IP vs Analog CCTV Systems,Educational equipment comparison and practical guidance,Understanding IP vs Analog CCTV Systems | VisionSecure,Understanding IP vs Analog CCTV Systems,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings,Fire Safety Tips for Commercial Buildings,Educational equipment comparison and practical guidance,Fire Safety Tips for Commercial Buildings | VisionSecure,Fire Safety Tips for Commercial Buildings,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog/benefits-of-access-control-systems,Benefits of Access Control Systems for Offices,Educational equipment comparison and practical guidance,Benefits of Access Control Systems for Offices | VisionSecure,Benefits of Access Control Systems for Offices,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
++https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide,The Complete Guide to Structured Network Cabling and Server Room Setup,Educational equipment comparison and practical guidance,The Complete Guide to Structured Network Cabling and Server Room Setup | VisionSecure,The Complete Guide to Structured Network Cabling and Server Room Setup,Article-specific metadata and contextual service links,/services; /contact,/contact,P3,Implemented locally including shared LocalBusiness; deployment and account verification pending
 diff --git a/docs/seo/public-url-inventory.csv b/docs/seo/public-url-inventory.csv
 new file mode 100644
-index 0000000..e2ee3af
+index 0000000..8fefdff
 --- /dev/null
 +++ b/docs/seo/public-url-inventory.csv
 @@ -0,0 +1,29 @@
-+﻿absolute_canonical_url,source,page_type,primary_topic,intended_location,implemented_title,implemented_description,implemented_main_heading,implemented_canonical,declared_robots,intended_indexability,included_in_sitemap,recommended_primary_search_intent,remaining_issue,priority,verification_method,verification_date,value_scope
-+https://visionsecuretech.in/,app/page.tsx,home,Security and networking solutions in Lucknow,Lucknow,Security & Networking in Lucknow | VisionSecure,"CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",Security and networking solutions in Lucknow,https://visionsecuretech.in,"index, follow",Index,Yes,Security and networking solutions in Lucknow,Deploy and inspect in Search Console; owner confirm business facts,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/about,app/about/page.tsx,public,About VisionSecure Smart Technologies,Lucknow,About VisionSecure | Security & IT in Lucknow,"Meet VisionSecure Smart Technologies, a Lucknow business providing security, networking and smart technology solutions.",About VisionSecure Smart Technologies,https://visionsecuretech.in/about,"index, follow",Index,Yes,About VisionSecure Smart Technologies,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services,app/services/page.tsx,public,Security and IT services in Lucknow,Lucknow,Security & IT Installation Services in Lucknow | VisionSecure,"Explore CCTV, biometric, LAN cabling, WiFi, access control, automation and maintenance services for homes and businesses in Lucknow.",Security and IT services in Lucknow,https://visionsecuretech.in/services,"index, follow",Index,Yes,Security and IT services in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/contact,app/contact/page.tsx,public,Contact VisionSecure in Lucknow,Lucknow,Contact VisionSecure in Lucknow | Installation & AMC Enquiries,"Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",Contact VisionSecure in Lucknow,https://visionsecuretech.in/contact,"index, follow",Index,Yes,Contact VisionSecure in Lucknow,Deploy and inspect in Search Console; owner confirm business facts,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/projects,app/projects/page.tsx,public,VisionSecure projects,Lucknow,Security & Networking Projects | VisionSecure Lucknow,Explore VisionSecure security and networking project information and discuss the requirements for your own installation in Lucknow.,VisionSecure projects,https://visionsecuretech.in/projects,"index, follow",Index,Yes,VisionSecure projects,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/gallery,app/gallery/page.tsx,public,Security and technology gallery,Not location-specific,Security & Technology Gallery | VisionSecure,"Browse security, networking and smart technology images from VisionSecure. Explore the relevant services for your installation needs.",Security and technology gallery,https://visionsecuretech.in/gallery,"index, follow",Index,Yes,Security and technology gallery,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/faq,app/faq/page.tsx,public,Security installation and maintenance FAQs,Not location-specific,Security Installation & AMC FAQs | VisionSecure,"Answers to common CCTV, biometric, networking and maintenance questions. Learn what to consider before discussing your installation.",Security installation and maintenance FAQs,https://visionsecuretech.in/faq,"index, follow",Index,Yes,Security installation and maintenance FAQs,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog,app/blog/page.tsx,public,Security and networking guides,Not location-specific,Security & Networking Guides | VisionSecure Blog,"Read practical CCTV, biometric, networking and home automation guides to understand equipment choices and installation requirements.",Security and networking guides,https://visionsecuretech.in/blog,"index, follow",Index,Yes,Security and networking guides,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/cctv-surveillance,lib/services.ts,service,CCTV camera installation in Lucknow,Lucknow,CCTV camera installation in Lucknow | VisionSecure,"CCTV camera installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",CCTV camera installation in Lucknow,https://visionsecuretech.in/services/cctv-surveillance,"index, follow",Index,Yes,CCTV camera installation in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/biometric-attendance,lib/services.ts,service,Biometric attendance installation in Lucknow,Lucknow,Biometric attendance installation in Lucknow | VisionSecure,"Biometric attendance installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Biometric attendance installation in Lucknow,https://visionsecuretech.in/services/biometric-attendance,"index, follow",Index,Yes,Biometric attendance installation in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/access-control-system,lib/services.ts,service,Access control system installation in Lucknow,Lucknow,Access control system installation in Lucknow | VisionSecure,"Access control system installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Access control system installation in Lucknow,https://visionsecuretech.in/services/access-control-system,"index, follow",Index,Yes,Access control system installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/networking-solutions,lib/services.ts,service,LAN networking and structured cabling in Lucknow,Lucknow,LAN networking and structured cabling in Lucknow | VisionSecure,"LAN networking and structured cabling in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",LAN networking and structured cabling in Lucknow,https://visionsecuretech.in/services/networking-solutions,"index, follow",Index,Yes,LAN networking and structured cabling in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/wifi-mesh-networking,lib/services.ts,service,WiFi and mesh network installation in Lucknow,Lucknow,WiFi and mesh network installation in Lucknow | VisionSecure,"WiFi and mesh network installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",WiFi and mesh network installation in Lucknow,https://visionsecuretech.in/services/wifi-mesh-networking,"index, follow",Index,Yes,WiFi and mesh network installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/it-support-amc,lib/services.ts,service,CCTV and IT maintenance / AMC in Lucknow,Lucknow,CCTV and IT maintenance / AMC in Lucknow | VisionSecure,"CCTV and IT maintenance / AMC in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",CCTV and IT maintenance / AMC in Lucknow,https://visionsecuretech.in/services/it-support-amc,"index, follow",Index,Yes,CCTV and IT maintenance / AMC in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/server-networking-infrastructure,lib/services.ts,service,Server and network infrastructure setup in Lucknow,Lucknow,Server and network infrastructure setup in Lucknow | VisionSecure,"Server and network infrastructure setup in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Server and network infrastructure setup in Lucknow,https://visionsecuretech.in/services/server-networking-infrastructure,"index, follow",Index,Yes,Server and network infrastructure setup in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/video-door-phone,lib/services.ts,service,Video door phone installation in Lucknow,Lucknow,Video door phone installation in Lucknow | VisionSecure,"Video door phone installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Video door phone installation in Lucknow,https://visionsecuretech.in/services/video-door-phone,"index, follow",Index,Yes,Video door phone installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/smart-door-locks,lib/services.ts,service,Smart door lock installation in Lucknow,Lucknow,Smart door lock installation in Lucknow | VisionSecure,"Smart door lock installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Smart door lock installation in Lucknow,https://visionsecuretech.in/services/smart-door-locks,"index, follow",Index,Yes,Smart door lock installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/home-automation,lib/services.ts,service,Home automation installation in Lucknow,Lucknow,Home automation installation in Lucknow | VisionSecure,"Home automation installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Home automation installation in Lucknow,https://visionsecuretech.in/services/home-automation,"index, follow",Index,Yes,Home automation installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/speaker-solutions,lib/services.ts,service,PA system and speaker installation in Lucknow,Lucknow,PA system and speaker installation in Lucknow | VisionSecure,"PA system and speaker installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",PA system and speaker installation in Lucknow,https://visionsecuretech.in/services/speaker-solutions,"index, follow",Index,Yes,PA system and speaker installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/glass-break-alarm-system,lib/services.ts,service,Glass break alarm installation in Lucknow,Lucknow,Glass break alarm installation in Lucknow | VisionSecure,"Glass break alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Glass break alarm installation in Lucknow,https://visionsecuretech.in/services/glass-break-alarm-system,"index, follow",Index,Yes,Glass break alarm installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/services/emergency-alarm-system,lib/services.ts,service,Emergency alarm installation in Lucknow,Lucknow,Emergency alarm installation in Lucknow | VisionSecure,"Emergency alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Emergency alarm installation in Lucknow,https://visionsecuretech.in/services/emergency-alarm-system,"index, follow",Index,Yes,Emergency alarm installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera,lib/blogs.ts,blog,How to Choose the Right CCTV Camera for Your Home,Not location-specific,How to Choose the Right CCTV Camera for Your Home | VisionSecure,"A complete guide to selecting the perfect CCTV camera for your home, office and business tracking needs.",How to Choose the Right CCTV Camera for Your Home,https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera,"index, follow",Index,Yes,How to Choose the Right CCTV Camera for Your Home,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance,lib/blogs.ts,blog,Biometric Attendance vs Manual Attendance: Which is Better?,Not location-specific,Biometric Attendance vs Manual Attendance: Which is Better? | VisionSecure,Compare the pros and cons of biometric and manual attendance systems for your office or school.,Biometric Attendance vs Manual Attendance: Which is Better?,https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance,"index, follow",Index,Yes,Biometric Attendance vs Manual Attendance: Which is Better?,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/top-5-home-automation-features,lib/blogs.ts,blog,Top 5 Home Automation Features You Need in 2024,Not location-specific,Top 5 Home Automation Features You Need in 2024 | VisionSecure,"Discover the must-have smart home features that can improve your lifestyle, comfort, and save energy.",Top 5 Home Automation Features You Need in 2024,https://visionsecuretech.in/blog/top-5-home-automation-features,"index, follow",Index,Yes,Top 5 Home Automation Features You Need in 2024,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv,lib/blogs.ts,blog,Understanding IP vs Analog CCTV Systems,Not location-specific,Understanding IP vs Analog CCTV Systems | VisionSecure,Learn the key differences between IP and analog cameras to make an informed decision for your security setup.,Understanding IP vs Analog CCTV Systems,https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv,"index, follow",Index,Yes,Understanding IP vs Analog CCTV Systems,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings,lib/blogs.ts,blog,Fire Safety Tips for Commercial Buildings,Not location-specific,Fire Safety Tips for Commercial Buildings | VisionSecure,"Essential fire safety measures, monitoring architectures, and emergency equipment every commercial facility should deploy.",Fire Safety Tips for Commercial Buildings,https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings,"index, follow",Index,Yes,Fire Safety Tips for Commercial Buildings,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/benefits-of-access-control-systems,lib/blogs.ts,blog,Benefits of Access Control Systems for Offices,Not location-specific,Benefits of Access Control Systems for Offices | VisionSecure,Why modern offices are switching from traditional physical locks to smart electronic access control hardware layouts.,Benefits of Access Control Systems for Offices,https://visionsecuretech.in/blog/benefits-of-access-control-systems,"index, follow",Index,Yes,Benefits of Access Control Systems for Offices,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
-+https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide,lib/blogs.ts,blog,The Complete Guide to Structured Network Cabling and Server Room Setup,Not location-specific,The Complete Guide to Structured Network Cabling and Server Room Setup | VisionSecure,"Learn how to plan, route, and deploy professional enterprise network cabling and server racks for zero downtime.",The Complete Guide to Structured Network Cabling and Server Room Setup,https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide,"index, follow",Index,Yes,The Complete Guide to Structured Network Cabling and Server Room Setup,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,Local implementation; not deployed
++﻿absolute_canonical_url,source,page_type,primary_topic,intended_location,implemented_title,implemented_description,implemented_main_heading,implemented_canonical,declared_robots,intended_indexability,included_in_sitemap,recommended_primary_search_intent,remaining_issue,priority,verification_method,verification_date,structured_data_types,business_identity,service_identity,value_scope
++https://visionsecuretech.in/,app/page.tsx,home,Security and networking solutions in Lucknow,Lucknow,Security & Networking in Lucknow | VisionSecure,"CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",Security and networking solutions in Lucknow,https://visionsecuretech.in,"index, follow",Index,Yes,Security and networking solutions in Lucknow,Deploy and inspect in Search Console; owner confirm business facts,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/about,app/about/page.tsx,public,About VisionSecure Smart Technologies,Lucknow,About VisionSecure | Security & IT in Lucknow,"Meet VisionSecure Smart Technologies, a Lucknow business providing security, networking and smart technology solutions.",About VisionSecure Smart Technologies,https://visionsecuretech.in/about,"index, follow",Index,Yes,About VisionSecure Smart Technologies,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/services,app/services/page.tsx,public,Security and IT services in Lucknow,Lucknow,Security & IT Installation Services in Lucknow | VisionSecure,"Explore CCTV, biometric, LAN cabling, WiFi, access control, automation and maintenance services for homes and businesses in Lucknow.",Security and IT services in Lucknow,https://visionsecuretech.in/services,"index, follow",Index,Yes,Security and IT services in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/contact,app/contact/page.tsx,public,Contact VisionSecure in Lucknow,Lucknow,Contact VisionSecure in Lucknow | Installation & AMC Enquiries,"Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",Contact VisionSecure in Lucknow,https://visionsecuretech.in/contact,"index, follow",Index,Yes,Contact VisionSecure in Lucknow,Deploy and inspect in Search Console; owner confirm business facts,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/projects,app/projects/page.tsx,public,VisionSecure projects,Lucknow,Security & Networking Projects | VisionSecure Lucknow,Explore VisionSecure security and networking project information and discuss the requirements for your own installation in Lucknow.,VisionSecure projects,https://visionsecuretech.in/projects,"index, follow",Index,Yes,VisionSecure projects,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/gallery,app/gallery/page.tsx,public,Security and technology gallery,Not location-specific,Security & Technology Gallery | VisionSecure,"Browse security, networking and smart technology images from VisionSecure. Explore the relevant services for your installation needs.",Security and technology gallery,https://visionsecuretech.in/gallery,"index, follow",Index,Yes,Security and technology gallery,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/faq,app/faq/page.tsx,public,Security installation and maintenance FAQs,Not location-specific,Security Installation & AMC FAQs | VisionSecure,"Answers to common CCTV, biometric, networking and maintenance questions. Learn what to consider before discussing your installation.",Security installation and maintenance FAQs,https://visionsecuretech.in/faq,"index, follow",Index,Yes,Security installation and maintenance FAQs,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog,app/blog/page.tsx,public,Security and networking guides,Not location-specific,Security & Networking Guides | VisionSecure Blog,"Read practical CCTV, biometric, networking and home automation guides to understand equipment choices and installation requirements.",Security and networking guides,https://visionsecuretech.in/blog,"index, follow",Index,Yes,Security and networking guides,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/services/cctv-surveillance,lib/services.ts,service,CCTV camera installation in Lucknow,Lucknow,CCTV camera installation in Lucknow | VisionSecure,"CCTV camera installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",CCTV camera installation in Lucknow,https://visionsecuretech.in/services/cctv-surveillance,"index, follow",Index,Yes,CCTV camera installation in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/cctv-surveillance#service,Local implementation; not deployed
++https://visionsecuretech.in/services/biometric-attendance,lib/services.ts,service,Biometric attendance installation in Lucknow,Lucknow,Biometric attendance installation in Lucknow | VisionSecure,"Biometric attendance installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Biometric attendance installation in Lucknow,https://visionsecuretech.in/services/biometric-attendance,"index, follow",Index,Yes,Biometric attendance installation in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/biometric-attendance#service,Local implementation; not deployed
++https://visionsecuretech.in/services/access-control-system,lib/services.ts,service,Access control system installation in Lucknow,Lucknow,Access control system installation in Lucknow | VisionSecure,"Access control system installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Access control system installation in Lucknow,https://visionsecuretech.in/services/access-control-system,"index, follow",Index,Yes,Access control system installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/access-control-system#service,Local implementation; not deployed
++https://visionsecuretech.in/services/networking-solutions,lib/services.ts,service,LAN networking and structured cabling in Lucknow,Lucknow,LAN networking and structured cabling in Lucknow | VisionSecure,"LAN networking and structured cabling in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",LAN networking and structured cabling in Lucknow,https://visionsecuretech.in/services/networking-solutions,"index, follow",Index,Yes,LAN networking and structured cabling in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/networking-solutions#service,Local implementation; not deployed
++https://visionsecuretech.in/services/wifi-mesh-networking,lib/services.ts,service,WiFi and mesh network installation in Lucknow,Lucknow,WiFi and mesh network installation in Lucknow | VisionSecure,"WiFi and mesh network installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",WiFi and mesh network installation in Lucknow,https://visionsecuretech.in/services/wifi-mesh-networking,"index, follow",Index,Yes,WiFi and mesh network installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/wifi-mesh-networking#service,Local implementation; not deployed
++https://visionsecuretech.in/services/it-support-amc,lib/services.ts,service,CCTV and IT maintenance / AMC in Lucknow,Lucknow,CCTV and IT maintenance / AMC in Lucknow | VisionSecure,"CCTV and IT maintenance / AMC in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",CCTV and IT maintenance / AMC in Lucknow,https://visionsecuretech.in/services/it-support-amc,"index, follow",Index,Yes,CCTV and IT maintenance / AMC in Lucknow,Deploy and inspect in Search Console,P1,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/it-support-amc#service,Local implementation; not deployed
++https://visionsecuretech.in/services/server-networking-infrastructure,lib/services.ts,service,Server and network infrastructure setup in Lucknow,Lucknow,Server and network infrastructure setup in Lucknow | VisionSecure,"Server and network infrastructure setup in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Server and network infrastructure setup in Lucknow,https://visionsecuretech.in/services/server-networking-infrastructure,"index, follow",Index,Yes,Server and network infrastructure setup in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/server-networking-infrastructure#service,Local implementation; not deployed
++https://visionsecuretech.in/services/video-door-phone,lib/services.ts,service,Video door phone installation in Lucknow,Lucknow,Video door phone installation in Lucknow | VisionSecure,"Video door phone installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Video door phone installation in Lucknow,https://visionsecuretech.in/services/video-door-phone,"index, follow",Index,Yes,Video door phone installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/video-door-phone#service,Local implementation; not deployed
++https://visionsecuretech.in/services/smart-door-locks,lib/services.ts,service,Smart door lock installation in Lucknow,Lucknow,Smart door lock installation in Lucknow | VisionSecure,"Smart door lock installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Smart door lock installation in Lucknow,https://visionsecuretech.in/services/smart-door-locks,"index, follow",Index,Yes,Smart door lock installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/smart-door-locks#service,Local implementation; not deployed
++https://visionsecuretech.in/services/home-automation,lib/services.ts,service,Home automation installation in Lucknow,Lucknow,Home automation installation in Lucknow | VisionSecure,"Home automation installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Home automation installation in Lucknow,https://visionsecuretech.in/services/home-automation,"index, follow",Index,Yes,Home automation installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/home-automation#service,Local implementation; not deployed
++https://visionsecuretech.in/services/speaker-solutions,lib/services.ts,service,PA system and speaker installation in Lucknow,Lucknow,PA system and speaker installation in Lucknow | VisionSecure,"PA system and speaker installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",PA system and speaker installation in Lucknow,https://visionsecuretech.in/services/speaker-solutions,"index, follow",Index,Yes,PA system and speaker installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/speaker-solutions#service,Local implementation; not deployed
++https://visionsecuretech.in/services/glass-break-alarm-system,lib/services.ts,service,Glass break alarm installation in Lucknow,Lucknow,Glass break alarm installation in Lucknow | VisionSecure,"Glass break alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Glass break alarm installation in Lucknow,https://visionsecuretech.in/services/glass-break-alarm-system,"index, follow",Index,Yes,Glass break alarm installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/glass-break-alarm-system#service,Local implementation; not deployed
++https://visionsecuretech.in/services/emergency-alarm-system,lib/services.ts,service,Emergency alarm installation in Lucknow,Lucknow,Emergency alarm installation in Lucknow | VisionSecure,"Emergency alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",Emergency alarm installation in Lucknow,https://visionsecuretech.in/services/emergency-alarm-system,"index, follow",Index,Yes,Emergency alarm installation in Lucknow,Deploy and inspect in Search Console,P2,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite; Service,https://visionsecuretech.in/#business,https://visionsecuretech.in/services/emergency-alarm-system#service,Local implementation; not deployed
++https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera,lib/blogs.ts,blog,How to Choose the Right CCTV Camera for Your Home,Not location-specific,How to Choose the Right CCTV Camera for Your Home | VisionSecure,"A complete guide to selecting the perfect CCTV camera for your home, office and business tracking needs.",How to Choose the Right CCTV Camera for Your Home,https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera,"index, follow",Index,Yes,How to Choose the Right CCTV Camera for Your Home,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance,lib/blogs.ts,blog,Biometric Attendance vs Manual Attendance: Which is Better?,Not location-specific,Biometric Attendance vs Manual Attendance: Which is Better? | VisionSecure,Compare the pros and cons of biometric and manual attendance systems for your office or school.,Biometric Attendance vs Manual Attendance: Which is Better?,https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance,"index, follow",Index,Yes,Biometric Attendance vs Manual Attendance: Which is Better?,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog/top-5-home-automation-features,lib/blogs.ts,blog,Top 5 Home Automation Features You Need in 2024,Not location-specific,Top 5 Home Automation Features You Need in 2024 | VisionSecure,"Discover the must-have smart home features that can improve your lifestyle, comfort, and save energy.",Top 5 Home Automation Features You Need in 2024,https://visionsecuretech.in/blog/top-5-home-automation-features,"index, follow",Index,Yes,Top 5 Home Automation Features You Need in 2024,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv,lib/blogs.ts,blog,Understanding IP vs Analog CCTV Systems,Not location-specific,Understanding IP vs Analog CCTV Systems | VisionSecure,Learn the key differences between IP and analog cameras to make an informed decision for your security setup.,Understanding IP vs Analog CCTV Systems,https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv,"index, follow",Index,Yes,Understanding IP vs Analog CCTV Systems,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings,lib/blogs.ts,blog,Fire Safety Tips for Commercial Buildings,Not location-specific,Fire Safety Tips for Commercial Buildings | VisionSecure,"Essential fire safety measures, monitoring architectures, and emergency equipment every commercial facility should deploy.",Fire Safety Tips for Commercial Buildings,https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings,"index, follow",Index,Yes,Fire Safety Tips for Commercial Buildings,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog/benefits-of-access-control-systems,lib/blogs.ts,blog,Benefits of Access Control Systems for Offices,Not location-specific,Benefits of Access Control Systems for Offices | VisionSecure,Why modern offices are switching from traditional physical locks to smart electronic access control hardware layouts.,Benefits of Access Control Systems for Offices,https://visionsecuretech.in/blog/benefits-of-access-control-systems,"index, follow",Index,Yes,Benefits of Access Control Systems for Offices,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
++https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide,lib/blogs.ts,blog,The Complete Guide to Structured Network Cabling and Server Room Setup,Not location-specific,The Complete Guide to Structured Network Cabling and Server Room Setup | VisionSecure,"Learn how to plan, route, and deploy professional enterprise network cabling and server racks for zero downtime.",The Complete Guide to Structured Network Cabling and Server Room Setup,https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide,"index, follow",Index,Yes,The Complete Guide to Structured Network Cabling and Server Room Setup,Deploy and inspect in Search Console,P3,Local implemented values; rendered checks in local-render-checks.json; production recorded separately,2026-10-19,LocalBusiness; WebSite,https://visionsecuretech.in/#business,,Local implementation; not deployed
 diff --git a/docs/seo/public-urls.txt b/docs/seo/public-urls.txt
 new file mode 100644
 index 0000000..9637eb6
@@ -2228,12 +2447,29 @@ index 0000000..9637eb6
 +https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings
 +https://visionsecuretech.in/blog/benefits-of-access-control-systems
 +https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide
+diff --git a/docs/seo/pull-request-description.md b/docs/seo/pull-request-description.md
+new file mode 100644
+index 0000000..5f13662
+--- /dev/null
++++ b/docs/seo/pull-request-description.md
+@@ -0,0 +1,11 @@
++# Improve Lucknow SEO and existing enquiry flows
++
++Public pages and articles now have page-specific canonical metadata, stable headings, one sitemap/robots implementation and distinct service intent for Lucknow. The www host redirects permanently to the canonical host without affecting preview hosts. All 28 real public pages are inventoried with separate production evidence.
++
++Contact preselects services and stores locality/PIN in the existing lead workflow. Home email is optional; the popup saves through the existing lead API. Saved-enquiry tracking is separate from Call/WhatsApp click intent and excludes personal fields. Business hours use the owner-confirmed schedule.
++
++Validation: lint, TypeScript, production build, mocked enquiry regression tests, four desktop/mobile browser tests, and rendered metadata/headings/schema/link/sitemap checks for all 28 public pages passed. Production was checked read-only; no real test leads or customer notifications were sent.
++
++See seo-setup-report.md for setup, remaining business-evidence checks, account-side actions and rollback. Pre-existing uncommitted integration work is excluded. Do not merge until reviewed; main merges automatically deploy according to the existing README.
++
++Structured-data completion adds one LocalBusiness/WebSite graph and 13 catalogue-matched Service entities referencing the same business @id, with owner-confirmed hours and safe shared serialization. Focused identity/content/script-safety checks and a committed-source-only build are documented in the handoff.
 diff --git a/docs/seo/seo-setup-report.md b/docs/seo/seo-setup-report.md
 new file mode 100644
-index 0000000..5f59aac
+index 0000000..ca8054a
 --- /dev/null
 +++ b/docs/seo/seo-setup-report.md
-@@ -0,0 +1,113 @@
+@@ -0,0 +1,135 @@
 +﻿# VisionSecure SEO and enquiry implementation handoff
 +
 +Status: local implementation, not deployed. Verification date: 19 October 2026 (Asia/Kolkata). Production observations are exclusively in `live-url-checks.csv`; they do not describe the changed local build.
@@ -2269,7 +2505,7 @@ index 0000000..5f59aac
 +
 +A host-specific permanent 308 redirect sends only `www.visionsecuretech.in` to the same HTTPS non-www path. Local verification confirms query preservation, no loop and no production redirect for localhost or an unrelated preview host. HTTP-to-HTTPS enforcement remains the hosting platform's responsibility; production currently redirects HTTP successfully. After deployment, verify apex as primary, www as redirect and certificates for both in the existing hosting domain settings. Do not create a new project or change DNS unnecessarily.
 +
-+Removed static robots/sitemap files and the postbuild generator to leave one source for each. Added account/API indexing headers. Organization/WebSite JSON-LD now uses the actual existing Vision.png asset and escapes `<` during serialization. Removed a SearchAction whose search behavior was not established. No ratings, reviews, coordinates, opening-hours schema or fabricated partnerships were added.
++Removed static robots/sitemap files and the postbuild generator to leave one source for each. Added account/API indexing headers. One LocalBusiness and WebSite graph uses the actual existing Vision.png asset, stable identities and safe JSON-LD serialization. Each of the 13 real service pages adds one matching Service entity referencing the same business provider. Removed a SearchAction whose search behavior was not established. OpeningHoursSpecification uses only the owner-confirmed schedule. No ratings, reviews, coordinates, fabricated partnerships or unverified service-area properties were added.
 +
 +All 28 rendered pages had the expected metadata/H1, valid JSON-LD JSON, no unresolved public internal href paths and no missing referenced rendered image files. Public pages are reachable through existing navigation/catalogue/contextual links; the service and blog catalogues expose all discovered detail pages. A case mismatch in the Hikvision brand logo reference was corrected to match `Hikvision_logo.png` for Linux hosting. These checks verify paths and markup, not the provenance of project images or testimonials.
 +
@@ -2303,7 +2539,7 @@ index 0000000..5f59aac
 +
 +Owner confirmed in this session: Monday–Saturday 9 AM–8:30 PM; Sunday 10 AM–4 PM. Contact now matches Home. Business phone/address are preserved from existing public content. Do not interpret preservation as independent verification.
 +
-+Owner review still needed: actual project/testimonial provenance, experience/certification/partnership claims, free-site-visit and same-day-support claims, written warranty/AMC terms, actual supported service areas, and the differing YouTube URLs in Contact and organization schema. No new proof or guarantees were invented, and ambiguous existing claims were not expanded. No opening-hours schema was added.
++Owner review still needed: actual project/testimonial provenance, experience/certification/partnership claims, free-site-visit and same-day-support claims, written warranty/AMC terms, actual supported service areas, and ownership of the differing YouTube URLs previously present in Contact and organization schema. The ambiguous social identities have been omitted from the resulting business schema. No new proof or guarantees were invented, and ambiguous existing claims were not expanded. The confirmed hours now appear in LocalBusiness openingHoursSpecification; the address/contact fields use the mutually consistent existing Home and Contact facts. These are repository/published-content evidence, not independent address or Google Business Profile verification.
 +
 +## Validation and limits
 +
@@ -2347,6 +2583,28 @@ index 0000000..5f59aac
 +AMC (`/services/it-support-amc`) is also P1 for content/enquiry follow-up. The complete priority map covers every public page.
 +
 +Final delivery: isolated local commit and `docs/seo/visionsecure-seo.patch`. Remote PR availability is checked separately; production remains unchanged.
++
++Remote review result: feature branch pushed successfully. GitHub connector draft-PR creation returned HTTP 403, `Resource not accessible by integration`; no PR was created. Open https://github.com/vishalkumar1123/VisionSecure/compare/main...feat/lucknow-seo-enquiries?expand=1 and use `pull-request-description.md` to create a draft through an account with PR permission. This is an integration permission limit, not an automatic approval-review rejection. The refreshed patch contains the authored SEO changes since the baseline and excludes the nine originally modified integration files.
++
++## Structured-data completion (19 October 2026)
++
++`lib/schema.ts` defines the sole LocalBusiness identity `https://visionsecuretech.in/#business`. It replaces the prior standalone Organization entity. WebSite publisher and every Service provider reference this identity by @id instead of introducing separate businesses. The root graph renders once; Service renders only after a real catalogue slug resolves. Unknown slugs continue returning 404.
++
++LocalBusiness uses the existing public business name, canonical URL, actual logo/image, telephone, email and PostalAddress already consistent on Home/Contact. OpeningHoursSpecification uses the owner's explicit confirmation: Mon?Sat 09:00?20:30 and Sun 10:00?16:00. No coordinates, ratings, reviews, price ranges, credentials, expanded service areas or disputed social identities are emitted. Service name, description, category and image come from the real catalogue and match visible page content. Every Service has its own canonical #service identity.
++
++`components/json-ld.tsx` is the shared server-rendered script component. `serializeJsonLd` escapes HTML-sensitive characters and Unicode line separators while preserving JSON values. Focused tests render the actual script components, check identities/contacts/hours and all 13 services, reject unverified fields, and verify hostile text cannot close the script element. The rendered checker now checks one LocalBusiness per public document, zero duplicate Organization entities, unique @ids and Service presence/provider linkage on exactly the 13 service pages.
++
++Validation follows [Google LocalBusiness documentation](https://developers.google.com/search/docs/appearance/structured-data/local-business) and [Schema.org Service](https://schema.org/Service). Local automated validation does not establish Google rich-result eligibility or indexing. After an approved deployment, run Google's Rich Results Test and Schema Markup Validator on Home, Contact and representative service URLs, then inspect Google-selected canonicals in the existing Search Console property. These remote validation/account steps have not been claimed complete.
++
++Independent source/build evidence is recorded in `independent-build-verification.json`. Two verification copies use the committed application source with synthetic configuration, no .env.local copy and no symlinks to working-tree source. One tests the exact application snapshot; the second restores all nine originally excluded files from pre-integration commit a93c581. Existing dependency binaries only are shared via a junction, with 554 installed package versions checked against the committed lockfile. The separate offline npm ci did not complete, so fresh-install independence is not claimed. The original working-tree changes are preserved and checked by hash. Only documentation/evidence is updated after the verified source commit.
++
++Both isolated `npm run build` runs passed, including TypeScript and 82 generated static pages. Full lint passed on the isolated committed source. Five structured-data tests and the mocked enquiry regression passed. The updated rendered checker passed on all 28 public pages, including 13 Service entities, one LocalBusiness per document and no duplicate identities. All original excluded working-file content hashes remained unchanged.
++
++During this work, external workspace commits `b7a5425` (previously uncommitted integration work and prior patch) and `d5f7c79` (temporary verification metadata) appeared. They were preserved, not rewritten. The branch therefore now includes the externally committed integration work; it remains outside the authored structured-data code commit. The second independent build restores the nine affected files to a93c581 to demonstrate that the SEO/schema code does not require those changes. Review the external integration commit separately before any merge. Temporary verification metadata is replaced by the sanitized reproducible summary in independent-build-verification.json; local verification directories are excluded from Git.
++
++Remaining owner confirmation: authoritative YouTube/social profile ownership; exact additional service coverage outside the existing Lucknow positioning; project/testimonial provenance; certification, partnership, experience, free-site-visit and same-day-support claims; written warranty/AMC terms; Google Business Profile ownership and address/customer-visit eligibility. The hours are already confirmed and do not need reconfirmation. The schema deliberately omits unconfirmed coverage/social/credential/review claims.
++
++The four desktop/mobile browser regression tests also passed against the isolated committed-source server. No production changes or real leads were made during this follow-up.
 diff --git a/lib/enquiry-services.ts b/lib/enquiry-services.ts
 new file mode 100644
 index 0000000..3c03517
@@ -2377,39 +2635,124 @@ index 0000000..80923d5
 +  } catch { /* Analytics must never block a saved enquiry or navigation. */ }
 +}
 diff --git a/lib/schema.ts b/lib/schema.ts
-index d28a680..6f415ee 100644
+index d28a680..7002ec6 100644
 --- a/lib/schema.ts
 +++ b/lib/schema.ts
-@@ -8,12 +8,12 @@ export const organizationSchema = {
+@@ -1,46 +1,79 @@
+-// lib/schema.ts
++﻿import type { Service } from "@/lib/services"
++import { SITE_ORIGIN } from "@/lib/seo"
  
-   url: "https://visionsecuretech.in",
+-export const organizationSchema = {
+-  "@context": "https://schema.org",
+-  "@type": "Organization",
++// Identity shared by the site graph and each real service's provider reference.
++export const BUSINESS_ID = `${SITE_ORIGIN}/#business`
  
++// Address/contact details agree on Home and Contact; hours were confirmed by
++// the owner in this session. Unconfirmed social identities/coverage are omitted.
++export const localBusinessSchema = {
++  "@type": "LocalBusiness",
++  "@id": BUSINESS_ID,
+   name: "VisionSecure Smart Technologies",
+-
+-  url: "https://visionsecuretech.in",
+-
 -  logo: "https://visionsecuretech.in/images/logo.png",
-+  logo: "https://visionsecuretech.in/images/Vision.png",
- 
+-
 -  image: "https://visionsecuretech.in/images/logo.png",
-+  image: "https://visionsecuretech.in/images/Vision.png",
- 
-   description:
+-
+-  description:
 -    "VisionSecure Smart Technologies provides CCTV Camera Installation, Biometric Attendance Systems, Access Control, Fire Alarm Systems, Networking, Smart Home Automation and Security Solutions across India.",
-+    "VisionSecure Smart Technologies provides CCTV Camera Installation, Biometric Attendance Systems, Access Control, Fire Alarm Systems, Networking, Smart Home Automation and Security Solutions in Lucknow.",
- 
+-
++  url: SITE_ORIGIN,
++  logo: `${SITE_ORIGIN}/images/Vision.png`,
++  image: `${SITE_ORIGIN}/images/Vision.png`,
++  telephone: "+919872133840",
    email: "info@visionsecuretech.in",
+-
+-  telephone: "+91-9872133840",
+-
+-  sameAs: [
+-    "https://www.facebook.com/profile.php?id=61584897029759",
+-    "https://www.instagram.com/visionsecure_tech/",
+-    "https://www.youtube.com/@visionsecure_tech"
+-  ]
++  address: {
++    "@type": "PostalAddress",
++    streetAddress: "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
++    addressLocality: "Lucknow",
++    addressRegion: "Uttar Pradesh",
++    postalCode: "227107",
++    addressCountry: "IN",
++  },
++  openingHoursSpecification: [
++    {
++      "@type": "OpeningHoursSpecification",
++      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map(day => `https://schema.org/${day}`),
++      opens: "09:00",
++      closes: "20:30",
++    },
++    {
++      "@type": "OpeningHoursSpecification",
++      dayOfWeek: ["https://schema.org/Sunday"],
++      opens: "10:00",
++      closes: "16:00",
++    },
++  ],
+ }
  
-@@ -35,12 +35,5 @@ export const websiteSchema = {
+ export const websiteSchema = {
+-  "@context": "https://schema.org",
+-
+   "@type": "WebSite",
+-
++  "@id": `${SITE_ORIGIN}/#website`,
+   name: "VisionSecure Smart Technologies",
++  url: SITE_ORIGIN,
++  publisher: { "@id": BUSINESS_ID },
++}
  
-   url: "https://visionsecuretech.in",
- 
+-  url: "https://visionsecuretech.in",
+-
 -  potentialAction: {
 -    "@type": "SearchAction",
- 
+-
 -    target:
 -      "https://visionsecuretech.in/blog?search={search_term_string}",
--
++export const siteSchema = {
++  "@context": "https://schema.org",
++  "@graph": [localBusinessSchema, websiteSchema],
++}
+ 
 -    "query-input": "required name=search_term_string"
--  }
- }
++export function serviceSchema(service: Service) {
++  const url = `${SITE_ORIGIN}/services/${service.slug}`
++  return {
++    "@context": "https://schema.org",
++    "@type": "Service",
++    "@id": `${url}#service`,
++    name: service.title,
++    serviceType: service.title,
++    description: service.summary,
++    category: service.category,
++    url,
++    image: `${SITE_ORIGIN}${service.image}`,
++    mainEntityOfPage: url,
++    provider: { "@id": BUSINESS_ID },
+   }
+-}
 \ No newline at end of file
++}
++
++// Never interpolate raw JSON into a script element: HTML parses </script>
++// before JSON. Escaping preserves JSON values while preventing script breakout.
++export function serializeJsonLd(value: unknown): string {
++  const json = JSON.stringify(value)
++  if (json === undefined) throw new TypeError("JSON-LD must be serializable")
++  const escapes: Record<string, string> = { "<": "\\u003c", ">": "\\u003e", "&": "\\u0026", "\u2028": "\\u2028", "\u2029": "\\u2029" }
++  return json.replace(/[<>&\u2028\u2029]/g, character => escapes[character])
++}
 diff --git a/lib/seo-pages.json b/lib/seo-pages.json
 new file mode 100644
 index 0000000..0205667
@@ -2909,46 +3252,105 @@ index 0000000..e0486f4
 + console.log(`PASS: saved locality, optional email, legacy default, validation, duplicate/rate limits, provider isolation, auth, tracking privacy/failure isolation, all ${services.length} service handoffs, ${sitemap.length} sitemap URLs.`)
 +}
 +main().catch(error=>{console.error(error);process.exitCode=1})
--- 
-2.54.0.windows.1
-
-
-From a93c5812d1d4c094c7622402b882aa02df82cd70 Mon Sep 17 00:00:00 2001
-From: Vishal <vishalkumar8603763@gmail.com>
-Date: Mon, 19 Oct 2026 20:50:54 +0530
-Subject: [PATCH 2/2] Document review access limit and provide PR handoff
-
----
- docs/seo/pull-request-description.md | 9 +++++++++
- docs/seo/seo-setup-report.md         | 2 ++
- 2 files changed, 11 insertions(+)
- create mode 100644 docs/seo/pull-request-description.md
-
-diff --git a/docs/seo/pull-request-description.md b/docs/seo/pull-request-description.md
+diff --git a/tests/structured-data.test.cjs b/tests/structured-data.test.cjs
 new file mode 100644
-index 0000000..c18f70b
+index 0000000..f38e19c
 --- /dev/null
-+++ b/docs/seo/pull-request-description.md
-@@ -0,0 +1,9 @@
-+# Improve Lucknow SEO and existing enquiry flows
++++ b/tests/structured-data.test.cjs
+@@ -0,0 +1,96 @@
++﻿const assert = require('node:assert/strict')
++const fs = require('node:fs')
++const path = require('node:path')
++const vm = require('node:vm')
++const test = require('node:test')
++const ts = require('typescript')
++const React = require('react')
++const { renderToStaticMarkup } = require('react-dom/server')
++const cache = new Map()
++function load(filename) {
++  const file = path.resolve(filename)
++  if (cache.has(file)) return cache.get(file)
++  if (file.endsWith('.json')) return JSON.parse(fs.readFileSync(file, 'utf8'))
++  const source = ts.transpileModule(fs.readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true } }).outputText
++  const loaded = { exports: {} }
++  const localRequire = name => {
++    if (!name.startsWith('@/') && !name.startsWith('.')) return require(name)
++    const base = name.startsWith('@/') ? path.resolve(name.slice(2)) : path.resolve(path.dirname(file), name)
++    return load([base, base + '.ts', base + '.tsx', base + '.json'].find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile()))
++  }
++  vm.runInThisContext(`(function(require,module,exports){${source}\n})`, { filename: file })(localRequire, loaded, loaded.exports)
++  cache.set(file, loaded.exports)
++  return loaded.exports
++}
++const { BUSINESS_ID, localBusinessSchema: business, websiteSchema, siteSchema, serviceSchema, serializeJsonLd } = load('lib/schema.ts')
++const { services } = load('lib/services.ts')
++const { JsonLd } = load('components/json-ld.tsx')
++const { default: Schema } = load('components/schema.tsx')
++function scripts(html) { return [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])) }
 +
-+Public pages and articles now have page-specific canonical metadata, stable headings, one sitemap/robots implementation and distinct service intent for Lucknow. The www host redirects permanently to the canonical host without affecting preview hosts. All 28 real public pages are inventoried with separate production evidence.
++test('one business identity replaces Organization and WebSite references its publisher', () => {
++  const graph = scripts(renderToStaticMarkup(React.createElement(Schema)))[0]['@graph']
++  assert.equal(graph.filter(entity => entity['@type'] === 'LocalBusiness').length, 1)
++  assert.equal(graph.filter(entity => entity['@type'] === 'Organization').length, 0)
++  assert.equal(new Set(graph.map(entity => entity['@id'])).size, graph.length)
++  assert.equal(business['@id'], BUSINESS_ID)
++  assert.equal(websiteSchema.publisher['@id'], BUSINESS_ID)
++})
 +
-+Contact preselects services and stores locality/PIN in the existing lead workflow. Home email is optional; the popup saves through the existing lead API. Saved-enquiry tracking is separate from Call/WhatsApp click intent and excludes personal fields. Business hours use the owner-confirmed schedule.
++test('business contacts/address and owner-confirmed hours agree with existing visible content', () => {
++  const home = fs.readFileSync('components/contact-section.tsx', 'utf8')
++  const contact = fs.readFileSync('components/contact-page-content.tsx', 'utf8')
++  for (const source of [home, contact]) {
++    assert(source.includes('tel:' + business.telephone))
++    assert(source.includes(business.email))
++    for (const field of ['153, Pili Market, Near Ram Lal Marriage Lawn', 'Narouna, Kakori Mod, Mohan Road', business.address.addressLocality, business.address.addressRegion, business.address.postalCode]) assert(source.includes(field))
++  }
++  assert(contact.includes('Monday - Saturday : 9:00 AM - 8:30 PM'))
++  assert(contact.includes('Sunday : 10:00 AM - 4:00 PM'))
++  const hours = business.openingHoursSpecification
++  assert.deepEqual(hours[0].dayOfWeek.map(day => day.split('/').pop()), ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
++  assert.deepEqual([hours[0].opens, hours[0].closes], ['09:00', '20:30'])
++  assert.deepEqual([hours[1].dayOfWeek, hours[1].opens, hours[1].closes], [['https://schema.org/Sunday'], '10:00', '16:00'])
++  assert.equal(business.address['@type'], 'PostalAddress')
++  assert.equal(business.address.addressCountry, 'IN')
++})
 +
-+Validation: lint, TypeScript, production build, mocked enquiry regression tests, four desktop/mobile browser tests, and rendered metadata/headings/schema/link/sitemap checks for all 28 public pages passed. Production was checked read-only; no real test leads or customer notifications were sent.
++test('all 13 real Service entities match their catalogue and reference the same existing business', () => {
++  const ids = new Set()
++  for (const service of services) {
++    const schema = serviceSchema(service)
++    assert.equal(schema['@type'], 'Service')
++    assert.equal(schema.name, service.title)
++    assert.equal(schema.description, service.summary)
++    assert.equal(schema.url, 'https://visionsecuretech.in/services/' + service.slug)
++    assert.equal(schema.mainEntityOfPage, schema.url)
++    assert.equal(schema.provider['@id'], business['@id'])
++    assert.deepEqual(Object.keys(schema.provider), ['@id'])
++    assert(!ids.has(schema['@id'])); ids.add(schema['@id'])
++    const rendered = scripts(renderToStaticMarkup(React.createElement(React.Fragment, null, React.createElement(Schema), React.createElement(JsonLd, { data: schema }))))
++    assert.equal(rendered.length, 2)
++    assert.equal(rendered[1].provider['@id'], rendered[0]['@graph'][0]['@id'])
++    fs.accessSync(path.join('public', service.image))
++  }
++  assert.equal(ids.size, 13)
++})
 +
-+See seo-setup-report.md for setup, remaining business-evidence checks, account-side actions and rollback. Pre-existing uncommitted integration work is excluded. Do not merge until reviewed; main merges automatically deploy according to the existing README.
-diff --git a/docs/seo/seo-setup-report.md b/docs/seo/seo-setup-report.md
-index 5f59aac..1c8b1a9 100644
---- a/docs/seo/seo-setup-report.md
-+++ b/docs/seo/seo-setup-report.md
-@@ -111,3 +111,5 @@ Five highest-priority pages for the next account setup stage:
- AMC (`/services/it-support-amc`) is also P1 for content/enquiry follow-up. The complete priority map covers every public page.
- 
- Final delivery: isolated local commit and `docs/seo/visionsecure-seo.patch`. Remote PR availability is checked separately; production remains unchanged.
++test('unverified business claims and coverage are absent from all entities', () => {
++  const disallowed = new Set(['geo', 'latitude', 'longitude', 'aggregateRating', 'review', 'hasCredential', 'award', 'areaServed', 'serviceArea', 'priceRange', 'sameAs'])
++  function check(value) {
++    if (!value || typeof value !== 'object') return
++    for (const [key, child] of Object.entries(value)) { assert(!disallowed.has(key), `Unverified property: ${key}`); check(child) }
++  }
++  check(siteSchema); services.forEach(service => check(serviceSchema(service)))
++})
 +
-+Remote review result: feature branch pushed successfully. GitHub connector draft-PR creation returned HTTP 403, `Resource not accessible by integration`; no PR was created. Open https://github.com/vishalkumar1123/VisionSecure/compare/main...feat/lucknow-seo-enquiries?expand=1 and use `pull-request-description.md` to create a draft through an account with PR permission. This is an integration permission limit, not an automatic approval-review rejection. The patch includes all SEO commits since the baseline and excludes the nine pre-existing modified files.
--- 
-2.54.0.windows.1
-
++test('hostile text cannot terminate a JSON-LD script and values survive serialization', () => {
++  const input = { text: '</script><script>alert("x")</script>& >\u2028\u2029', nested: { title: 'हिन्दी < test' } }
++  const serialized = serializeJsonLd(input)
++  assert(!/[<>&\u2028\u2029]/u.test(serialized))
++  assert.deepEqual(JSON.parse(serialized), input)
++  const html = renderToStaticMarkup(React.createElement(JsonLd, { data: input }))
++  assert.equal((html.match(/<script/g) || []).length, 1)
++  assert.deepEqual(scripts(html), [input])
++  assert.throws(() => serializeJsonLd(undefined), TypeError)
++})
