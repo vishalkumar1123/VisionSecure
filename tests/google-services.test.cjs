@@ -75,9 +75,9 @@ async function apiTests() {
   assert(peak <= 4); assert.equal(partial.reports.totals.error, null); assert.equal(partial.reports.searchTotals.error, "PERMISSION_OR_API_DISABLED"); assert.equal(partial.reports.totalsPrevious.error, null)
   const { NextResponse } = require("next/server")
   let user = null, origin = "https://visionsecuretech.in"
-  let cookie = "state", consumed = false, providerCalls = 0, stored = null, revokedToken = null
+  let cookie = "state", consumed = false, providerCalls = 0, stored = null, revokedToken = null, authOptions = null
   process.env.GOOGLE_TOKEN_ENCRYPTION_KEY = randomBytes(32).toString("hex")
-  const stateModel = { findOneAndDelete: async filter => { assert.equal(filter.userId, "admin-fixture"); if (consumed) return null; consumed = true; return { redirectUri: origin + "/api/admin/integrations/google/callback", verifier: security.encryptToken("pkce-test-verifier") } }, deleteMany: async () => {} }
+  const stateModel = { create: async value => { assert.equal(value.userId, "admin-fixture"); assert.equal(value.redirectUri, origin + "/api/admin/integrations/google/callback"); assert.equal(security.decryptToken(value.verifier), "pkce-test-verifier") }, findOneAndDelete: async filter => { assert.equal(filter.userId, "admin-fixture"); if (consumed) return null; consumed = true; return { redirectUri: origin + "/api/admin/integrations/google/callback", verifier: security.encryptToken("pkce-test-verifier") } }, deleteMany: async () => {} }
   const configModel = {
     findOneAndUpdate: async (_filter, update) => { stored = { ...update.$set } },
     findById: () => ({ lean: async () => stored }),
@@ -94,7 +94,7 @@ async function apiTests() {
       setupStatus: async () => ({ missing: [], environment: true }),
       safeError: e => e instanceof security.GoogleError ? e : new security.GoogleError("FAILED"),
       verify: async () => ({ analytics: "Connected", search: "PERMISSION_OR_API_DISABLED", lastVerifiedAt: new Date() }),
-      oauth: () => ({ getToken: async args => { providerCalls++; assert.equal(args.codeVerifier, "pkce-test-verifier"); return { tokens: { refresh_token: "test-refresh-secret", access_token: "test-access-secret", scope: "analytics.readonly" } } }, setCredentials: () => {}, revokeToken: async token => { revokedToken = token } }),
+      oauth: () => ({ generateCodeVerifierAsync: async () => ({ codeVerifier: "pkce-test-verifier", codeChallenge: "test-challenge" }), generateAuthUrl: options => { authOptions = options; return "https://accounts.google.com/o/oauth2/v2/auth" }, getToken: async args => { providerCalls++; assert.equal(args.codeVerifier, "pkce-test-verifier"); return { tokens: { refresh_token: "test-refresh-secret", access_token: "test-access-secret", scope: "analytics.readonly" } } }, setCredentials: () => {}, revokeToken: async token => { revokedToken = token } }),
     },
   })
   const req = (suffix, opts) => new Request(origin + "/api/admin/integrations/google/" + suffix, opts)
@@ -103,6 +103,16 @@ async function apiTests() {
   assert.equal((await integration.integrationAPI(req("disconnect", { method: "POST", headers: { origin: "https://evil.example" } }), "disconnect")).status, 403)
   assert.equal((await integration.integrationAPI(req("connect", { method: "POST", headers: { origin } }), "connect")).status, 403)
   user.role = "super_admin"
+  process.env.GOOGLE_LOGIN_HINT = " owner@example.test "
+  assert.equal((await integration.integrationAPI(req("connect", { method: "POST", headers: { origin } }), "connect")).status, 200)
+  assert.equal(authOptions.login_hint, "owner@example.test")
+  assert.equal(authOptions.prompt, "consent")
+  assert.equal(authOptions.access_type, "offline")
+  assert.equal(authOptions.code_challenge_method, "S256")
+  assert(authOptions.state.length >= 32)
+  delete process.env.GOOGLE_LOGIN_HINT
+  assert.equal((await integration.integrationAPI(req("connect", { method: "POST", headers: { origin } }), "connect")).status, 200)
+  assert(!("login_hint" in authOptions))
   const invalid = await integration.integrationAPI(req("callback?state=wrong&code=test"), "callback")
   assert(invalid.headers.get("location").endsWith("google=invalid_state")); assert.equal(providerCalls, 0)
   cookie = "state"

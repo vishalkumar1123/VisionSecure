@@ -1,0 +1,71 @@
+﻿route_pattern,category,source,intended_treatment,runtime_only_pattern
+/register,Account,app/(auth)/register/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/activity-logs,Admin/account,app/admin/activity-logs/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/analytics,Admin/account,app/admin/analytics/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/customer-center/[section],Admin/account,app/admin/customer-center/[section]/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,Yes; no private IDs enumerated
+/admin/dashboard,Admin/account,app/admin/dashboard/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/inbox,Admin/account,app/admin/inbox/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/leads/[id],Admin/account,app/admin/leads/[id]/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,Yes; no private IDs enumerated
+/admin/leads,Admin/account,app/admin/leads/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/login,Admin/account,app/admin/login/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin,Admin/account,app/admin/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/settings/email,Admin/account,app/admin/settings/email/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/settings/integrations,Admin/account,app/admin/settings/integrations/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/settings,Admin/account,app/admin/settings/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/users/create,Admin/account,app/admin/users/create/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/users,Admin/account,app/admin/users/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/admin/website-analytics/[section],Admin/account,app/admin/website-analytics/[section]/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,Yes; no private IDs enumerated
+/admin/website-analytics,Admin/account,app/admin/website-analytics/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/api/activity-logs/[userId],API endpoint,app/api/activity-logs/[userId]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/activity-logs,API endpoint,app/api/activity-logs/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/customer-center/[...path],API endpoint,app/api/admin/customer-center/[...path]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/admin/dashboard,API endpoint,app/api/admin/dashboard/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/google/callback,API endpoint,app/api/admin/integrations/google/callback/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/google/configure,API endpoint,app/api/admin/integrations/google/configure/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/google/connect,API endpoint,app/api/admin/integrations/google/connect/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/google/disconnect,API endpoint,app/api/admin/integrations/google/disconnect/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/google/status,API endpoint,app/api/admin/integrations/google/status/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/google/test,API endpoint,app/api/admin/integrations/google/test/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/health,API endpoint,app/api/admin/integrations/health/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/integrations/meta/test-send,API endpoint,app/api/admin/integrations/meta/test-send/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/notifications/[id],API endpoint,app/api/admin/notifications/[id]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/admin/notifications/read,API endpoint,app/api/admin/notifications/read/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/notifications/read-all,API endpoint,app/api/admin/notifications/read-all/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/notifications,API endpoint,app/api/admin/notifications/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/notifications/test-email,API endpoint,app/api/admin/notifications/test-email/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/activate,API endpoint,app/api/admin/settings/email/activate/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/disable,API endpoint,app/api/admin/settings/email/disable/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/health,API endpoint,app/api/admin/settings/email/health/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/logs/[id]/retry,API endpoint,app/api/admin/settings/email/logs/[id]/retry/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/admin/settings/email/logs,API endpoint,app/api/admin/settings/email/logs/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/process,API endpoint,app/api/admin/settings/email/process/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email,API endpoint,app/api/admin/settings/email/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/test,API endpoint,app/api/admin/settings/email/test/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/settings/email/verify,API endpoint,app/api/admin/settings/email/verify/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/admin/website-analytics/[section],API endpoint,app/api/admin/website-analytics/[section]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/analytics,API endpoint,app/api/analytics/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/auth/[...nextauth],API endpoint,app/api/auth/[...nextauth]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/auth/change-password,API endpoint,app/api/auth/change-password/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/auth/register,API endpoint,app/api/auth/register/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/create-admin,API endpoint,app/api/create-admin/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/debug-users,API endpoint,app/api/debug-users/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/inquiry,API endpoint,app/api/inquiry/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/internal/customer-center/process,API endpoint,app/api/internal/customer-center/process/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/leads/[id],API endpoint,app/api/leads/[id]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/leads,API endpoint,app/api/leads/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/newsletter,API endpoint,app/api/newsletter/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/test-db,API endpoint,app/api/test-db/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/users/[id]/activate,API endpoint,app/api/users/[id]/activate/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/users/[id]/deactivate,API endpoint,app/api/users/[id]/deactivate/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/users/[id]/reset-password,API endpoint,app/api/users/[id]/reset-password/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/users/[id],API endpoint,app/api/users/[id]/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,Yes; no private IDs enumerated
+/api/users,API endpoint,app/api/users/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/api/webhooks/whatsapp,API endpoint,app/api/webhooks/whatsapp/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/inquiry,Utility POST compatibility endpoint,app/inquiry/route.ts,Excluded from sitemap; no public indexing intended; existing access checks retained,No
+/profile,Account,app/profile/page.tsx,Excluded from sitemap; authentication/authorization retained; private page responses carry noindex,No
+/blog/[slug],Public dynamic route with seven known slugs,lib/blogs.ts,Only real catalogue slugs included; unknown slug returns 404,No; catalogue resolved
+/services/[slug],Public dynamic route with thirteen known slugs,lib/services.ts,Only real catalogue slugs included; unknown slug returns 404,No; catalogue resolved
+https://www.visionsecuretech.in/:path*,Permanent redirect,next.config.mjs,308 to same path on https://visionsecuretech.in; query preserved,No
+/robots.txt,Metadata/error utility,app/robots.ts,Not a public content landing page; excluded from sitemap,No
+/sitemap.xml,Metadata/error utility,app/sitemap.ts,Not a public content landing page; excluded from sitemap,No
+/_not-found,Metadata/error utility,Next.js generated error route,Not a public content landing page; excluded from sitemap,No

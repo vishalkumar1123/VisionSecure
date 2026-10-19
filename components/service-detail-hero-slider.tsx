@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, ShieldCheck } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 
 type ServiceDetailHeroSliderProps = {
+  heading: string
   title: string
   category: string
   summary: string
@@ -17,6 +18,7 @@ type ServiceDetailHeroSliderProps = {
 
 export function ServiceDetailHeroSlider({
   title,
+  heading,
   category,
   summary,
   image,
@@ -72,7 +74,7 @@ export function ServiceDetailHeroSlider({
             <ShieldCheck className="h-4 w-4" aria-hidden="true" />
             {slides[currentSlide].eyebrow}
           </div>
-          <h1 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">{title} Solutions</h1>
+          <h1 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">{heading}</h1>
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}

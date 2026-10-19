@@ -1,5 +1,8 @@
 "use client"
 
+import { enquiryServices } from "@/lib/enquiry-services"
+import { trackPublicEvent } from "@/lib/public-tracking"
+
 import { FormEvent, useEffect, useRef, useState } from "react"
 import {
   Clock3,
@@ -275,7 +278,7 @@ export function ContactSection() {
 
     /* Required validation */
 
-    if (!name || !email || !phone || !requirement) {
+    if (name.length < 2 || !phone || !requirement) {
       alert("Please fill in all required fields.")
       return
     }
@@ -284,7 +287,7 @@ export function ContactSection() {
 
     const cleanPhone = phone.replace(/\D/g, "")
 
-    if (!/^\d{10}$/.test(cleanPhone)) {
+    if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
       alert("Please enter a valid 10-digit mobile number.")
       return
     }
@@ -313,39 +316,14 @@ export function ContactSection() {
         }),
       })
 
-      if (!response.ok) {
+      const saved = await response.json()
+      if (!response.ok || !saved.success) {
         throw new Error(
           "Unable to submit your requirement."
         )
       }
 
-      /* =================================================
-         WHATSAPP FOLLOW-UP
-         ================================================= */
-
-      const whatsappMessage = [
-        "Hello VisionSecure Smart Technologies,",
-        "",
-        "I would like to discuss a requirement.",
-        "",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${cleanPhone}`,
-        `Requirement: ${requirement}`,
-        message ? `Message: ${message}` : "",
-      ]
-        .filter(Boolean)
-        .join("\n")
-
-      const whatsappUrl =
-        `https://wa.me/919872133840?text=` +
-        encodeURIComponent(whatsappMessage)
-
-      window.open(
-        whatsappUrl,
-        "_blank",
-        "noopener,noreferrer"
-      )
+      trackPublicEvent("enquiry_saved", "home")
 
       /* =================================================
          SUCCESS
@@ -770,7 +748,7 @@ export function ContactSection() {
                       </label>
 
                       <input
-                        id="name"
+                        id="name" minLength={2} maxLength={100}
                         name="name"
                         type="text"
                         autoComplete="name"
@@ -787,18 +765,15 @@ export function ContactSection() {
                         htmlFor="email"
                         className="mb-2 block text-sm font-semibold text-foreground dark:text-foreground"
                       >
-                        Email{" "}
-                        <span className="text-destructive">
-                          *
-                        </span>
+                        Email (optional)
                       </label>
 
                       <input
-                        id="email"
+                        id="email" maxLength={254}
                         name="email"
                         type="email"
                         autoComplete="email"
-                        required
+
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="you@example.com"
@@ -870,37 +845,7 @@ export function ContactSection() {
                           Select a service
                         </option>
 
-                        <option value="CCTV Surveillance">
-                          CCTV Surveillance
-                        </option>
-
-                        <option value="Networking">
-                          Networking & WiFi
-                        </option>
-
-                        <option value="Access Control">
-                          Access Control
-                        </option>
-
-                        <option value="Biometric Attendance">
-                          Biometric Attendance
-                        </option>
-
-                        <option value="Video Door Phone">
-                          Video Door Phone
-                        </option>
-
-                        <option value="IT Support & AMC">
-                          IT Support & AMC
-                        </option>
-
-                        <option value="Smart Security">
-                          Smart Security
-                        </option>
-
-                        <option value="Other">
-                          Other Requirement
-                        </option>
+                        {enquiryServices.map(service => <option key={service} value={service}>{service}</option>)}
                       </select>
                     </div>
                   </div>
@@ -916,7 +861,7 @@ export function ContactSection() {
                     </label>
 
                     <textarea
-                      id="message"
+                      id="message" maxLength={3000}
                       name="message"
                       rows={5}
                       value={formData.message}

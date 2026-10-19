@@ -1,0 +1,75 @@
+{
+  "verification_date": "2026-10-19",
+  "application_source_commit": "8e14b5a45fd076e5d436150070996469274d6c42",
+  "branch": "feat/lucknow-seo-enquiries",
+  "source_method": "git archive of the committed application source; complete separate source trees; no source symlinks",
+  "exact_branch_snapshot_build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "typescript": "passed",
+    "static_pages_generated": 82
+  },
+  "without_originally_excluded_integration_edits_build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "typescript": "passed",
+    "static_pages_generated": 82,
+    "restored_from_commit": "a93c581",
+    "restored_files": [
+      ".env.example",
+      "INTEGRATION_SETUP_CENTER.md",
+      "components/admin/website-analytics/google-connect-card.tsx",
+      "docs/security-scan.json",
+      "lib/google/integration-api.ts",
+      "lib/google/oauth.ts",
+      "tests/google-services.test.cjs",
+      "tests/website-analytics-ui.spec.cjs",
+      "tsconfig.tsbuildinfo"
+    ],
+    "typescript_cache": "removed from verification copy before build"
+  },
+  "dependencies": {
+    "method": "Existing dependency directory only via junction; installed package versions checked against committed lockfile. No working-tree source/environment shared.",
+    "locked_installed_package_versions_checked": 554,
+    "version_mismatches": [],
+    "separate_offline_install": "Stopped before completion; not claimed as a fresh-install verification"
+  },
+  "environment": {
+    "real_env_local_copied": false,
+    "synthetic_configuration_only": true,
+    "names": [
+      "MONGODB_URI",
+      "NEXTAUTH_URL",
+      "NEXTAUTH_SECRET",
+      "NEXT_PUBLIC_APP_URL",
+      "NEXT_PUBLIC_SITE_URL"
+    ],
+    "provider_behavior": "No real database, email or Google account calls; synthetic database endpoint points to loopback port 1"
+  },
+  "checks": {
+    "structured_data_tests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "enquiry_regression": "passed with mocked providers",
+    "full_lint_on_archived_source": "passed",
+    "rendered_public_pages": 28,
+    "service_entities": 13,
+    "duplicate_business_entities": 0,
+    "browser_regressions": {
+      "passed": 4,
+      "failed": 0,
+      "method": "localhost desktop/mobile; API lead requests mocked; third-party requests blocked"
+    }
+  },
+  "original_excluded_file_hashes_preserved": true,
+  "externally_created_commits_preserved": [
+    "b7a5425",
+    "d5f7c79"
+  ],
+  "limitations": [
+    "Existing lockfile-matched dependencies were reused; no completed fresh npm ci.",
+    "Nested archive builds emit a multiple-lockfile workspace-root warning; source aliases resolve within each separate archived project.",
+    "Google Rich Results Test/Schema Markup Validator, indexing and Google account state are not verified."
+  ]
+}

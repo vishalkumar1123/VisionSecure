@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 // Sahi kiya hua unique brands array
 const brands = [
   { name: "CP Plus", logoPath: "/images/brands/cpplus_logo.png" },
-  { name: "Hikvision", logoPath: "/images/brands/hikvision_logo.png" },
+  { name: "Hikvision", logoPath: "/images/brands/Hikvision_logo.png" },
   { name: "Dahua", logoPath: "/images/brands/DAHUA_logo.png" },
   { name: "IMOU", logoPath: "/images/brands/Imou_logo.png" },
   { name: "EZVIZ", logoPath: "/images/brands/EZVIZ_logo.png" },

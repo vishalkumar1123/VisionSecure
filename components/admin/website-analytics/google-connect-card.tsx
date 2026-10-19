@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { action, api, ErrorNotice, Panel } from "./shared"
 import GoogleSetup from "./google-setup"
 
-type Status = { connected: boolean; accountEmail: string | null; analytics: string; search: string; lastVerifiedAt: string | null; lastSuccessfulAt?: string; lastError?: string; missing: string[]; propertyId: string; siteUrl: string; pagespeed: string; canConfigure?: boolean; redirectUri?: string; savedClientId?: string; environment?: boolean }
+type Status = { connected: boolean; accountEmail: string | null; analytics: string; search: string; lastVerifiedAt: string | null; lastSuccessfulAt?: string; lastError?: string; missing: string[]; propertyId: string; siteUrl: string; pagespeed: string; canConfigure?: boolean; redirectUri?: string; savedClientId?: string; environment?: boolean; preferredAccount?: string | null }
 export default function GoogleConnectCard({ onChanged }: { onChanged?: () => Promise<void> } = {}) {
   const [status, setStatus] = useState<Status | null>(null), [busy, setBusy] = useState(false), [error, setError] = useState(""), [notice, setNotice] = useState("")
   useEffect(() => {
@@ -32,6 +32,12 @@ export default function GoogleConnectCard({ onChanged }: { onChanged?: () => Pro
     {!status ? <p role="status">Checking connection…</p> : <>
       <span className="inline-flex rounded-full bg-secondary px-3 py-1 text-sm font-semibold">{busy ? "Working…" : state}</span>
       {status.accountEmail && <p className="break-all text-sm">Google account: {status.accountEmail}</p>}
+      {status.canConfigure && <div className="space-y-2 rounded-xl border border-border p-3 text-sm">
+        {status.preferredAccount && <p className="break-all">Preferred Google account: {status.preferredAccount}</p>}
+        <p className="break-all">OAuth Client ID: {status.savedClientId || "Not configured"}</p>
+        <p className="break-all">Authorized redirect URI: {status.redirectUri || "Unavailable"}</p>
+        <p className="text-muted-foreground">For redirect_uri_mismatch, register this exact URI under this client in Google Cloud. If the app is in Testing, add your Google account under Audience → Test users. The account must also have access to Analytics and Search Console.</p>
+      </div>}
       <dl className="grid gap-4 text-sm sm:grid-cols-2"><div><dt className="text-muted-foreground">Analytics · {status.propertyId}</dt><dd className="mt-1 break-words">{status.analytics}</dd></div><div><dt className="text-muted-foreground">Search Console</dt><dd className="mt-1 break-all">{status.search}<br/>{status.siteUrl}</dd></div><div><dt className="text-muted-foreground">PageSpeed</dt><dd>{status.pagespeed}</dd></div><div><dt className="text-muted-foreground">Last verified</dt><dd>{status.lastVerifiedAt ? new Date(status.lastVerifiedAt).toLocaleString() : "Not checked"}</dd></div><div><dt className="text-muted-foreground">Last successful request</dt><dd>{status.lastSuccessfulAt ? new Date(status.lastSuccessfulAt).toLocaleString() : "Not recorded"}</dd></div><div><dt className="text-muted-foreground">Last sanitized error</dt><dd>{status.lastError || "None recorded"}</dd></div></dl>
       {status.missing.includes("GOOGLE_TOKEN_ENCRYPTION_KEY") && <ErrorNotice error="Google token encryption must be configured first. Set GOOGLE_TOKEN_ENCRYPTION_KEY in deployment settings."/>}
       {status.canConfigure && status.canConfigure && !status.environment && !status.connected && <GoogleSetup canConfigure={Boolean(status.canConfigure) && !status.missing.includes("GOOGLE_TOKEN_ENCRYPTION_KEY")} redirectUri={status.redirectUri || "https://visionsecuretech.in/api/admin/integrations/google/callback"} clientId={status.savedClientId} onSaved={async () => { setStatus(await api<Status>("/api/admin/integrations/google/status")); setNotice("Google app saved. You can now sign in with Google."); await onChanged?.() }}/>}

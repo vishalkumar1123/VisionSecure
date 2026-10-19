@@ -81,7 +81,7 @@ export function HeroSlider() {
               </div>
 
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-balance">
-                {slides[currentSlide].headline}
+                Security and networking solutions in Lucknow
               </h1>
 
               <p className="text-lg lg:text-xl text-white/85 max-w-xl leading-relaxed">

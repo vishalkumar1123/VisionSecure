@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo"
+export const metadata = pageMetadata("/")
 import { Navbar } from "@/components/navbar"
 import { HeroSlider } from "@/components/hero-slider"
 import { TrustSection } from "@/components/trust-section"

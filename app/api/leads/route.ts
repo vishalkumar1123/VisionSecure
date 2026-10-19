@@ -15,6 +15,7 @@ const createLeadSchema = z.object({
   phone: z.string().transform((phone) => phone.replace(/\D/g, "")).pipe(z.string().regex(/^[6-9]\d{9}$/, "Please enter a valid 10-digit Indian mobile number")),
   email: z.string().trim().email("Please enter a valid email address").max(254).optional().or(z.literal("")),
   service: z.string().trim().min(2, "Please select a service or requirement").max(160),
+  locality: z.string().trim().max(160).optional().default(""),
   budget: z.string().trim().max(100).optional().default(""),
   message: z.string().trim().max(3000).optional().default(""),
   source: z.enum(["Website", "AI Chat", "AI Assistant"]).optional().default("Website"),
@@ -142,6 +143,7 @@ if (existingLead) {
         phone: body.phone,
         email: body.email,
         service: body.service,
+        locality: body.locality,
         budget: body.budget,
         message: body.message,
 
@@ -166,7 +168,7 @@ if (existingLead) {
 
     // VNC is deliberately isolated: delivery failures never change a saved lead response.
     console.info("Lead created", { leadId: newLead._id.toString() })
-    await NotificationActivityLogService.record("LEAD_CREATED", { leadId: newLead._id.toString() })
+    await NotificationActivityLogService.record("LEAD_CREATED", { leadId: newLead._id.toString() }).catch(() => undefined)
     await NotificationService.notifyNewLead(newLead._id.toString(), notificationPayload).catch((error: unknown) => {
       console.error("VNC notification dispatch failed", { leadId: newLead._id.toString(), error: error instanceof Error ? error.message : "unknown" })
     })

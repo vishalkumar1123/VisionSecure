@@ -1,0 +1,254 @@
+[
+  {
+    "path": "/",
+    "title": "Security & Networking in Lucknow | VisionSecure",
+    "description": "CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",
+    "heading": "Security and networking solutions in Lucknow",
+    "type": "home",
+    "source": "app/page.tsx",
+    "intent": "Security and networking solutions in Lucknow"
+  },
+  {
+    "path": "/about",
+    "title": "About VisionSecure | Security & IT in Lucknow",
+    "description": "Meet VisionSecure Smart Technologies, a Lucknow business providing security, networking and smart technology solutions.",
+    "heading": "About VisionSecure Smart Technologies",
+    "type": "public",
+    "source": "app/about/page.tsx",
+    "intent": "About VisionSecure Smart Technologies"
+  },
+  {
+    "path": "/services",
+    "title": "Security & IT Installation Services in Lucknow | VisionSecure",
+    "description": "Explore CCTV, biometric, LAN cabling, WiFi, access control, automation and maintenance services for homes and businesses in Lucknow.",
+    "heading": "Security and IT services in Lucknow",
+    "type": "public",
+    "source": "app/services/page.tsx",
+    "intent": "Security and IT services in Lucknow"
+  },
+  {
+    "path": "/contact",
+    "title": "Contact VisionSecure in Lucknow | Installation & AMC Enquiries",
+    "description": "Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",
+    "heading": "Contact VisionSecure in Lucknow",
+    "type": "public",
+    "source": "app/contact/page.tsx",
+    "intent": "Contact VisionSecure in Lucknow"
+  },
+  {
+    "path": "/projects",
+    "title": "Security & Networking Projects | VisionSecure Lucknow",
+    "description": "Explore VisionSecure security and networking project information and discuss the requirements for your own installation in Lucknow.",
+    "heading": "VisionSecure projects",
+    "type": "public",
+    "source": "app/projects/page.tsx",
+    "intent": "VisionSecure projects"
+  },
+  {
+    "path": "/gallery",
+    "title": "Security & Technology Gallery | VisionSecure",
+    "description": "Browse security, networking and smart technology images from VisionSecure. Explore the relevant services for your installation needs.",
+    "heading": "Security and technology gallery",
+    "type": "public",
+    "source": "app/gallery/page.tsx",
+    "intent": "Security and technology gallery"
+  },
+  {
+    "path": "/faq",
+    "title": "Security Installation & AMC FAQs | VisionSecure",
+    "description": "Answers to common CCTV, biometric, networking and maintenance questions. Learn what to consider before discussing your installation.",
+    "heading": "Security installation and maintenance FAQs",
+    "type": "public",
+    "source": "app/faq/page.tsx",
+    "intent": "Security installation and maintenance FAQs"
+  },
+  {
+    "path": "/blog",
+    "title": "Security & Networking Guides | VisionSecure Blog",
+    "description": "Read practical CCTV, biometric, networking and home automation guides to understand equipment choices and installation requirements.",
+    "heading": "Security and networking guides",
+    "type": "public",
+    "source": "app/blog/page.tsx",
+    "intent": "Security and networking guides"
+  },
+  {
+    "path": "/services/cctv-surveillance",
+    "title": "CCTV camera installation in Lucknow | VisionSecure",
+    "description": "CCTV camera installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "CCTV camera installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "CCTV camera installation in Lucknow"
+  },
+  {
+    "path": "/services/biometric-attendance",
+    "title": "Biometric attendance installation in Lucknow | VisionSecure",
+    "description": "Biometric attendance installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Biometric attendance installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Biometric attendance installation in Lucknow"
+  },
+  {
+    "path": "/services/access-control-system",
+    "title": "Access control system installation in Lucknow | VisionSecure",
+    "description": "Access control system installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Access control system installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Access control system installation in Lucknow"
+  },
+  {
+    "path": "/services/networking-solutions",
+    "title": "LAN networking and structured cabling in Lucknow | VisionSecure",
+    "description": "LAN networking and structured cabling in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "LAN networking and structured cabling in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "LAN networking and structured cabling in Lucknow"
+  },
+  {
+    "path": "/services/wifi-mesh-networking",
+    "title": "WiFi and mesh network installation in Lucknow | VisionSecure",
+    "description": "WiFi and mesh network installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "WiFi and mesh network installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "WiFi and mesh network installation in Lucknow"
+  },
+  {
+    "path": "/services/it-support-amc",
+    "title": "CCTV and IT maintenance / AMC in Lucknow | VisionSecure",
+    "description": "CCTV and IT maintenance / AMC in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "CCTV and IT maintenance / AMC in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "CCTV and IT maintenance / AMC in Lucknow"
+  },
+  {
+    "path": "/services/server-networking-infrastructure",
+    "title": "Server and network infrastructure setup in Lucknow | VisionSecure",
+    "description": "Server and network infrastructure setup in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Server and network infrastructure setup in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Server and network infrastructure setup in Lucknow"
+  },
+  {
+    "path": "/services/video-door-phone",
+    "title": "Video door phone installation in Lucknow | VisionSecure",
+    "description": "Video door phone installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Video door phone installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Video door phone installation in Lucknow"
+  },
+  {
+    "path": "/services/smart-door-locks",
+    "title": "Smart door lock installation in Lucknow | VisionSecure",
+    "description": "Smart door lock installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Smart door lock installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Smart door lock installation in Lucknow"
+  },
+  {
+    "path": "/services/home-automation",
+    "title": "Home automation installation in Lucknow | VisionSecure",
+    "description": "Home automation installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Home automation installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Home automation installation in Lucknow"
+  },
+  {
+    "path": "/services/speaker-solutions",
+    "title": "PA system and speaker installation in Lucknow | VisionSecure",
+    "description": "PA system and speaker installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "PA system and speaker installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "PA system and speaker installation in Lucknow"
+  },
+  {
+    "path": "/services/glass-break-alarm-system",
+    "title": "Glass break alarm installation in Lucknow | VisionSecure",
+    "description": "Glass break alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Glass break alarm installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Glass break alarm installation in Lucknow"
+  },
+  {
+    "path": "/services/emergency-alarm-system",
+    "title": "Emergency alarm installation in Lucknow | VisionSecure",
+    "description": "Emergency alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "heading": "Emergency alarm installation in Lucknow",
+    "type": "service",
+    "source": "lib/services.ts",
+    "intent": "Emergency alarm installation in Lucknow"
+  },
+  {
+    "path": "/blog/how-to-choose-the-right-cctv-camera",
+    "title": "How to Choose the Right CCTV Camera for Your Home | VisionSecure",
+    "description": "A complete guide to selecting the perfect CCTV camera for your home, office and business tracking needs.",
+    "heading": "How to Choose the Right CCTV Camera for Your Home",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "How to Choose the Right CCTV Camera for Your Home"
+  },
+  {
+    "path": "/blog/biometric-attendance-vs-manual-attendance",
+    "title": "Biometric Attendance vs Manual Attendance: Which is Better? | VisionSecure",
+    "description": "Compare the pros and cons of biometric and manual attendance systems for your office or school.",
+    "heading": "Biometric Attendance vs Manual Attendance: Which is Better?",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "Biometric Attendance vs Manual Attendance: Which is Better?"
+  },
+  {
+    "path": "/blog/top-5-home-automation-features",
+    "title": "Top 5 Home Automation Features You Need in 2024 | VisionSecure",
+    "description": "Discover the must-have smart home features that can improve your lifestyle, comfort, and save energy.",
+    "heading": "Top 5 Home Automation Features You Need in 2024",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "Top 5 Home Automation Features You Need in 2024"
+  },
+  {
+    "path": "/blog/understanding-ip-vs-analog-cctv",
+    "title": "Understanding IP vs Analog CCTV Systems | VisionSecure",
+    "description": "Learn the key differences between IP and analog cameras to make an informed decision for your security setup.",
+    "heading": "Understanding IP vs Analog CCTV Systems",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "Understanding IP vs Analog CCTV Systems"
+  },
+  {
+    "path": "/blog/fire-safety-tips-commercial-buildings",
+    "title": "Fire Safety Tips for Commercial Buildings | VisionSecure",
+    "description": "Essential fire safety measures, monitoring architectures, and emergency equipment every commercial facility should deploy.",
+    "heading": "Fire Safety Tips for Commercial Buildings",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "Fire Safety Tips for Commercial Buildings"
+  },
+  {
+    "path": "/blog/benefits-of-access-control-systems",
+    "title": "Benefits of Access Control Systems for Offices | VisionSecure",
+    "description": "Why modern offices are switching from traditional physical locks to smart electronic access control hardware layouts.",
+    "heading": "Benefits of Access Control Systems for Offices",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "Benefits of Access Control Systems for Offices"
+  },
+  {
+    "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+    "title": "The Complete Guide to Structured Network Cabling and Server Room Setup | VisionSecure",
+    "description": "Learn how to plan, route, and deploy professional enterprise network cabling and server racks for zero downtime.",
+    "heading": "The Complete Guide to Structured Network Cabling and Server Room Setup",
+    "type": "blog",
+    "source": "lib/blogs.ts",
+    "intent": "The Complete Guide to Structured Network Cabling and Server Room Setup"
+  }
+]
