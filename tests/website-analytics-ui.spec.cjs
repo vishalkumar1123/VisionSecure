@@ -55,6 +55,16 @@ test("configuration missing disables connect and disconnect requires confirmatio
   await mount(page, connect, "dark", () => ({ json: { ...status, connected: false, missing: ["GOOGLE_CLIENT_ID"] } }))
   await expect(page.getByRole("button", { name: "Sign in with Google", exact: true })).toBeDisabled()
 })
+
+for (const width of [375, 1280]) test(`Google connection diagnostics ${width}px`, async ({ page }) => {
+  await page.setViewportSize({ width, height: 900 })
+  await mount(page, connect, "light", () => ({ json: { ...status, connected: false, canConfigure: true, environment: true, preferredAccount: "owner@example.test", savedClientId: "fixture.apps.googleusercontent.com", redirectUri: "https://visionsecuretech.in/api/admin/integrations/google/callback" } }))
+  await expect(page.getByText("Preferred Google account: owner@example.test")).toBeVisible()
+  await expect(page.getByText("OAuth Client ID: fixture.apps.googleusercontent.com")).toBeVisible()
+  await expect(page.getByText("Authorized redirect URI: https://visionsecuretech.in/api/admin/integrations/google/callback")).toBeVisible()
+  await expect(page.getByRole("button", { name: "Sign in with Google", exact: true })).toBeEnabled()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+})
 test("disconnect cancel does not revoke; accepted dialog does", async ({ page }) => {
   const requests = await mount(page, connect)
   await expect(page.getByRole("button", { name: "Disconnect", exact: true })).toBeVisible()

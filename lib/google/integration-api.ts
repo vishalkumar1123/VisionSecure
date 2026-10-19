@@ -46,7 +46,8 @@ export async function integrationAPI(request: Request, action: string) {
       const { codeVerifier, codeChallenge } = await client.generateCodeVerifierAsync()
       await GoogleOAuthState.create({ _id: digest(state), userId: user!.id, verifier: encryptToken(codeVerifier), redirectUri, expiresAt: new Date(Date.now() + 10 * 60000) })
       jar.set(cookieName, state, { httpOnly: true, secure: origin.startsWith("https:"), sameSite: "lax", path: "/api/admin/integrations/google", maxAge: 600 })
-      return json({ url: client.generateAuthUrl({ scope: scopes, access_type: "offline", prompt: "consent", state, code_challenge: codeChallenge, code_challenge_method: "S256" as import("google-auth-library").CodeChallengeMethod }) })
+      const loginHint = process.env.GOOGLE_LOGIN_HINT?.trim()
+      return json({ url: client.generateAuthUrl({ scope: scopes, access_type: "offline", prompt: "consent", ...(loginHint ? { login_hint: loginHint } : {}), state, code_challenge: codeChallenge, code_challenge_method: "S256" as import("google-auth-library").CodeChallengeMethod }) })
     }
     if (action === "callback") {
       const params = new URL(request.url).searchParams, state = params.get("state") || ""

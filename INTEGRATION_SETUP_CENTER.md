@@ -1,6 +1,71 @@
 # VisionSecure Integration Setup Center
 
+## Latest OpenAI key replacement
+
+Replaced `OPENAI_API_KEY` in ignored `.env.local` with the newly supplied key; retained the configured model. A fresh bounded Responses API request (`Reply with OK.`, `store: false`, maximum 32 output tokens, no retries or customer data) returned HTTP 429, `credit_balance_exhausted`. The replacement key is configured locally, but generation remains blocked by provider billing credits. Add credits to the OpenAI API project/account and retest. Restart the local app to reload environment changes. Vercel Production still requires its own `OPENAI_API_KEY` update and redeploy; this local operation did not change deployment settings. Credential scan found matches only in ignored, untracked `.env.local`.
+
+## Preferred Google account follow-up
+
+The owner's supplied Gmail is configured as `GOOGLE_LOGIN_HINT` only in ignored `.env.local`. Google connection requests now pass that value as `login_hint`, Google's account-selection hint. This does not grant permissions, create an administrator, restrict other Google accounts, or complete consent. The existing website administrator login remains separate from the Analytics/Search Console connection.
+
+The Super Admin integration card now displays the preferred account, active OAuth Client ID and exact callback even when credentials come from deployment settings. Compare those displayed values with Google Cloud rather than assuming the live site uses local settings.
+
+For Vercel Production, set `GOOGLE_LOGIN_HINT` to the same owner Gmail and deploy this code change. In Google Cloud > Google Auth Platform > Audience, add that Gmail under Test users if the app is in Testing. Confirm that Gmail has access to the actual Analytics property and Search Console site. Continue using the new `6csmr...` OAuth client and the two callbacks below. A `redirect_uri_mismatch` still requires correcting the callback registration; choosing an email does not resolve it.
+
+The latest exact provider error has been requested because “not working” does not establish whether the remaining failure is callback registration, test-user eligibility, consent, or service permissions. No authenticated Google Cloud/Vercel dashboard session is available here; the owner must complete Google consent. Official behavior: [Google OAuth login_hint and redirect URI requirements](https://developers.google.com/identity/protocols/oauth2/web-server).
+
+Validation: Google OAuth and integration regression suites passed, including preferred-account and no-hint flows with PKCE/state retained. TypeScript passed. Two browser tests passed for visible account/client/callback diagnostics at 375px and 1280px with no horizontal overflow. Credential scan matched only ignored `.env.local`. These are local/mocked checks, not proof of Google account eligibility or successful production consent.
+
+## Current Google OAuth fix: redirect_uri_mismatch
+
+The latest supplied credential pair replaces the earlier client. Ignored `.env.local` now contains Client ID `80619856686-6csmrkii0rmvctgkd3rm0vuqngj84emd.apps.googleusercontent.com` and its matching secret. The secret is not reproduced here. Both environment credentials take precedence over any saved database app configuration.
+
+Checked from the actual local environment and Google OAuth library: the generated request uses that new Client ID and `http://localhost:3000/api/admin/integrations/google/callback`. The encryption key has the required format and app URL settings have no conflicts. This verifies local request construction, not Google Cloud registration or a completed connection.
+
+### Google Cloud settings to complete
+
+1. Open [Google Cloud credentials for sigma-rarity-419017](https://console.cloud.google.com/apis/credentials?project=sigma-rarity-419017).
+2. Open the **Web application** OAuth client whose ID is exactly `80619856686-6csmrkii0rmvctgkd3rm0vuqngj84emd.apps.googleusercontent.com`. Editing the previous `tgbous...` client will not fix requests using the new client.
+3. Under **Authorized redirect URIs**, add both entries below as separate rows and save:
+
+   ```text
+   http://localhost:3000/api/admin/integrations/google/callback
+   https://visionsecuretech.in/api/admin/integrations/google/callback
+   ```
+
+   These are full callback paths, not just website origins. Adding them only under Authorized JavaScript origins does not register the OAuth callback. Keep scheme, hostname, port, path and trailing slash exactly as shown; there is no trailing slash after `callback`.
+4. For local use, restart the existing Next.js server, use `http://localhost:3000`, and start a fresh Google connection from Settings > Integrations. Do not retry an old Google error-page URL. If the dev server runs on another port, align the app URL settings and registered callback with that port before connecting.
+5. For the live website, update `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in the hosting provider's server environment and set `AUTH_URL`, `NEXTAUTH_URL`, `NEXT_PUBLIC_APP_URL` and `NEXT_PUBLIC_SITE_URL` to `https://visionsecuretech.in`, then redeploy. Local `.env.local` edits do not update hosting configuration. Preserve the existing Google encryption key if encrypted settings or tokens already exist.
+6. Enable Analytics Data API and Search Console API. If the OAuth app is in Testing, add the Google account you will use as a test user. Connect with an account that can access the Analytics property and Search Console site, approve consent, then run the Google integration test.
+
+If the error persists, open **error details** and compare `redirect_uri` and `client_id` with the two values above. Share only those public values for diagnosis, not the full authorization URL, secret, code or state. Google Cloud changes and interactive account consent have not been completed by this local update. Google remains unverified until that flow succeeds.
+
+Google requires the requested callback to match a registered redirect URI exactly: [official OAuth web-server guide](https://developers.google.com/identity/protocols/oauth2/web-server#authorization-errors-redirect-uri-mismatch). Rotate the secret shared in chat before production use, updating the matching server configuration afterward.
+
+### Vercel production settings
+
+Hosting is Vercel (confirmed by the operator and public response headers). There is no authenticated Vercel or Google Cloud management connection in this workspace, so the remote settings below still require dashboard access.
+
+Open the Vercel project serving `visionsecuretech.in` > Settings > Environment Variables. Add or update these values for **Production**:
+
+| Variable | Production value |
+| --- | --- |
+| `GOOGLE_CLIENT_ID` | `80619856686-6csmrkii0rmvctgkd3rm0vuqngj84emd.apps.googleusercontent.com` |
+| `GOOGLE_CLIENT_SECRET` | Matching secret from ignored local `.env.local`; never put it in a `NEXT_PUBLIC_` variable |
+| `AUTH_URL` | `https://visionsecuretech.in` |
+| `NEXTAUTH_URL` | `https://visionsecuretech.in` |
+| `NEXT_PUBLIC_APP_URL` | `https://visionsecuretech.in` |
+| `NEXT_PUBLIC_SITE_URL` | `https://visionsecuretech.in` |
+
+Preserve the deployed `GOOGLE_TOKEN_ENCRYPTION_KEY` if already configured; it must be 64 hexadecimal characters. If absent on a fresh production integration, generate a dedicated production key before connecting. Do not replace a key that protects existing Google credentials/tokens.
+
+Save, then redeploy the production deployment so it picks up the new variables. Add both localhost and production callbacks to the **same new Google Cloud OAuth client**, as shown above. After deployment, visit `https://visionsecuretech.in/admin/settings/integrations`, check that the displayed callback is the production callback, then start a fresh Google connection. Local app URL variables must remain `http://localhost:3000`; do not copy the production URL values into local configuration.
+
+Validation for this credential update: Google OAuth and integration regression suites passed; new-client callback generation passed for both localhost and simulated production configuration. The secret scan found credentials only in ignored, untracked `.env.local`. No remote settings, Google consent or production connection have been verified by these tests.
+
 ## Latest configuration and live checks — 2026-09-22
+
+Historical Client ID follow-up (superseded by the credential pair at the top): previously configured the `tgbous...` client ID without a matching secret. At that time a read-only database check confirmed no saved Google app secret or connected refresh token. The setup form was updated to prefill an environment Client ID when no app had been saved.
 
 This section supersedes older missing-secret observations below. The supplied Meta App ID (`2010881339552808`), App Secret and OpenAI API key are configured only in ignored `.env.local`. The existing server-side webhook signature verifier consumes `META_APP_SECRET`; the AI client consumes `OPENAI_API_KEY`. No deployment settings were changed.
 

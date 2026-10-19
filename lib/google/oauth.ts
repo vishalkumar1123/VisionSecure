@@ -15,7 +15,7 @@ export async function setupStatus() {
   const app = await GoogleApplication.findById("primary").lean()
   const environment = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
   const missing = configurationMissing().filter(name => name === "GOOGLE_TOKEN_ENCRYPTION_KEY" || (!environment && !app))
-  return { missing, environment, savedClientId: app?.clientId || "" }
+  return { missing, environment, savedClientId: environment ? process.env.GOOGLE_CLIENT_ID! : app?.clientId || process.env.GOOGLE_CLIENT_ID || "", preferredAccount: process.env.GOOGLE_LOGIN_HINT?.trim() || null }
 }
 export async function oauth(redirectUri?: string) {
   const app = await applicationCredentials()
