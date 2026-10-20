@@ -230,7 +230,7 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
             Let's Secure Your Space
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-            Professional CCTV, biometric, networking, automation, and smart security solutions custom-tailored for your absolute peace of mind.
+            Request an installation quotation for CCTV, biometric attendance or networking in Lucknow. For a site assessment enquiry, share your property type, locality or PIN and approximate device count. For a maintenance enquiry, describe your existing system and the issue.
           </p>
         </motion.div>
 

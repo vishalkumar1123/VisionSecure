@@ -252,6 +252,13 @@ export default async function BlogDetail({ params }: Props) {
 
         </div>
       </div>
+      {blog.slug === "networking-structured-cabling-and-server-setup-guide" && (
+        <section className="page-container py-10" aria-labelledby="cabling-enquiry-heading">
+          <h2 id="cabling-enquiry-heading" className="text-2xl font-bold">Planning server room cabling in Lucknow?</h2>
+          <p className="mt-3 leading-7 text-muted-foreground">Turn this guide into a site-specific plan: list network points, rack space, cable routes and existing equipment. Explore our <Link className="font-semibold text-brand-green underline underline-offset-4" href="/services/networking-solutions">LAN networking and structured cabling service</Link> for wired connectivity, or <Link className="font-semibold text-brand-green underline underline-offset-4" href="/services/server-networking-infrastructure">server and network infrastructure setup</Link> for rack and server requirements.</p>
+          <p className="mt-3 leading-7 text-muted-foreground">For an itemised scope, <Link className="font-semibold text-brand-green underline underline-offset-4" href="/contact?service=Networking%20Solutions">send your networking requirements</Link> with your Lucknow locality or PIN. Confirm testing, migration, backup responsibilities and any downtime before approving work.</p>
+        </section>
+      )}
       <section className="page-container py-10"><h2 className="text-2xl font-bold">Planning an installation?</h2><p className="mt-3">Explore <Link className="underline" href="/services">security and networking services</Link> or <Link className="underline" href="/contact">discuss your requirements</Link>.</p></section>
       <Footer />
     </main>
