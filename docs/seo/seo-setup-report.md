@@ -1,4 +1,4 @@
-﻿# VisionSecure SEO and enquiry implementation handoff
+# VisionSecure SEO and enquiry implementation handoff
 
 Status: local implementation, not deployed. Verification date: 19 October 2026 (Asia/Kolkata). Production observations are exclusively in `live-url-checks.csv`; they do not describe the changed local build.
 
@@ -133,3 +133,8 @@ During this work, external workspace commits `b7a5425` (previously uncommitted i
 Remaining owner confirmation: authoritative YouTube/social profile ownership; exact additional service coverage outside the existing Lucknow positioning; project/testimonial provenance; certification, partnership, experience, free-site-visit and same-day-support claims; written warranty/AMC terms; Google Business Profile ownership and address/customer-visit eligibility. The hours are already confirmed and do not need reconfirmation. The schema deliberately omits unconfirmed coverage/social/credential/review claims.
 
 The four desktop/mobile browser regression tests also passed against the isolated committed-source server. No production changes or real leads were made during this follow-up.
+
+
+## Keyword content follow-up — 19 October 2026
+
+Merged PR #4 is the baseline. The separate keyword-content branch adds useful visible buying guidance and distinct descriptions for four priority services, plus homepage internal links and Contact qualification guidance. This follow-up is not deployed. See [keyword-strategy.md](keyword-strategy.md) for the exact 6 primary + 18 supporting target assignments, historical account claims supplied with the patch (not independently verified in this run), evidence limits and rollout. Existing earlier deployment statements in this report describe the original handoff, not the current live deployment state.

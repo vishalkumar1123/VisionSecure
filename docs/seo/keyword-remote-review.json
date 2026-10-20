@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-20T05:03:15.949144+00:00",
+  "tested_commit": "6658ebb",
+  "branch": "feat/lucknow-keyword-content",
+  "base": "main",
+  "pull_request": {
+    "created": false,
+    "connector_status": 403,
+    "connector_reason": "Resource not accessible by integration",
+    "fallback_executed": false,
+    "approval_review_rejection": "Access to existing Git credential helper was not explicitly authorized; credential-helper/API fallback rejected before execution. No credentials retrieved.",
+    "user_approval": "Pending",
+    "compare_url": "https://github.com/vishalkumar1123/VisionSecure/compare/main...feat/lucknow-keyword-content?expand=1"
+  },
+  "vercel": {
+    "status": "success",
+    "status_context": "Vercel",
+    "deployment_status_url": "https://vercel.com/vision-secure/vision-secure-tech/Ds6T9g1gn79tLLtL3Yhwj8UnswmK",
+    "direct_preview_url": null,
+    "limitation": "Connected commit status exposes the Vercel deployment status page only. Direct preview URL not verified; no browser session available."
+  },
+  "production_merged_or_deployed_by_agent": false
+}

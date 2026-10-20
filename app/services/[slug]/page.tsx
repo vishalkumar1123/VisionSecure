@@ -1,5 +1,6 @@
 import { JsonLd } from "@/components/json-ld"
 import { serviceSchema } from "@/lib/schema"
+import { serviceBuyerGuides } from "@/lib/service-buyer-guides"
 import { servicePlanning } from "@/lib/service-planning"
 import { pageMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
@@ -94,6 +95,20 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
       {servicePlanning[service.slug] && <section className="page-container section-space"><h2 className="text-3xl font-bold">Selection and handover</h2>{servicePlanning[service.slug].map(paragraph => <p key={paragraph} className="mt-4 leading-7 text-muted-foreground">{paragraph}</p>)}</section>}
       <section className="page-container section-space"><h2 className="text-3xl font-bold">Planning your {service.title.toLowerCase()} installation</h2><p className="mt-4 leading-7 text-muted-foreground">Start with {service.solutions.join(", ").toLowerCase()}. For {service.applications.join(", ").toLowerCase()}, confirm the number of devices or points, existing equipment and cable routes before selecting a system.</p><p className="mt-4 leading-7 text-muted-foreground">Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable.</p><p className="mt-4 leading-7 text-muted-foreground">Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed.</p></section>
+      {serviceBuyerGuides[service.slug] && (
+        <section className="page-container section-space" aria-labelledby="buyer-guide-heading">
+          <h2 id="buyer-guide-heading" className="text-3xl font-bold">Before requesting a quotation in Lucknow</h2>
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            {serviceBuyerGuides[service.slug].map(({ question, answer }) => (
+              <article key={question} className="rounded-xl border border-border bg-card p-6">
+                <h3 className="font-semibold">{question}</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">{answer}</p>
+              </article>
+            ))}
+          </div>
+          <Link href={`/contact?service=${encodeURIComponent(service.title)}`} className="mt-6 inline-flex items-center gap-2 font-semibold text-brand-green underline underline-offset-4">Discuss your {service.title.toLowerCase()} requirements <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+        </section>
+      )}
       <ServiceTechnologyVisual category={service.category} title={service.title} />
 
       <section className="page-container section-space">
