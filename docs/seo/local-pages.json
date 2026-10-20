@@ -74,7 +74,7 @@
   {
     "path": "/services/cctv-surveillance",
     "title": "CCTV camera installation in Lucknow | VisionSecure",
-    "description": "CCTV camera installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "CCTV camera installation in Lucknow for homes, shops and offices. Plan IP cameras, recording storage and remote viewing with a site-based quotation.",
     "heading": "CCTV camera installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -83,7 +83,7 @@
   {
     "path": "/services/biometric-attendance",
     "title": "Biometric attendance installation in Lucknow | VisionSecure",
-    "description": "Biometric attendance installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Biometric attendance installation in Lucknow for offices and institutions. Discuss fingerprint or face attendance, shifts and software compatibility.",
     "heading": "Biometric attendance installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -101,7 +101,7 @@
   {
     "path": "/services/networking-solutions",
     "title": "LAN networking and structured cabling in Lucknow | VisionSecure",
-    "description": "LAN networking and structured cabling in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "LAN networking and structured cabling in Lucknow. Discuss office network setup, cable routes, network points, labelling and handover checks.",
     "heading": "LAN networking and structured cabling in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -119,7 +119,7 @@
   {
     "path": "/services/it-support-amc",
     "title": "CCTV and IT maintenance / AMC in Lucknow | VisionSecure",
-    "description": "CCTV and IT maintenance / AMC in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "CCTV and IT AMC in Lucknow. Discuss preventive maintenance, network troubleshooting, supported equipment and a clearly defined maintenance scope.",
     "heading": "CCTV and IT maintenance / AMC in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
