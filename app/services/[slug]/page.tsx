@@ -9,7 +9,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, CheckCircle2, ChevronRight, ClipboardCheck, Cable, Settings2 } from "lucide-react"
 
-import { serviceBySlug, services } from "@/lib/services"
+import { relatedServiceSlugs, serviceBySlug, services } from "@/lib/services"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ServiceDetailHeroSlider } from "@/components/service-detail-hero-slider"
@@ -29,7 +29,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const service = serviceBySlug((await params).slug)
   if (!service) notFound()
 
-  const related = services.filter((item) => item.slug !== service.slug).sort((a, b) => Number(b.category === service.category) - Number(a.category === service.category)).slice(0, 3)
+  const relatedSlugs = relatedServiceSlugs[service.slug] || []
+  const related = services.filter(item => relatedSlugs.includes(item.slug)).sort((a, b) => relatedSlugs.indexOf(a.slug) - relatedSlugs.indexOf(b.slug))
   const process = ["Requirement discussion", "Site assessment", "Solution design", "Technology selection", "Installation", "Configuration and testing", "Handover", "Support and AMC"]
   const systemComponents = service.category === "Networking & IT"
     ? ["Cabling and termination", "Router or gateway", "Managed switching", "Rack and power planning"]

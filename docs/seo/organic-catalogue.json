@@ -1,0 +1,386 @@
+{
+  "services": [
+    {
+      "slug": "cctv-surveillance",
+      "title": "CCTV Surveillance",
+      "category": "Security & Surveillance",
+      "summary": "Professional surveillance solutions for homes, offices and commercial environments.",
+      "image": "/images/service-cctv.png",
+      "faqs": [
+        {
+          "question": "How many cameras do I need?",
+          "answer": "The right number depends on entrances, coverage areas and your site layout."
+        },
+        {
+          "question": "Can I view cameras remotely?",
+          "answer": "Remote viewing options can be included where supported by the selected system."
+        }
+      ]
+    },
+    {
+      "slug": "biometric-attendance",
+      "title": "Biometric Attendance",
+      "category": "Security & Surveillance",
+      "summary": "Practical fingerprint and face-attendance solutions for everyday operations.",
+      "image": "/images/EsslBio.png",
+      "faqs": [
+        {
+          "question": "Can biometric devices manage attendance?",
+          "answer": "Yes, suitable devices can be configured for attendance requirements."
+        },
+        {
+          "question": "Do you provide installation?",
+          "answer": "We provide requirement-based recommendation and installation support."
+        }
+      ]
+    },
+    {
+      "slug": "access-control-system",
+      "title": "Access Control System",
+      "category": "Security & Surveillance",
+      "summary": "Controlled entry solutions for secure, manageable premises.",
+      "image": "/images/EsslDoor_Lock.png",
+      "faqs": [
+        {
+          "question": "Will RFID or biometric access work with our doors?",
+          "answer": "Share the door material, frame, lock type and number of entry points. RFID or biometric entry needs compatible readers, controllers, locks and power; confirm these together before selecting equipment."
+        },
+        {
+          "question": "What should a door access control quotation include?",
+          "answer": "List users, access schedules, existing credentials and any attendance software. Agree cabling, door hardware, installation and configuration in the scope; software licences and building modifications need explicit inclusion."
+        },
+        {
+          "question": "What should be checked at handover?",
+          "answer": "Test authorised entry, denied access, user removal and operation during a power loss. Agree safe exit and emergency-release arrangements with the responsible building professionals; an access controller alone does not establish safety compliance."
+        }
+      ]
+    },
+    {
+      "slug": "networking-solutions",
+      "title": "Networking Solutions",
+      "category": "Networking & IT",
+      "summary": "Reliable LAN, WAN and structured cabling for connected business operations.",
+      "image": "/images/Networking_blog.png",
+      "faqs": [
+        {
+          "question": "Do you handle structured cabling?",
+          "answer": "Yes, networking solutions can include structured cabling planned around your site."
+        },
+        {
+          "question": "Can an existing network be improved?",
+          "answer": "We can assess the current setup and recommend practical improvements."
+        }
+      ]
+    },
+    {
+      "slug": "wifi-mesh-networking",
+      "title": "WiFi & Mesh Networking",
+      "category": "Networking & IT",
+      "summary": "Coverage-focused WiFi systems for homes, offices and multi-room environments.",
+      "image": "/images/Deco_M5.jpeg",
+      "faqs": [
+        {
+          "question": "How is WiFi coverage assessed?",
+          "answer": "Share the floor layout, wall materials, weak-signal rooms and number of users. Coverage assessment should consider access point placement, interference and backhaul; internet speed alone does not describe wireless coverage."
+        },
+        {
+          "question": "Can mesh WiFi use our existing network?",
+          "answer": "Confirm the router model, wired LAN points, power availability and supported mesh ecosystem. Existing devices may require compatible access points or configuration changes; keep cabling work and internet subscriptions explicit in the quotation."
+        },
+        {
+          "question": "How should we test the installed WiFi?",
+          "answer": "Check coverage and connectivity in the agreed rooms using representative devices. Confirm guest access, roaming requirements and administrator ownership at handover; do not assume a fixed speed in every room."
+        }
+      ]
+    },
+    {
+      "slug": "it-support-amc",
+      "title": "IT Support & AMC",
+      "category": "Networking & IT",
+      "summary": "Preventive maintenance and technical assistance for security and IT systems.",
+      "image": "/images/AMC.png",
+      "faqs": [
+        {
+          "question": "What does AMC cover?",
+          "answer": "Coverage is defined around installed systems and agreed maintenance requirements."
+        },
+        {
+          "question": "Can AMC include CCTV and networking?",
+          "answer": "Suitable AMC plans can cover multiple supported systems."
+        }
+      ]
+    },
+    {
+      "slug": "server-networking-infrastructure",
+      "title": "Server & Networking Infrastructure",
+      "category": "Networking & IT",
+      "summary": "Structured infrastructure planning for business connectivity and core systems.",
+      "image": "/images/service-networking.jpg",
+      "faqs": [
+        {
+          "question": "What information is needed before server setup?",
+          "answer": "List workloads, users, applications, storage needs and existing server specifications. Review rack space, cooling, power backup and network capacity before choosing a setup; software and operating system licences require confirmation."
+        },
+        {
+          "question": "Who is responsible for migration and backups?",
+          "answer": "Agree which systems and data are in scope, who prepares and verifies backups, and the permitted downtime. Define migration, restore checks and rollback responsibilities in writing before making changes to an existing environment."
+        },
+        {
+          "question": "What should the infrastructure handover contain?",
+          "answer": "Request equipment and port labels, configuration records, administrator ownership and agreed functional checks. Server installation does not automatically include recurring backup monitoring, application support or maintenance; specify those separately."
+        }
+      ]
+    },
+    {
+      "slug": "video-door-phone",
+      "title": "Video Door Phone",
+      "category": "Security & Surveillance",
+      "summary": "Visitor communication and entrance monitoring for homes and businesses.",
+      "image": "/images/VideoDoor_Bell.png",
+      "faqs": [
+        {
+          "question": "Which entrance intercom suits our property?",
+          "answer": "Share the number of entrances, indoor stations, floors and users. Check existing cable routes, power and indoor display requirements before choosing a video door phone for a home, apartment or office."
+        },
+        {
+          "question": "Can a video door phone release our existing lock?",
+          "answer": "Door release depends on the selected intercom, lock interface, power and door hardware. Confirm compatibility before ordering; lock replacement, gate controls and additional wiring need an agreed installation scope."
+        },
+        {
+          "question": "What should be demonstrated after installation?",
+          "answer": "Test the doorbell, visitor image, two-way audio and each indoor station. Where door release is included, test it safely and confirm operation during a power interruption, plus user access for any supported app."
+        }
+      ]
+    },
+    {
+      "slug": "smart-door-locks",
+      "title": "Smart Door Locks",
+      "category": "Smart Technology",
+      "summary": "Keyless entry options for modern, controlled access.",
+      "image": "/images/EsslDoor_Lock.png",
+      "faqs": [
+        {
+          "question": "Will a smart lock fit our existing door?",
+          "answer": "Provide the door material, thickness, frame and existing lock measurements. Confirm handle clearance, opening direction and manufacturer fit requirements before selecting a smart door lock; door modifications are not assumed."
+        },
+        {
+          "question": "Which access methods should we choose?",
+          "answer": "Compare the supported PIN, fingerprint, card or app options against daily use and user-management needs. Confirm whether remote features require a compatible gateway or subscription and which emergency access methods the model provides."
+        },
+        {
+          "question": "What should users learn at handover?",
+          "answer": "Test adding and removing users, low-battery warnings and the supported emergency-access procedure. Confirm who owns administrator access and how batteries are replaced; do not share access codes in the enquiry form."
+        }
+      ]
+    },
+    {
+      "slug": "home-automation",
+      "title": "Home Automation",
+      "category": "Smart Technology",
+      "summary": "Connected home systems for practical control of lighting, security and devices.",
+      "image": "/images/service-automation.jpg",
+      "faqs": [
+        {
+          "question": "Can smart lighting be added to our existing home?",
+          "answer": "Share room priorities, switchboard photos and existing wiring details without private information. Smart switches and lighting controls depend on electrical compatibility, available space and the selected ecosystem; electrical changes require suitable professional assessment."
+        },
+        {
+          "question": "Can home automation be installed in phases?",
+          "answer": "Start with the rooms and controls you need most, then check how later devices will connect. Agree supported protocols, hubs, app ownership and any recurring services before buying equipment for a phased installation."
+        },
+        {
+          "question": "How should automated controls be tested?",
+          "answer": "Test the agreed lights, switches and routines, including manual control and behaviour during an internet or power interruption. Confirm user access and supported fallback operation rather than assuming every feature works offline."
+        }
+      ]
+    },
+    {
+      "slug": "speaker-solutions",
+      "title": "Speaker Solutions",
+      "category": "Smart Technology",
+      "summary": "Professional audio and announcement systems for clear communication.",
+      "image": "/images/Ahuja_Speeker.webp",
+      "faqs": [
+        {
+          "question": "How should announcement coverage be planned?",
+          "answer": "Share the site layout, room use, background noise and intended announcement zones. Speaker positions, amplifier capacity and microphone requirements should be planned together for an office, school, shop or institution."
+        },
+        {
+          "question": "Can our existing speakers or amplifier be reused?",
+          "answer": "Check equipment models, speaker load, wiring and system compatibility before combining devices. Agree audio zones, controls and cabling in the quotation; existing equipment is reused only where suitable for the selected system."
+        },
+        {
+          "question": "Is a PA system a compliant emergency voice system?",
+          "answer": "A general PA or speaker installation must not be assumed to replace a compliant fire-safety or emergency voice system. Confirm any regulated requirement with the responsible professionals; test normal announcements, zones and controls against the agreed scope."
+        }
+      ]
+    },
+    {
+      "slug": "glass-break-alarm-system",
+      "title": "Glass Break Alarm System",
+      "category": "Alarm & Safety",
+      "summary": "Detection and alarm integration for glass-entry protection.",
+      "image": "/images/Glass_Break.jpg",
+      "faqs": [
+        {
+          "question": "Which glass areas should a sensor cover?",
+          "answer": "Share window and display layouts, glass types, nearby noise sources and existing security equipment. Sensor suitability and placement depend on the selected product and site conditions; coverage should not be assumed from room size alone."
+        },
+        {
+          "question": "Can glass break sensors connect to an existing panel?",
+          "answer": "Provide the alarm panel model, available zones, power and any supported wired or wireless interfaces. Confirm sensor and panel compatibility before ordering, including how alerts are indicated and who manages the system."
+        },
+        {
+          "question": "How should detection and alerts be handed over?",
+          "answer": "Agree the manufacturer-supported test method and demonstrate the assigned zones and alerts. Do not break glass to test a detector. Confirm power-loss behaviour, user instructions and periodic testing responsibilities within the maintenance scope."
+        }
+      ]
+    },
+    {
+      "slug": "emergency-alarm-system",
+      "title": "Emergency Alarm System",
+      "category": "Alarm & Safety",
+      "summary": "Practical emergency alert and notification systems for safer premises.",
+      "image": "/images/EmergencyAlarm.jpeg",
+      "faqs": [
+        {
+          "question": "What should an emergency alert assessment cover?",
+          "answer": "Describe the intended alert, site layout, occupants, notification zones and who will respond. Choose compatible alert devices and controls for the agreed use; do not assume one generic alarm covers every type of emergency."
+        },
+        {
+          "question": "What power and integration details are needed?",
+          "answer": "Share existing panel models, available power, cable routes and required notification methods. Confirm backup-power needs and integration compatibility in the scope, together with responsibilities for operation, testing and maintenance."
+        },
+        {
+          "question": "Does this service replace a compliant fire alarm?",
+          "answer": "A generic emergency alert installation is not a substitute for a compliant fire-safety system. Confirm regulated requirements with qualified responsible professionals. Test the agreed zones and signals using a planned procedure that avoids unintended alerts."
+        }
+      ]
+    }
+  ],
+  "related": {
+    "cctv-surveillance": [
+      "it-support-amc",
+      "networking-solutions",
+      "access-control-system"
+    ],
+    "biometric-attendance": [
+      "access-control-system",
+      "networking-solutions",
+      "it-support-amc"
+    ],
+    "access-control-system": [
+      "biometric-attendance",
+      "smart-door-locks",
+      "video-door-phone"
+    ],
+    "networking-solutions": [
+      "wifi-mesh-networking",
+      "server-networking-infrastructure",
+      "it-support-amc"
+    ],
+    "wifi-mesh-networking": [
+      "networking-solutions",
+      "server-networking-infrastructure",
+      "it-support-amc"
+    ],
+    "it-support-amc": [
+      "cctv-surveillance",
+      "networking-solutions",
+      "server-networking-infrastructure"
+    ],
+    "server-networking-infrastructure": [
+      "networking-solutions",
+      "wifi-mesh-networking",
+      "it-support-amc"
+    ],
+    "video-door-phone": [
+      "access-control-system",
+      "smart-door-locks",
+      "cctv-surveillance"
+    ],
+    "smart-door-locks": [
+      "access-control-system",
+      "video-door-phone",
+      "home-automation"
+    ],
+    "home-automation": [
+      "smart-door-locks",
+      "wifi-mesh-networking",
+      "video-door-phone"
+    ],
+    "speaker-solutions": [
+      "networking-solutions",
+      "emergency-alarm-system",
+      "it-support-amc"
+    ],
+    "glass-break-alarm-system": [
+      "cctv-surveillance",
+      "access-control-system",
+      "emergency-alarm-system"
+    ],
+    "emergency-alarm-system": [
+      "glass-break-alarm-system",
+      "speaker-solutions",
+      "it-support-amc"
+    ]
+  },
+  "buyer_guides": {
+    "cctv-surveillance": [
+      {
+        "question": "How should I plan an IP camera installation?",
+        "answer": "For an IP camera installation, check camera placement, PoE switch capacity, cable routes and NVR compatibility together. Share your Lucknow locality, property type and approximate camera count so the quotation matches the site."
+      },
+      {
+        "question": "What matters when choosing CCTV recording storage?",
+        "answer": "CCTV recording storage depends on camera count, resolution, frame rate, recording schedule and retention needs. Ask for a storage estimate and test playback and export before handover; a fixed number of recording days should not be assumed."
+      },
+      {
+        "question": "Can I discuss CCTV remote viewing setup?",
+        "answer": "A CCTV remote viewing setup needs compatible equipment, a suitable internet connection and secure user access. Confirm account ownership and permissions, and keep passwords and recordings out of the enquiry form."
+      }
+    ],
+    "biometric-attendance": [
+      {
+        "question": "What should I check for a fingerprint attendance system?",
+        "answer": "Choose a fingerprint attendance system around staff count, work conditions, enrolment needs and device placement. Discuss shifts and report requirements before selecting a device for your Lucknow office or institution."
+      },
+      {
+        "question": "Is a face recognition attendance system suitable for our staff?",
+        "answer": "A face recognition attendance system should be assessed for lighting, placement, enrolment and employee data handling. Confirm the supported recognition method and operational requirements rather than assuming every device works the same way."
+      },
+      {
+        "question": "How do I assess attendance software integration?",
+        "answer": "For attendance software integration, provide the software name, version and required report formats. Device compatibility, licence costs and payroll export requirements must be confirmed before ordering; payroll integration is not assumed."
+      }
+    ],
+    "networking-solutions": [
+      {
+        "question": "What is included in a LAN cabling installation?",
+        "answer": "A LAN cabling installation can include planned cable routes, network points, termination and labelling as agreed in the quotation. Share your Lucknow site layout, number of desks and existing equipment so the scope can be assessed."
+      },
+      {
+        "question": "How should I plan office network setup?",
+        "answer": "For an office network setup, count wired devices, printers, access points and uplink requirements. Plan switching, router configuration and user access together. WiFi coverage and server migration should have an explicit scope."
+      },
+      {
+        "question": "What checks should structured cabling testing include?",
+        "answer": "Agree structured cabling testing requirements before work starts: point identification, termination checks and connectivity checks should be documented. If formal cable certification is required, confirm the test method, equipment and report separately."
+      }
+    ],
+    "it-support-amc": [
+      {
+        "question": "What should a CCTV maintenance contract cover?",
+        "answer": "A CCTV maintenance contract should identify supported cameras and recorders, preventive checks, recording and playback checks, and fault-reporting arrangements. State existing faults before cover starts and confirm replacement parts and visits in writing."
+      },
+      {
+        "question": "How do I scope an IT AMC service?",
+        "answer": "An IT AMC service should list supported computers and network equipment, maintenance tasks and access responsibilities. For a Lucknow site, agree whether support is remote or onsite; software licences, backups and data recovery need explicit inclusion."
+      },
+      {
+        "question": "Can I request network troubleshooting?",
+        "answer": "For network troubleshooting, describe affected devices, symptoms and when the issue started. Share the locality and system type without passwords or private data. An inspection can establish whether the fault belongs to cabling, equipment, configuration or an external provider."
+      }
+    ]
+  }
+}

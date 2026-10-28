@@ -92,7 +92,7 @@
   {
     "path": "/services/access-control-system",
     "title": "Access control system installation in Lucknow | VisionSecure",
-    "description": "Access control system installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Door access control installation in Lucknow. Discuss RFID or biometric entry, door hardware, safe exit arrangements and user permissions.",
     "heading": "Access control system installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -110,7 +110,7 @@
   {
     "path": "/services/wifi-mesh-networking",
     "title": "WiFi and mesh network installation in Lucknow | VisionSecure",
-    "description": "WiFi and mesh network installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "WiFi and mesh installation in Lucknow. Assess coverage, dead zones, access point placement, wired backhaul and compatibility for your home or office.",
     "heading": "WiFi and mesh network installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -128,7 +128,7 @@
   {
     "path": "/services/server-networking-infrastructure",
     "title": "Server and network infrastructure setup in Lucknow | VisionSecure",
-    "description": "Server and network infrastructure setup in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Server and network infrastructure setup in Lucknow. Plan rack organisation, power, network capacity, migration responsibilities and documented handover.",
     "heading": "Server and network infrastructure setup in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -137,7 +137,7 @@
   {
     "path": "/services/video-door-phone",
     "title": "Video door phone installation in Lucknow | VisionSecure",
-    "description": "Video door phone installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Video door phone installation in Lucknow. Discuss entrance intercom coverage, indoor displays, cabling and compatible door-release requirements.",
     "heading": "Video door phone installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -146,7 +146,7 @@
   {
     "path": "/services/smart-door-locks",
     "title": "Smart door lock installation in Lucknow | VisionSecure",
-    "description": "Smart door lock installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Smart door lock installation in Lucknow. Check door compatibility, fingerprint or PIN access, battery backup options and secure user handover.",
     "heading": "Smart door lock installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -155,7 +155,7 @@
   {
     "path": "/services/home-automation",
     "title": "Home automation installation in Lucknow | VisionSecure",
-    "description": "Home automation installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Home automation installation in Lucknow. Plan smart lighting, switches, compatible controls and phased installation around existing wiring and room needs.",
     "heading": "Home automation installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -164,7 +164,7 @@
   {
     "path": "/services/speaker-solutions",
     "title": "PA system and speaker installation in Lucknow | VisionSecure",
-    "description": "PA system and speaker installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "PA system and speaker installation in Lucknow. Plan announcements, audio zones, speaker coverage, amplifier compatibility and practical handover checks.",
     "heading": "PA system and speaker installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -173,7 +173,7 @@
   {
     "path": "/services/glass-break-alarm-system",
     "title": "Glass break alarm installation in Lucknow | VisionSecure",
-    "description": "Glass break alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Glass break alarm installation in Lucknow. Check sensor coverage, glass type, placement and compatibility with your existing alarm panel.",
     "heading": "Glass break alarm installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
@@ -182,7 +182,7 @@
   {
     "path": "/services/emergency-alarm-system",
     "title": "Emergency alarm installation in Lucknow | VisionSecure",
-    "description": "Emergency alarm installation in Lucknow for homes and businesses. Discuss site requirements, equipment compatibility, installation and maintenance scope with VisionSecure.",
+    "description": "Emergency alert installation in Lucknow. Discuss notification zones, alert devices, power requirements, testing and the scope of compatible integrations.",
     "heading": "Emergency alarm installation in Lucknow",
     "type": "service",
     "source": "lib/services.ts",
