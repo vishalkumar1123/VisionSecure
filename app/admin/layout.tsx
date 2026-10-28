@@ -1,5 +1,7 @@
 "use client"
 
+import "./admin-glass.css"
+
 import { ThemeToggle } from "@/components/theme-toggle"
 import AdminSidebar from "@/components/admin-sidebar"
 import { NotificationBell } from "@/components/admin/notifications/NotificationBell"
@@ -92,14 +94,14 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="admin-shell flex min-h-screen">
 
-      <div className="sticky top-0 hidden h-screen w-60 shrink-0 lg:block"><AdminSidebar /></div>
+      <div className="sticky top-0 hidden h-screen w-64 shrink-0 p-3 pr-0 lg:block"><AdminSidebar /></div>
 
-      <main className="min-w-0 flex-1 bg-secondary/40 p-3 sm:p-5 lg:p-6">
-        <div className="mb-5 flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-card p-2 sm:gap-3 sm:p-3">
-          <Sheet open={drawer} onOpenChange={setDrawer}><SheetTrigger asChild><button aria-label="Open admin navigation" className="flex h-11 w-11 items-center justify-center rounded-lg border border-border lg:hidden"><Menu size={20}/></button></SheetTrigger><SheetContent side="left" className="w-[min(280px,90vw)] gap-0 p-0"><SheetTitle className="sr-only">Admin navigation</SheetTitle><SheetDescription className="sr-only">Navigate VisionSecure management pages</SheetDescription><AdminSidebar onNavigate={()=>setDrawer(false)}/></SheetContent></Sheet>
-          <form role="search" className="order-last flex w-full items-center gap-2 sm:order-none sm:min-w-0 sm:flex-1" onSubmit={event=>{event.preventDefault();router.push(`/admin/leads?q=${encodeURIComponent(search.trim())}`)}}><input ref={searchRef} aria-label="Search leads" value={search} onChange={event=>setSearch(event.target.value)} maxLength={100} placeholder="Search leads by name, phone, email or service" className="h-11 min-w-0 flex-1 rounded-lg border border-border bg-background px-3 text-sm"/><button aria-label="Submit lead search" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted"><Search size={18}/></button></form>
+      <main className="admin-main min-w-0 flex-1 p-3 sm:p-5 lg:p-6">
+        <div className="admin-toolbar mb-5 flex flex-wrap items-center gap-2 p-2 sm:gap-3 sm:p-3">
+          <Sheet open={drawer} onOpenChange={setDrawer}><SheetTrigger asChild><button aria-label="Open admin navigation" className="flex h-11 w-11 items-center justify-center rounded-lg border border-border lg:hidden"><Menu size={20}/></button></SheetTrigger><SheetContent side="left" className="admin-dialog admin-navigation-drawer w-[min(280px,90vw)] gap-0 p-0"><SheetTitle className="sr-only">Admin navigation</SheetTitle><SheetDescription className="sr-only">Navigate VisionSecure management pages</SheetDescription><AdminSidebar onNavigate={()=>setDrawer(false)}/></SheetContent></Sheet>
+          <form role="search" className="order-last flex w-full items-center gap-2 sm:order-none sm:min-w-0 sm:flex-1" onSubmit={event=>{event.preventDefault();router.push(`/admin/leads?q=${encodeURIComponent(search.trim())}`)}}><input ref={searchRef} aria-label="Search leads" value={search} onChange={event=>setSearch(event.target.value)} maxLength={100} placeholder="Search leads by name, phone, email or service" className="h-11 min-w-0 flex-1 rounded-lg border border-border bg-background px-3 text-sm"/><kbd aria-hidden="true" className="hidden shrink-0 rounded-md border border-border px-1.5 py-1 text-[10px] text-muted-foreground xl:block">Ctrl K</kbd><button aria-label="Submit lead search" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted"><Search size={18}/></button></form>
           <div className="ml-auto flex items-center gap-2"><ThemeToggle/><NotificationBell/><span aria-label="Account avatar" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-sm font-bold text-brand-green">{(session?.user?.name || "Admin").trim().split(/\s+/).map(part=>part[0]).slice(0,2).join("")}</span><div className="hidden border-l border-border pl-3 md:block"><p className="max-w-40 truncate text-sm font-semibold">{session?.user?.name || "Admin"}</p><p className="text-xs capitalize text-muted-foreground">{session?.user?.role?.replaceAll("_"," ")}</p></div></div>
         </div>
         {children}
