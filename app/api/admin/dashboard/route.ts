@@ -12,13 +12,18 @@ export async function GET(request: Request) {
     const days = Number(new URL(request.url).searchParams.get("days") || 30)
     if (![7, 30, 90].includes(days)) return NextResponse.json({ error: "Invalid date range" }, { status: 400 })
     const now = new Date()
+    const requestedDate = new URL(request.url).searchParams.get("scheduleDate")
+    if (requestedDate && (!/^\d{4}-\d{2}-\d{2}$/.test(requestedDate) || Number.isNaN(Date.parse(`${requestedDate}T00:00:00+05:30`)) || businessDay(new Date(`${requestedDate}T00:00:00+05:30`)).key !== requestedDate)) return NextResponse.json({ error: "Invalid schedule date" }, { status: 400 })
+    const selectedDay = businessDay(requestedDate ? new Date(`${requestedDate}T00:00:00+05:30`) : now)
     const { start, end } = businessDay(now)
     const periodStart = new Date(start.getTime() - (days - 1) * DAY_MS)
     const previousStart = new Date(periodStart.getTime() - days * DAY_MS)
     const active = { status: { $nin: CLOSED_STATUSES } }
     const due = { ...active, followUpDate: { $gte: start, $lt: end } }
     const overdue = { ...active, followUpDate: { $lt: start, $ne: null } }
+    const scheduled = { ...active, followUpDate: { $gte: selectedDay.start, $lt: selectedDay.end } }
     const selection = "_id name phone service status source priority assignedTo followUpDate createdAt"
+    const scheduleSelection = { ...Object.fromEntries(selection.split(" ").map(key => [key, 1])), notes: { $slice: -1 } }
     const results = await Promise.allSettled([
       Lead.aggregate([{ $facet: {
         pipeline: [{ $group: { _id: "$status", total: { $sum: 1 } } }],
@@ -27,18 +32,21 @@ export async function GET(request: Request) {
         yesterday: [{ $match: { createdAt: { $gte: new Date(start.getTime() - DAY_MS), $lt: start } } }, { $count: "total" }],
         due: [{ $match: due }, { $count: "total" }],
         overdue: [{ $match: overdue }, { $count: "total" }],
-        attention: [{ $match: { ...active, $or: [{ followUpDate: { $lt: end, $ne: null } }, { status: { $in: ["New", "Quotation Sent"] } }] } }, { $count: "total" }],
+        attention: [{ $match: { ...active, $or: [{ followUpDate: { $lt: end, $ne: null } }, { status: { $in: ["New", "Quotation Sent"] } }, { status: "Follow-Up", followUpDate: null }] } }, { $count: "total" }],
       } }]),
       Lead.find().sort({ createdAt: -1, _id: -1 }).limit(5).select(selection).populate("assignedTo", "name").lean(),
-      Lead.find(due).sort({ followUpDate: 1, _id: 1 }).limit(20).select(selection).populate("assignedTo", "name").lean(),
+      Lead.find(scheduled).sort({ followUpDate: 1, _id: 1 }).limit(20).select(scheduleSelection).populate("assignedTo", "name").lean(),
       Lead.aggregate([
         { $match: { createdAt: { $gte: previousStart, $lt: end } } },
         { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt", timezone: BUSINESS_TIMEZONE } }, total: { $sum: 1 } } },
       ]),
       User.aggregate([{ $group: { _id: { role: "$role", active: "$isActive" }, total: { $sum: 1 } } }]),
       ActivityLog.find().sort({ createdAt: -1, _id: -1 }).limit(5).select("_id action resourceType resourceId status createdAt userId").populate("userId", "name").lean(),
+      Lead.find({ status: "Follow-Up", followUpDate: null }).sort({ updatedAt: -1, _id: 1 }).limit(20).select(scheduleSelection).populate("assignedTo", "name").lean(),
+      Lead.countDocuments(scheduled),
+      Lead.find(overdue).sort({ followUpDate: 1, _id: 1 }).limit(20).select(scheduleSelection).populate("assignedTo", "name").lean(),
     ])
-    const keys = ["metrics", "leads", "schedule", "trend", "users", "activity"]
+    const keys = ["metrics", "leads", "schedule", "trend", "users", "activity", "unscheduled", "scheduleCount", "overdueLeads"]
     const errors = results.flatMap((result, index) => result.status === "rejected" ? [keys[index]] : [])
     const value = (index: number): any => results[index].status === "fulfilled" ? (results[index] as PromiseFulfilledResult<any>).value : null
     const raw = value(0)?.[0]
@@ -57,8 +65,8 @@ export async function GET(request: Request) {
     const userRows: Array<{ _id: { role: string; active: boolean }; total: number }> = value(4) || []
     return NextResponse.json({
       displayName: user?.name || "Admin", updatedAt: now.toISOString(), timezone: BUSINESS_TIMEZONE, days, errors,
-      metrics: raw ? { total, converted, active: total - CLOSED_STATUSES.reduce((sum, status) => sum + count(status), 0), today: raw.today[0]?.total || 0, yesterday: raw.yesterday[0]?.total || 0, due: raw.due[0]?.total || 0, overdue: raw.overdue[0]?.total || 0, attention: raw.attention[0]?.total || 0, new: count("New"), quotations: count("Quotation Sent"), installations: count("Installation Scheduled"), conversionRate: total ? Number((converted / total * 100).toFixed(1)) : 0, pipeline, services: raw.services } : null,
-      leads: value(1), schedule: value(2), trend: value(3) ? { rows: trend, current, previous, change: previous ? Number(((current - previous) / previous * 100).toFixed(1)) : null } : null,
+      metrics: raw ? { total, converted, followUp: count("Follow-Up"), active: total - CLOSED_STATUSES.reduce((sum, status) => sum + count(status), 0), today: raw.today[0]?.total || 0, yesterday: raw.yesterday[0]?.total || 0, due: raw.due[0]?.total || 0, overdue: raw.overdue[0]?.total || 0, attention: raw.attention[0]?.total || 0, new: count("New"), quotations: count("Quotation Sent"), installations: count("Installation Scheduled"), conversionRate: total ? Number((converted / total * 100).toFixed(1)) : 0, pipeline, services: raw.services } : null,
+      leads: value(1), schedule: value(2), scheduleDate: selectedDay.key, scheduleTotal: value(7), unscheduled: value(6), overdueLeads: value(8), trend: value(3) ? { rows: trend, current, previous, change: previous ? Number(((current - previous) / previous * 100).toFixed(1)) : null } : null,
       users: value(4) ? { total: userRows.reduce((sum, row) => sum + row.total, 0), active: userRows.filter(row => row._id.active).reduce((sum, row) => sum + row.total, 0), roles: Array.from(new Set(userRows.map(row => row._id.role))).map(role => ({ role, total: userRows.filter(row => row._id.role === role).reduce((sum, row) => sum + row.total, 0) })) } : null,
       activity: value(5),
     }, { headers: { "Cache-Control": "private, no-store" } })

@@ -16,13 +16,14 @@ const button="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl 
 const statusHref=(status:string)=>`/admin/leads?status=${encodeURIComponent(status)}`
 export default function DashboardOverview(){
  const [data,setData]=useState<DashboardData|null>(null),[days,setDays]=useState(30),[busy,setBusy]=useState(false),[error,setError]=useState("")
+ const [scheduleDate,setScheduleDate]=useState("")
  const inFlight=useRef<AbortController|null>(null);const reduced=useReducedMotion()
  const load=useCallback(async()=>{
    inFlight.current?.abort();const controller=new AbortController();inFlight.current=controller;setBusy(true)
-   try{const response=await fetch(`/api/admin/dashboard?days=${days}`,{cache:"no-store",signal:controller.signal});if(!response.ok)throw new Error(response.status===401||response.status===403?"Your session needs attention. Please sign in again.":"Unable to refresh dashboard.");const next=await response.json();if(!controller.signal.aborted){setData(next);setError("")}}
+   try{const response=await fetch(`/api/admin/dashboard?days=${days}${scheduleDate?`&scheduleDate=${scheduleDate}`:""}`,{cache:"no-store",signal:controller.signal});if(!response.ok)throw new Error(response.status===401||response.status===403?"Your session needs attention. Please sign in again.":"Unable to refresh dashboard.");const next=await response.json();if(!controller.signal.aborted){setData(next);setError("")}}
    catch(e){if(!controller.signal.aborted)setError(e instanceof Error?e.message:"Unable to refresh dashboard.")}
    finally{if(!controller.signal.aborted)setBusy(false)}
- },[days])
+ },[days,scheduleDate])
  useEffect(()=>{void load();const timer=setInterval(()=>{if(document.visibilityState==="visible")void load()},60000);const focus=()=>{if(document.visibilityState==="visible")void load()};document.addEventListener("visibilitychange",focus);return()=>{clearInterval(timer);document.removeEventListener("visibilitychange",focus);inFlight.current?.abort()}},[load])
  const retry=<button className={button} disabled={busy} onClick={()=>void load()}>Retry</button>
  const failed=(label:string)=><div role="alert" className="flex flex-wrap items-center gap-3 py-6 text-sm text-muted-foreground">Unable to load {label}. {retry}</div>
@@ -36,20 +37,20 @@ export default function DashboardOverview(){
    {m?<section aria-label="Business KPIs" className="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-6">{[
     {label:"Total leads",value:m.total,detail:`${m.active} active in pipeline`,href:"/admin/leads",icon:Users},
     {label:"New leads today",value:m.today,detail:m.yesterday?`${m.yesterday} yesterday`:"No previous data",href:"/admin/leads?filter=today",icon:UserPlus},
-    {label:"Follow-ups today",value:m.due,detail:`${m.overdue} overdue from earlier days`,href:"/admin/leads?filter=due",icon:Clock3},
+    {label:"Follow-ups",value:m.followUp??m.pipeline.find(row=>row._id==="Follow-Up")?.total??0,detail:`${m.due} scheduled today / ${m.overdue} overdue`,href:statusHref("Follow-Up"),icon:Clock3},
     {label:"Won / installed",value:m.converted,detail:`${m.conversionRate}% conversion overall`,href:"/admin/leads?filter=won",icon:CheckCircle2},
     {label:"Quotations sent",value:m.quotations,detail:"Review customer responses",href:statusHref("Quotation Sent"),icon:Activity},
     {label:"Installations",value:m.installations,detail:"Scheduled stage / all dates",href:statusHref("Installation Scheduled"),icon:CalendarDays},
    ].map((item,index)=><motion.div key={item.label} initial={reduced?false:{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{duration:.25,delay:reduced?0:index*.04}}><Link href={item.href} className={`${card} admin-kpi block h-full`}><div className="flex items-start justify-between gap-2"><p className="text-xs font-medium text-muted-foreground sm:text-sm">{item.label}</p><span className="admin-kpi-icon rounded-xl p-2 text-brand-green"><item.icon size={18}/></span></div><p className="mt-2 text-3xl font-bold tabular-nums">{item.value}</p><p className="mt-2 text-xs text-muted-foreground">{item.detail}</p></Link></motion.div>)}</section>:failed("business metrics")}
    <section aria-label="Lead analytics" className="grid items-start gap-5 xl:grid-cols-[1.35fr_1fr]"><div className={card}><div className="flex flex-wrap items-center justify-between gap-2"><h2 className="text-lg font-bold">Lead trend</h2><label className="text-xs">Period <select aria-label="Trend period" className="ml-1 min-h-11 rounded-lg border border-border bg-background px-2" value={days} onChange={e=>setDays(Number(e.target.value))}>{[7,30,90].map(day=><option key={day} value={day}>Last {day} days</option>)}</select></label></div>{data.trend?<TrendChart trend={data.trend}/>:failed("lead trend")}</div><div className={card}><h2 className="text-lg font-bold">Service demand</h2><p className="mt-1 text-xs text-muted-foreground">Enquiry volume across all leads</p>{m?<ServiceDemand metrics={m}/>:failed("service demand")}</div></section>
-   <section className="grid gap-5 xl:grid-cols-[1.2fr_1fr]">
+   <section className="grid items-start gap-5 xl:grid-cols-[1.2fr_1fr]">
     <div className={card}><h2 className="text-lg font-bold">Today's Action Center</h2><p className="mt-1 text-xs text-muted-foreground">{m?`${m.attention} distinct leads need attention. Categories may overlap.`:"Action counts unavailable."}</p>{m?<div className="mt-4 grid grid-cols-2 gap-3">{[
       ["Overdue follow-ups",m.overdue,"/admin/leads?filter=overdue","text-destructive bg-destructive/5"],
       ["Follow-ups today",m.due,"/admin/leads?filter=due","text-warning bg-warning/5"],
       ["New leads",m.new,statusHref("New"),"text-highlight-ink bg-highlight/5"],
       ["Quotations sent",m.quotations,statusHref("Quotation Sent"),"text-status-purple bg-status-purple/5"],
     ].map(([label,value,href,tone])=><Link key={label} href={String(href)} className={`rounded-xl border border-border p-3 transition hover:-translate-y-0.5 ${tone}`}><div className="flex items-center justify-between"><strong className="text-2xl">{value}</strong><ArrowRight size={15}/></div><p className="mt-1 text-xs font-medium">{label}</p></Link>)}</div>:failed("action center")}</div>
-    <div className={card}>{data.schedule?<TodaySchedule leads={data.schedule} total={m?.due??data.schedule.length}/>:failed("schedule")}</div>
+    <div className={card}>{data.schedule?<TodaySchedule leads={data.schedule} total={data.scheduleTotal===undefined?data.schedule.length:data.scheduleTotal} date={data.scheduleDate} selectedDate={scheduleDate} onDateChange={setScheduleDate} busy={busy} overdue={data.overdueLeads} overdueTotal={m?.overdue} unscheduled={data.unscheduled}/>:failed("schedule")}</div>
    </section>
    <nav aria-label="Quick actions" className="flex flex-wrap gap-2">{[["All leads","/admin/leads"],["Schedule follow-up","/admin/leads?filter=active"],["Manage users","/admin/users"],["Analytics","/admin/analytics"],["Email settings","/admin/settings/email"]].map(([label,href])=><Link key={href} href={href} className={`${button} bg-card`}>{label}<ArrowRight size={14}/></Link>)}</nav>
 

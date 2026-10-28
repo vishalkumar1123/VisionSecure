@@ -37,6 +37,8 @@ export async function GET(request: Request) {
     const search = (params.get("q") || "").trim().slice(0,100)
     const status = params.get("status")
     const filter = params.get("filter")
+    const followUpDay = params.get("followUpDay")
+    if (followUpDay && (!/^\d{4}-\d{2}-\d{2}$/.test(followUpDay) || Number.isNaN(Date.parse(`${followUpDay}T00:00:00+05:30`)) || businessDay(new Date(`${followUpDay}T00:00:00+05:30`)).key !== followUpDay)) return NextResponse.json({ error: "Invalid follow-up day" }, { status: 400 })
     const { start, end } = businessDay()
     const query: Record<string, unknown> = {}
     if (status) query.status = status
@@ -47,6 +49,8 @@ export async function GET(request: Request) {
       query.status = { $nin: CLOSED_STATUSES }
       query.followUpDate = filter === "due" ? { $gte: start, $lt: end } : { $lt: start, $ne: null }
     }
+    if (filter === "unscheduled") { query.status = "Follow-Up"; query.followUpDate = null }
+    if (followUpDay) { const day = businessDay(new Date(`${followUpDay}T00:00:00+05:30`)); query.status = { $nin: CLOSED_STATUSES }; query.followUpDate = { $gte: day.start, $lt: day.end } }
     if (search) {
       const literal = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
       query.$or = ["name","phone","email","service"].map(field => ({ [field]: { $regex: literal, $options: "i" } }))

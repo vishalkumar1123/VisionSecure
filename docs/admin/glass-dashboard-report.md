@@ -1,5 +1,7 @@
 # Admin glass dashboard handoff
 
+Follow-up update: [schedule correction report](follow-up-schedule-report.md) supersedes the original forest dark palette with navy/charcoal and documents the new status-count/day-wise schedule behavior.
+
 ## Baseline and scope
 
 Inspected README, package/lockfile, Next configuration, theme CSS, admin shell/sidebar, dashboard widgets, APIs and session protections. No applicable AGENTS.md was found. The branch was created from fetched origin/main (f4cb2dc). A user-created commit, 9033b50 (Update keywords), subsequently added the existing organic patch and next-env changes; it is preserved. That patch is not applied by this redesign.

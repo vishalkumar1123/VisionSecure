@@ -57,7 +57,7 @@ test("period, refresh, stale data and empty chart preserve operations",async({pa
  await page.route("**/api/admin/dashboard?*",route=>route.fulfill({status:503,json:{error:"fixture unavailable"}}));
  await page.getByRole("button",{name:"Refresh dashboard",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Showing the last loaded data.");await expect(page.getByLabel("Business KPIs")).toContainText("12");
  await expect(page.getByLabel("Business KPIs").getByRole("link",{name:/Installations/})).toHaveAttribute("href","/admin/leads?status=Installation%20Scheduled");
- await expect(page.getByLabel("Business KPIs").getByRole("link",{name:/Follow-ups today/})).toHaveAttribute("href","/admin/leads?filter=due");
+ await expect(page.getByLabel("Business KPIs").getByRole("link",{name:/Follow-ups/})).toHaveAttribute("href","/admin/leads?status=Follow-Up");
  await page.route("**/api/admin/dashboard?*",route=>route.fulfill({json:{...fixture,trend:{rows:[],current:0,previous:0,change:null}}}));
  await page.getByRole("button",{name:"Refresh dashboard",exact:true}).click();await expect(page.getByText("No leads in this period.",{exact:false})).toBeVisible();await expect(page.getByRole("alert")).toHaveCount(0);
  const order=await page.locator("h2").allTextContents();expect(order.indexOf("Lead trend")).toBeLessThan(order.indexOf("Today's Action Center"));
@@ -85,5 +85,23 @@ test('scoped palette overrides public tokens in both themes',async({page})=>{
  await mount(page);expect(await page.locator('.admin-shell').evaluate(el=>getComputedStyle(el).getPropertyValue('--chart-1').trim())).toBe('#367353');
  expect(await page.getByLabel('Business KPIs').evaluate(el=>getComputedStyle(el).getPropertyValue('--chart-1').trim())).toBe('#367353');
  expect(await page.locator('.admin-kpi').first().evaluate(el=>getComputedStyle(el).transitionDuration)).toBe('0s');
- await page.getByRole('button',{name:'Switch to dark mode'}).click();expect(await page.locator('.admin-shell').evaluate(el=>getComputedStyle(el).getPropertyValue('--chart-1').trim())).toBe('#b3df92');
+ await page.getByRole('button',{name:'Switch to dark mode'}).click();expect(await page.locator('.admin-shell').evaluate(el=>getComputedStyle(el).getPropertyValue('--chart-1').trim())).toBe('#a9d974');
+});
+
+test('follow-up queue shows saved notes, overdue calls and selected IST day',async({page})=>{
+ const scheduled={...lead,_id:'scheduled',name:'Scheduled Customer',status:'Follow-Up',notes:[{text:'Call about camera locations and quotation approval'}]};
+ await mount(page,{...fixture,metrics:{...fixture.metrics,followUp:4},scheduleDate:'2026-09-18',scheduleTotal:1,schedule:[scheduled],overdueLeads:[{...scheduled,_id:'late',name:'Overdue Customer'}],unscheduled:[{...scheduled,_id:'undated',name:'Undated Customer',followUpDate:null}]});
+ const kpis=page.getByLabel('Business KPIs');await expect(kpis.getByRole('link',{name:/Follow-ups/})).toContainText('4');await expect(kpis.getByRole('link',{name:/Follow-ups/})).toContainText('1 scheduled today / 2 overdue');
+ const schedule=page.getByRole('region',{name:'Follow-up call schedule'});await expect(schedule.getByText('Undated Customer',{exact:true})).toBeVisible();await expect(schedule.getByText('Overdue Customer',{exact:true})).toBeVisible();await expect(schedule.getByText('Call about camera locations and quotation approval',{exact:false})).toHaveCount(3);await expect(schedule.getByRole('link',{name:'Call 9999999999'}).first()).toHaveAttribute('href','tel:9999999999');
+ await page.route('**/api/admin/dashboard?*',route=>{const day=new URL(route.request().url()).searchParams.get('scheduleDate')||'2026-09-18';return route.fulfill({json:{...fixture,scheduleDate:day,scheduleTotal:day==='2026-09-19'?1:0,schedule:day==='2026-09-19'?[{...scheduled,name:'Tomorrow Customer'}]:[],overdueLeads:[],unscheduled:[]}})});
+ await schedule.getByLabel('Schedule date').fill('2026-09-19');await expect(schedule.getByText('Tomorrow Customer',{exact:true})).toBeVisible();await expect(schedule.getByRole('link',{name:"View day's leads"})).toHaveAttribute('href','/admin/leads?followUpDay=2026-09-19');
+ await schedule.getByRole('button',{name:'Next schedule day'}).click();await expect(schedule.getByText('No appointments for this day')).toBeVisible();await expect(schedule.getByLabel('Schedule date')).toHaveValue('2026-09-20');
+ await schedule.getByRole('button',{name:'Previous schedule day'}).click();await expect(schedule.getByText('Tomorrow Customer',{exact:true})).toBeVisible();
+ await schedule.getByRole('button',{name:'Today',exact:true}).click();await expect(schedule.getByLabel('Schedule date')).toHaveValue('2026-09-18');
+});
+
+test('dark admin uses navy charcoal background instead of forest green',async({page})=>{
+ await page.clock.install({time:new Date('2026-09-18T20:00:00+05:30')});await page.setViewportSize({width:1440,height:1000});await mount(page,{...fixture,metrics:{...fixture.metrics,followUp:3,pipeline:[{_id:'Follow-Up',total:3},{_id:'New',total:9}]},schedule:[{...lead,status:'Follow-Up'}],overdueLeads:[{...lead,status:'Follow-Up',followUpDate:'2026-09-17T10:00:00Z',notes:[{text:'Confirm site visit and installation requirements'}]},{...lead,_id:'older',name:'Older call',followUpDate:'2026-09-16T10:00:00Z'}],unscheduled:[{...lead,_id:'waiting',name:'Follow-up awaiting date',followUpDate:null,status:'Follow-Up'}]},'dark');
+ expect(await page.locator('.admin-shell').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(16, 23, 34)');
+ await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:'test-results/follow-up-dashboard-desktop-dark.png',fullPage:true});await page.setViewportSize({width:390,height:1000});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);await page.screenshot({path:'test-results/follow-up-dashboard-mobile-dark.png',fullPage:true});
 });

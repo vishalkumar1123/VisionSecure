@@ -26,11 +26,11 @@ async function main(){
  assert.equal(businessDay(new Date("2026-12-31T18:30:00Z")).key,"2027-01-01")
  for(const [hour,label] of [[4,"Good Night"],[5,"Good Morning"],[11,"Good Morning"],[12,"Good Afternoon"],[17,"Good Evening"],[21,"Good Night"]])assert.equal(greeting(hour),label)
  const {NextResponse}=require("next/server")
- let denied=401, failUsers=false, projections=[]
+ let denied=401, failUsers=false, failCount=false, projections=[], queries=[], facets
  const query=(rows)=>({sort(){return this},limit(n){assert([5,20].includes(n));return this},select(fields){projections.push(fields);return this},populate(field,fields){assert.equal(fields,"name");return this},lean:async()=>rows})
  const mock={
  "@/lib/admin-auth":{requireAdmin:async()=>denied?{response:NextResponse.json({error:"denied"},{status:denied})}:{user:{name:"Test Admin"}}},
- "@/models/Lead":{__esModule:true,default:{aggregate:async pipeline=>pipeline[0].$facet?[{pipeline:[{_id:"New",total:2},{_id:"Converted",total:1}],services:[{_id:"CCTV",total:3}],today:[{total:1}],yesterday:[],due:[],overdue:[],attention:[{total:2}]}]:[],find:()=>query([])}},
+ "@/models/Lead":{__esModule:true,default:{aggregate:async pipeline=>pipeline[0].$facet?(facets=pipeline[0].$facet,[{pipeline:[{_id:"New",total:2},{_id:"Converted",total:1},{_id:"Follow-Up",total:2}],services:[{_id:"CCTV",total:3}],today:[{total:1}],yesterday:[],due:[],overdue:[],attention:[{total:2}]}]):[],countDocuments:async()=>{if(failCount)throw Error("count unavailable");return 0},find:(filter)=>{queries.push(filter);return query([])}}},
  "@/models/User":{__esModule:true,default:{aggregate:async()=>{if(failUsers)throw Error("private database details");return [{_id:{role:"admin",active:true},total:2}]}}},
  "@/models/ActivityLog":{__esModule:true,default:{find:()=>query([])}},
  }
@@ -38,9 +38,19 @@ async function main(){
  const request=(range="30")=>new Request(`http://localhost/api/admin/dashboard?days=${range}`)
  assert.equal((await GET(request())).status,401);denied=403;assert.equal((await GET(request())).status,403);denied=0
  assert.equal((await GET(request("999"))).status,400)
- const response=await GET(request());const data=await response.json();assert.equal(data.metrics.total,3);assert.equal(data.metrics.converted,1);assert.equal(data.metrics.conversionRate,33.3);assert.equal(data.trend.rows.length,30);assert.equal(data.trend.change,null);assert.equal(data.users.active,2);assert.equal(response.headers.get("cache-control"),"private, no-store")
- assert(projections.every(value=>!value.includes("password")&&!value.includes("changes")&&!value.includes("errorMessage")))
- failUsers=true;const partial=await (await GET(request("7"))).json();assert.equal(partial.users,null);assert.equal(partial.metrics.total,3);assert.deepEqual(partial.errors,["users"]);assert(!JSON.stringify(partial).includes("private database"));assert.equal(partial.trend.rows.length,7)
+ const response=await GET(request());const data=await response.json();assert.equal(data.metrics.total,5);assert.equal(data.metrics.converted,1);assert.equal(data.metrics.conversionRate,20);assert.equal(data.trend.rows.length,30);assert.equal(data.trend.change,null);assert.equal(data.users.active,2);assert.equal(response.headers.get("cache-control"),"private, no-store")
+ assert(projections.map(value=>typeof value==="string"?value:Object.keys(value).join(" ")).every(value=>!value.includes("password")&&!value.includes("changes")&&!value.includes("errorMessage")))
+ assert(projections.some(value=>typeof value==="object" && value.notes?.$slice===-1))
+ assert.equal(data.metrics.followUp,2)
+ const selected=await (await GET(new Request("http://localhost/api/admin/dashboard?days=30&scheduleDate=2026-12-31"))).json()
+ assert.equal(selected.scheduleDate,"2026-12-31");assert.equal(selected.scheduleTotal,0)
+ assert(queries.some(q=>q?.followUpDate?.$gte?.toISOString()==="2026-12-30T18:30:00.000Z" && q.followUpDate.$lt.toISOString()==="2026-12-31T18:30:00.000Z"))
+ assert(queries.some(q=>q?.status==="Follow-Up"&&q.followUpDate===null))
+ assert(facets.due[0].$match.status.$nin.includes("Closed"))
+ assert.equal((await GET(new Request("http://localhost/api/admin/dashboard?scheduleDate=2026-02-30"))).status,400)
+ assert.equal((await GET(new Request("http://localhost/api/admin/dashboard?scheduleDate=bad"))).status,400)
+ failCount=true;const noCount=await (await GET(request())).json();assert.equal(noCount.scheduleTotal,null);assert.equal(noCount.metrics.followUp,2);assert.deepEqual(noCount.errors,["scheduleCount"]);failCount=false
+ failUsers=true;const partial=await (await GET(request("7"))).json();assert.equal(partial.users,null);assert.equal(partial.metrics.total,5);assert.deepEqual(partial.errors,["users"]);assert(!JSON.stringify(partial).includes("private database"));assert.equal(partial.trend.rows.length,7)
  let captured
  const leadMock={...mock,
  "@/lib/mongodb":{connectDB:async()=>{}},
@@ -54,6 +64,9 @@ async function main(){
  assert(captured.followUpDate.$lt instanceof Date);assert.equal(captured.followUpDate.$ne,null)
  assert(captured.status.$nin.includes("Converted"));assert.equal(captured.$or[0].name.$regex,"\\.\\*")
  await leadsRoute.GET(new Request("http://localhost/api/leads?filter=won"));assert.deepEqual(captured.status.$in,["Converted","Installed Successfully"])
+ await leadsRoute.GET(new Request("http://localhost/api/leads?filter=unscheduled"));assert.equal(captured.status,"Follow-Up");assert.equal(captured.followUpDate,null)
+ await leadsRoute.GET(new Request("http://localhost/api/leads?followUpDay=2026-12-31"));assert.equal(captured.followUpDate.$gte.toISOString(),"2026-12-30T18:30:00.000Z");assert(captured.status.$nin.includes("Closed"))
+ assert.equal((await leadsRoute.GET(new Request("http://localhost/api/leads?followUpDay=2026-02-30"))).status,400)
  console.log("PASS dashboard authorization, projections, partial failures, totals, zero baseline, range validation, India midnight/year boundaries and greeting transitions. No database or email writes.")
 }
 main().catch(e=>{console.error(e);process.exitCode=1})

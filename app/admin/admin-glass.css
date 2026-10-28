@@ -33,37 +33,39 @@
   color: var(--foreground);
 }
 .dark .admin-shell, .dark .admin-dialog {
-  --background: #0d1915;
-  --foreground: #eaf3ec;
-  --card: #192b23;
-  --card-foreground: #eaf3ec;
-  --popover: #20372c;
-  --popover-foreground: #eaf3ec;
-  --secondary: #17271f;
-  --secondary-foreground: #eaf3ec;
-  --muted: #273d30;
-  --muted-foreground: #acbeb1;
-  --primary: #b3df92;
-  --primary-foreground: #112218;
-  --brand-ink: #c5e7ae;
-  --brand-green: #b3df92;
-  --highlight: #a3d586;
-  --highlight-ink: #b3df92;
-  --border: #354b3d;
-  --input: #526b57;
-  --ring: #b3df92;
-  --sidebar: #14241c;
-  --chart-1: #b3df92;
-  --chart-2: #7dbd56;
-  --chart-3: #69bab2;
+  --background: #101722;
+  --foreground: #edf2f8;
+  --card: #1b2635;
+  --card-foreground: #edf2f8;
+  --popover: #233147;
+  --popover-foreground: #edf2f8;
+  --secondary: #182231;
+  --secondary-foreground: #edf2f8;
+  --muted: #29374a;
+  --muted-foreground: #afbdcf;
+  --primary: #a9d974;
+  --primary-foreground: #101b2c;
+  --brand-ink: #dae6f7;
+  --brand-green: #a9d974;
+  --highlight: #73b8ea;
+  --highlight-ink: #a9d974;
+  --border: #3a4a61;
+  --input: #536580;
+  --ring: #a9d974;
+  --sidebar: #162131;
+  --chart-1: #a9d974;
+  --chart-2: #77a8d6;
+  --chart-3: #68bdbd;
   --chart-4: #d9ad74;
   --chart-5: #b3a1d1;
-  --admin-solid: #192b23;
-  --admin-glass: rgba(25, 43, 35, .87);
-  --admin-shadow: 0 18px 44px -26px #0009, inset 0 1px 0 #ceeec214;
+  --admin-solid: #1b2635;
+  --admin-glass: rgba(27, 38, 53, .91);
+  --admin-shadow: 0 18px 44px -26px #0009, inset 0 1px 0 #d9e8ff14;
 }
 .admin-shell { position: relative; isolation: isolate; min-height: 100vh; background: var(--background); }
 .admin-shell::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 8% 0%, #79c91416, transparent 45%), radial-gradient(ellipse at 98% 25%, #41967b14, transparent 50%); }
+.dark .admin-shell::before { background: radial-gradient(ellipse at 8% 0%, #4278b018, transparent 45%), radial-gradient(ellipse at 98% 25%, #577aa512, transparent 50%); }
+.dark .admin-shell .admin-overview-header { background-image: linear-gradient(115deg, #6292c40b, transparent 65%); }
 .admin-main { position: relative; }
 .admin-glass, .admin-toolbar, .admin-sidebar {
   background: var(--admin-solid);
