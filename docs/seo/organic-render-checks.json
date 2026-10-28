@@ -1,0 +1,1178 @@
+{
+  "verification_date": "2026-10-28",
+  "scope": "Local isolated build; not deployed",
+  "source_base": "f4cb2dc",
+  "derived_public_count": 28,
+  "derived_service_count": 13,
+  "pages": [
+    {
+      "path": "/",
+      "requested_url": "http://localhost:3013/",
+      "checked_at_utc": "2026-10-28T16:09:45.142967+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/",
+      "redirects": [],
+      "title": "Security & Networking in Lucknow | VisionSecure",
+      "description": "CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",
+      "h1": [
+        "Security and networking solutions in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/about",
+      "requested_url": "http://localhost:3013/about",
+      "checked_at_utc": "2026-10-28T16:09:45.144164+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/about",
+      "redirects": [],
+      "title": "About VisionSecure | Security & IT in Lucknow",
+      "description": "Meet VisionSecure Smart Technologies, a Lucknow business providing security, networking and smart technology solutions.",
+      "h1": [
+        "About VisionSecure Smart Technologies"
+      ],
+      "canonical": "https://visionsecuretech.in/about",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services",
+      "requested_url": "http://localhost:3013/services",
+      "checked_at_utc": "2026-10-28T16:09:45.144786+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services",
+      "redirects": [],
+      "title": "Security & IT Installation Services in Lucknow | VisionSecure",
+      "description": "Explore CCTV, biometric, LAN cabling, WiFi, access control, automation and maintenance services for homes and businesses in Lucknow.",
+      "h1": [
+        "Security and IT services in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/contact",
+      "requested_url": "http://localhost:3013/contact",
+      "checked_at_utc": "2026-10-28T16:09:45.292451+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/contact",
+      "redirects": [],
+      "title": "Contact VisionSecure in Lucknow | Installation & AMC Enquiries",
+      "description": "Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",
+      "h1": [
+        "Contact VisionSecure in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/contact",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/projects",
+      "requested_url": "http://localhost:3013/projects",
+      "checked_at_utc": "2026-10-28T16:09:45.351147+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/projects",
+      "redirects": [],
+      "title": "Security & Networking Projects | VisionSecure Lucknow",
+      "description": "Explore VisionSecure security and networking project information and discuss the requirements for your own installation in Lucknow.",
+      "h1": [
+        "VisionSecure projects"
+      ],
+      "canonical": "https://visionsecuretech.in/projects",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/gallery",
+      "requested_url": "http://localhost:3013/gallery",
+      "checked_at_utc": "2026-10-28T16:09:45.356114+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/gallery",
+      "redirects": [],
+      "title": "Security & Technology Gallery | VisionSecure",
+      "description": "Browse security, networking and smart technology images from VisionSecure. Explore the relevant services for your installation needs.",
+      "h1": [
+        "Security and technology gallery"
+      ],
+      "canonical": "https://visionsecuretech.in/gallery",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/faq",
+      "requested_url": "http://localhost:3013/faq",
+      "checked_at_utc": "2026-10-28T16:09:45.498640+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/faq",
+      "redirects": [],
+      "title": "Security Installation & AMC FAQs | VisionSecure",
+      "description": "Answers to common CCTV, biometric, networking and maintenance questions. Learn what to consider before discussing your installation.",
+      "h1": [
+        "Security installation and maintenance FAQs"
+      ],
+      "canonical": "https://visionsecuretech.in/faq",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog",
+      "requested_url": "http://localhost:3013/blog",
+      "checked_at_utc": "2026-10-28T16:09:45.538138+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog",
+      "redirects": [],
+      "title": "Security & Networking Guides | VisionSecure Blog",
+      "description": "Read practical CCTV, biometric, networking and home automation guides to understand equipment choices and installation requirements.",
+      "h1": [
+        "Security and networking guides"
+      ],
+      "canonical": "https://visionsecuretech.in/blog",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/cctv-surveillance",
+      "requested_url": "http://localhost:3013/services/cctv-surveillance",
+      "checked_at_utc": "2026-10-28T16:09:45.573476+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/cctv-surveillance",
+      "redirects": [],
+      "title": "CCTV camera installation in Lucknow | VisionSecure",
+      "description": "CCTV camera installation in Lucknow for homes, shops and offices. Plan IP cameras, recording storage and remote viewing with a site-based quotation.",
+      "h1": [
+        "CCTV camera installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/cctv-surveillance",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 5,
+      "related_services": [
+        "it-support-amc",
+        "networking-solutions",
+        "access-control-system"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/biometric-attendance",
+      "requested_url": "http://localhost:3013/services/biometric-attendance",
+      "checked_at_utc": "2026-10-28T16:09:45.617564+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/biometric-attendance",
+      "redirects": [],
+      "title": "Biometric attendance installation in Lucknow | VisionSecure",
+      "description": "Biometric attendance installation in Lucknow for offices and institutions. Discuss fingerprint or face attendance, shifts and software compatibility.",
+      "h1": [
+        "Biometric attendance installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/biometric-attendance",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 5,
+      "related_services": [
+        "access-control-system",
+        "networking-solutions",
+        "it-support-amc"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/access-control-system",
+      "requested_url": "http://localhost:3013/services/access-control-system",
+      "checked_at_utc": "2026-10-28T16:09:45.660439+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/access-control-system",
+      "redirects": [],
+      "title": "Access control system installation in Lucknow | VisionSecure",
+      "description": "Door access control installation in Lucknow. Discuss RFID or biometric entry, door hardware, safe exit arrangements and user permissions.",
+      "h1": [
+        "Access control system installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/access-control-system",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "biometric-attendance",
+        "smart-door-locks",
+        "video-door-phone"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/networking-solutions",
+      "requested_url": "http://localhost:3013/services/networking-solutions",
+      "checked_at_utc": "2026-10-28T16:09:45.671491+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/networking-solutions",
+      "redirects": [],
+      "title": "LAN networking and structured cabling in Lucknow | VisionSecure",
+      "description": "LAN networking and structured cabling in Lucknow. Discuss office network setup, cable routes, network points, labelling and handover checks.",
+      "h1": [
+        "LAN networking and structured cabling in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/networking-solutions",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 5,
+      "related_services": [
+        "wifi-mesh-networking",
+        "server-networking-infrastructure",
+        "it-support-amc"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/wifi-mesh-networking",
+      "requested_url": "http://localhost:3013/services/wifi-mesh-networking",
+      "checked_at_utc": "2026-10-28T16:09:45.744270+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/wifi-mesh-networking",
+      "redirects": [],
+      "title": "WiFi and mesh network installation in Lucknow | VisionSecure",
+      "description": "WiFi and mesh installation in Lucknow. Assess coverage, dead zones, access point placement, wired backhaul and compatibility for your home or office.",
+      "h1": [
+        "WiFi and mesh network installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/wifi-mesh-networking",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "networking-solutions",
+        "server-networking-infrastructure",
+        "it-support-amc"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/it-support-amc",
+      "requested_url": "http://localhost:3013/services/it-support-amc",
+      "checked_at_utc": "2026-10-28T16:09:45.787440+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/it-support-amc",
+      "redirects": [],
+      "title": "CCTV and IT maintenance / AMC in Lucknow | VisionSecure",
+      "description": "CCTV and IT AMC in Lucknow. Discuss preventive maintenance, network troubleshooting, supported equipment and a clearly defined maintenance scope.",
+      "h1": [
+        "CCTV and IT maintenance / AMC in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/it-support-amc",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 5,
+      "related_services": [
+        "cctv-surveillance",
+        "networking-solutions",
+        "server-networking-infrastructure"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/server-networking-infrastructure",
+      "requested_url": "http://localhost:3013/services/server-networking-infrastructure",
+      "checked_at_utc": "2026-10-28T16:09:45.817084+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/server-networking-infrastructure",
+      "redirects": [],
+      "title": "Server and network infrastructure setup in Lucknow | VisionSecure",
+      "description": "Server and network infrastructure setup in Lucknow. Plan rack organisation, power, network capacity, migration responsibilities and documented handover.",
+      "h1": [
+        "Server and network infrastructure setup in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/server-networking-infrastructure",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "networking-solutions",
+        "wifi-mesh-networking",
+        "it-support-amc"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/video-door-phone",
+      "requested_url": "http://localhost:3013/services/video-door-phone",
+      "checked_at_utc": "2026-10-28T16:09:45.886586+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/video-door-phone",
+      "redirects": [],
+      "title": "Video door phone installation in Lucknow | VisionSecure",
+      "description": "Video door phone installation in Lucknow. Discuss entrance intercom coverage, indoor displays, cabling and compatible door-release requirements.",
+      "h1": [
+        "Video door phone installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/video-door-phone",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "access-control-system",
+        "smart-door-locks",
+        "cctv-surveillance"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/smart-door-locks",
+      "requested_url": "http://localhost:3013/services/smart-door-locks",
+      "checked_at_utc": "2026-10-28T16:09:45.935831+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/smart-door-locks",
+      "redirects": [],
+      "title": "Smart door lock installation in Lucknow | VisionSecure",
+      "description": "Smart door lock installation in Lucknow. Check door compatibility, fingerprint or PIN access, battery backup options and secure user handover.",
+      "h1": [
+        "Smart door lock installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/smart-door-locks",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "access-control-system",
+        "video-door-phone",
+        "home-automation"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/home-automation",
+      "requested_url": "http://localhost:3013/services/home-automation",
+      "checked_at_utc": "2026-10-28T16:09:45.948734+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/home-automation",
+      "redirects": [],
+      "title": "Home automation installation in Lucknow | VisionSecure",
+      "description": "Home automation installation in Lucknow. Plan smart lighting, switches, compatible controls and phased installation around existing wiring and room needs.",
+      "h1": [
+        "Home automation installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/home-automation",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "smart-door-locks",
+        "wifi-mesh-networking",
+        "video-door-phone"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/speaker-solutions",
+      "requested_url": "http://localhost:3013/services/speaker-solutions",
+      "checked_at_utc": "2026-10-28T16:09:46.013463+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/speaker-solutions",
+      "redirects": [],
+      "title": "PA system and speaker installation in Lucknow | VisionSecure",
+      "description": "PA system and speaker installation in Lucknow. Plan announcements, audio zones, speaker coverage, amplifier compatibility and practical handover checks.",
+      "h1": [
+        "PA system and speaker installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/speaker-solutions",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "networking-solutions",
+        "emergency-alarm-system",
+        "it-support-amc"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/glass-break-alarm-system",
+      "requested_url": "http://localhost:3013/services/glass-break-alarm-system",
+      "checked_at_utc": "2026-10-28T16:09:46.082479+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/glass-break-alarm-system",
+      "redirects": [],
+      "title": "Glass break alarm installation in Lucknow | VisionSecure",
+      "description": "Glass break alarm installation in Lucknow. Check sensor coverage, glass type, placement and compatibility with your existing alarm panel.",
+      "h1": [
+        "Glass break alarm installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/glass-break-alarm-system",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "cctv-surveillance",
+        "access-control-system",
+        "emergency-alarm-system"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/services/emergency-alarm-system",
+      "requested_url": "http://localhost:3013/services/emergency-alarm-system",
+      "checked_at_utc": "2026-10-28T16:09:46.095505+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/services/emergency-alarm-system",
+      "redirects": [],
+      "title": "Emergency alarm installation in Lucknow | VisionSecure",
+      "description": "Emergency alert installation in Lucknow. Discuss notification zones, alert devices, power requirements, testing and the scope of compatible integrations.",
+      "h1": [
+        "Emergency alarm installation in Lucknow"
+      ],
+      "canonical": "https://visionsecuretech.in/services/emergency-alarm-system",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite",
+        "Service"
+      ],
+      "question_count": 3,
+      "related_services": [
+        "glass-break-alarm-system",
+        "speaker-solutions",
+        "it-support-amc"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true,
+        "service_faqs": true,
+        "service_explanation": true,
+        "related_links": true,
+        "preselected_enquiry": true,
+        "service_schema": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "requested_url": "http://localhost:3013/blog/how-to-choose-the-right-cctv-camera",
+      "checked_at_utc": "2026-10-28T16:09:46.139398+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/how-to-choose-the-right-cctv-camera",
+      "redirects": [],
+      "title": "How to Choose the Right CCTV Camera for Your Home | VisionSecure",
+      "description": "A complete guide to selecting the perfect CCTV camera for your home, office and business tracking needs.",
+      "h1": [
+        "How to Choose the Right CCTV Camera for Your Home"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/biometric-attendance-vs-manual-attendance",
+      "requested_url": "http://localhost:3013/blog/biometric-attendance-vs-manual-attendance",
+      "checked_at_utc": "2026-10-28T16:09:46.219562+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/biometric-attendance-vs-manual-attendance",
+      "redirects": [],
+      "title": "Biometric Attendance vs Manual Attendance: Which is Better? | VisionSecure",
+      "description": "Compare the pros and cons of biometric and manual attendance systems for your office or school.",
+      "h1": [
+        "Biometric Attendance vs Manual Attendance: Which is Better?"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/top-5-home-automation-features",
+      "requested_url": "http://localhost:3013/blog/top-5-home-automation-features",
+      "checked_at_utc": "2026-10-28T16:09:46.230914+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/top-5-home-automation-features",
+      "redirects": [],
+      "title": "Top 5 Home Automation Features You Need in 2024 | VisionSecure",
+      "description": "Discover the must-have smart home features that can improve your lifestyle, comfort, and save energy.",
+      "h1": [
+        "Top 5 Home Automation Features You Need in 2024"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/top-5-home-automation-features",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/understanding-ip-vs-analog-cctv",
+      "requested_url": "http://localhost:3013/blog/understanding-ip-vs-analog-cctv",
+      "checked_at_utc": "2026-10-28T16:09:46.310371+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/understanding-ip-vs-analog-cctv",
+      "redirects": [],
+      "title": "Understanding IP vs Analog CCTV Systems | VisionSecure",
+      "description": "Learn the key differences between IP and analog cameras to make an informed decision for your security setup.",
+      "h1": [
+        "Understanding IP vs Analog CCTV Systems"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/fire-safety-tips-commercial-buildings",
+      "requested_url": "http://localhost:3013/blog/fire-safety-tips-commercial-buildings",
+      "checked_at_utc": "2026-10-28T16:09:46.356117+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/fire-safety-tips-commercial-buildings",
+      "redirects": [],
+      "title": "Fire Safety Tips for Commercial Buildings | VisionSecure",
+      "description": "Essential fire safety measures, monitoring architectures, and emergency equipment every commercial facility should deploy.",
+      "h1": [
+        "Fire Safety Tips for Commercial Buildings"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/benefits-of-access-control-systems",
+      "requested_url": "http://localhost:3013/blog/benefits-of-access-control-systems",
+      "checked_at_utc": "2026-10-28T16:09:46.401809+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/benefits-of-access-control-systems",
+      "redirects": [],
+      "title": "Benefits of Access Control Systems for Offices | VisionSecure",
+      "description": "Why modern offices are switching from traditional physical locks to smart electronic access control hardware layouts.",
+      "h1": [
+        "Benefits of Access Control Systems for Offices"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/benefits-of-access-control-systems",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "requested_url": "http://localhost:3013/blog/networking-structured-cabling-and-server-setup-guide",
+      "checked_at_utc": "2026-10-28T16:09:46.430603+00:00",
+      "status": 200,
+      "final_url": "http://localhost:3013/blog/networking-structured-cabling-and-server-setup-guide",
+      "redirects": [],
+      "title": "The Complete Guide to Structured Network Cabling and Server Room Setup | VisionSecure",
+      "description": "Learn how to plan, route, and deploy professional enterprise network cabling and server racks for zero downtime.",
+      "h1": [
+        "The Complete Guide to Structured Network Cabling and Server Room Setup"
+      ],
+      "canonical": "https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide",
+      "robots": [
+        "index, follow"
+      ],
+      "x_robots_tag": "",
+      "schema_types": [
+        "LocalBusiness",
+        "WebSite"
+      ],
+      "checks": {
+        "status_200": true,
+        "title": true,
+        "description": true,
+        "one_stable_h1": true,
+        "canonical": true,
+        "indexable": true,
+        "one_business": true,
+        "unique_entities": true,
+        "public_internal_links": true,
+        "enquiry_values": true
+      },
+      "outcome": "Pass"
+    }
+  ],
+  "resources": {
+    "/robots.txt": {
+      "status": 200,
+      "final_url": "http://localhost:3013/robots.txt",
+      "text": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\nDisallow: /profile\nDisallow: /register\n\nSitemap: https://visionsecuretech.in/sitemap.xml\n",
+      "redirects": []
+    },
+    "/sitemap.xml": {
+      "status": 200,
+      "final_url": "http://localhost:3013/sitemap.xml",
+      "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<url>\n<loc>https://visionsecuretech.in/</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/about</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/contact</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/projects</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/gallery</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/faq</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/cctv-surveillance</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/biometric-attendance</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/access-control-system</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/networking-solutions</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/wifi-mesh-networking</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/it-support-amc</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/server-networking-infrastructure</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/video-door-phone</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/smart-door-locks</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/home-automation</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/speaker-solutions</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/glass-break-alarm-system</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/emergency-alarm-system</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/top-5-home-automation-features</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/benefits-of-access-control-systems</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide</loc>\n</url>\n</urlset>\n",
+      "redirects": []
+    }
+  },
+  "crawler_rules": {
+    "Googlebot": {
+      "public_rules_allow_all": true,
+      "private_path_rules_block": true
+    },
+    "OAI-SearchBot": {
+      "public_rules_allow_all": true,
+      "private_path_rules_block": true
+    },
+    "GPTBot": {
+      "public_rules_allow_all": true,
+      "private_path_rules_block": true
+    }
+  },
+  "crawler_ip_access": "Not verified; no authorised hosting logs",
+  "training_preference": "GPTBot policy retained; distinct from OAI-SearchBot search access",
+  "sitemap_count": 28,
+  "routes_unchanged": true,
+  "passed": true
+}
