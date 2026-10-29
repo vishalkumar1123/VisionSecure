@@ -91,3 +91,13 @@ Review Home, /services/cctv-surveillance, /services/networking-solutions, /servi
 Local preview was verified at http://localhost:3013 using the isolated clean review build. No Vercel preview URL was available at preparation time. A branch push is not proof of a successful preview or production deployment.
 
 Official monitoring references: [Search Console](https://developers.google.com/search/docs/monitor-debug/search-console-start), [Bing URL submission help](https://www.bing.com/webmasters/help/URL-Submission-62f2860b) (JavaScript/account UI required), [OpenAI crawler distinctions](https://developers.openai.com/api/docs/bots), [GA4 recommended events](https://support.google.com/analytics/answer/9267735). Existing custom enquiry event names are preserved rather than silently renamed to Google's recommended generate_lead.
+
+## Publishing result
+
+Application/evidence commit `75e72ca` was pushed successfully to `origin/feat/customer-keyword-review`. The clean diff contains only the three application content files and twelve verification/handoff files; previous admin/address/integration commits are excluded.
+
+GitHub draft-PR creation via the connected integration returned HTTP 403, Resource not accessible by integration. No PR was created and no stored credentials were retrieved. Create/review link: https://github.com/vishalkumar1123/VisionSecure/compare/main...feat/customer-keyword-review?expand=1 . Title: Improve service buyer guidance and audit customer keyword intents. Use this report and its validation summary as the PR body; retain draft status until owner facts/content are reviewed.
+
+Vercel reported a pending check for the application commit. Deployment status page: https://vercel.com/vision-secure/vision-secure-tech/Hg5PPvauxasEKu1QVgrQqVW7dB3Z . This is a deployment dashboard link, not a verified public preview URL. No production release was performed. Preview availability remains unverified.
+
+A portable `visionsecure-customer-keywords.patch` is provided alongside the original workspace. Apply it only in a clean compatible checkout of main with `git apply --check` first; skip it on the already-updated review branch. The existing workspace retains matching authored files for review, without resetting its prior work. The clean worktree is `.customer-keyword-review`.
