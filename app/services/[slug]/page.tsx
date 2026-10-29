@@ -109,6 +109,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <Link href={`/contact?service=${encodeURIComponent(service.title)}`} className="mt-6 inline-flex items-center gap-2 font-semibold text-brand-green underline underline-offset-4">Discuss your {service.title.toLowerCase()} requirements <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
         </section>
       )}
+      <section className="page-container pb-12" aria-label="Related planning guidance"><p className="leading-7 text-muted-foreground">For cabling and connectivity, see {service.slug === "networking-solutions" ? "the selection and handover guidance above" : <Link href="/services/networking-solutions" className="underline">LAN planning</Link>}; for ongoing equipment care, review {service.slug === "it-support-amc" ? "the AMC scope and exclusions above" : <Link href="/services/it-support-amc" className="underline">AMC scope and exclusions</Link>}. Confirm which related work belongs in your quotation.</p></section>
       <ServiceTechnologyVisual category={service.category} title={service.title} />
 
       <section className="page-container section-space">

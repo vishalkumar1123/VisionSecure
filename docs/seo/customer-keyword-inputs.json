@@ -1,0 +1,2012 @@
+[
+  {
+    "keyword": "security and networking solutions Lucknow",
+    "intent": "installation / Security and networking",
+    "url": "https://visionsecuretech.in",
+    "recommendation": "Proposed: Home introduction and service overview",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "VisionSecure Smart Technologies Lucknow",
+    "intent": "navigation / Security and networking",
+    "url": "https://visionsecuretech.in/about",
+    "recommendation": "Proposed: About business identity section",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "VisionSecure installation services",
+    "intent": "navigation / Security and networking",
+    "url": "https://visionsecuretech.in/services",
+    "recommendation": "Proposed: Services overview and service navigation",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "VisionSecure Lucknow contact",
+    "intent": "navigation / Contact and enquiries",
+    "url": "https://visionsecuretech.in/contact",
+    "recommendation": "Proposed: Contact heading and contact details",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "security system site assessment Lucknow",
+    "intent": "installation / Contact and enquiries",
+    "url": "https://visionsecuretech.in/contact",
+    "recommendation": "Proposed: Site assessment enquiry instructions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "IT maintenance enquiry Lucknow",
+    "intent": "maintenance / Contact and enquiries",
+    "url": "https://visionsecuretech.in/contact",
+    "recommendation": "Proposed: Maintenance enquiry instructions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "CCTV camera installation Lucknow",
+    "intent": "installation / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "IP camera system setup Lucknow",
+    "intent": "installation / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: IP system options and compatible recorder checks",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "outdoor CCTV installation Lucknow",
+    "intent": "installation / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Outdoor coverage and mounting assessment",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "office CCTV camera placement",
+    "intent": "informational / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Buyer question about entry points and coverage",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "CCTV blind spot assessment",
+    "intent": "informational / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Coverage planning checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "CCTV remote viewing setup Lucknow",
+    "intent": "installation / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Supported remote access options; avoid exposing credentials",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "NVR recording storage planning",
+    "intent": "informational / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Recording requirements and retention questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "PoE camera cabling requirements",
+    "intent": "informational / CCTV",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Proposed: Compatibility and power/cabling checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "IP cameras vs analog CCTV",
+    "intent": "comparison / CCTV",
+    "url": "https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv",
+    "recommendation": "Proposed: Existing comparison article",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "how to choose CCTV cameras for home",
+    "intent": "informational / CCTV",
+    "url": "https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera",
+    "recommendation": "Proposed: Existing camera selection article",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "CCTV installation quotation Lucknow",
+    "intent": "installation / CCTV",
+    "url": "https://visionsecuretech.in/contact",
+    "recommendation": "Proposed: Enquiry details checklist; no fixed price",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "CCTV preventive maintenance Lucknow",
+    "intent": "maintenance / CCTV",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: AMC scope and inspection tasks",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "biometric attendance installation Lucknow",
+    "intent": "installation / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "fingerprint attendance system setup Lucknow",
+    "intent": "installation / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Fingerprint device options",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "face attendance system for offices Lucknow",
+    "intent": "installation / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Face-device suitability and lighting questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "biometric attendance report export",
+    "intent": "informational / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Software/report compatibility checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "attendance device placement requirements",
+    "intent": "informational / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Placement and staff enrolment questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "biometric attendance shift setup",
+    "intent": "informational / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Confirm supported shifts and reporting before quotation",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "fingerprint vs face attendance systems",
+    "intent": "comparison / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Proposed: Buyer FAQ comparing supported recognition methods",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "biometric attendance vs manual attendance",
+    "intent": "comparison / Biometric attendance",
+    "url": "https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance",
+    "recommendation": "Proposed: Existing attendance comparison article",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "biometric attendance maintenance scope",
+    "intent": "maintenance / Biometric attendance",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: AMC scope questions; confirm device support",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "LAN network installation Lucknow",
+    "intent": "installation / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "structured cabling services Lucknow",
+    "intent": "installation / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Cabling scope and termination section",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office network point planning",
+    "intent": "informational / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Device/desk count and network-point checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "office router and switch setup Lucknow",
+    "intent": "installation / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Supported network equipment setup",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "Ethernet cable labelling and termination",
+    "intent": "informational / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Handover documentation and testing questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "existing office LAN upgrade Lucknow",
+    "intent": "installation / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Existing-network assessment",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "PoE switch power budget for CCTV",
+    "intent": "informational / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Plan camera load and compatible switch capacity",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "office network troubleshooting Lucknow",
+    "intent": "maintenance / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Proposed: Describe connectivity symptoms and existing setup",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "router vs switch for office network",
+    "intent": "comparison / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide",
+    "recommendation": "Proposed: Existing networking guide; explain different roles",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "structured network cabling planning guide",
+    "intent": "informational / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide",
+    "recommendation": "Proposed: Existing network planning guide",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "LAN maintenance agreement scope",
+    "intent": "maintenance / LAN and structured cabling",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Explicit equipment and visit scope",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "mesh WiFi installation Lucknow",
+    "intent": "installation / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "WiFi dead zone assessment",
+    "intent": "informational / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Coverage assessment FAQ",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "mesh WiFi node placement",
+    "intent": "informational / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Placement and layout questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "mesh WiFi vs range extender",
+    "intent": "comparison / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Buyer comparison; assess layout instead of universal claims",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "mesh WiFi wired backhaul compatibility",
+    "intent": "informational / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Ask which selected devices support wired backhaul",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "multi room WiFi setup Lucknow",
+    "intent": "installation / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Multi-room coverage application",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "office wireless access point placement Lucknow",
+    "intent": "installation / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Access-point planning and deployment scope",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "weak WiFi coverage troubleshooting Lucknow",
+    "intent": "maintenance / Wi-Fi and mesh",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Proposed: Coverage optimisation enquiry checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "IT support AMC Lucknow",
+    "intent": "maintenance / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "security and networking annual maintenance",
+    "intent": "maintenance / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Define equipment included and excluded",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "what does a CCTV AMC include",
+    "intent": "informational / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Task and replacement-parts scope FAQ",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "AMC visit frequency and support terms",
+    "intent": "informational / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Owner-confirmed terms; no invented response SLA",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "repair vs replacement for security equipment",
+    "intent": "comparison / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Inspection-based buyer question; no unsupported diagnosis",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "existing security system inspection Lucknow",
+    "intent": "maintenance / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Condition assessment and inspection scope",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "IT AMC quotation checklist",
+    "intent": "informational / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Inventory, fault history and service needs",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "planned network preventive maintenance",
+    "intent": "maintenance / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Preventive tasks and agreed visit scope",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "maintenance parts and labour coverage",
+    "intent": "informational / IT support and AMC",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Proposed: Explain exclusions only after owner confirmation",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "door access control installation Lucknow",
+    "intent": "installation / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "RFID door access setup Lucknow",
+    "intent": "installation / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: Supported RFID options",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "biometric door entry system Lucknow",
+    "intent": "installation / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: Compatible biometric entry options",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "office access permission planning",
+    "intent": "informational / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: User credentials and access-rule questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "access control entry logs",
+    "intent": "informational / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: Ask supported logging/reporting functions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "door controller compatibility checklist",
+    "intent": "informational / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: Confirm controller, door and locking hardware",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "RFID vs biometric door access",
+    "intent": "comparison / Access control",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Proposed: Useful buyer comparison FAQ",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "benefits of office access control",
+    "intent": "informational / Access control",
+    "url": "https://visionsecuretech.in/blog/benefits-of-access-control-systems",
+    "recommendation": "Proposed: Existing access-control article",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "server and network infrastructure setup Lucknow",
+    "intent": "installation / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "network rack organisation Lucknow",
+    "intent": "installation / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Rack organisation and device layout",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "server rack cabling documentation",
+    "intent": "informational / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Handover labelling and device records",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "server room power and cooling planning",
+    "intent": "informational / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Site-assessment questions, not a compliance guarantee",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "office network rack setup Lucknow",
+    "intent": "installation / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Rack planning and installation scope",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "server migration planning questions",
+    "intent": "informational / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Confirm migration scope and software/licence compatibility",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "server infrastructure maintenance scope",
+    "intent": "maintenance / Server and rack infrastructure",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Proposed: Agree supported equipment and maintenance terms",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "video door phone installation Lucknow",
+    "intent": "installation / Video door phone",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office visitor communication system Lucknow",
+    "intent": "installation / Video door phone",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Proposed: Entrance communication application",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "video door phone indoor display placement",
+    "intent": "informational / Video door phone",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Proposed: Layout and user convenience FAQ",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "video door phone vs video doorbell",
+    "intent": "comparison / Video door phone",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Proposed: Explain selection considerations without claiming unsupported stock",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "video door phone existing wiring compatibility",
+    "intent": "informational / Video door phone",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Proposed: Assess available cabling and selected device requirements",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "choosing a video door phone for home",
+    "intent": "informational / Video door phone",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Proposed: Buyer questions on entrance and display needs",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "smart door lock installation Lucknow",
+    "intent": "installation / Smart door locks",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "digital lock door compatibility",
+    "intent": "informational / Smart door locks",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Proposed: Door material, fit and usage checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "keyless entry vs traditional door lock",
+    "intent": "comparison / Smart door locks",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Proposed: Buyer comparison and practical fit questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "smart lock backup access options",
+    "intent": "informational / Smart door locks",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Proposed: Confirm selected model emergency access and power behaviour",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "smart lock user credential management",
+    "intent": "informational / Smart door locks",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Proposed: Supported credentials and access-change questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "digital door lock maintenance questions",
+    "intent": "maintenance / Smart door locks",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Proposed: Confirm supported maintenance and manufacturer guidance",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "home automation installation Lucknow",
+    "intent": "installation / Home automation",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "smart lighting control setup Lucknow",
+    "intent": "installation / Home automation",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Proposed: Supported smart-lighting options",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "phased home automation planning",
+    "intent": "informational / Home automation",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Proposed: Start-small and expansion questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "home automation security compatibility",
+    "intent": "informational / Home automation",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Proposed: Confirm supported security integration",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "smart home device connectivity requirements",
+    "intent": "informational / Home automation",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Proposed: Connectivity and compatible controller questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "practical home automation features",
+    "intent": "informational / Home automation",
+    "url": "https://visionsecuretech.in/blog/top-5-home-automation-features",
+    "recommendation": "Proposed: Existing features article; review dated framing",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "smart lighting vs whole home automation",
+    "intent": "comparison / Home automation",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Proposed: Compare scope before recommending equipment",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "PA speaker system installation Lucknow",
+    "intent": "installation / PA and speaker systems",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "school announcement speaker system Lucknow",
+    "intent": "installation / PA and speaker systems",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Proposed: School announcement application",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "commercial speaker coverage planning",
+    "intent": "informational / PA and speaker systems",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Proposed: Layout and intended-use checklist",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "PA speech clarity planning",
+    "intent": "informational / PA and speaker systems",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Proposed: Buyer questions on intelligibility and coverage",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "announcement PA vs background music system",
+    "intent": "comparison / PA and speaker systems",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Proposed: Compare communication and audio-use requirements",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "speaker and amplifier compatibility",
+    "intent": "informational / PA and speaker systems",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Proposed: Selected equipment compatibility questions",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "glass break alarm installation Lucknow",
+    "intent": "installation / Glass-break alarms",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Proposed: Service introduction",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840",
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "glass door sensor placement",
+    "intent": "informational / Glass-break alarms",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Proposed: Site layout and detection requirements",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "glass break detector alarm panel compatibility",
+    "intent": "informational / Glass-break alarms",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Proposed: Confirm compatible alarm integration",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "glass break sensor vs door entry sensor",
+    "intent": "comparison / Glass-break alarms",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Proposed: Explain different detection purposes",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "glass break alarm inspection questions",
+    "intent": "maintenance / Glass-break alarms",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Proposed: Confirm testing procedure and supported maintenance",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "emergency alert system installation Lucknow",
+    "intent": "installation / Emergency alert systems",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Proposed: Service introduction; no fire-compliance claim",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "premises emergency alert device planning",
+    "intent": "informational / Emergency alert systems",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Proposed: Site-specific notification requirements",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "emergency alarm notification coverage",
+    "intent": "informational / Emergency alert systems",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Proposed: Coverage planning; do not guarantee safety outcomes",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "emergency alert security system compatibility",
+    "intent": "informational / Emergency alert systems",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Proposed: Confirm supported integration before quotation",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "emergency alarm maintenance scope",
+    "intent": "maintenance / Emergency alert systems",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Proposed: Agree testing and maintenance scope; no unsupported certification",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "VisionSecure security installation projects Lucknow",
+    "intent": "navigation / Projects",
+    "url": "https://visionsecuretech.in/projects",
+    "recommendation": "Use only genuine project evidence; obtain permission and avoid invented customers/results.",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "VisionSecure installation photo gallery",
+    "intent": "navigation / Gallery",
+    "url": "https://visionsecuretech.in/gallery",
+    "recommendation": "Describe actual installation photos; no stock-photo project claims.",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "VisionSecure installation and maintenance FAQs",
+    "intent": "informational / FAQs",
+    "url": "https://visionsecuretech.in/faq",
+    "recommendation": "Answer actual buyer questions; confirm support and warranty terms.",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "VisionSecure security and networking guides",
+    "intent": "navigation / Blog",
+    "url": "https://visionsecuretech.in/blog",
+    "recommendation": "Introduce existing practical guides with relevant service links.",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "commercial building fire safety tips",
+    "intent": "informational / Fire safety article",
+    "url": "https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings",
+    "recommendation": "Review factual safety guidance against authoritative sources; no certification/compliance claims.",
+    "sources": [
+      "c316de8d-282a-421c-81fd-1ded4243af2c",
+      "c908936f-877b-459e-a68e-3310ec96b840"
+    ]
+  },
+  {
+    "keyword": "CCTV installation in Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "CCTV camera installation near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "home CCTV installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "shop CCTV camera installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office CCTV installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "IP camera installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "ghar me CCTV camera lagwane ka kharcha",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/cctv-surveillance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "LAN networking services Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office network installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "Cat6 cable installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "network cable installation near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office LAN setup cost Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office me networking kaise karaye",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/networking-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "biometric attendance machine installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "fingerprint attendance machine setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "face attendance machine installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office attendance system Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "biometric machine installation near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "attendance machine software setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office ke liye attendance machine kaise choose kare",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/biometric-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "IT support services Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office computer AMC Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "CCTV AMC services Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "computer maintenance services Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office IT maintenance near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "CCTV maintenance contract Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "IT AMC me kya kya include hota hai",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/it-support-amc",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "biometric door access system Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office access control system Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "card access door system Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "door access control installation near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "access control system installation cost",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office door entry system kaise choose kare",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/access-control-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "home WiFi setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office WiFi installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "multi floor WiFi setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "WiFi installation service near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "ghar me WiFi coverage kaise badhaye",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "mesh WiFi installation cost Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/wifi-mesh-networking",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "server setup services Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "small office server installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "server rack installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "server room setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office server network setup",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "server installation service near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office ke liye server setup cost",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/server-networking-infrastructure",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "home video intercom installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "video doorbell installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "gate video intercom setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "video door phone installer near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "video door phone installation cost",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "ghar ke liye video door phone kaise choose kare",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/video-door-phone",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "fingerprint door lock installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "digital door lock installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "home smart lock setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "smart door lock installer near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "smart lock installation cost Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "purane darwaze me smart lock lag sakta hai",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/smart-door-locks",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "smart home setup Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "smart lighting installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "smart switch installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "home automation installer near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "home automation cost Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "ghar ko smart home kaise banaye",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/home-automation",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "PA system installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office speaker installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "school announcement system installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "shop background music system installation",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "speaker installation service near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "PA system installation cost Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "announcement ke liye speaker system kaise choose kare",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/speaker-solutions",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "glass break sensor installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "shop glass security alarm Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "glass window alarm installation",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "glass break alarm installer near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "glass break alarm installation cost",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "glass break sensor aur door sensor me antar",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/glass-break-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "emergency alarm installation Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office emergency alert system Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "premises emergency notification system",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "emergency alarm installer near me",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "emergency alert system installation cost",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "building emergency alarm system setup",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "emergency alert system kaise choose kare",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services/emergency-alarm-system",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "security system installation services Lucknow",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "security and networking installation services",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/services",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "VisionSecure installation projects",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/projects",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "VisionSecure CCTV installation photos",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/gallery",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "security system installation questions",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/faq",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "CCTV and networking guides",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "how to choose CCTV camera for home",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "useful home automation features",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/top-5-home-automation-features",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "IP camera vs analog CCTV camera",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "fire safety tips for commercial buildings",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "benefits of office access control system",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/benefits-of-access-control-systems",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office structured cabling and server setup guide",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "ghar ke liye kaunsa CCTV camera sahi hai",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "fingerprint attendance aur register attendance me antar",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "IP CCTV aur analog CCTV me kya difference hai",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  },
+  {
+    "keyword": "office network cabling kaise plan kare",
+    "intent": "Related buyer intent",
+    "url": "https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide",
+    "recommendation": "Consolidate with the service or guide topic",
+    "sources": [
+      "50fc0ee3-daec-4a7c-8608-b64b92d58283"
+    ]
+  }
+]
