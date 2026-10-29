@@ -26,7 +26,7 @@ type Lead = {
   phone: string
   email: string
   service: string
-  budget: string
+  address?: string
   status: string
   createdAt: string
 }
@@ -265,6 +265,8 @@ export default function LeadsGrid({
         field: "service",
         flex: 1,
       },
+
+      { headerName: "Full Address", field: "address", minWidth: 240, wrapText: true, autoHeight: true },
 
       {
         headerName: "Status",

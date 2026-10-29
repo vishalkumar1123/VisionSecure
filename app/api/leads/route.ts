@@ -15,8 +15,7 @@ const createLeadSchema = z.object({
   phone: z.string().transform((phone) => phone.replace(/\D/g, "")).pipe(z.string().regex(/^[6-9]\d{9}$/, "Please enter a valid 10-digit Indian mobile number")),
   email: z.string().trim().email("Please enter a valid email address").max(254).optional().or(z.literal("")),
   service: z.string().trim().min(2, "Please select a service or requirement").max(160),
-  locality: z.string().trim().max(160).optional().default(""),
-  budget: z.string().trim().max(100).optional().default(""),
+  address: z.string().trim().max(600).refine(value => !value || value.length >= 10, "Please enter the full site address").optional().default(""),
   message: z.string().trim().max(3000).optional().default(""),
   source: z.enum(["Website", "AI Chat", "AI Assistant"]).optional().default("Website"),
 })
@@ -60,7 +59,7 @@ export async function GET(request: Request) {
         createdAt: -1,
       })
 
-    return NextResponse.json(leads)
+    return NextResponse.json(leads, { headers: { "Cache-Control": "private, no-store" } })
 
   } catch (error) {
 
@@ -147,8 +146,7 @@ if (existingLead) {
         phone: body.phone,
         email: body.email,
         service: body.service,
-        locality: body.locality,
-        budget: body.budget,
+        address: body.address,
         message: body.message,
 
         // FIXED
@@ -162,6 +160,7 @@ if (existingLead) {
       name: newLead.name,
       phone: newLead.phone,
       email: newLead.email,
+      address: newLead.get("address"),
       requirement: newLead.message || newLead.service,
       service: newLead.service,
       source: newLead.source,

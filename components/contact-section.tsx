@@ -174,6 +174,7 @@ type FormData = {
   name: string
   email: string
   phone: string
+  address: string
   requirement: string
   message: string
 }
@@ -182,6 +183,7 @@ const initialFormData: FormData = {
   name: "",
   email: "",
   phone: "",
+  address: "",
   requirement: "",
   message: "",
 }
@@ -274,11 +276,12 @@ export function ContactSection() {
     const email = formData.email.trim()
     const phone = formData.phone.trim()
     const requirement = formData.requirement.trim()
+    const address = formData.address.trim()
     const message = formData.message.trim()
 
     /* Required validation */
 
-    if (name.length < 2 || !phone || !requirement) {
+    if (name.length < 2 || !phone || !requirement || address.length < 10) {
       alert("Please fill in all required fields.")
       return
     }
@@ -311,6 +314,7 @@ export function ContactSection() {
           email,
           phone: cleanPhone,
           service: requirement,
+          address,
           message,
           source: "Website",
         }),
@@ -781,6 +785,8 @@ export function ContactSection() {
                       />
                     </div>
                   </div>
+
+                  <div><label htmlFor="home-address" className="mb-2 block text-sm font-semibold">Full Address *</label><textarea id="home-address" name="address" autoComplete="street-address" required minLength={10} maxLength={600} rows={3} value={formData.address} onChange={handleChange} placeholder="House/building, street, area, city and nearby landmark" className="w-full rounded-xl border border-border bg-card p-4 text-sm text-foreground"/></div>
 
                   {/* Phone + Requirement */}
 

@@ -1,5 +1,6 @@
 import { z } from "zod"
 export const EMAIL_EVENTS = {
+  followUpReminder: "Follow-up morning summary / due-time reminder",
   leadCreated: "New lead created", leadAssigned: "Lead assigned", leadStatusChanged: "Lead status changed",
   siteVisit: "Site visit scheduled / rescheduled / cancelled", quotation: "Quotation created / sent / approved",
   order: "Order created / confirmed", payment: "Payment recorded / verified", workOrder: "Work order created / assigned / completed",
@@ -10,6 +11,7 @@ export const EMAIL_EVENTS = {
 } as const
 export type EmailEvent = keyof typeof EMAIL_EVENTS
 export const defaultEvents = Object.fromEntries(Object.keys(EMAIL_EVENTS).map(key => [key, true])) as Record<EmailEvent, boolean>
+export function emailEventEnabled(settings: Record<string, boolean> | undefined, event: string) { return event === "followUpReminder" ? settings?.[event] !== false : !!settings?.[event] }
 export const emailAddress = z.string().trim().toLowerCase().email().max(254)
 export const configSchema = z.object({
   revision: z.number().int().nonnegative().default(0),
@@ -22,7 +24,7 @@ export const configSchema = z.object({
   fromName: z.string().trim().min(1).max(100).regex(/^[^\r\n]+$/), fromEmail: emailAddress,
   replyTo: z.union([emailAddress, z.literal("")]),
   recipients: z.array(emailAddress).min(1).max(10).transform(values => [...new Set(values)]),
-  eventSettings: z.object(Object.fromEntries(Object.keys(EMAIL_EVENTS).map(key => [key, z.boolean()])) as Record<EmailEvent, z.ZodBoolean>).strict(),
+  eventSettings: z.object(Object.fromEntries(Object.keys(EMAIL_EVENTS).map(key => [key, key === "followUpReminder" ? z.boolean().default(true) : z.boolean()])) as Record<EmailEvent, z.ZodBoolean>).strict(),
   failureThreshold: z.number().int().min(1).max(100).default(3),
 }).strict().superRefine((data, ctx) => {
   if (data.smtpPort === 465 && (!data.secure || data.encryption !== "SSL" || data.requireTLS)) ctx.addIssue({ code: "custom", path: ["smtpPort"], message: "Port 465 requires SSL and secure connection." })

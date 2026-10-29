@@ -40,12 +40,14 @@ export function LeadPopup() {
     name: "",
     phone: "",
     service: "",
+    address: "",
   })
 
   const [errors, setErrors] = useState({
     name: "",
     phone: "",
     service: "",
+    address: "",
   })
 
   // Hydration Safe
@@ -109,6 +111,7 @@ export function LeadPopup() {
       name: "",
       phone: "",
       service: "",
+    address: "",
     }
 
     // Name
@@ -160,6 +163,7 @@ export function LeadPopup() {
         name: "",
         phone: "",
         service: "",
+    address: "",
       })
 
       handleClose()
@@ -283,6 +287,7 @@ export function LeadPopup() {
               )}
             </Field>
 
+            <Field><FieldLabel htmlFor="popup-address">Full Address (optional)</FieldLabel><textarea id="popup-address" aria-label="Full Address (optional)" autoComplete="street-address" maxLength={600} rows={3} value={formData.address} onChange={e=>handleChange("address",e.target.value)} placeholder="House/building, street, area, city and landmark" className="w-full rounded-xl border border-border bg-card p-3 text-sm text-foreground"/></Field>
             {/* Services */}
             <Field>
               <FieldLabel htmlFor="popup-service" className="text-foreground">

@@ -82,6 +82,7 @@ const LeadSchema = new Schema(
 
 
 
+    address: { type: String, trim: true, default: "", maxlength: 600 },
     locality: { type: String, trim: true, default: "", maxlength: 160 },
 
     // SERVICE INFO
@@ -175,6 +176,7 @@ const LeadSchema = new Schema(
 
 
     // FOLLOW UP DATE
+    followUpReminderFor: { type: Date, default: null, select: false },
     followUpDate: {
       type: Date,
       default: null,
@@ -201,5 +203,19 @@ const LeadSchema = new Schema(
 const Lead =
   models.Lead ||
   model("Lead", LeadSchema)
+
+// Next's development reloads can retain a model compiled before these fields
+// existed. Extend that model and recompile its accessors instead of silently
+// dropping new address values under Mongoose's strict schema handling.
+if (models.Lead) {
+  let changed = false
+  for (const field of ["address", "followUpReminderFor"] as const) {
+    if (!Lead.schema.path(field)) {
+      Lead.schema.add({ [field]: LeadSchema.obj[field] })
+      changed = true
+    }
+  }
+  if (changed) Lead.recompileSchema()
+}
 
 export default Lead

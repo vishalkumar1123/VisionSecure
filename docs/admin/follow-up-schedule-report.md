@@ -1,4 +1,7 @@
-﻿# Follow-up schedule correction
+# Follow-up schedule correction
+
+Address and email continuation: [full-address and reminder handoff](address-reminder-report.md) documents address persistence, technician assignment and background emails.
+
 
 ## Behavior
 

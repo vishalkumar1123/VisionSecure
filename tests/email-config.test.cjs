@@ -8,7 +8,7 @@ const { NextResponse } = require("next/server")
 let passed = 0
 const check = (name, fn) => Promise.resolve().then(fn).then(() => { passed++; console.log(`PASS ${passed}: ${name}`) })
 function fixture() {
-  let config = null, serial = 0, verifyError = null, sendError = null, failRecipient = null, dbError = false
+  let reminderLead = null, technicianUser = null; let config = null, serial = 0, verifyError = null, sendError = null, failRecipient = null, dbError = false
   let actor = { id: "aaaaaaaaaaaaaaaaaaaaaaaa", role: "super_admin" }
   const background = []
   const deliveries = [], audits = [], notices = [], sent = [], transportOptions = []
@@ -66,9 +66,10 @@ function fixture() {
     "@/lib/mongodb": { connectDB: async () => {} },
     "@/lib/admin-auth": { requireAdmin: async () => actor ? { user: actor, response: null } : { user: null, response: NextResponse.json({ error: "Unauthorized" },{ status: 401 }) } },
     "@/models/EmailConfiguration": { __esModule: true, default: Config },
+    "@/models/Lead": { __esModule:true, default:{ findById:()=>query(reminderLead) } },
     "@/models/EmailDeliveryLog": { __esModule: true, default: Delivery },
     "@/models/ActivityLog": { __esModule: true, default: { create: async data => { audits.push(data); return data } } },
-    "@/models/User": { __esModule: true, default: { find: () => query([{ _id: "aaaaaaaaaaaaaaaaaaaaaaaa" }]) } },
+    "@/models/User": { __esModule: true, default: { find: () => query([{ _id: "aaaaaaaaaaaaaaaaaaaaaaaa" }]), findOne: filter=>query(technicianUser && matches(technicianUser,filter) ? technicianUser : null) } },
     "@/notification/models/notification.model": { __esModule: true, default: { exists: async () => false, updateMany: async () => ({}), create: async data => { notices.push(data); return data } } },
     "node:dns/promises": { lookup: async () => [{ address: "8.8.8.8", family: 4 }] },
     nodemailer: { createTransport: options => { transportOptions.push(options); return { verify: async () => { if (verifyError) throw verifyError; return true }, close() {}, sendMail: async mail => { if (sendError && (!failRecipient || failRecipient === mail.to)) throw sendError; sent.push(mail); return { accepted: [mail.to], messageId: mail.messageId } } } } },
@@ -87,7 +88,7 @@ function fixture() {
     vm.runInThisContext(`(function(require,module,exports){${source}\n})`,{ filename:file })(localRequire,loadedModule,loadedModule.exports)
     return loadedModule.exports
   }
-  return { load, flush: async () => { await Promise.all(background.splice(0).map(task => task())) }, get config() { return config }, deliveries, audits, notices, sent, transportOptions, setActor: value => actor=value, failVerify: value => verifyError=value, failSend: (value, recipient) => { sendError=value; failRecipient=recipient }, failDB: () => dbError=true }
+  return { load, setTechnician: value=>technicianUser=value, setReminderLead: value=>reminderLead=value, flush: async () => { await Promise.all(background.splice(0).map(task => task())) }, get config() { return config }, deliveries, audits, notices, sent, transportOptions, setActor: value => actor=value, failVerify: value => verifyError=value, failSend: (value, recipient) => { sendError=value; failRecipient=recipient }, failDB: () => dbError=true }
 }
 async function main() {
   process.env.EMAIL_CONFIG_ENCRYPTION_KEY = randomBytes(32).toString("hex")
@@ -125,6 +126,21 @@ async function main() {
   await check("lease blocks conflicting configuration actions", async () => { f.config.lockToken="other-request"; f.config.lockUntil=new Date(Date.now()+10000); await assert.rejects(service.configurationAction("verify",actor),/CONFIGURATION_BUSY/); delete f.config.lockToken; delete f.config.lockUntil })
   await check("legacy exposed environment password cannot be saved", async () => { const old=process.env.SMTP_PASS; process.env.SMTP_PASS="revoked-fixture"; try { await assert.rejects(service.configurationAction("save",actor,{ ...input,revision:f.config.revision,password:"revoked-fixture" }),/NEW_APP_PASSWORD_REQUIRED/) } finally { if(old===undefined) delete process.env.SMTP_PASS; else process.env.SMTP_PASS=old } })
   await check("durable pending outbox can recover without a duplicate background send", async () => { const before=f.sent.length; const pending=await delivery.notifyEmail({ ...event,eventKey:"lead:recover" }); assert.equal(pending.status,"pending"); assert.equal(f.sent.length,before); await delivery.processPendingEmails(); await f.flush(); assert.equal(f.sent.length-before,input.recipients.length); assert.equal(pending.status,"sent") })
+  await check("follow-up reminders revalidate saved time and status before SMTP", async () => {
+    const before=f.sent.length, date="2026-09-18T04:30:00.000Z", reminder={...event,eventType:"followUpReminder",entityId:"aaaaaaaaaaaaaaaaaaaaaaaa",eventKey:`follow-up-due:aaaaaaaaaaaaaaaaaaaaaaaa:${date}`};
+    f.setReminderLead({status:"Follow-Up",followUpDate:new Date("2026-09-18T05:30:00Z")});const stale=await delivery.queueEmail(reminder);assert.equal(stale.status,"skipped");assert.equal(stale.failureCategory,"FOLLOW_UP_CHANGED");assert.equal(f.sent.length,before);
+    f.setReminderLead({status:"Closed",followUpDate:new Date(date)});const closed=await delivery.queueEmail({...reminder,eventKey:`follow-up-due:aaaaaaaaaaaaaaaaaaaaaaaa:closed`});assert.equal(closed.status,"skipped");assert.equal(f.sent.length,before);
+    f.setReminderLead({status:"Follow-Up",followUpDate:new Date(date)});const valid=await delivery.queueEmail({...reminder,eventKey:`follow-up-due:aaaaaaaaaaaaaaaaaaaaaaaa:${date}`,entityId:"aaaaaaaaaaaaaaaaaaaaaaaa"});assert.equal(valid.status,"skipped");
+    const next="2026-09-18T06:30:00.000Z";f.setReminderLead({status:"Follow-Up",followUpDate:new Date(next)});const sent=await delivery.queueEmail({...reminder,eventKey:`follow-up-due:aaaaaaaaaaaaaaaaaaaaaaaa:${next}`});assert.equal(sent.status,"sent");assert.equal(f.sent.length-before,input.recipients.length)
+  })
+  await check("reminders include only the active assigned technician and configured admins", async () => {
+    const date="2026-09-19T04:30:00.000Z", technician={_id:"bbbbbbbbbbbbbbbbbbbbbbbb",role:"technician",isActive:true,email:"technician@example.test"};
+    f.setTechnician(technician);f.setReminderLead({status:"Follow-Up",followUpDate:new Date(date),assignedTo:technician._id});
+    const reminder={...event,eventType:"followUpReminder",entityId:"aaaaaaaaaaaaaaaaaaaaaaaa",eventKey:`follow-up-due:aaaaaaaaaaaaaaaaaaaaaaaa:${date}`};
+    const log=await delivery.queueEmail(reminder);assert.equal(log.status,"sent");assert.deepEqual([...log.recipients].sort(),[...input.recipients,technician.email].sort());
+    const next="2026-09-19T05:30:00.000Z";f.setTechnician({...technician,isActive:false});f.setReminderLead({status:"Follow-Up",followUpDate:new Date(next),assignedTo:technician._id});
+    const inactive=await delivery.queueEmail({...reminder,eventKey:`follow-up-due:aaaaaaaaaaaaaaaaaaaaaaaa:${next}`});assert.deepEqual([...inactive.recipients].sort(),[...input.recipients].sort());f.setTechnician(null)
+  })
   await check("test-email failure blocks activation and creates notice", async () => { f.failSend(Object.assign(new Error(secret),{code:"EENVELOPE"})); await assert.rejects(service.configurationAction("test",actor)); assert.equal(f.config.lastTestStatus,"failed"); await assert.rejects(service.configurationAction("activate",actor)); assert(f.notices.some(n=>n.title==="Email configuration action failed")); f.failSend(null) })
   await check("missing deployment key blocks verify without invalidating shared configuration", async () => { const key=process.env.EMAIL_CONFIG_ENCRYPTION_KEY;const before=JSON.stringify(f.config);try{delete process.env.EMAIL_CONFIG_ENCRYPTION_KEY;await assert.rejects(service.configurationAction("verify",actor),/ENCRYPTION_KEY_NOT_CONFIGURED/);assert.equal(JSON.stringify(f.config),before)}finally{process.env.EMAIL_CONFIG_ENCRYPTION_KEY=key} })
   await check("configuration revision prevents stale writes; DB failure doesn't escape business notifier", async () => { await assert.rejects(service.configurationAction("save",actor,{ ...input,revision:0 }),/CONFIGURATION_CHANGED/); f.failDB(); assert.equal(await notify({ ...event,eventKey:"lead:db-error" }),null) })

@@ -42,6 +42,7 @@ export function EmailConfigurationPanel() {
       const data = await request()
       setConfig(data.config); setHealth(data.health); setCanManage(data.canManage)
       const normal = Object.fromEntries(Object.keys(defaults).map(key => [key, data.config?.[key] ?? defaults[key as keyof ConfigurationInput]])) as ConfigurationInput
+      normal.eventSettings = { ...defaults.eventSettings, ...normal.eventSettings }
       setForm({ ...normal, username: data.config?.usernameConfigured ? "" : "info@visionsecuretech.in", password: "", freshCredentialConfirmed: false }); setDirty(false)
     } catch (e) { setError(e instanceof Error ? e.message : "Unable to load configuration") }
     finally { setLoading(false) }

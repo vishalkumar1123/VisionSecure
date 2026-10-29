@@ -5,6 +5,6 @@ export async function POST(request: Request) {
   return createLead(new Request(request.url, {
     method: "POST",
     headers: request.headers,
-    body: JSON.stringify({ name: body.name, email: body.email, phone: body.phone, service: body.service || body.requirement || body.subject || "General Inquiry", message: body.message, source: "Website" }),
+    body: JSON.stringify({ name: body.name, email: body.email, phone: body.phone, address: body.address, service: body.service || body.requirement || body.subject || "General Inquiry", message: body.message, source: "Website" }),
   }))
 }

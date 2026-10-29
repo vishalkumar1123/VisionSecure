@@ -5,6 +5,7 @@ import { connectDB } from "@/lib/mongodb"
 
 import { ActivityLogService } from "@/services/activity-log-service"
 import Lead from "@/models/Lead"
+import User from "@/models/User"
 
 
 
@@ -38,7 +39,7 @@ export async function GET(
       return NextResponse.json({ success: false, error: "Lead not found" }, { status: 404 })
     }
 
-    return NextResponse.json({ success: true, lead })
+    return NextResponse.json({ success: true, lead }, { headers: { "Cache-Control": "private, no-store" } })
   } catch {
     return NextResponse.json({ success: false, error: "Unable to load lead" }, { status: 400 })
   }
@@ -120,6 +121,8 @@ export async function PATCH(
 
 
 
+    if ("address" in update && (typeof update.address !== "string" || update.address.trim().length > 600 || (update.address.trim().length > 0 && update.address.trim().length < 10))) return NextResponse.json({success:false,error:"Enter a full address between 10 and 600 characters, or leave it empty"},{status:400})
+    if ("assignedTo" in update && update.assignedTo !== null && (typeof update.assignedTo !== "string" || !/^[a-f\d]{24}$/i.test(update.assignedTo) || !await User.exists({ _id: update.assignedTo, role: "technician", isActive: true }))) return NextResponse.json({ success: false, error: "Choose an active technician" }, { status: 400 })
     const previousStatus = lead.status
     const previousFollowUp = lead.followUpDate ? new Date(lead.followUpDate).toISOString() : null
 
@@ -142,6 +145,11 @@ export async function PATCH(
 
 
     if (update.status) lead.status = String(update.status)
+    if (typeof update.address === "string") lead.set("address", update.address.trim())
+    if ("assignedTo" in update) {
+      lead.set("assignedTo", update.assignedTo)
+      lead.timeline.push({ action: update.assignedTo ? "Assigned technician updated" : "Technician assignment cleared", status: lead.status, createdAt: new Date() })
+    }
     if (update.priority) lead.priority = String(update.priority)
 
     if ("followUpDate" in update) {

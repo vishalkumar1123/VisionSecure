@@ -1,21 +1,21 @@
-﻿const {test,expect}=require('@playwright/test')
+const {test,expect}=require('@playwright/test')
 test.use({launchOptions:{executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--no-sandbox']}})
-const base='http://localhost:3013'
+const base=process.env.SEO_TEST_BASE_URL||'http://localhost:3013'
 test.beforeEach(async({page})=>{
  await page.addInitScript(()=>{sessionStorage.setItem('leadPopupShown','true');window.__events=[];window.gtag=(...args)=>window.__events.push(args)})
  await page.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort())
 })
-test('service handoff, optional email, locality, failure retention, saved event only after success',async({page})=>{
+test('service handoff, optional email, full address, failure retention, saved event only after success',async({page})=>{
  let payload;let fail=true
  await page.route('**/api/leads',async route=>{payload=route.request().postDataJSON();await route.fulfill({status:fail?429:200,contentType:'application/json',body:JSON.stringify(fail?{success:false,error:'Please retry shortly'}:{success:true,leadId:'fixture'})})})
  await page.goto(base+'/services/cctv-surveillance');await expect(page.locator('h1')).toHaveText('CCTV camera installation in Lucknow')
  await page.locator('a[href^="/contact?service="]').first().click()
- await expect(page.locator('#contact-service')).toContainText('CCTV Surveillance')
- await page.locator('#contact-name').fill('Browser fixture');await page.locator('#contact-phone').fill('9876543210');await page.locator('#contact-locality').fill('Fixture locality 226001')
+ await expect(page.locator('#contact-service')).toContainText('CCTV Surveillance');await expect(page.locator('#contact-budget')).toHaveCount(0);await expect(page.locator('#contact-locality')).toHaveCount(0)
+ await page.locator('#contact-name').fill('Browser fixture');await page.locator('#contact-phone').fill('9876543210');await page.locator('#contact-address').fill('House 9, Fixture Road, Lucknow 226001')
  await page.getByRole('button',{name:'Submit Requirement',exact:true}).click();await expect(page.getByRole('alert').filter({hasText:'Please retry shortly'})).toContainText('Please retry shortly');await expect(page.locator('#contact-name')).toHaveValue('Browser fixture')
  expect((await page.evaluate(()=>[...(window.__events||[]),...(window.dataLayer||[]).map(x=>Array.from(x))])).filter(x=>x[1]==='enquiry_saved')).toHaveLength(0)
  fail=false;await page.getByRole('button',{name:'Submit Requirement',exact:true}).click();await expect(page.getByText('Requirement Submitted Successfully!')).toBeVisible()
- expect(payload.locality).toBe('Fixture locality 226001');expect(payload.email).toBe('')
+ expect(payload.address).toBe('House 9, Fixture Road, Lucknow 226001');expect(payload.email).toBe('')
  expect((await page.evaluate(()=>[...(window.__events||[]),...(window.dataLayer||[]).map(x=>Array.from(x))])).filter(x=>x[1]==='enquiry_saved')).toHaveLength(1)
 })
 test('mobile menu, headings, no horizontal overflow, Hindi heading',async({page})=>{
@@ -30,7 +30,7 @@ test('mobile menu, headings, no horizontal overflow, Hindi heading',async({page}
 test('home callback succeeds without email or popup, analytics failure isolated',async({page})=>{
  await page.route('**/api/leads',route=>route.fulfill({status:200,contentType:'application/json',body:'{"success":true,"leadId":"fixture"}'}))
  await page.goto(base+'/');await page.evaluate(()=>window.gtag=()=>{throw Error('blocked analytics')})
- await page.locator('#name').fill('Browser fixture');await page.locator('#phone').fill('9876543210');await page.locator('#requirement').selectOption('IT Support & AMC')
+ await page.locator('#home-address').fill('House 9, Fixture Road, Lucknow 226001');await page.locator('#name').fill('Browser fixture');await page.locator('#phone').fill('9876543210');await page.locator('#requirement').selectOption('IT Support & AMC')
  const dialog=page.waitForEvent('dialog').then(async dialog=>{expect(dialog.message()).toContain('successfully');await dialog.accept()})
  await page.locator('form').filter({has:page.locator('#requirement')}).locator('button[type="submit"]').click();await dialog;await expect(page.locator('#name')).toHaveValue('')
 })

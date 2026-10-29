@@ -17,7 +17,7 @@ type Lead = {
   phone: string
   email: string
   service: string
-  budget: string
+  address?: string
   status: string
   createdAt: string
 }
@@ -39,7 +39,7 @@ function LeadsContent() {
     try {
 
       const res =
-        await fetch(`/api/leads?${query}`)
+        await fetch(`/api/leads?${query}`, { cache: "no-store" })
       if (!res.ok) throw new Error("Unable to load leads")
 
       const data =

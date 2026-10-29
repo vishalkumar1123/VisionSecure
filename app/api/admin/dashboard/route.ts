@@ -22,7 +22,7 @@ export async function GET(request: Request) {
     const due = { ...active, followUpDate: { $gte: start, $lt: end } }
     const overdue = { ...active, followUpDate: { $lt: start, $ne: null } }
     const scheduled = { ...active, followUpDate: { $gte: selectedDay.start, $lt: selectedDay.end } }
-    const selection = "_id name phone service status source priority assignedTo followUpDate createdAt"
+    const selection = "_id name phone address service status source priority assignedTo followUpDate createdAt"
     const scheduleSelection = { ...Object.fromEntries(selection.split(" ").map(key => [key, 1])), notes: { $slice: -1 } }
     const results = await Promise.allSettled([
       Lead.aggregate([{ $facet: {

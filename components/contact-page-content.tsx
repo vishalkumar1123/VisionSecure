@@ -40,13 +40,6 @@ import {
 import { OfficeMap } from "@/components/office-map"
 
 
-const budgets = [
-  "Under ₹25,000",
-  "₹25,000 - ₹50,000",
-  "₹50,000 - ₹1 Lakh",
-  "₹1 - ₹3 Lakhs",
-  "Above ₹3 Lakhs",
-]
 
 const contactInfo = [
   {
@@ -150,8 +143,7 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
     phone: "",
     email: "",
     service: resolveEnquiryService(initialService),
-    locality: "",
-    budget: "",
+    address: "",
     message: "",
   })
 
@@ -196,8 +188,7 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
         phone: "",
         email: "",
         service: "",
-        locality: "",
-    budget: "",
+        address: "",
         message: "",
       })
     } catch (error) {
@@ -230,7 +221,7 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
             Let's Secure Your Space
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-            Request an installation quotation for CCTV, biometric attendance or networking in Lucknow. For a site assessment enquiry, share your property type, locality or PIN and approximate device count. For a maintenance enquiry, describe your existing system and the issue.
+            Request an installation quotation for CCTV, biometric attendance or networking in Lucknow. For a site assessment enquiry, share your property type, full site address and approximate device count. For a maintenance enquiry, describe your existing system and the issue.
           </p>
         </motion.div>
 
@@ -269,7 +260,6 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <FieldGroup className="space-y-5">
-                    <Field><FieldLabel htmlFor="contact-locality">Locality / PIN</FieldLabel><Input id="contact-locality" name="locality" maxLength={160} value={formData.locality} onChange={handleInputChange} placeholder="Area or PIN code" /></Field>
                     <div className="grid gap-5 sm:grid-cols-2">
                       <Field>
                         <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-name">Full Name *</FieldLabel>
@@ -286,7 +276,7 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
                       <Input id="contact-email" name="email" maxLength={254} type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="h-12 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-highlight transition-colors rounded-xl" />
                     </Field>
 
-                    <div className="grid gap-5 sm:grid-cols-2">
+                    <div>
                       <Field>
                         <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-service">Service Required *</FieldLabel>
                         <Select value={formData.service} onValueChange={(value) => { if (value) setFormData(previous => ({ ...previous, service: value })) }}>
@@ -300,21 +290,9 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
                           </SelectContent>
                         </Select>
                       </Field>
-
-                      <Field>
-                        <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-budget">Budget Range</FieldLabel>
-                        <Select value={formData.budget} onValueChange={(value) => setFormData({ ...formData, budget: value })}>
-                          <SelectTrigger id="contact-budget" aria-label="Budget range" className="h-12 border-border bg-background text-foreground focus:border-highlight rounded-xl">
-                            <SelectValue placeholder="Select Budget" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-card border-border text-foreground">
-                            {budgets.map((budget) => (
-                              <SelectItem key={budget} value={budget} className="focus:bg-accent focus:text-accent-foreground cursor-pointer">{budget}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </Field>
                     </div>
+
+                    <Field><FieldLabel htmlFor="contact-address">Full Address *</FieldLabel><Textarea id="contact-address" name="address" autoComplete="street-address" required minLength={10} maxLength={600} value={formData.address} onChange={handleInputChange} placeholder="House/building, street, area, city and a nearby landmark" rows={3}/></Field>
 
                     <Field>
                       <FieldLabel className="text-muted-foreground font-medium mb-1.5 block text-sm" htmlFor="contact-message">Your Requirement</FieldLabel>

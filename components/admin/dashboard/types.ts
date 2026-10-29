@@ -1,4 +1,4 @@
-export type DashboardLead = { _id: string; name: string; phone: string; service?: string; source?: string; status: string; priority?: string; assignedTo?: { name: string } | null; followUpDate?: string | null; notes?: { text: string; createdAt?: string }[]; createdAt: string }
+export type DashboardLead = { _id: string; name: string; phone: string; address?: string; service?: string; source?: string; status: string; priority?: string; assignedTo?: { name: string } | null; followUpDate?: string | null; notes?: { text: string; createdAt?: string }[]; createdAt: string }
 export type DashboardData = {
   displayName: string; updatedAt: string; timezone: string; days: number; errors: string[]
   metrics: null | { total: number; followUp?: number; converted: number; active: number; today: number; yesterday: number; due: number; overdue: number; attention: number; new: number; quotations: number; installations: number; conversionRate: number; pipeline: { _id: string; total: number }[]; services: { _id: string; total: number }[] }

@@ -2,14 +2,31 @@ import "server-only"
 import { after } from "next/server"
 import { createHash } from "node:crypto"
 import { connectDB } from "@/lib/mongodb"
+import Lead from "@/models/Lead"
+import User from "@/models/User"
+import { CLOSED_STATUSES } from "@/lib/dashboard-time"
 import Configuration from "@/models/EmailConfiguration"
 import Notification from "@/notification/models/notification.model"
 import Delivery from "@/models/EmailDeliveryLog"
 import { createSMTP } from "./transport"
-import { safeCategory, type EmailEvent } from "./shared"
+import { safeCategory, emailEventEnabled, emailAddress, type EmailEvent } from "./shared"
 import { emailNotice } from "./audit"
 export type MailEvent = { eventKey: string; eventType: EmailEvent | "test"; entityId: string; subject: string; text: string; html?: string }
 const secretSelection = "+usernameEncrypted +passwordEncrypted"
+async function eventRecipients(config: any, event: Pick<MailEvent, "eventKey" | "eventType" | "entityId">) {
+  const recipients = [...(config?.recipients || [])] as string[]
+  // A technician only receives the reminder for their assigned lead, never
+  // another technician's appointments or the admin's full daily digest.
+  if (event.eventType === "followUpReminder" && event.eventKey.startsWith("follow-up-due:")) {
+    const lead = await Lead.findById(event.entityId).select("assignedTo").lean()
+    if (lead?.assignedTo) {
+      const technician = await User.findOne({ _id: lead.assignedTo, role: "technician", isActive: true }).select("email").lean()
+      const email = emailAddress.safeParse(technician?.email)
+      if (email.success) recipients.push(email.data)
+    }
+  }
+  return [...new Set(recipients.map(value => value.trim().toLowerCase()))]
+}
 export async function deliverLogged(id: string, test = false) {
   const config = await Configuration.findById("primary").select(secretSelection).lean()
   const log = await Delivery.findOneAndUpdate({ _id: id, status: "pending", sending: false }, { $set: { sending: true, startedAt: new Date() } }, { new: true }).select("+text +html")
@@ -17,8 +34,15 @@ export async function deliverLogged(id: string, test = false) {
   if (!config || !config.isVerified || (!test && config.status !== "ACTIVE")) {
     log.status = "skipped"; log.failureCategory = "EMAIL_SERVICE_NOT_ACTIVE"; await log.save(); return log
   }
-  if (JSON.stringify([...log.recipients].sort()) !== JSON.stringify([...config.recipients].sort())) { log.status = "skipped"; log.failureCategory = "RECIPIENTS_CHANGED"; await log.save(); return log }
-  if (!test && !config.eventSettings?.[log.eventType]) { log.status = "skipped"; log.failureCategory = "EVENT_DISABLED"; await log.save(); return log }
+  if (JSON.stringify([...log.recipients].sort()) !== JSON.stringify((await eventRecipients(config, log)).sort())) { log.status = "skipped"; log.failureCategory = "RECIPIENTS_CHANGED"; await log.save(); return log }
+  if (!test && !emailEventEnabled(config.eventSettings, log.eventType)) { log.status = "skipped"; log.failureCategory = "EVENT_DISABLED"; await log.save(); return log }
+  if (log.eventType === "followUpReminder" && log.eventKey.startsWith("follow-up-due:")) {
+    const lead = await Lead.findById(log.entityId).select("status followUpDate").lean()
+    const expectedKey = lead?.followUpDate ? `follow-up-due:${log.entityId}:${new Date(lead.followUpDate).toISOString()}` : ""
+    if (!lead || CLOSED_STATUSES.includes(lead.status) || log.eventKey !== expectedKey) {
+      log.status = "skipped"; log.failureCategory = "FOLLOW_UP_CHANGED"; await log.save(); return log
+    }
+  }
   log.attemptCount += 1; await log.save()
   let transport: Awaited<ReturnType<typeof createSMTP>> | undefined
   try {
@@ -57,10 +81,10 @@ export async function queueEmail(event: MailEvent, test = false, defer = false) 
   await Delivery.init()
   const config = await Configuration.findById("primary").lean()
   const active = !!config?.isVerified && (test || config.status === "ACTIVE")
-  const enabled = test || !!config?.eventSettings?.[event.eventType]
+  const enabled = test || emailEventEnabled(config?.eventSettings, event.eventType)
   let log
   try {
-    log = await Delivery.create({ ...event, configRevision: config?.revision, recipients: config?.recipients || [], acceptedRecipients: [], providerMessageIds: [], status: active && enabled ? "pending" : "skipped", failureCategory: !active ? "EMAIL_SERVICE_NOT_ACTIVE" : !enabled ? "EVENT_DISABLED" : null })
+    log = await Delivery.create({ ...event, configRevision: config?.revision, recipients: active && enabled ? await eventRecipients(config, event) : config?.recipients || [], acceptedRecipients: [], providerMessageIds: [], status: active && enabled ? "pending" : "skipped", failureCategory: !active ? "EMAIL_SERVICE_NOT_ACTIVE" : !enabled ? "EVENT_DISABLED" : null })
   } catch (error) {
     if ((error as { code?: number }).code === 11000) return Delivery.findOne({ eventKey: event.eventKey }).lean()
     throw error
@@ -84,9 +108,9 @@ export async function retryEmail(id: string) {
   const config = await Configuration.findById("primary").lean()
   if (config?.status !== "ACTIVE" || !config?.isVerified) throw new Error("EMAIL_SERVICE_NOT_ACTIVE")
   const original = await Delivery.findById(id).lean()
-  if (!original || original.eventType === "test" || !config.eventSettings?.[original.eventType]) throw new Error("RETRY_NOT_ELIGIBLE")
+  if (!original || original.eventType === "test" || !emailEventEnabled(config.eventSettings, original.eventType)) throw new Error("RETRY_NOT_ELIGIBLE")
   // Do not send historical content to a new recipient list without a new business event.
-  if (JSON.stringify([...original.recipients].sort()) !== JSON.stringify([...config.recipients].sort())) throw new Error("RECIPIENTS_CHANGED")
+  if (JSON.stringify([...original.recipients].sort()) !== JSON.stringify((await eventRecipients(config, original)).sort())) throw new Error("RECIPIENTS_CHANGED")
   const claimed = await Delivery.findOneAndUpdate({ _id: id, status: "failed", retryEligible: true, attemptCount: { $lt: 3 }, nextRetryAt: { $lte: new Date() } }, { $set: { status: "pending", sending: false, retryEligible: false } }, { new: true })
   if (!claimed) throw new Error("RETRY_NOT_ELIGIBLE")
   return deliverLogged(id)
