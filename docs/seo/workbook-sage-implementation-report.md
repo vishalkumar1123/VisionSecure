@@ -109,3 +109,13 @@ A reviewable branch commit and portable patch are the delivery path if PR creati
 Privacy/terms and actual business-policy copy require confirmed business practices; no policy or legal assurance was invented for the audit score.
 
 Reproduce rendered checks with PowerShell: set SEO_TEST_BASE_URL to http://localhost:3021 and SEO_TEST_OUTPUT to sage-render-checks.json, then run python docs/seo/check-customer-keywords.py. The checker retains its historical defaults, restricts execution to a local host and writes only a validated JSON filename within docs/seo. Run npx playwright test tests/sage-content-ui.spec.cjs tests/seo-enquiries-ui.spec.cjs tests/keyword-content-ui.spec.cjs with the same base URL. For the comparative benchmark, serve the preserved source baseline on 3020 and proposed build on 3021, then run node tests/sage-performance.cjs. Both builds must be complete and otherwise idle before collecting timings.
+
+## Publishing handoff
+
+Implementation/evidence commit 02daf49 was pushed to origin/feat/workbook-sage-performance. GitHub integration draft-PR creation returned HTTP 403 Resource not accessible by integration; no PR was created and no stored credentials were retrieved. Review/create link: https://github.com/vishalkumar1123/VisionSecure/compare/main...feat/workbook-sage-performance?expand=1 . Suggested title: Consolidate workbook keyword intents and improve critical Home rendering. Keep the PR draft until content/owner facts are reviewed.
+
+The application commit has a pending Vercel check: https://vercel.com/vision-secure/vision-secure-tech/6YMsM2PoVFJJSUK6Yfxi7UUC61uM . This is the deployment dashboard, not a verified public preview URL. No successful public preview or production deployment is claimed. The final isolated local preview is http://localhost:3021 with dummy backend configuration; no production test leads should be sent.
+
+Portable patch: visionsecure-workbook-sage-final.patch in the original workspace. It contains only this branch diff from base 1ac4000, including handoff evidence. Apply only to a compatible clean review checkout after git apply --check. Do not reapply it on the already updated branch, overwrite unrelated edits, or use a reset. The originally supplied Downloads patch and source files are preserved.
+
+Owner actions: review the CSV held/rejected rows and PIN/model/service facts, create the PR through the compare link if desired, wait for an authorised preview check, then explicitly approve any later release. A fresh production PSI/field review follows an approved release; the supplied score 74/96 was not remeasured or replaced with a guessed after score.
