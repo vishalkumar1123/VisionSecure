@@ -1,0 +1,23 @@
+{
+  "workbook": "visionsecure-keyword-map-v21.xlsx",
+  "sha256": "e6ddc8b1f0b8ae96253c9cca1b882cff1f069a2f6ff1a5718dd6fcb4885d8979",
+  "master_keywords": 946,
+  "distinct_phrases": 946,
+  "distinct_input_targets": 28,
+  "classifications": {
+    "existing page intent retained": 130,
+    "consolidated existing intent": 361,
+    "quotation intent consolidated": 66,
+    "owner confirmation required": 248,
+    "evidence confirmation required": 12,
+    "local intent consolidated": 46,
+    "question intent consolidated": 32,
+    "useful gap implemented": 4,
+    "scope confirmation required": 41,
+    "unsupported claim rejected": 6
+  },
+  "demand": "Editorial recommendations; measured demand unavailable",
+  "input_instructions": "Evaluated as recommendations, not external-action authorization",
+  "performance": "Provided screenshots separate from fresh local lab evidence",
+  "new_public_routes": 0
+}

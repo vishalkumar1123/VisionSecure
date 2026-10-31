@@ -1,0 +1,92 @@
+{
+  "base_commit": "1ac40005111b907c8997b9e8a108d0651c80662c",
+  "method": "Literal per-file patch chunks checked against untouched index with --cached --check; no bracket globs or patch application. Reports are not treated as fresh evidence.",
+  "results": [
+    {
+      "file": "docs/seo/backlink-opportunities.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/regional-keyword-recommendations.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/regional-seo-and-backlink-handoff.md",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "app/blog/[slug]/page.tsx",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "app/contact/page.tsx",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "app/page.tsx",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/verify-workbook-content.py",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-backlink-review.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-keyword-disposition.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-keyword-implementation-report.md",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-keyword-summary.json",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-render-verification.json",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "lib/article-buyer-guides.ts",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "lib/service-buyer-guides.ts",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    }
+  ],
+  "semantic_skip": "Existing planning guidance overlaps the proposed extra service/article guides; selectively implemented gaps instead of adding all proposed FAQ sections.",
+  "correction": "Earlier preflight reverse/skip conclusions using include path globs were unreliable. Corrected literal checks supersede them."
+}

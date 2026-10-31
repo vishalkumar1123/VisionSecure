@@ -1,6 +1,6 @@
 ﻿const {test,expect}=require('@playwright/test')
 test.use({launchOptions:{executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--no-sandbox']}})
-const base='http://localhost:3013'
+const base=process.env.SEO_TEST_BASE_URL||'http://localhost:3013'
 test.beforeEach(async({page})=>{
  await page.addInitScript(()=>sessionStorage.setItem('leadPopupShown','true'))
  await page.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort())

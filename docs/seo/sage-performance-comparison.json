@@ -1,0 +1,457 @@
+{
+  "method": "Local Chromium lab, 3 fresh contexts per variant/device, interleaved before/after, external requests and non-GETs blocked, same webpack compiler and dummy configuration. Not Lighthouse scores, not field data.",
+  "popup": "Normal original 4-second popup; no leadPopupShown suppression",
+  "network": {
+    "mobile": {
+      "latencyMs": 150,
+      "mbps": 1.6,
+      "cpu": 4
+    },
+    "desktop": {
+      "latencyMs": 40,
+      "mbps": 10,
+      "cpu": 1
+    }
+  },
+  "summary": [
+    {
+      "stage": "before",
+      "device": "mobile",
+      "fcpMs": 1148,
+      "lcpMs": 3684,
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4358,
+      "resourceTransferBytes": 669194,
+      "imageRequests": 5
+    },
+    {
+      "stage": "after",
+      "device": "mobile",
+      "fcpMs": 1216,
+      "lcpMs": 2960,
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4168,
+      "resourceTransferBytes": 667040,
+      "imageRequests": 5
+    },
+    {
+      "stage": "before",
+      "device": "desktop",
+      "fcpMs": 608,
+      "lcpMs": 988,
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 431,
+      "resourceTransferBytes": 1083769,
+      "imageRequests": 12
+    },
+    {
+      "stage": "after",
+      "device": "desktop",
+      "fcpMs": 552,
+      "lcpMs": 768,
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 309,
+      "resourceTransferBytes": 1073099,
+      "imageRequests": 11
+    }
+  ],
+  "results": [
+    {
+      "stage": "before",
+      "device": "mobile",
+      "run": 1,
+      "fcpMs": 1324,
+      "lcpMs": 3684,
+      "lcpCandidates": [
+        {
+          "time": 1324,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 3684,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4061,
+      "observedUntilMs": 9986.40000000596,
+      "resourceTransferBytes": 669195,
+      "imageRequests": 5,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "after",
+      "device": "mobile",
+      "run": 1,
+      "fcpMs": 1440,
+      "lcpMs": 4068,
+      "lcpCandidates": [
+        {
+          "time": 1440,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 4068,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4168,
+      "observedUntilMs": 10124.40000000596,
+      "resourceTransferBytes": 667039,
+      "imageRequests": 5,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "before",
+      "device": "mobile",
+      "run": 2,
+      "fcpMs": 1148,
+      "lcpMs": 3460,
+      "lcpCandidates": [
+        {
+          "time": 1148,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 3460,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4488,
+      "observedUntilMs": 10687.199999988079,
+      "resourceTransferBytes": 669194,
+      "imageRequests": 5,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "after",
+      "device": "mobile",
+      "run": 2,
+      "fcpMs": 1216,
+      "lcpMs": 2960,
+      "lcpCandidates": [
+        {
+          "time": 1216,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 2960,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4419,
+      "observedUntilMs": 10485.699999988079,
+      "resourceTransferBytes": 667040,
+      "imageRequests": 5,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "before",
+      "device": "mobile",
+      "run": 3,
+      "fcpMs": 1004,
+      "lcpMs": 4096,
+      "lcpCandidates": [
+        {
+          "time": 1004,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 4096,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4358,
+      "observedUntilMs": 10285.300000011921,
+      "resourceTransferBytes": 666621,
+      "imageRequests": 5,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "after",
+      "device": "mobile",
+      "run": 3,
+      "fcpMs": 1052,
+      "lcpMs": 2928,
+      "lcpCandidates": [
+        {
+          "time": 1052,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 2928,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4126,
+      "observedUntilMs": 10039.299999982119,
+      "resourceTransferBytes": 667040,
+      "imageRequests": 5,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "before",
+      "device": "desktop",
+      "run": 1,
+      "fcpMs": 656,
+      "lcpMs": 2400,
+      "lcpCandidates": [
+        {
+          "time": 656,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 1104,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 2400,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 840,
+      "observedUntilMs": 8456.09999999404,
+      "resourceTransferBytes": 1083769,
+      "imageRequests": 12,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "after",
+      "device": "desktop",
+      "run": 1,
+      "fcpMs": 636,
+      "lcpMs": 936,
+      "lcpCandidates": [
+        {
+          "time": 636,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 936,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 676,
+      "observedUntilMs": 6271.299999982119,
+      "resourceTransferBytes": 1073099,
+      "imageRequests": 11,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "before",
+      "device": "desktop",
+      "run": 2,
+      "fcpMs": 608,
+      "lcpMs": 988,
+      "lcpCandidates": [
+        {
+          "time": 608,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 988,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 431,
+      "observedUntilMs": 6347.300000011921,
+      "resourceTransferBytes": 1083769,
+      "imageRequests": 12,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "after",
+      "device": "desktop",
+      "run": 2,
+      "fcpMs": 500,
+      "lcpMs": 748,
+      "lcpCandidates": [
+        {
+          "time": 500,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 748,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 262,
+      "observedUntilMs": 6251.5,
+      "resourceTransferBytes": 1073100,
+      "imageRequests": 11,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "before",
+      "device": "desktop",
+      "run": 3,
+      "fcpMs": 556,
+      "lcpMs": 820,
+      "lcpCandidates": [
+        {
+          "time": 556,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 820,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 276,
+      "observedUntilMs": 6359.0999999940395,
+      "resourceTransferBytes": 1083195,
+      "imageRequests": 12,
+      "overflow": false,
+      "popupVisible": true
+    },
+    {
+      "stage": "after",
+      "device": "desktop",
+      "run": 3,
+      "fcpMs": 552,
+      "lcpMs": 768,
+      "lcpCandidates": [
+        {
+          "time": 552,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 768,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        }
+      ],
+      "cls": 0.0070696885850694445,
+      "observedLongTaskBlockingMs": 309,
+      "observedUntilMs": 6251.299999982119,
+      "resourceTransferBytes": 1073099,
+      "imageRequests": 11,
+      "overflow": false,
+      "popupVisible": true
+    }
+  ],
+  "baseline_source_commit": "1ac40005111b907c8997b9e8a108d0651c80662c",
+  "provided_baseline_file": "sage-provided-pagespeed-baseline.json",
+  "sampling_limitations": "Three runs per condition; local origin, external requests blocked, no field data or statistical significance claim. FCP increased slightly on mobile. Initial run cache effects retained; no cherry-picking.",
+  "chrome_binary_product_version": "148.0.7778.179",
+  "browser_note": "Fresh runs used installed desktop Chrome 148; supplied screenshots report HeadlessChromium 153. Same installed executable was used for all twelve local samples."
+}

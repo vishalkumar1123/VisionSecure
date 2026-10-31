@@ -1,0 +1,41 @@
+{
+  "evidence_type": "Provided screenshots transcribed from user message; NOT fresh measurements",
+  "captured_at": "2026-10-31 21:13 GMT+05:30",
+  "url": "https://visionsecuretech.in/",
+  "lighthouse_version": "13.6.0",
+  "field_data": "No data shown",
+  "mobile": {
+    "performance": 74,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo": 100,
+    "fcp_s": 1.6,
+    "lcp_s": 5.1,
+    "tbt_ms": 100,
+    "cls": 0,
+    "speed_index_s": 6.4,
+    "device": "Emulated Moto G Power",
+    "throttling": "Slow 4G"
+  },
+  "desktop": {
+    "performance": 96,
+    "fcp_s": 0.4,
+    "lcp_s": 0.7,
+    "tbt_ms": 40,
+    "cls": 0.021,
+    "speed_index_s": 2.1,
+    "throttling": "Custom; exact parameters unavailable"
+  },
+  "insights": {
+    "mobile_render_blocking_estimate_ms": 550,
+    "desktop_render_blocking_estimate_ms": 290,
+    "legacy_js_estimate_kib": 14,
+    "mobile_image_delivery_estimate_kib": 19,
+    "other_flags": [
+      "forced reflow",
+      "LCP request discovery",
+      "network dependency tree"
+    ]
+  },
+  "limitations": "Collapsed audits do not identify exact resources/culprits. Popup visible in both screenshots; popup behavior is preserved. No claimed after score or direct production/local score comparison."
+}

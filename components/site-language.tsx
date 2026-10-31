@@ -22,6 +22,9 @@ export function SiteLanguage() {
       if (disposed) return
       scheduled = false; observer.disconnect()
       document.documentElement.lang = language
+      // English is the server-rendered source; avoid scanning the whole DOM on
+      // every carousel/form mutation unless translations need restoring.
+      if (language === "en" && originals.size === 0 && attributes.size === 0) return
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
       while (walker.nextNode()) {
         const node = walker.currentNode as Text

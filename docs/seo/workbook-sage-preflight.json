@@ -1,0 +1,113 @@
+{
+  "visionsecure-keyword-map-v2.xlsx": {
+    "rows": 882,
+    "unique_case_whitespace": 882,
+    "duplicate_rows_case_whitespace": 0,
+    "punctuation_variant_groups": [],
+    "targets": 28
+  },
+  "visionsecure-keyword-map-v21.xlsx": {
+    "rows": 946,
+    "unique_case_whitespace": 946,
+    "duplicate_rows_case_whitespace": 0,
+    "punctuation_variant_groups": [],
+    "targets": 28
+  },
+  "prior_210_exact_overlap": 106,
+  "patch_checks": [
+    {
+      "file": "docs/seo/backlink-opportunities.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/regional-keyword-recommendations.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/regional-seo-and-backlink-handoff.md",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "app/blog/[slug]/page.tsx",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "app/contact/page.tsx",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "app/page.tsx",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/verify-workbook-content.py",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-backlink-review.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-keyword-disposition.csv",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-keyword-implementation-report.md",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-keyword-summary.json",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "docs/seo/workbook-render-verification.json",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "lib/article-buyer-guides.ts",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    },
+    {
+      "file": "lib/service-buyer-guides.ts",
+      "base_index_forward_compatible": true,
+      "base_index_reverse_compatible": false,
+      "message": ""
+    }
+  ],
+  "prompt_available": false,
+  "speed_screenshots_available": true,
+  "sage_pdf": "C:/Users/visha/Downloads/seo.pdf",
+  "stage": "Superseded by workbook-sage-implementation-report.md; implementation and tests completed, publishing handoff pending.",
+  "base_commit": "1ac40005111b907c8997b9e8a108d0651c80662c",
+  "inspection_date_ist": "2026-10-31",
+  "patch_sha256": "f3d9f681de71849d88134439532edd0231eeb0619cd670fee311447fd7fbcc3b",
+  "already_present_files": [],
+  "screenshots_source": "Five user-provided images visible in chat; observations transcribed in sage-provided-pagespeed-baseline.json",
+  "correction": "All fourteen literal patch chunks are forward-compatible with the untouched base index and none are fully reverse-compatible. Earlier glob-based already-applied finding was incorrect; semantic duplicate content was skipped."
+}

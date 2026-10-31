@@ -27,7 +27,7 @@ export const serviceBuyerGuides: Record<string, BuyerQuestion[]> = {
     },
     {
       "question": "How do I assess attendance software integration?",
-      "answer": "For attendance software integration, provide the software name, version and required report formats. Device compatibility, licence costs and payroll export requirements must be confirmed before ordering; payroll integration is not assumed."
+      "answer": "For attendance software integration, provide the software name, version and required report formats. Device compatibility, licence costs and payroll export requirements must be confirmed before ordering; payroll integration is not assumed. Ask for a sample export with test data and confirm how overnight shifts and missed punches are reviewed."
     }
   ],
   "networking-solutions": [
@@ -37,7 +37,7 @@ export const serviceBuyerGuides: Record<string, BuyerQuestion[]> = {
     },
     {
       "question": "How should I plan office network setup?",
-      "answer": "For an office network setup, count wired devices, printers, access points and uplink requirements. Plan switching, router configuration and user access together. WiFi coverage and server migration should have an explicit scope."
+      "answer": "For an office network setup, count wired devices, printers, access points and uplink requirements. Plan switching, router configuration and user access together. Check both the total PoE power budget and per-port limits against the selected cameras or access points. WiFi coverage and server migration should have an explicit scope."
     },
     {
       "question": "What checks should structured cabling testing include?",
