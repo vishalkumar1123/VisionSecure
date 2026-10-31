@@ -222,6 +222,7 @@ export function ContactPageContent({ initialService = "" }: { initialService?: s
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
             Request an installation quotation for CCTV, biometric attendance or networking in Lucknow. For a site assessment enquiry, share your property type, full site address and approximate device count. For a maintenance enquiry, describe your existing system and the issue.
+            For a site outside Lucknow, include the city so installation availability, travel and ongoing support can be confirmed. Keep passwords, recordings and employee records out of the enquiry.
           </p>
         </motion.div>
 

@@ -18,7 +18,7 @@ export const servicePlanning: Record<string, string[]> = {
   ],
   "it-support-amc": [
     "List CCTV cameras, recorders, computers and network devices, their condition and existing warranties. Agree preventive visits, fault reporting and remote or onsite support before choosing maintenance cover.",
-    "Confirm whether spares, consumables, software licences, data recovery, civil work and third-party faults are included or excluded. Visit frequency and response commitments belong in the written AMC scope."
+    "Confirm whether spares, consumables, software licences, data recovery, civil work and third-party faults are included or excluded. Visit frequency and response commitments belong in the written AMC scope. For repair versus replacement, compare the diagnosed fault, equipment condition, supported parts and existing warranty before approving work; an inspection does not guarantee a repair is possible."
   ],
   "server-networking-infrastructure": [
     "Review workloads, capacity, rack space, cooling, power backup and network uplinks. Confirm operating system and software compatibility, migration responsibilities and backup requirements before server setup.",

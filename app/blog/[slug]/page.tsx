@@ -6,6 +6,7 @@ import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { blogPosts } from "@/lib/blogs"
+import { serviceBySlug } from "@/lib/services"
 import { Button } from "@/components/ui/button"
 import { 
   Calendar, 
@@ -42,6 +43,17 @@ export default async function BlogDetail({ params }: Props) {
   if (!blog) {
     notFound()
   }
+
+  const serviceSlugs: Record<string, string> = {
+    "how-to-choose-the-right-cctv-camera": "cctv-surveillance",
+    "understanding-ip-vs-analog-cctv": "cctv-surveillance",
+    "biometric-attendance-vs-manual-attendance": "biometric-attendance",
+    "top-5-home-automation-features": "home-automation",
+    "benefits-of-access-control-systems": "access-control-system",
+    "fire-safety-tips-commercial-buildings": "emergency-alarm-system",
+    "networking-structured-cabling-and-server-setup-guide": "networking-solutions",
+  }
+  const relatedService = serviceBySlug(serviceSlugs[slug])
 
   // Pure Server-side Text Parser to transform raw lines into Luxury HTML Elements
   const parseBlogContent = (contentString: string) => {
@@ -195,6 +207,7 @@ export default async function BlogDetail({ params }: Props) {
           <div className="lg:col-span-8">
             <article className="prose dark:prose-invert max-w-none">
               {parseBlogContent(blog.content)}
+              {slug === "networking-structured-cabling-and-server-setup-guide" && <section className="mt-10" aria-labelledby="router-switch-heading"><h2 id="router-switch-heading" className="text-2xl font-bold">What is the difference between a router and a switch?</h2><p className="mt-4 leading-7 text-muted-foreground">A switch connects devices within a local network; a router connects networks. Some products combine functions. Count wired devices, uplinks and powered equipment, then check port capacity, PoE limits and administration requirements for the selected models.</p></section>}
             </article>
 
             {/* Bottom Conversion Lead Card */}
@@ -211,7 +224,7 @@ export default async function BlogDetail({ params }: Props) {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button className="rounded-full bg-accent hover:bg-accent/90 text-accent-foreground px-6 shadow-sm font-medium" asChild>
-                  <Link href="/contact">Book Free Site Survey</Link>
+                  <Link href={relatedService ? `/contact?service=${encodeURIComponent(relatedService.title)}` : "/contact"}>Discuss related requirements</Link>
                 </Button>
                 <Button variant="outline" className="rounded-full px-6 gap-2 font-medium" asChild>
                   <a href="tel:+91 9872133840">

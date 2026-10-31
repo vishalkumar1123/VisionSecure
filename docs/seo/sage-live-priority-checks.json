@@ -1,0 +1,695 @@
+{
+  "date": "2026-10-31",
+  "scope": "Eight bounded read-only public production GETs; local changes are not claimed live. No forms or private routes.",
+  "observed_live_sitemap_count": 28,
+  "results": [
+    {
+      "url": "https://visionsecuretech.in/",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/",
+      "canonical": "https://visionsecuretech.in",
+      "meta_robots": "robots: index, follow",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/html; charset=utf-8",
+      "title": "Security & Networking in Lucknow | VisionSecure",
+      "description": "CCTV, biometric attendance, access control, LAN, WiFi and smart technology installation in Lucknow. Discuss your property and maintenance requirements.",
+      "h1": [
+        "Security and networking solutions in Lucknow"
+      ],
+      "internal_links": [
+        "/",
+        "/about",
+        "/blog",
+        "/contact",
+        "/faq",
+        "/gallery",
+        "/services",
+        "/services/access-control-system",
+        "/services/biometric-attendance",
+        "/services/cctv-surveillance",
+        "/services/emergency-alarm-system",
+        "/services/glass-break-alarm-system",
+        "/services/home-automation",
+        "/services/it-support-amc",
+        "/services/networking-solutions",
+        "/services/server-networking-infrastructure",
+        "/services/smart-door-locks",
+        "/services/speaker-solutions",
+        "/services/video-door-phone",
+        "/services/wifi-mesh-networking"
+      ],
+      "json_ld": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://visionsecuretech.in/#business",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "logo": "https://visionsecuretech.in/images/Vision.png",
+              "image": "https://visionsecuretech.in/images/Vision.png",
+              "telephone": "+919872133840",
+              "email": "info@visionsecuretech.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
+                "addressLocality": "Lucknow",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "227107",
+                "addressCountry": "IN"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Monday",
+                    "https://schema.org/Tuesday",
+                    "https://schema.org/Wednesday",
+                    "https://schema.org/Thursday",
+                    "https://schema.org/Friday",
+                    "https://schema.org/Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "20:30"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Sunday"
+                  ],
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://visionsecuretech.in/#website",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "publisher": {
+                "@id": "https://visionsecuretech.in/#business"
+              }
+            }
+          ]
+        }
+      ],
+      "readable_text": "Security & Networking in Lucknow | VisionSecure Home About Services Services Complete Security, Networking, IT & Smart Solutions View all services Security & Surveillance CCTV Surveillance Biometric Attendance Access Control System Video Door Phone Networking & IT Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Smart Technology Smart Door Locks Home Automation Speaker Solutions Alarm & Safety Glass Break Alarm System Emergency Alarm System Gallery Blog FAQ Contact Call Now Get Free Site Visit Home About Services Gallery Blog FAQ Contact Get a Quote CCTV Surveillance Security and networking solutions in Lucknow Protect your home and business with advanced CCTV surveillance systems Get Free Site Visit WhatsApp Now Scroll 0 + Years Experience Trusted expertise in Lucknow 0 + Installations Across Lucknow & UP 0 + Happy Clients Homes & businesses secured 0 % Support Customer Assistance Our services Security, networking and smart solutions Explore requirement-based security and technology solutions for homes, offices and commercial spaces. Planning security system installation for a home or shop in Lucknow? Start with our CCTV installation service . For office networking, explore LAN and structured cabling . For smart home installation, review home automation options . Share your property type and locality to discuss a suitable scope. CCTV Surveillance Professional surveillance solutions for homes, offices and commercial environments. Explore service Biometric Attendance Practical fingerprint and face-attendance solutions for everyday operations. Explore service Access Control System Controlled entry solutions for secure, manageable premises. Explore service Networking Solutions Reliable LAN, WAN and structured cabling for connected business operations. Explore service WiFi & Mesh Networking Coverage-focused WiFi systems for homes, offices and multi-room environments. Explore service IT Support & AMC Preventive maintenance and technical assistance for security and IT systems. Explore service Server & Networking Infrastructure Structured infrastructure planning for business connectivity and core systems. Explore service Video Door Phone Visitor communication and entrance monitoring for homes and businesses. Explore service Smart Door Locks Keyless entry options for modern, controlled access. Explore service Home Automation Connected home systems for practical control of lighting, security and devices. Explore service Speaker Solutions Professional audio and announcement systems for clear communication. Explore service Glass Break Alarm System Detection and alarm integration for glass-entry protection. Explore service Emergency Alarm System Practical emergency alert and notification systems for safer premises. Explore service View all services Plan security and networking around your Lucknow property For a new installation or an upgrade, start with the rooms, entry points and people using the system. Share your full site address, existing equipment and the problem you want to solve. Equipment selection and quotation depend on the layout, capacity, cabling and compatibility. Use our CCTV planning guidance for camera coverage and recording, LAN and structured cabling guidance for wired points, or attendance system guidance for staff and reporting needs. For existing systems, review maintenance scope and AMC questions before requesting cover. Why Choose Us Security Solutions Built Around Your Needs We combine trusted technology, professional installation, customized solutions, and responsive support to help protect homes, offices, shops, and businesses. Trusted Technology Professional Installation Customized Solutions Responsive Support Premium Quality Products We work with trusted security and networking brands such as CP Plus, Hikvision, Dahua, IMOU, Prama, and TP-Link. Products are selected according to your requirements, environment, and budget for dependable long-term performance. Professional Technical Support Our support continues after installation. We assist with troubleshooting, maintenance, configuration, upgrades, and other technical requirements to help keep your systems performing reliably. Experienced Technical Team Our technical team works across CCTV, networking, access control, and security & IT solutions, with a focus on proper planning, installation, configuration, and system performance. Responsive Service We aim to respond promptly to installation, maintenance, troubleshooting, and service requirements, helping you address security and IT issues with minimal disruption. Warranty & AMC Support We provide warranty assistance according to applicable product and service terms, along with AMC options for customers who want ongoing maintenance and technical support. Customized Solutions Every property has different requirements. We design security and IT solutions around your space, priorities, usage, and budget instead of offering a one-size-fits-all approach. From initial consultation to installation and ongoing support, we focus on delivering practical solutions that fit your requirements. Testimonials What Our Clients Say About VisionSecure Smart Technologies. Trusted by homeowners, businesses, schools, and retail stores across Lucknow and India for reliable security solutions, professional installation, and dependable support. \" VisionSecure Smart Technologies changed our home security in a way. They put in a good CCTV system. This system is very good. It makes my family feel safe all the time. We feel safe because of the CCTV system, from VisionSecure Smart Technologies. \" NK Naman Kumar Home Owner Lucknow \" I got good service from the people who came to my house. They helped me pick out a lock. Then they put it in. The biometric smart lock, on our door is really great. It works perfectly. Our home is a lot safer now and we do not need to use keys. The biometric smart lock is very convenient. \" AK Abhishek Kumar Home owner Lucknow \" We were looking for a security system, for our new logistics warehouse. VisionSecure Smart Technologies did a job. They gave us a security system that includes cameras and a way to control who gets in. This keeps our stock and our company safe. VisionSecure Smart Technologies really helped us out with their security system. \" AS Ankit Sharma IT Manager Ware Works \" The safety of our students is very important. VisionSecure Smart Technologies gave us a security system for the whole campus. It has 32 cameras and a special attendance system that uses fingerprints, for staff. \" SA Sunita Agarwal School Principal \" Quick installation was a plus for us.The pricing is very competitive. Their, after-sales support has been excellent far. Their advanced surveillance system has really helped us secure our store.We are now fully secured and feel safe. \" VS Vikram Singh Retail Manager \" I really like my home automation setup. It is so cool that I can use my phone to control everything. The people from VisionSecure Smart Technologies team were very nice. They took the time to explain all the features of my home automation setup to me. They were very patient, with me when I was learning about the home automation setup. \" NG Neha Gupta Homeowner Trusted Partners We Work With The Best Brands Ready to Secure Your Property? Get a free site visit and customized security plan from our experts. No obligations, just solutions. Get Free Site Visit Call Now Free Consultation Expert Installation Warranty Included Get In Touch Let's Discuss Your Requirement Tell us what you need. Our team will understand your requirement and help you choose the right security or IT solution. Visit Us 153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road, Lucknow, Uttar Pradesh - 227107 Call Us +91 98721 33840 Email Us info@visionsecuretech.in Working Hours Monday 09 AM \u2013 8:30 PM Tuesday 09 AM \u2013 8:30 PM Wednesday 09 AM \u2013 8:30 PM Thursday 09 AM \u2013 8:30 PM Friday 09 AM \u2013 8:30 PM Saturday 09 AM \u2013 8:30 PM Sunday 10 AM \u2013 4:00 PM Connect With Us Follow VisionSecure Smart Technologies for updates, solutions, and security tips. Facebook Instagram YouTube WhatsApp Stay Connected \u2022 Stay Secure Send An Enquiry Tell Us What You Need Share a few details and our team will get back to you. Full Name * Email (optional) Full Address * Mobile Number * Requirement * Select a service CCTV Surveillance Biometric Attendance Access Control System Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Video Door Phone Smart Door Locks Home Automation Speaker Solutions Glass Break Alarm System Emergency Alarm System Fire Alarm Systems EPABX Systems Video Intercom Attendance Systems Smart Security Other Tell Us More Send Requirement By submitting this form, you're requesting a consultation from VisionSecure Smart Technologies. Visit our office VisionSecure Smart Technologies 153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road, Lucknow, Uttar Pradesh - 227107 +91 98721 33840 info@visionsecuretech.in Get Directions Professional security, networking and smart technology solutions designed around your real-world requirements. Company Home Services About Gallery Blog Contact Solutions CCTV surveillance Biometric attendance Networking Home automation Wifi & Mesh Networking IT Support & AMC Solutions Support FAQs Request consultation Call us WhatsApp +91 98721-33840 info@visionsecuretech.in Lucknow, Uttar Pradesh \u00a9 2026 VisionSecure Smart Technologies. Security and IT solutions with professional support."
+    },
+    {
+      "url": "https://visionsecuretech.in/services/cctv-surveillance",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/services/cctv-surveillance",
+      "canonical": "https://visionsecuretech.in/services/cctv-surveillance",
+      "meta_robots": "robots: index, follow",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/html; charset=utf-8",
+      "title": "CCTV camera installation in Lucknow | VisionSecure",
+      "description": "CCTV camera installation in Lucknow for homes, shops and offices. Plan IP cameras, recording storage and remote viewing with a site-based quotation.",
+      "h1": [
+        "CCTV camera installation in Lucknow"
+      ],
+      "internal_links": [
+        "/",
+        "/about",
+        "/blog",
+        "/contact",
+        "/contact?service=CCTV%20Surveillance",
+        "/faq",
+        "/gallery",
+        "/services",
+        "/services/access-control-system",
+        "/services/biometric-attendance",
+        "/services/cctv-surveillance",
+        "/services/emergency-alarm-system",
+        "/services/glass-break-alarm-system",
+        "/services/home-automation",
+        "/services/it-support-amc",
+        "/services/networking-solutions",
+        "/services/server-networking-infrastructure",
+        "/services/smart-door-locks",
+        "/services/speaker-solutions",
+        "/services/video-door-phone",
+        "/services/wifi-mesh-networking"
+      ],
+      "json_ld": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://visionsecuretech.in/#business",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "logo": "https://visionsecuretech.in/images/Vision.png",
+              "image": "https://visionsecuretech.in/images/Vision.png",
+              "telephone": "+919872133840",
+              "email": "info@visionsecuretech.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
+                "addressLocality": "Lucknow",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "227107",
+                "addressCountry": "IN"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Monday",
+                    "https://schema.org/Tuesday",
+                    "https://schema.org/Wednesday",
+                    "https://schema.org/Thursday",
+                    "https://schema.org/Friday",
+                    "https://schema.org/Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "20:30"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Sunday"
+                  ],
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://visionsecuretech.in/#website",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "publisher": {
+                "@id": "https://visionsecuretech.in/#business"
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://visionsecuretech.in/services/cctv-surveillance#service",
+          "name": "CCTV Surveillance",
+          "serviceType": "CCTV Surveillance",
+          "description": "Professional surveillance solutions for homes, offices and commercial environments.",
+          "category": "Security & Surveillance",
+          "url": "https://visionsecuretech.in/services/cctv-surveillance",
+          "image": "https://visionsecuretech.in/images/service-cctv.png",
+          "mainEntityOfPage": "https://visionsecuretech.in/services/cctv-surveillance",
+          "provider": {
+            "@id": "https://visionsecuretech.in/#business"
+          }
+        }
+      ],
+      "readable_text": "CCTV camera installation in Lucknow | VisionSecure Home About Services Services Complete Security, Networking, IT & Smart Solutions View all services Security & Surveillance CCTV Surveillance Biometric Attendance Access Control System Video Door Phone Networking & IT Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Smart Technology Smart Door Locks Home Automation Speaker Solutions Alarm & Safety Glass Break Alarm System Emergency Alarm System Gallery Blog FAQ Contact Call Now Get Free Site Visit Home About Services Gallery Blog FAQ Contact Get a Quote Security & Surveillance CCTV camera installation in Lucknow CCTV Surveillance Solutions Professional surveillance solutions for homes, offices and commercial environments. Get free site visit Explore services Home Services CCTV Surveillance Technology solution hub A properly planned cctv surveillance solution. Professional surveillance solutions for homes, offices and commercial environments. We begin with your property, daily workflow and coverage needs so the equipment, infrastructure and installation work together as one maintainable system. Suitable for homes, offices, retail spaces, warehouses , with practical options for new installations, upgrades and ongoing support. Solutions we provide Designed for your site and workflow. IP CCTV systems Analog CCTV systems Indoor and outdoor cameras Recording and remote viewing How it works From requirement to reliable handover. 01 Requirement discussion 02 Site assessment 03 Solution design 04 Technology selection 05 Installation 06 Configuration and testing 07 Handover 08 Support and AMC System components The building blocks behind the solution. Final components are selected after site assessment and compatibility checks. Field devices and sensors Specified around site conditions, capacity, reliability and future maintenance. Controller or recorder Specified around site conditions, capacity, reliability and future maintenance. Power and cabling Specified around site conditions, capacity, reliability and future maintenance. Monitoring and user access Specified around site conditions, capacity, reliability and future maintenance. Why it matters Clear monitoring A focused solution shaped around practical security and technology needs. Requirement-based camera placement A focused solution shaped around practical security and technology needs. Remote access options A focused solution shaped around practical security and technology needs. Professional installation A focused solution shaped around practical security and technology needs. Selection and handover Check entrances, blind spots, night lighting and indoor or outdoor exposure. Choose camera resolution, recording retention and recorder capacity together. Remote viewing needs a compatible recorder and a suitable internet connection. Test recorded playback, timestamps and user permissions at handover; ask how recordings are exported and who controls remote access. Planning your cctv surveillance installation Start with ip cctv systems, analog cctv systems, indoor and outdoor cameras, recording and remote viewing . For homes, offices, retail spaces, warehouses , confirm the number of devices or points, existing equipment and cable routes before selecting a system. Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable. Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed. Before requesting a quotation in Lucknow How should I plan an IP camera installation? For an IP camera installation, check camera placement, PoE switch capacity, cable routes and NVR compatibility together. Share your Lucknow locality, property type and approximate camera count so the quotation matches the site. What matters when choosing CCTV recording storage? CCTV recording storage depends on camera count, resolution, frame rate, recording schedule and retention needs. Ask for a storage estimate and test playback and export before handover; a fixed number of recording days should not be assumed. Can I discuss CCTV remote viewing setup? A CCTV remote viewing setup needs compatible equipment, a suitable internet connection and secure user access. Confirm account ownership and permissions, and keep passwords and recordings out of the enquiry form. Discuss your cctv surveillance requirements For cabling and connectivity, see LAN planning ; for ongoing equipment care, review AMC scope and exclusions . Confirm which related work belongs in your quotation. How the technology connects One coordinated cctv surveillance system. Equipment, connectivity and user access are planned together. This simplified illustration explains the system flow; final placement and coverage depend on the site survey. System centre Protected property Field device Recorder / controller Secure monitoring Applications Where this solution fits. Homes Offices Retail spaces Warehouses Frequently asked questions How many cameras do I need? The right number depends on entrances, coverage areas and your site layout. Can I view cameras remotely? Remote viewing options can be included where supported by the selected system. Installation standards Clean infrastructure Planned routes, termination and equipment placement for a serviceable installation. Configuration and testing Functional checks, user configuration and verification before handover. Clear handover Practical guidance for operation, maintenance and support options. Related services Explore other solutions. View all services Biometric Attendance Practical fingerprint and face-attendance solutions for everyday operations. Explore Access Control System Controlled entry solutions for secure, manageable premises. Explore Video Door Phone Visitor communication and entrance monitoring for homes and businesses. Explore Need the right security or IT solution? Tell us about your requirement and our team can help plan the right solution. Get free site visit Professional security, networking and smart technology solutions designed around your real-world requirements. Company Home Services About Gallery Blog Contact Solutions CCTV surveillance Biometric attendance Networking Home automation Wifi & Mesh Networking IT Support & AMC Solutions Support FAQs Request consultation Call us WhatsApp +91 98721-33840 info@visionsecuretech.in Lucknow, Uttar Pradesh \u00a9 2026 VisionSecure Smart Technologies. Security and IT solutions with professional support."
+    },
+    {
+      "url": "https://visionsecuretech.in/services/networking-solutions",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/services/networking-solutions",
+      "canonical": "https://visionsecuretech.in/services/networking-solutions",
+      "meta_robots": "robots: index, follow",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/html; charset=utf-8",
+      "title": "LAN networking and structured cabling in Lucknow | VisionSecure",
+      "description": "LAN networking and structured cabling in Lucknow. Discuss office network setup, cable routes, network points, labelling and handover checks.",
+      "h1": [
+        "LAN networking and structured cabling in Lucknow"
+      ],
+      "internal_links": [
+        "/",
+        "/about",
+        "/blog",
+        "/contact",
+        "/contact?service=Networking%20Solutions",
+        "/faq",
+        "/gallery",
+        "/services",
+        "/services/access-control-system",
+        "/services/biometric-attendance",
+        "/services/cctv-surveillance",
+        "/services/emergency-alarm-system",
+        "/services/glass-break-alarm-system",
+        "/services/home-automation",
+        "/services/it-support-amc",
+        "/services/networking-solutions",
+        "/services/server-networking-infrastructure",
+        "/services/smart-door-locks",
+        "/services/speaker-solutions",
+        "/services/video-door-phone",
+        "/services/wifi-mesh-networking"
+      ],
+      "json_ld": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://visionsecuretech.in/#business",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "logo": "https://visionsecuretech.in/images/Vision.png",
+              "image": "https://visionsecuretech.in/images/Vision.png",
+              "telephone": "+919872133840",
+              "email": "info@visionsecuretech.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
+                "addressLocality": "Lucknow",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "227107",
+                "addressCountry": "IN"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Monday",
+                    "https://schema.org/Tuesday",
+                    "https://schema.org/Wednesday",
+                    "https://schema.org/Thursday",
+                    "https://schema.org/Friday",
+                    "https://schema.org/Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "20:30"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Sunday"
+                  ],
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://visionsecuretech.in/#website",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "publisher": {
+                "@id": "https://visionsecuretech.in/#business"
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://visionsecuretech.in/services/networking-solutions#service",
+          "name": "Networking Solutions",
+          "serviceType": "Networking Solutions",
+          "description": "Reliable LAN, WAN and structured cabling for connected business operations.",
+          "category": "Networking & IT",
+          "url": "https://visionsecuretech.in/services/networking-solutions",
+          "image": "https://visionsecuretech.in/images/Networking_blog.png",
+          "mainEntityOfPage": "https://visionsecuretech.in/services/networking-solutions",
+          "provider": {
+            "@id": "https://visionsecuretech.in/#business"
+          }
+        }
+      ],
+      "readable_text": "LAN networking and structured cabling in Lucknow | VisionSecure Home About Services Services Complete Security, Networking, IT & Smart Solutions View all services Security & Surveillance CCTV Surveillance Biometric Attendance Access Control System Video Door Phone Networking & IT Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Smart Technology Smart Door Locks Home Automation Speaker Solutions Alarm & Safety Glass Break Alarm System Emergency Alarm System Gallery Blog FAQ Contact Call Now Get Free Site Visit Home About Services Gallery Blog FAQ Contact Get a Quote Networking & IT LAN networking and structured cabling in Lucknow Networking Solutions Solutions Reliable LAN, WAN and structured cabling for connected business operations. Get free site visit Explore services Home Services Networking Solutions Technology solution hub A properly planned networking solutions solution. Reliable LAN, WAN and structured cabling for connected business operations. We begin with your property, daily workflow and coverage needs so the equipment, infrastructure and installation work together as one maintainable system. Suitable for offices, retail spaces, institutions, commercial sites , with practical options for new installations, upgrades and ongoing support. Solutions we provide Designed for your site and workflow. LAN and WAN setup Structured cabling Routers and switches Network maintenance How it works From requirement to reliable handover. 01 Requirement discussion 02 Site assessment 03 Solution design 04 Technology selection 05 Installation 06 Configuration and testing 07 Handover 08 Support and AMC System components The building blocks behind the solution. Final components are selected after site assessment and compatibility checks. Cabling and termination Specified around site conditions, capacity, reliability and future maintenance. Router or gateway Specified around site conditions, capacity, reliability and future maintenance. Managed switching Specified around site conditions, capacity, reliability and future maintenance. Rack and power planning Specified around site conditions, capacity, reliability and future maintenance. Why it matters Cleaner connectivity A focused solution shaped around practical security and technology needs. Planned infrastructure A focused solution shaped around practical security and technology needs. Reliable coverage A focused solution shaped around practical security and technology needs. Support options A focused solution shaped around practical security and technology needs. Selection and handover Count wired network points, map cable routes and check switch ports, uplinks and PoE requirements. Discuss cable category, termination, labelling and rack space for new or existing LAN installations. Request point labelling and connectivity checks at handover. Wireless coverage and server migration need their own scope; explore the WiFi and server services for those requirements. Planning your networking solutions installation Start with lan and wan setup, structured cabling, routers and switches, network maintenance . For offices, retail spaces, institutions, commercial sites , confirm the number of devices or points, existing equipment and cable routes before selecting a system. Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable. Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed. Before requesting a quotation in Lucknow What is included in a LAN cabling installation? A LAN cabling installation can include planned cable routes, network points, termination and labelling as agreed in the quotation. Share your Lucknow site layout, number of desks and existing equipment so the scope can be assessed. How should I plan office network setup? For an office network setup, count wired devices, printers, access points and uplink requirements. Plan switching, router configuration and user access together. WiFi coverage and server migration should have an explicit scope. What checks should structured cabling testing include? Agree structured cabling testing requirements before work starts: point identification, termination checks and connectivity checks should be documented. If formal cable certification is required, confirm the test method, equipment and report separately. Discuss your networking solutions requirements For cabling and connectivity, see the selection and handover guidance above ; for ongoing equipment care, review AMC scope and exclusions . Confirm which related work belongs in your quotation. How the technology connects One coordinated networking solutions system. Equipment, connectivity and user access are planned together. This simplified illustration explains the system flow; final placement and coverage depend on the site survey. System centre Connected infrastructure Internet / gateway Managed network Devices & systems Applications Where this solution fits. Offices Retail spaces Institutions Commercial sites Frequently asked questions Do you handle structured cabling? Yes, networking solutions can include structured cabling planned around your site. Can an existing network be improved? We can assess the current setup and recommend practical improvements. Installation standards Clean infrastructure Planned routes, termination and equipment placement for a serviceable installation. Configuration and testing Functional checks, user configuration and verification before handover. Clear handover Practical guidance for operation, maintenance and support options. Related services Explore other solutions. View all services WiFi & Mesh Networking Coverage-focused WiFi systems for homes, offices and multi-room environments. Explore IT Support & AMC Preventive maintenance and technical assistance for security and IT systems. Explore Server & Networking Infrastructure Structured infrastructure planning for business connectivity and core systems. Explore Need the right security or IT solution? Tell us about your requirement and our team can help plan the right solution. Get free site visit Professional security, networking and smart technology solutions designed around your real-world requirements. Company Home Services About Gallery Blog Contact Solutions CCTV surveillance Biometric attendance Networking Home automation Wifi & Mesh Networking IT Support & AMC Solutions Support FAQs Request consultation Call us WhatsApp +91 98721-33840 info@visionsecuretech.in Lucknow, Uttar Pradesh \u00a9 2026 VisionSecure Smart Technologies. Security and IT solutions with professional support."
+    },
+    {
+      "url": "https://visionsecuretech.in/services/biometric-attendance",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/services/biometric-attendance",
+      "canonical": "https://visionsecuretech.in/services/biometric-attendance",
+      "meta_robots": "robots: index, follow",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/html; charset=utf-8",
+      "title": "Biometric attendance installation in Lucknow | VisionSecure",
+      "description": "Biometric attendance installation in Lucknow for offices and institutions. Discuss fingerprint or face attendance, shifts and software compatibility.",
+      "h1": [
+        "Biometric attendance installation in Lucknow"
+      ],
+      "internal_links": [
+        "/",
+        "/about",
+        "/blog",
+        "/contact",
+        "/contact?service=Biometric%20Attendance",
+        "/faq",
+        "/gallery",
+        "/services",
+        "/services/access-control-system",
+        "/services/biometric-attendance",
+        "/services/cctv-surveillance",
+        "/services/emergency-alarm-system",
+        "/services/glass-break-alarm-system",
+        "/services/home-automation",
+        "/services/it-support-amc",
+        "/services/networking-solutions",
+        "/services/server-networking-infrastructure",
+        "/services/smart-door-locks",
+        "/services/speaker-solutions",
+        "/services/video-door-phone",
+        "/services/wifi-mesh-networking"
+      ],
+      "json_ld": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://visionsecuretech.in/#business",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "logo": "https://visionsecuretech.in/images/Vision.png",
+              "image": "https://visionsecuretech.in/images/Vision.png",
+              "telephone": "+919872133840",
+              "email": "info@visionsecuretech.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
+                "addressLocality": "Lucknow",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "227107",
+                "addressCountry": "IN"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Monday",
+                    "https://schema.org/Tuesday",
+                    "https://schema.org/Wednesday",
+                    "https://schema.org/Thursday",
+                    "https://schema.org/Friday",
+                    "https://schema.org/Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "20:30"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Sunday"
+                  ],
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://visionsecuretech.in/#website",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "publisher": {
+                "@id": "https://visionsecuretech.in/#business"
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://visionsecuretech.in/services/biometric-attendance#service",
+          "name": "Biometric Attendance",
+          "serviceType": "Biometric Attendance",
+          "description": "Practical fingerprint and face-attendance solutions for everyday operations.",
+          "category": "Security & Surveillance",
+          "url": "https://visionsecuretech.in/services/biometric-attendance",
+          "image": "https://visionsecuretech.in/images/EsslBio.png",
+          "mainEntityOfPage": "https://visionsecuretech.in/services/biometric-attendance",
+          "provider": {
+            "@id": "https://visionsecuretech.in/#business"
+          }
+        }
+      ],
+      "readable_text": "Biometric attendance installation in Lucknow | VisionSecure Home About Services Services Complete Security, Networking, IT & Smart Solutions View all services Security & Surveillance CCTV Surveillance Biometric Attendance Access Control System Video Door Phone Networking & IT Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Smart Technology Smart Door Locks Home Automation Speaker Solutions Alarm & Safety Glass Break Alarm System Emergency Alarm System Gallery Blog FAQ Contact Call Now Get Free Site Visit Home About Services Gallery Blog FAQ Contact Get a Quote Security & Surveillance Biometric attendance installation in Lucknow Biometric Attendance Solutions Practical fingerprint and face-attendance solutions for everyday operations. Get free site visit Explore services Home Services Biometric Attendance Technology solution hub A properly planned biometric attendance solution. Practical fingerprint and face-attendance solutions for everyday operations. We begin with your property, daily workflow and coverage needs so the equipment, infrastructure and installation work together as one maintainable system. Suitable for offices, schools, retail spaces, institutions , with practical options for new installations, upgrades and ongoing support. Solutions we provide Designed for your site and workflow. Fingerprint attendance Face-recognition attendance Attendance reporting Device setup How it works From requirement to reliable handover. 01 Requirement discussion 02 Site assessment 03 Solution design 04 Technology selection 05 Installation 06 Configuration and testing 07 Handover 08 Support and AMC System components The building blocks behind the solution. Final components are selected after site assessment and compatibility checks. Field devices and sensors Specified around site conditions, capacity, reliability and future maintenance. Controller or recorder Specified around site conditions, capacity, reliability and future maintenance. Power and cabling Specified around site conditions, capacity, reliability and future maintenance. Monitoring and user access Specified around site conditions, capacity, reliability and future maintenance. Why it matters Accurate records A focused solution shaped around practical security and technology needs. Simpler attendance A focused solution shaped around practical security and technology needs. Controlled access options A focused solution shaped around practical security and technology needs. Scalable setup A focused solution shaped around practical security and technology needs. Selection and handover Confirm staff count, shifts, fingerprint or face recognition requirements and attendance report formats. Check compatibility with your existing attendance or payroll software before selecting a device. Test enrolment, shift rules, report export and the process for correcting missed attendance. Agree who manages staff access and retained attendance data. Planning your biometric attendance installation Start with fingerprint attendance, face-recognition attendance, attendance reporting, device setup . For offices, schools, retail spaces, institutions , confirm the number of devices or points, existing equipment and cable routes before selecting a system. Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable. Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed. Before requesting a quotation in Lucknow What should I check for a fingerprint attendance system? Choose a fingerprint attendance system around staff count, work conditions, enrolment needs and device placement. Discuss shifts and report requirements before selecting a device for your Lucknow office or institution. Is a face recognition attendance system suitable for our staff? A face recognition attendance system should be assessed for lighting, placement, enrolment and employee data handling. Confirm the supported recognition method and operational requirements rather than assuming every device works the same way. How do I assess attendance software integration? For attendance software integration, provide the software name, version and required report formats. Device compatibility, licence costs and payroll export requirements must be confirmed before ordering; payroll integration is not assumed. Discuss your biometric attendance requirements For cabling and connectivity, see LAN planning ; for ongoing equipment care, review AMC scope and exclusions . Confirm which related work belongs in your quotation. How the technology connects One coordinated biometric attendance system. Equipment, connectivity and user access are planned together. This simplified illustration explains the system flow; final placement and coverage depend on the site survey. System centre Protected property Field device Recorder / controller Secure monitoring Applications Where this solution fits. Offices Schools Retail spaces Institutions Frequently asked questions Can biometric devices manage attendance? Yes, suitable devices can be configured for attendance requirements. Do you provide installation? We provide requirement-based recommendation and installation support. Installation standards Clean infrastructure Planned routes, termination and equipment placement for a serviceable installation. Configuration and testing Functional checks, user configuration and verification before handover. Clear handover Practical guidance for operation, maintenance and support options. Related services Explore other solutions. View all services CCTV Surveillance Professional surveillance solutions for homes, offices and commercial environments. Explore Access Control System Controlled entry solutions for secure, manageable premises. Explore Video Door Phone Visitor communication and entrance monitoring for homes and businesses. Explore Need the right security or IT solution? Tell us about your requirement and our team can help plan the right solution. Get free site visit Professional security, networking and smart technology solutions designed around your real-world requirements. Company Home Services About Gallery Blog Contact Solutions CCTV surveillance Biometric attendance Networking Home automation Wifi & Mesh Networking IT Support & AMC Solutions Support FAQs Request consultation Call us WhatsApp +91 98721-33840 info@visionsecuretech.in Lucknow, Uttar Pradesh \u00a9 2026 VisionSecure Smart Technologies. Security and IT solutions with professional support."
+    },
+    {
+      "url": "https://visionsecuretech.in/services/it-support-amc",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/services/it-support-amc",
+      "canonical": "https://visionsecuretech.in/services/it-support-amc",
+      "meta_robots": "robots: index, follow",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/html; charset=utf-8",
+      "title": "CCTV and IT maintenance / AMC in Lucknow | VisionSecure",
+      "description": "CCTV and IT AMC in Lucknow. Discuss preventive maintenance, network troubleshooting, supported equipment and a clearly defined maintenance scope.",
+      "h1": [
+        "CCTV and IT maintenance / AMC in Lucknow"
+      ],
+      "internal_links": [
+        "/",
+        "/about",
+        "/blog",
+        "/contact",
+        "/contact?service=IT%20Support%20%26%20AMC",
+        "/faq",
+        "/gallery",
+        "/services",
+        "/services/access-control-system",
+        "/services/biometric-attendance",
+        "/services/cctv-surveillance",
+        "/services/emergency-alarm-system",
+        "/services/glass-break-alarm-system",
+        "/services/home-automation",
+        "/services/it-support-amc",
+        "/services/networking-solutions",
+        "/services/server-networking-infrastructure",
+        "/services/smart-door-locks",
+        "/services/speaker-solutions",
+        "/services/video-door-phone",
+        "/services/wifi-mesh-networking"
+      ],
+      "json_ld": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://visionsecuretech.in/#business",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "logo": "https://visionsecuretech.in/images/Vision.png",
+              "image": "https://visionsecuretech.in/images/Vision.png",
+              "telephone": "+919872133840",
+              "email": "info@visionsecuretech.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
+                "addressLocality": "Lucknow",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "227107",
+                "addressCountry": "IN"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Monday",
+                    "https://schema.org/Tuesday",
+                    "https://schema.org/Wednesday",
+                    "https://schema.org/Thursday",
+                    "https://schema.org/Friday",
+                    "https://schema.org/Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "20:30"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Sunday"
+                  ],
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://visionsecuretech.in/#website",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "publisher": {
+                "@id": "https://visionsecuretech.in/#business"
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://visionsecuretech.in/services/it-support-amc#service",
+          "name": "IT Support & AMC",
+          "serviceType": "IT Support & AMC",
+          "description": "Preventive maintenance and technical assistance for security and IT systems.",
+          "category": "Networking & IT",
+          "url": "https://visionsecuretech.in/services/it-support-amc",
+          "image": "https://visionsecuretech.in/images/AMC.png",
+          "mainEntityOfPage": "https://visionsecuretech.in/services/it-support-amc",
+          "provider": {
+            "@id": "https://visionsecuretech.in/#business"
+          }
+        }
+      ],
+      "readable_text": "CCTV and IT maintenance / AMC in Lucknow | VisionSecure Home About Services Services Complete Security, Networking, IT & Smart Solutions View all services Security & Surveillance CCTV Surveillance Biometric Attendance Access Control System Video Door Phone Networking & IT Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Smart Technology Smart Door Locks Home Automation Speaker Solutions Alarm & Safety Glass Break Alarm System Emergency Alarm System Gallery Blog FAQ Contact Call Now Get Free Site Visit Home About Services Gallery Blog FAQ Contact Get a Quote Networking & IT CCTV and IT maintenance / AMC in Lucknow IT Support & AMC Solutions Preventive maintenance and technical assistance for security and IT systems. Get free site visit Explore services Home Services IT Support & AMC Technology solution hub A properly planned it support & amc solution. Preventive maintenance and technical assistance for security and IT systems. We begin with your property, daily workflow and coverage needs so the equipment, infrastructure and installation work together as one maintainable system. Suitable for offices, retail spaces, homes, institutions , with practical options for new installations, upgrades and ongoing support. Solutions we provide Designed for your site and workflow. Preventive maintenance System inspection Troubleshooting AMC planning How it works From requirement to reliable handover. 01 Requirement discussion 02 Site assessment 03 Solution design 04 Technology selection 05 Installation 06 Configuration and testing 07 Handover 08 Support and AMC System components The building blocks behind the solution. Final components are selected after site assessment and compatibility checks. Cabling and termination Specified around site conditions, capacity, reliability and future maintenance. Router or gateway Specified around site conditions, capacity, reliability and future maintenance. Managed switching Specified around site conditions, capacity, reliability and future maintenance. Rack and power planning Specified around site conditions, capacity, reliability and future maintenance. Why it matters Reduced downtime A focused solution shaped around practical security and technology needs. Planned maintenance A focused solution shaped around practical security and technology needs. Technical assistance A focused solution shaped around practical security and technology needs. Long-term support A focused solution shaped around practical security and technology needs. Selection and handover List CCTV cameras, recorders, computers and network devices, their condition and existing warranties. Agree preventive visits, fault reporting and remote or onsite support before choosing maintenance cover. Confirm whether spares, consumables, software licences, data recovery, civil work and third-party faults are included or excluded. Visit frequency and response commitments belong in the written AMC scope. Planning your it support & amc installation Start with preventive maintenance, system inspection, troubleshooting, amc planning . For offices, retail spaces, homes, institutions , confirm the number of devices or points, existing equipment and cable routes before selecting a system. Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable. Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed. Before requesting a quotation in Lucknow What should a CCTV maintenance contract cover? A CCTV maintenance contract should identify supported cameras and recorders, preventive checks, recording and playback checks, and fault-reporting arrangements. State existing faults before cover starts and confirm replacement parts and visits in writing. How do I scope an IT AMC service? An IT AMC service should list supported computers and network equipment, maintenance tasks and access responsibilities. For a Lucknow site, agree whether support is remote or onsite; software licences, backups and data recovery need explicit inclusion. Can I request network troubleshooting? For network troubleshooting, describe affected devices, symptoms and when the issue started. Share the locality and system type without passwords or private data. An inspection can establish whether the fault belongs to cabling, equipment, configuration or an external provider. Discuss your it support & amc requirements For cabling and connectivity, see LAN planning ; for ongoing equipment care, review the AMC scope and exclusions above . Confirm which related work belongs in your quotation. How the technology connects One coordinated it support & amc system. Equipment, connectivity and user access are planned together. This simplified illustration explains the system flow; final placement and coverage depend on the site survey. System centre Connected infrastructure Internet / gateway Managed network Devices & systems Applications Where this solution fits. Offices Retail spaces Homes Institutions Frequently asked questions What does AMC cover? Coverage is defined around installed systems and agreed maintenance requirements. Can AMC include CCTV and networking? Suitable AMC plans can cover multiple supported systems. Installation standards Clean infrastructure Planned routes, termination and equipment placement for a serviceable installation. Configuration and testing Functional checks, user configuration and verification before handover. Clear handover Practical guidance for operation, maintenance and support options. Related services Explore other solutions. View all services Networking Solutions Reliable LAN, WAN and structured cabling for connected business operations. Explore WiFi & Mesh Networking Coverage-focused WiFi systems for homes, offices and multi-room environments. Explore Server & Networking Infrastructure Structured infrastructure planning for business connectivity and core systems. Explore Need the right security or IT solution? Tell us about your requirement and our team can help plan the right solution. Get free site visit Professional security, networking and smart technology solutions designed around your real-world requirements. Company Home Services About Gallery Blog Contact Solutions CCTV surveillance Biometric attendance Networking Home automation Wifi & Mesh Networking IT Support & AMC Solutions Support FAQs Request consultation Call us WhatsApp +91 98721-33840 info@visionsecuretech.in Lucknow, Uttar Pradesh \u00a9 2026 VisionSecure Smart Technologies. Security and IT solutions with professional support."
+    },
+    {
+      "url": "https://visionsecuretech.in/contact",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/contact",
+      "canonical": "https://visionsecuretech.in/contact",
+      "meta_robots": "robots: index, follow",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/html; charset=utf-8",
+      "title": "Contact VisionSecure in Lucknow | Installation & AMC Enquiries",
+      "description": "Request CCTV, biometric, networking or AMC support in Lucknow. Share your service, locality and requirements or contact VisionSecure by phone.",
+      "h1": [
+        "Contact VisionSecure in Lucknow"
+      ],
+      "internal_links": [
+        "/",
+        "/about",
+        "/blog",
+        "/contact",
+        "/faq",
+        "/gallery",
+        "/services",
+        "/services/access-control-system",
+        "/services/biometric-attendance",
+        "/services/cctv-surveillance",
+        "/services/emergency-alarm-system",
+        "/services/glass-break-alarm-system",
+        "/services/home-automation",
+        "/services/it-support-amc",
+        "/services/networking-solutions",
+        "/services/server-networking-infrastructure",
+        "/services/smart-door-locks",
+        "/services/speaker-solutions",
+        "/services/video-door-phone",
+        "/services/wifi-mesh-networking"
+      ],
+      "json_ld": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://visionsecuretech.in/#business",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "logo": "https://visionsecuretech.in/images/Vision.png",
+              "image": "https://visionsecuretech.in/images/Vision.png",
+              "telephone": "+919872133840",
+              "email": "info@visionsecuretech.in",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road",
+                "addressLocality": "Lucknow",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "227107",
+                "addressCountry": "IN"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Monday",
+                    "https://schema.org/Tuesday",
+                    "https://schema.org/Wednesday",
+                    "https://schema.org/Thursday",
+                    "https://schema.org/Friday",
+                    "https://schema.org/Saturday"
+                  ],
+                  "opens": "09:00",
+                  "closes": "20:30"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "https://schema.org/Sunday"
+                  ],
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://visionsecuretech.in/#website",
+              "name": "VisionSecure Smart Technologies",
+              "url": "https://visionsecuretech.in",
+              "publisher": {
+                "@id": "https://visionsecuretech.in/#business"
+              }
+            }
+          ]
+        }
+      ],
+      "readable_text": "Contact VisionSecure in Lucknow | Installation & AMC Enquiries Home About Services Services Complete Security, Networking, IT & Smart Solutions View all services Security & Surveillance CCTV Surveillance Biometric Attendance Access Control System Video Door Phone Networking & IT Networking Solutions WiFi & Mesh Networking IT Support & AMC Server & Networking Infrastructure Smart Technology Smart Door Locks Home Automation Speaker Solutions Alarm & Safety Glass Break Alarm System Emergency Alarm System Gallery Blog FAQ Contact Call Now Get Free Site Visit Home About Services Gallery Blog FAQ Contact Get a Quote VisionSecure Smart Technologies Contact VisionSecure in Lucknow Connect with VisionSecure Smart Technologies for CCTV installation, biometric systems, networking, fire alarm systems, and smart security solutions. WhatsApp Us Call Now Free Consultation Expert Engineers Same-Day Support Lucknow, UP, India Explore Form Contact VisionSecure Smart Technologies Let's Secure Your Space Request an installation quotation for CCTV, biometric attendance or networking in Lucknow. For a site assessment enquiry, share your property type, full site address and approximate device count. For a maintenance enquiry, describe your existing system and the issue. Send Your Requirement Fill out the form below and our engineering team will get in touch shortly. Full Name * Phone Number * Email Address Service Required * Select Service Full Address * Your Requirement Submit Requirement Need Quick Support? Connect instantly with our executive expert team. WhatsApp Now Call Us Directly Phone / WhatsApp +91 98721 33840 Call Now \u2192 Email Address info@visionsecuretech.in Send Email \u2192 Office Address 153, Pili Market, Near Ram Lal Marriage Lawn Narouna, Kakori Mod, Mohan Road Lucknow, Uttar Pradesh - 227107 View Location \u2192 Working Hours Monday - Saturday : 9:00 AM - 8:30 PM Sunday : 10:00 AM - 4:00 PM Why Choose Us? Certified Security Experts Affordable Installation & AMC Plans Free Site Visit & Consultation Same-Day Technical Support Available Follow Our Updates Visit our office VisionSecure Smart Technologies 153, Pili Market, Near Ram Lal Marriage Lawn, Narouna, Kakori Mod, Mohan Road, Lucknow, Uttar Pradesh - 227107 +91 98721 33840 info@visionsecuretech.in Get Directions Professional security, networking and smart technology solutions designed around your real-world requirements. Company Home Services About Gallery Blog Contact Solutions CCTV surveillance Biometric attendance Networking Home automation Wifi & Mesh Networking IT Support & AMC Solutions Support FAQs Request consultation Call us WhatsApp +91 98721-33840 info@visionsecuretech.in Lucknow, Uttar Pradesh \u00a9 2026 VisionSecure Smart Technologies. Security and IT solutions with professional support."
+    },
+    {
+      "url": "https://visionsecuretech.in/robots.txt",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/robots.txt",
+      "canonical": "Not verified",
+      "meta_robots": "Not verified",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "text/plain; charset=utf-8",
+      "body": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\nDisallow: /profile\nDisallow: /register\n\nSitemap: https://visionsecuretech.in/sitemap.xml\n"
+    },
+    {
+      "url": "https://visionsecuretech.in/sitemap.xml",
+      "status": 200,
+      "redirect_chain": [],
+      "final_destination": "https://visionsecuretech.in/sitemap.xml",
+      "canonical": "Not verified",
+      "meta_robots": "Not verified",
+      "x_robots_tag": "",
+      "verification_date": "2026-10-31",
+      "timestamp_utc": "2026-10-31T16:16:42.151512+00:00",
+      "method": "Read-only HTTP GET; response HTML parsing (not JS execution)",
+      "issue": "",
+      "content_type": "application/xml",
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<url>\n<loc>https://visionsecuretech.in/</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/about</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/contact</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/projects</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/gallery</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/faq</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/cctv-surveillance</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/biometric-attendance</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/access-control-system</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/networking-solutions</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/wifi-mesh-networking</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/it-support-amc</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/server-networking-infrastructure</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/video-door-phone</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/smart-door-locks</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/home-automation</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/speaker-solutions</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/glass-break-alarm-system</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/services/emergency-alarm-system</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/how-to-choose-the-right-cctv-camera</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/biometric-attendance-vs-manual-attendance</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/top-5-home-automation-features</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/understanding-ip-vs-analog-cctv</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/fire-safety-tips-commercial-buildings</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/benefits-of-access-control-systems</loc>\n</url>\n<url>\n<loc>https://visionsecuretech.in/blog/networking-structured-cabling-and-server-setup-guide</loc>\n</url>\n</urlset>\n"
+    }
+  ]
+}

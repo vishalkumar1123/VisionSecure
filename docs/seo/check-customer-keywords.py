@@ -1,11 +1,14 @@
 """Read-only checks against an isolated localhost production build, never submit forms."""
 from pathlib import Path
-import sys
+import sys, os
 sys.dont_write_bytecode=True
 import importlib.util, json, re, urllib.request, urllib.parse, xml.etree.ElementTree as ET, datetime
 ROOT=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location('public_audit',ROOT/'docs/seo/verify-submission-urls.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-BASE='http://localhost:3013';ORIGIN='https://visionsecuretech.in'
+BASE=os.environ.get('SEO_TEST_BASE_URL','http://localhost:3013');ORIGIN='https://visionsecuretech.in'
+OUTPUT=os.environ.get('SEO_TEST_OUTPUT','customer-keyword-render-checks.json')
+assert re.fullmatch(r'[a-z0-9-]+\.json',OUTPUT), 'Output must be a JSON filename within docs/seo'
+assert urllib.parse.urlsplit(BASE).hostname in ('localhost','127.0.0.1'), 'Isolated local origin only'
 pages=json.loads((ROOT/'lib/seo-pages.json').read_text())
 for slug,title,desc in re.findall(r'slug: "([^"]+)",\s*title: "([^"]+)",\s*excerpt: "([^"]+)"',(ROOT/'lib/blogs.ts').read_text(encoding='utf-8')):pages.append({'path':'/blog/'+slug,'title':title+' | VisionSecure','description':desc,'heading':title})
 paths={p['path'] for p in pages};observed={};failures=[];results=[]
@@ -35,6 +38,6 @@ for path,phrase in markers.items():
 with urllib.request.urlopen(BASE+'/sitemap.xml') as response:urls=[e.text for e in ET.fromstring(response.read()).iter() if e.tag.endswith('loc')]
 assert len(urls)==len(set(urls))==len(paths) and set(urls)=={ORIGIN+p for p in paths}
 report={'verified_at_ist':datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=5,minutes=30))).isoformat(),'scope':'Isolated localhost build; response HTML, no form submissions','public_count':len(paths),'sitemap_count':len(urls),'new_content_markers':markers,'pages':results,'failures':failures}
-(ROOT/'docs/seo/customer-keyword-render-checks.json').write_text(json.dumps(report,indent=2)+'\n')
+(ROOT/'docs/seo'/OUTPUT).write_text(json.dumps(report,indent=2)+'\n')
 assert not failures,failures
 print(f'PASS: {len(paths)} public pages, metadata/H1/canonical/JSON-LD, public links, 13 service enquiry destinations, {len(markers)} new content markers, discovered sitemap count {len(urls)}')

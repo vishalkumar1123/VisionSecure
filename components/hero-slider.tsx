@@ -38,6 +38,19 @@ const slides = [
 export function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [firstImageReady, setFirstImageReady] = useState(false)
+  const [loadOtherSlides, setLoadOtherSlides] = useState(false)
+
+  // Keep invisible carousel images out of the initial critical request queue.
+  useEffect(() => {
+    if (!firstImageReady) return
+    if ("requestIdleCallback" in window) {
+      const task = window.requestIdleCallback(() => setLoadOtherSlides(true), { timeout: 1500 })
+      return () => window.cancelIdleCallback(task)
+    }
+    const task = setTimeout(() => setLoadOtherSlides(true), 150)
+    return () => clearTimeout(task)
+  }, [firstImageReady])
 
   const nextSlide = useCallback(() => {
     if (isAnimating) return
@@ -59,9 +72,9 @@ export function HeroSlider() {
   }, [nextSlide])
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" tabIndex={-1} className="relative min-h-screen flex items-center overflow-hidden">
       {slides.map((slide, index) => <div key={slide.image} aria-hidden={index !== currentSlide} className={cn("absolute inset-0 transition-opacity duration-1000", index === currentSlide ? "opacity-100" : "opacity-0")}>
-        <Image src={slide.image} alt={slide.accent} fill sizes="100vw" className="object-cover object-center" priority={index === 0} />
+        {(index === 0 || loadOtherSlides || index === currentSlide) && <Image src={slide.image} alt={slide.accent} fill sizes="100vw" className="object-cover object-center" priority={index === 0} fetchPriority={index === 0 ? "high" : "low"} onLoad={index === 0 ? () => setFirstImageReady(true) : undefined} />}
       </div>)}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/10" />
       <div className="container mx-auto px-4 lg:px-8 pt-24 lg:pt-32 relative z-10">
