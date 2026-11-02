@@ -15,23 +15,23 @@ const faqCategories = [
     id: "general",
     title: "General Questions",
     faqs: [
-      {"question": "What should I share to get a quotation?", "answer": "Tell us your location, property type, areas to cover and approximate budget. Photos or a floor plan can help us suggest a suitable setup."},
+      {"question": "What should I share to get a quotation?", "answer": "Share the full site address, property type, areas to cover, approximate device or point count and any existing equipment. Describe the problem you want to solve. Keep passwords, recordings and employee records out of the enquiry."},
 
       {
         question: "What types of security systems do you install?",
-        answer: "We install a comprehensive range of security systems including CCTV cameras (analog, IP, PTZ), biometric attendance systems, access control systems (RFID, smart locks, boom barriers), video door phones, fire alarm systems, and complete home automation solutions."
+        answer: "Our existing service pages cover CCTV, biometric attendance, access control, video door phones, smart locks, networking, automation and general alarm solutions. Describe your required function so equipment compatibility and the exact work can be confirmed; a related enquiry option is not a promise that every specialist system is included."
       },
       {
         question: "Which areas do you serve?",
-        answer: "We primarily serve Lucknow and surrounding areas in Uttar Pradesh. However, we also take up projects across North India for larger installations. Contact us to check if we cover your location."
+        answer: "Lucknow is our primary market. For a site outside Lucknow, share the city and full address so installation availability, travel and ongoing support can be confirmed before arranging a visit. Do not assume a local office or regular coverage in another city."
       },
       {
         question: "Do you provide free site visits?",
-        answer: "Yes, we offer completely free site visits and consultations. Our technical team will assess your property, understand your requirements, and provide a detailed quotation without any obligation."
+        answer: "Confirm appointment availability, any assessment or travel charges and what the visit includes before booking. Site conditions and location can affect the arrangements; the written quotation should identify any agreed charges."
       },
       {
         question: "How long does installation typically take?",
-        answer: "Installation time varies based on the project size. A typical home CCTV system with 4-8 cameras can be installed in 1 day. Larger commercial projects may take 3-7 days depending on the number of cameras and systems involved."
+        answer: "Timing depends on device count, cable routes, access, existing equipment and the agreed configuration/testing. Discuss the work sequence and any expected outage before confirming a schedule; a fixed one-day completion should not be assumed for every property."
       },
     ]
   },
@@ -45,19 +45,19 @@ const faqCategories = [
 
       {
         question: "What is the difference between analog and IP cameras?",
-        answer: "Analog cameras transmit video over coaxial cables and require a DVR, while IP cameras transmit digital video over network cables and use an NVR. IP cameras typically offer higher resolution (4K), better image quality, and advanced features like AI analytics, but cost more than analog systems."
+        answer: "Analog and IP systems use different video and recording arrangements. Compare the actual cameras, recorder, cabling and required image detail before choosing or upgrading. Features, resolution and cost depend on the selected models, not only the system label."
       },
       {
         question: "Can I view my cameras on my mobile phone?",
-        answer: "Yes, all our CCTV installations come with free mobile app setup. You can view live footage, playback recordings, and receive motion alerts on your smartphone from anywhere in the world with an internet connection."
+        answer: "Remote viewing can be configured where the selected cameras or recorder, app and connection support it. Agree account ownership, user permissions and any recurring charges. Keep passwords out of the enquiry and check supported live/playback functions at handover."
       },
       {
         question: "How much storage do I need for CCTV recordings?",
-        answer: "Storage depends on the number of cameras, resolution, and how many days of recording you want to keep. For example, 8 cameras recording at 2MP resolution for 15 days typically need a 2TB hard drive. We recommend 30-day storage for most installations."
+        answer: "Specify the camera count, recording schedule and retention period. Resolution, bitrate, frame rate, compression and scene activity affect storage. Request an estimate for the selected settings and test playback/export; one drive size does not guarantee the same retention for all systems."
       },
       {
         question: "Do cameras work at night?",
-        answer: "Yes, all our cameras feature infrared (IR) night vision that can see clearly in complete darkness up to 30-50 meters depending on the model. We also offer color night vision cameras for areas with some ambient light."
+        answer: "Night performance depends on the selected camera, lens, scene and lighting. Infrared and colour modes have different requirements. Check a representative night view and the required detail at the actual distance rather than assuming a fixed range or clear identification in all darkness."
       },
     ]
   },
@@ -67,15 +67,15 @@ const faqCategories = [
     faqs: [
       {
         question: "Which is better - fingerprint or face recognition?",
-        answer: "Both have their advantages. Fingerprint is more accurate and cost-effective, ideal for indoor use. Face recognition is contactless, faster for high-traffic areas, and works better in environments where fingers might be dirty or wet. Many organizations use a combination of both."
+        answer: "Compare staff workflow, lighting, placement, supported enrolment and data handling. Recognition methods differ by device and environment, so test suitability instead of assuming one method is always faster or more accurate. Attendance reporting and door-entry control are separate requirements."
       },
       {
         question: "Can biometric systems integrate with payroll software?",
-        answer: "Yes, our biometric attendance systems can integrate with popular payroll and HR software. They support various export formats (Excel, text files) and can directly integrate with software like Tally, SAP, and other HRMS platforms."
+        answer: "Confirm the device/software versions, licences and required export formats before ordering. Use test data to review a sample export with the payroll process. A device collecting attendance does not automatically establish direct compatibility with every HR or payroll platform."
       },
       {
         question: "What happens if the biometric device fails?",
-        answer: "All our biometric devices store data locally, so even during network issues, attendance continues to be recorded. We also provide backup options like card or PIN access. Our AMC includes quick response for any device failures."
+        answer: "Offline recording, backup credentials and data recovery depend on the selected device and fault. Agree an alternative attendance process, backup responsibilities and support contact arrangements before use. Maintenance response commitments must be part of the written support scope."
       },
     ]
   },
@@ -85,15 +85,15 @@ const faqCategories = [
     faqs: [
       {
         question: "How much does a basic CCTV system cost?",
-        answer: "A basic 4-camera CCTV system for home starts from around Rs. 15,000-25,000 including installation. Prices vary based on camera resolution, brand, and features. We offer solutions for every budget and can customize packages accordingly."
+        answer: "A quotation depends on coverage, selected cameras/recorder, storage, cable routes, power, access and configuration. Share your site requirements for an itemised scope. Equipment, installation and any subscriptions or extra work should be identified separately; no fixed package price is assumed."
       },
       {
         question: "Do you offer EMI options?",
-        answer: "Yes, we offer easy EMI options through various banks and financing partners for installations above Rs. 30,000. You can spread payments over 3-12 months with minimal documentation."
+        answer: "Ask which payment methods and schedules are available before accepting a quotation. Any financing eligibility, fees and provider terms should be confirmed in writing; an EMI option is not part of every order."
       },
       {
         question: "Is installation included in the price?",
-        answer: "Yes, our quoted prices include professional installation, basic wiring (up to 15m per camera), configuration, and training on how to use the system. Additional wiring or complex installations may have extra charges which will be clearly mentioned in the quote."
+        answer: "Check the itemised quotation for installation, cable lengths, mounting, power work, configuration, testing and handover. Existing routes and access can affect labour and materials. Agree additional work before it proceeds rather than assuming a standard cable allowance or inclusion."
       },
     ]
   },
@@ -103,15 +103,15 @@ const faqCategories = [
     faqs: [
       {
         question: "What warranty do you provide?",
-        answer: "All our products come with a minimum 1-year manufacturer warranty. Premium brands offer up to 3-year warranty. We handle all warranty claims on behalf of our customers, making the process hassle-free."
+        answer: "Warranty depends on the selected product and written terms. Confirm duration, the claim process, exclusions and any labour or travel charges before ordering. Manufacturer warranty and an AMC are different arrangements; neither automatically covers every fault or replacement."
       },
       {
         question: "What is included in your AMC plans?",
-        answer: "Our Annual Maintenance Contract includes quarterly preventive maintenance visits, unlimited breakdown support, free labor charges for repairs, software updates, camera cleaning, and priority response time. Spare parts are charged at discounted rates."
+        answer: "Agree the supported asset list, existing faults, preventive tasks, visit arrangements, fault-reporting process and exclusions. Confirm labour, spares, consumables, licences and third-party responsibilities in writing. Quarterly visits, unlimited support or discounted parts should not be assumed unless agreed."
       },
       {
         question: "How quickly do you respond to service calls?",
-        answer: "For AMC customers, we guarantee response within 4 hours for critical issues and 24 hours for general maintenance. Non-AMC customers typically receive service within 24-48 hours based on availability."
+        answer: "Agree the reporting channel, issue priority and any response commitment in the written support terms. Timing depends on the applicable arrangement, location and access; there is no universal response-time guarantee stated here."
       },
     ]
   },
@@ -125,15 +125,15 @@ const faqCategories = [
 
       {
         question: "Do you provide remote support?",
-        answer: "Yes, many issues can be resolved remotely. Our technical team can access your system (with your permission) to troubleshoot software issues, adjust settings, and guide you through the mobile app. This saves time and provides quick resolutions."
+        answer: "Remote troubleshooting may be suitable for supported equipment and software issues when authorised access and connectivity are available. Agree permissions and access ownership first. Physical faults or cabling problems may require a separately arranged onsite assessment."
       },
       {
         question: "What happens if a camera stops working?",
-        answer: "Contact our support team immediately. If under warranty or AMC, we will either repair or replace the camera at no extra cost (excluding physical damage). For non-warranty repairs, we provide transparent pricing before proceeding."
+        answer: "Report the equipment and symptoms without passwords or private footage. Diagnosis helps distinguish power, cabling, recorder, connection and camera faults. Confirm warranty/AMC applicability and any repair, replacement, labour or travel charges before approving work."
       },
       {
         question: "Can you upgrade my existing security system?",
-        answer: "Absolutely! We can upgrade your existing system by adding more cameras, replacing old cameras with higher resolution ones, adding mobile viewing capability, or integrating additional systems like biometrics. We assess your current setup and recommend the most cost-effective upgrade path."
+        answer: "An assessment can identify which equipment may be retained and which changes are practical. Share the camera/recorder models, current cabling and desired functions. Compatibility, migration and recording interruptions need explicit checks before adding devices or changing systems."
       },
     ]
   },

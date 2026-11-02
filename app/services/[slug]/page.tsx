@@ -1,5 +1,6 @@
+import { serviceContent } from "@/lib/service-content"
 import { JsonLd } from "@/components/json-ld"
-import { serviceSchema } from "@/lib/schema"
+import { serviceSchema, breadcrumbSchema } from "@/lib/schema"
 import { serviceBuyerGuides } from "@/lib/service-buyer-guides"
 import { servicePlanning } from "@/lib/service-planning"
 import { pageMetadata } from "@/lib/seo"
@@ -30,18 +31,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   if (!service) notFound()
 
   const related = services.filter((item) => item.slug !== service.slug).sort((a, b) => Number(b.category === service.category) - Number(a.category === service.category)).slice(0, 3)
-  const process = ["Requirement discussion", "Site assessment", "Solution design", "Technology selection", "Installation", "Configuration and testing", "Handover", "Support and AMC"]
-  const systemComponents = service.category === "Networking & IT"
-    ? ["Cabling and termination", "Router or gateway", "Managed switching", "Rack and power planning"]
-    : service.category === "Security & Surveillance"
-      ? ["Field devices and sensors", "Controller or recorder", "Power and cabling", "Monitoring and user access"]
-      : service.category === "Alarm & Safety"
-        ? ["Detection devices", "Control and alert unit", "Power backup", "Notification devices"]
-        : ["Smart devices", "Control interface", "Reliable connectivity", "User configuration"]
+  const maintenance = service.slug === "it-support-amc"
+  const process = maintenance
+    ? ["Equipment inventory", "Existing fault review", "Covered tasks and exclusions", "Visit and access arrangements", "Agreed preventive checks", "Fault findings and approval", "Service records", "Scope review and renewal"]
+    : ["Requirement discussion", "Site assessment", "Solution design", "Technology selection", "Installation", "Configuration and testing", "Handover", "Support and AMC"]
+  const details = serviceContent[service.slug]
 
   return (
     <main className="min-h-screen bg-background">
       <JsonLd data={serviceSchema(service)} />
+      <JsonLd data={breadcrumbSchema(`/services/${service.slug}`, [{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: service.title, path: `/services/${service.slug}` }])} />
       <Navbar />
       <ServiceDetailHeroSlider
         title={service.title}
@@ -56,8 +55,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <nav aria-label="Breadcrumb" className="page-container py-5 text-sm text-muted-foreground"><ol className="flex flex-wrap items-center gap-2"><li><Link href="/" className="hover:text-brand-green">Home</Link></li><ChevronRight className="h-4 w-4" aria-hidden="true" /><li><Link href="/services" className="hover:text-brand-green">Services</Link></li><ChevronRight className="h-4 w-4" aria-hidden="true" /><li aria-current="page" className="text-foreground">{service.title}</li></ol></nav>
 
       <section className="page-container grid items-center gap-10 pb-20 pt-10 lg:grid-cols-2">
-        <div><p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">Technology solution hub</p><h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">A properly planned {service.title.toLowerCase()} solution.</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">{service.summary} We begin with your property, daily workflow and coverage needs so the equipment, infrastructure and installation work together as one maintainable system.</p><p className="mt-4 leading-7 text-muted-foreground">Suitable for {service.applications.join(", ").toLowerCase()}, with practical options for new installations, upgrades and ongoing support.</p></div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border"><Image src={service.image} alt={`${service.title} equipment and professional installation`} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-background/55 to-transparent" /></div>
+        <div><p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">Technology solution hub</p><h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">A properly planned {service.title.toLowerCase()} solution.</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">{service.summary} {maintenance ? "We begin with the asset list, existing faults and maintenance responsibilities so coverage can be agreed for the supported systems." : "We begin with your property, daily workflow and coverage needs so the equipment, infrastructure and installation work together as one maintainable system."}</p><p className="mt-4 leading-7 text-muted-foreground">Suitable for {service.applications.join(", ").toLowerCase()}, {maintenance ? "with the covered equipment and maintenance arrangements agreed individually." : "with practical options for new installations, upgrades and ongoing support."}</p></div>
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border"><Image src={service.image} alt={`${service.title} service illustration`} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-background/55 to-transparent" /></div>
       </section>
 
       <section className="page-container section-space grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
@@ -75,18 +74,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      <section className="bg-background text-foreground"><div className="page-container section-space"><p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">How it works</p><h2 className="mt-3 font-display text-3xl font-bold">From requirement to reliable handover.</h2><div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{process.map((step, index) => <article key={step} className="relative rounded-2xl border border-border bg-card/[.04] p-5"><span className="text-xs font-bold tracking-[.18em] text-brand-green">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-3 font-semibold">{step}</h3>{index < process.length - 1 && <ArrowRight className="absolute -right-3 top-1/2 hidden h-5 w-5 text-highlight-ink/70 lg:block" aria-hidden="true" />}</article>)}</div></div></section>
+      <section className="bg-background text-foreground"><div className="page-container section-space"><p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">How it works</p><h2 className="mt-3 font-display text-3xl font-bold">{maintenance ? "From equipment review to agreed maintenance." : "From requirement to reliable handover."}</h2><div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{process.map((step, index) => <article key={step} className="relative rounded-2xl border border-border bg-card/[.04] p-5"><span className="text-xs font-bold tracking-[.18em] text-brand-green">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-3 font-semibold">{step}</h3>{index < process.length - 1 && <ArrowRight className="absolute -right-3 top-1/2 hidden h-5 w-5 text-highlight-ink/70 lg:block" aria-hidden="true" />}</article>)}</div></div></section>
 
-      <section className="page-container section-space"><div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">System components</p><h2 className="mt-3 font-display text-3xl font-bold">The building blocks behind the solution.</h2><p className="mt-4 leading-7 text-muted-foreground">Final components are selected after site assessment and compatibility checks.</p></div><div className="grid gap-4 sm:grid-cols-2">{systemComponents.map((item, index) => { const Icon = [Cable, Settings2, ClipboardCheck, CheckCircle2][index]; return <article key={item} className="group rounded-xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-accent/60"><Icon className="h-6 w-6 text-brand-green" aria-hidden="true" /><h3 className="mt-4 font-semibold">{item}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Specified around site conditions, capacity, reliability and future maintenance.</p></article> })}</div></div></section>
+      <section className="page-container section-space"><div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">{maintenance ? "Maintenance scope" : "System components"}</p><h2 className="mt-3 font-display text-3xl font-bold">{maintenance ? "What your maintenance plan needs to define." : "The building blocks behind the solution."}</h2><p className="mt-4 leading-7 text-muted-foreground">{maintenance ? "Coverage and tasks are defined around supported assets and written terms." : "Final components are selected after site assessment and compatibility checks."}</p></div><div className="grid gap-4 sm:grid-cols-2">{details.components.map((item, index) => { const Icon = [Cable, Settings2, ClipboardCheck, CheckCircle2][index]; return <article key={item.title} className="group rounded-xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-accent/60"><Icon className="h-6 w-6 text-brand-green" aria-hidden="true" /><h3 className="mt-4 font-semibold">{item.title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p></article> })}</div></div></section>
 
       <section className="bg-secondary/35">
         <div className="page-container section-space">
           <p className="text-sm font-semibold uppercase tracking-[.18em] text-brand-green">Why it matters</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {service.benefits.map((item) => (
+            {service.benefits.map((item, index) => (
               <article key={item} className="rounded-xl border border-border bg-card p-6">
                 <h3 className="font-semibold">{item}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">A focused solution shaped around practical security and technology needs.</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{details.benefits[index]}</p>
               </article>
             ))}
           </div>
@@ -94,7 +93,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       </section>
 
       {servicePlanning[service.slug] && <section className="page-container section-space"><h2 className="text-3xl font-bold">Selection and handover</h2>{servicePlanning[service.slug].map(paragraph => <p key={paragraph} className="mt-4 leading-7 text-muted-foreground">{paragraph}</p>)}</section>}
-      <section className="page-container section-space"><h2 className="text-3xl font-bold">Planning your {service.title.toLowerCase()} installation</h2><p className="mt-4 leading-7 text-muted-foreground">Start with {service.solutions.join(", ").toLowerCase()}. For {service.applications.join(", ").toLowerCase()}, confirm the number of devices or points, existing equipment and cable routes before selecting a system.</p><p className="mt-4 leading-7 text-muted-foreground">Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable.</p><p className="mt-4 leading-7 text-muted-foreground">Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed.</p></section>
+      <section className="page-container section-space"><h2 className="text-3xl font-bold">{maintenance ? "Agreeing your maintenance scope" : `Planning your ${service.title.toLowerCase()} installation`}</h2><p className="mt-4 leading-7 text-muted-foreground">{maintenance ? "Share the supported asset list, equipment condition and known faults. Agree inspection, remote/onsite responsibilities and access arrangements before maintenance cover starts." : <>Start with {service.solutions.join(", ").toLowerCase()}. For {service.applications.join(", ").toLowerCase()}, confirm the number of devices or points, existing equipment and cable routes before selecting a system.</>}</p><p className="mt-4 leading-7 text-muted-foreground">{maintenance ? "Ask for an itemised maintenance plan covering supported assets, preventive checks, agreed visits, fault reporting and service records. Confirm labour, parts, licences, remote/onsite work and exclusions before cover starts." : "Ask for an itemised scope covering equipment, installation, configuration, testing and handover. Cost depends on site size, device capacity, cable lengths, access and compatibility. Confirm civil work, internet subscriptions, software licences, replacement parts and recurring charges separately where applicable."}</p><p className="mt-4 leading-7 text-muted-foreground">Warranty depends on the selected equipment and written quotation. Agree maintenance visits, covered systems, exclusions and support terms before approving an AMC; no response time or replacement cover is assumed.</p></section>
       {serviceBuyerGuides[service.slug] && (
         <section className="page-container section-space" aria-labelledby="buyer-guide-heading">
           <h2 id="buyer-guide-heading" className="text-3xl font-bold">Before requesting a quotation in Lucknow</h2>
@@ -135,7 +134,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      <section className="bg-muted text-foreground"><div className="page-container section-space"><p className="text-sm font-semibold uppercase tracking-[.18em] text-highlight-ink">Installation standards</p><div className="mt-5 grid gap-5 md:grid-cols-3"><article className="rounded-xl border border-border bg-card p-6"><h3 className="font-semibold">Clean infrastructure</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Planned routes, termination and equipment placement for a serviceable installation.</p></article><article className="rounded-xl border border-border bg-card p-6"><h3 className="font-semibold">Configuration and testing</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Functional checks, user configuration and verification before handover.</p></article><article className="rounded-xl border border-border bg-card p-6"><h3 className="font-semibold">Clear handover</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Practical guidance for operation, maintenance and support options.</p></article></div></div></section>
+      <section className="bg-muted text-foreground"><div className="page-container section-space"><p className="text-sm font-semibold uppercase tracking-[.18em] text-highlight-ink">{maintenance ? "Maintenance records" : "Installation standards"}</p><div className="mt-5 grid gap-5 md:grid-cols-3"><article className="rounded-xl border border-border bg-card p-6"><h3 className="font-semibold">{maintenance ? "Asset condition" : "Clean infrastructure"}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{maintenance ? "Record the supported equipment, existing faults and work excluded from cover." : "Planned routes, termination and equipment placement for a serviceable installation."}</p></article><article className="rounded-xl border border-border bg-card p-6"><h3 className="font-semibold">{maintenance ? "Agreed checks" : "Configuration and testing"}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{maintenance ? "Carry out the authorised preventive tasks and document findings for the supported systems." : "Functional checks, user configuration and verification before handover."}</p></article><article className="rounded-xl border border-border bg-card p-6"><h3 className="font-semibold">{maintenance ? "Findings and next steps" : "Clear handover"}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{maintenance ? "Record approved actions and quote any repairs or replacements outside the agreed scope." : "Practical guidance for operation, maintenance and support options."}</p></article></div></div></section>
 
       <section className="bg-secondary/35">
         <div className="page-container section-space">

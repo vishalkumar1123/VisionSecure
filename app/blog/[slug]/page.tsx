@@ -1,3 +1,6 @@
+import { JsonLd } from "@/components/json-ld"
+import { articleSchema, breadcrumbSchema } from "@/lib/schema"
+import { ArticleContent } from "@/components/article-content"
 import type { Metadata } from "next"
 import { SITE_ORIGIN } from "@/lib/seo"
 import { Navbar } from "@/components/navbar"
@@ -15,9 +18,7 @@ import {
   ArrowLeft, 
   Tag, 
   ShieldCheck,
-  Zap,
   PhoneCall,
-  Check
 } from "lucide-react"
 
 interface Props {
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!article) return {}
   const title = `${article.title} | VisionSecure`
   const url = `${SITE_ORIGIN}/blog/${article.slug}`
-  return { title, description: article.excerpt, alternates: { canonical: url }, robots: { index: true, follow: true }, openGraph: { title, description: article.excerpt, url, type: "article", images: [article.image] } }
+  return { title, description: article.excerpt, alternates: { canonical: url }, robots: { index: true, follow: true }, openGraph: { title, description: article.excerpt, url, type: "article", images: [article.image] }, twitter: { card: "summary_large_image", title, description: article.excerpt, images: [article.image] } }
 }
 
 export default async function BlogDetail({ params }: Props) {
@@ -55,111 +56,18 @@ export default async function BlogDetail({ params }: Props) {
   }
   const relatedService = serviceBySlug(serviceSlugs[slug])
 
-  // Pure Server-side Text Parser to transform raw lines into Luxury HTML Elements
-  const parseBlogContent = (contentString: string) => {
-    const lines = contentString.split("\n")
-    
-    return lines.map((line, index) => {
-      const trimmed = line.trim()
-      if (!trimmed) return null
-
-      // Section Headings (## Section)
-      if (trimmed.startsWith("## ")) {
-        return (
-          <h2 key={index} className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6 border-b border-border pb-3 tracking-tight flex items-center gap-3 font-display">
-            <span className="h-6 w-1.5 bg-accent rounded-full inline-block" />
-            {trimmed.replace("## ", "")}
-          </h2>
-        )
-      }
-
-      // Sub Headings (### Element)
-      if (trimmed.startsWith("### ")) {
-        return (
-          <h3 key={index} className="text-xl md:text-2xl font-semibold text-foreground mt-8 mb-4 tracking-tight font-display">
-            {trimmed.replace("### ", "")}
-          </h3>
-        )
-      }
-
-      // Horizontal Lines (---)
-      if (trimmed === "---") {
-        return <hr key={index} className="my-10 border-border/60" />
-      }
-
-      // Status Checkmarks (✔ Feature Item)
-      if (trimmed.startsWith("✔ ")) {
-        return (
-          <div key={index} className="flex items-center gap-3 my-3 bg-accent/5 text-muted-foreground p-4 rounded-xl border border-accent/10 shadow-xs">
-            <div className="h-5 w-5 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
-              <Check className="h-3 w-3 text-brand-green stroke-[3]" />
-            </div>
-            <span className="text-sm md:text-base font-medium text-foreground/90">{trimmed.replace("✔ ", "")}</span>
-          </div>
-        )
-      }
-
-      // Actionable Bullet Points (• or -)
-      if (trimmed.startsWith("• ") || trimmed.startsWith("- ")) {
-        return (
-          <div key={index} className="flex items-start gap-3 my-3 pl-1">
-            <Zap className="h-4 w-4 text-brand-green mt-1 shrink-0" />
-            <span className="text-muted-foreground leading-relaxed text-[15px] md:text-[16px]">
-              {trimmed.substring(2)}
-            </span>
-          </div>
-        )
-      }
-
-      // Smart Recommendation Display for (BHK / Villa / Office / Warehouse setups)
-      const isSpecifier = trimmed.includes("BHK") || 
-                          trimmed.toLowerCase() === "villa" || 
-                          trimmed.toLowerCase() === "office" || 
-                          trimmed.toLowerCase() === "warehouse"
-      
-      if (isSpecifier) {
-        const nextLine = lines[lines.indexOf(line) + 1]?.trim() || ""
-        if (nextLine && !nextLine.startsWith("#") && !nextLine.startsWith("-") && !nextLine.startsWith("✔")) {
-          return (
-            <div key={index} className="flex justify-between items-center bg-muted/60 border border-border/60 p-4 rounded-xl my-3 shadow-xs">
-              <span className="text-base font-bold text-foreground">{trimmed} Property</span>
-              <span className="text-xs font-extrabold bg-accent text-accent-foreground px-3 py-1 rounded-full uppercase tracking-wider">
-                {nextLine} Setup
-              </span>
-            </div>
-          )
-        }
-      }
-
-      // Skip rendering plain counter line if handled by the layout block above
-      if (index > 0 && (lines[index - 1].includes("BHK") || lines[index - 1].toLowerCase() === "villa" || lines[index - 1].toLowerCase() === "office" || lines[index - 1].toLowerCase() === "warehouse")) {
-        return null
-      }
-
-      // Standard Paragraph Text
-      return (
-        <p key={index} className="text-muted-foreground leading-relaxed mb-5 text-[16px] md:text-[17px]">
-          {trimmed}
-        </p>
-      )
-    })
-  }
 
   return (
     <main className="min-h-screen bg-background selection:bg-accent/30">
       
+      <JsonLd data={articleSchema(blog)} />
+      <JsonLd data={breadcrumbSchema(`/blog/${slug}`, [{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: blog.title, path: `/blog/${slug}` }])} />
       {/* Article Header */}
       <Navbar />
       <header className="bg-gradient-to-b from-muted/60 via-muted/10 to-transparent pt-28 pb-6">
         <div className="container mx-auto px-4 max-w-4xl">
           
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground hover:text-brand-green transition-colors mb-6 bg-card border border-border/40 px-4 py-2 rounded-full w-fit shadow-xs group"
-          >
-            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Tech Insights
-          </Link>
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground"><ol className="flex flex-wrap gap-2"><li><Link href="/">Home</Link></li><li aria-hidden="true">/</li><li><Link href="/blog">Blog</Link></li><li aria-hidden="true">/</li><li aria-current="page" className="text-foreground">{blog.title}</li></ol></nav>
 
           <div className="mb-4">
             <span className="bg-accent/10 text-brand-green text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-md border border-accent/20">
@@ -204,9 +112,9 @@ export default async function BlogDetail({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left Column: Article Body (Takes 8 blocks) */}
-          <div className="lg:col-span-8">
-            <article className="prose dark:prose-invert max-w-none">
-              {parseBlogContent(blog.content)}
+          <div className="min-w-0 lg:col-span-8">
+            <article className="prose min-w-0 dark:prose-invert max-w-none">
+              <ArticleContent content={blog.content} />
               {slug === "networking-structured-cabling-and-server-setup-guide" && <section className="mt-10" aria-labelledby="router-switch-heading"><h2 id="router-switch-heading" className="text-2xl font-bold">What is the difference between a router and a switch?</h2><p className="mt-4 leading-7 text-muted-foreground">A switch connects devices within a local network; a router connects networks. Some products combine functions. Count wired devices, uplinks and powered equipment, then check port capacity, PoE limits and administration requirements for the selected models.</p></section>}
             </article>
 
@@ -220,7 +128,7 @@ export default async function BlogDetail({ params }: Props) {
                 Secure Your Premises Today
               </h3>
               <p className="text-muted-foreground text-sm md:text-base mb-6 leading-relaxed">
-                Aapki safety hamari priority hai. Get a commercial-grade customized security blueprint mapped entirely for your space by VisionSecure experts.
+                Share your property, existing equipment and what you need the system to do. Discuss compatible options and the quotation scope before ordering.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button className="rounded-full bg-accent hover:bg-accent/90 text-accent-foreground px-6 shadow-sm font-medium" asChild>
@@ -228,7 +136,7 @@ export default async function BlogDetail({ params }: Props) {
                 </Button>
                 <Button variant="outline" className="rounded-full px-6 gap-2 font-medium" asChild>
                   <a href="tel:+91 9872133840">
-                    <PhoneCall className="h-4 w-4" /> Free Consultation
+                    <PhoneCall className="h-4 w-4" /> Call VisionSecure
                   </a>
                 </Button>
               </div>
@@ -256,9 +164,9 @@ export default async function BlogDetail({ params }: Props) {
               <div className="mt-8 pt-6 border-t border-border/60 text-xs text-muted-foreground flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-foreground font-semibold">
                   <ShieldCheck className="h-4 w-4 text-brand-green" />
-                  <span>Verified Security Guide</span>
+                  <span>Planning notes</span>
                 </div>
-                Aapke residential aur commercial assets ki security automation technology ke liye absolute professional advice.
+                Use this guide to prepare questions for your site assessment. Confirm selected equipment and any specialist safety requirements before work.
               </div>
             </div>
           </aside>

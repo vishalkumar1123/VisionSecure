@@ -1,0 +1,17 @@
+{
+  "defect": "Legacy code skips a plain paragraph whenever its previous source line contains BHK, including headings; indexOf also reuses the first occurrence of repeated labels.",
+  "baseline_source_has_fixed_camera_count": true,
+  "observations": [
+    {
+      "base": "http://localhost:3030",
+      "rendered_fixed_camera_count_present": false,
+      "has_table": false
+    },
+    {
+      "base": "http://localhost:3031",
+      "rendered_fixed_camera_count_present": false,
+      "has_table": true
+    }
+  ],
+  "fix_regression": "content-quality.test.cjs explicitly retains BHK/repeated-label following paragraphs; all seven sources checked for omissions."
+}

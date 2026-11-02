@@ -1,0 +1,135 @@
+{
+  "inspection_date_ist": "2026-11-02",
+  "sources": [
+    {
+      "path": "C:\\Users\\visha\\Downloads\\visionsecure-keyword-map-v21.xlsx",
+      "sha256": "e6ddc8b1f0b8ae96253c9cca1b882cff1f069a2f6ff1a5718dd6fcb4885d8979",
+      "sheets": [
+        "Read Me",
+        "All Keywords",
+        "Keyword Map",
+        "Short Keywords",
+        "URL Summary",
+        "Site Phrases",
+        "Backlink Plan",
+        "Backlink Sources",
+        "Backlink Dashboard",
+        "Location Plan",
+        "Internal Links",
+        "Checks & Dedup"
+      ]
+    },
+    {
+      "path": "C:\\Users\\visha\\Downloads\\visionsecuretech.in-Coverage-Valid-2026-11-02.xlsx",
+      "sha256": "7761b505f7ac6bf96277b058becb1f08a318414f70309627be37b6b6935f53e6",
+      "sheets": [
+        "Chart",
+        "Table",
+        "Metadata"
+      ]
+    },
+    {
+      "path": "C:\\Users\\visha\\Downloads\\visionsecuretech.in-Performance-on-Search-2026-11-02 (1).xlsx",
+      "sha256": "20503b70a38f0e39f76d8db1720a429d36a79e5fc492d4d56a808a777ded765d",
+      "sheets": [
+        "Chart",
+        "Queries",
+        "Pages",
+        "Countries",
+        "Devices",
+        "Search appearance",
+        "Filters"
+      ]
+    },
+    {
+      "path": "C:\\Users\\visha\\Downloads\\visionsecuretech.in-Performance-on-Search-2026-11-02.xlsx",
+      "sha256": "bfb6f7b648cca9b6cf42f4168e45a61e1676189cb6de33629bb8fdb0330b5371",
+      "sheets": [
+        "Chart",
+        "Queries",
+        "Pages",
+        "Countries",
+        "Devices",
+        "Search appearance",
+        "Filters"
+      ]
+    },
+    {
+      "path": "C:\\Users\\visha\\Downloads\\visionsecuretech.in-Performance-on-Search-Generative-AI-Features-2026-11-02.xlsx",
+      "sha256": "238d8b058cb19c7c15291d5bf4f8a442cdabdf2e38ebb69b3bdf5f80e7e08681",
+      "sheets": [
+        "Chart",
+        "Pages",
+        "Countries",
+        "Devices",
+        "Filters"
+      ]
+    }
+  ],
+  "filters_and_recomputed_totals": {
+    "web_clicks": 21,
+    "web_impressions": 1134,
+    "date_start": "2026-08-01",
+    "date_end": "2026-10-31",
+    "normal_exports_cell_identical": true,
+    "web_filters": [
+      [
+        "Filter",
+        "Value"
+      ],
+      [
+        "Search type",
+        "Web (text-based)"
+      ],
+      [
+        "Date",
+        "Last 3 months"
+      ]
+    ],
+    "ai_filters": [
+      [
+        "Filter",
+        "Value"
+      ],
+      [
+        "Search type",
+        "Web (text-based)"
+      ],
+      [
+        "Date",
+        "Last 3 months"
+      ]
+    ],
+    "google_ai_chart_impressions": 112,
+    "coverage_latest": [
+      "2026-10-23",
+      24
+    ],
+    "coverage_metadata": [
+      [
+        "Property",
+        "Value"
+      ],
+      [
+        "Sitemap",
+        "All known pages"
+      ]
+    ],
+    "coverage_table_rows": 24
+  },
+  "duplicate_exports": "Both normal-performance files have identical cell matrices and are counted once.",
+  "filename_resolution": "The named (2)/(1)(1) copies were not present; available dated equivalents without those suffixes were inspected. The keyword file is the exact v21 path supplied in the current message.",
+  "keyword_count": 946,
+  "map_status_counts": {
+    "existing page intent retained": 30,
+    "consolidated existing intent": 41,
+    "quotation intent consolidated": 2,
+    "owner confirmation required": 248,
+    "evidence confirmation required": 12,
+    "existing questions retained; claims qualified": 3,
+    "existing topic retained; shared copy improved": 546,
+    "scope confirmation required": 41,
+    "related intent covered in corrected guide": 17,
+    "unsupported claim rejected": 6
+  }
+}

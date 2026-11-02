@@ -1,3 +1,4 @@
+import type { BlogPost } from "@/lib/blogs"
 ﻿import type { Service } from "@/lib/services"
 import { SITE_ORIGIN } from "@/lib/seo"
 
@@ -76,4 +77,23 @@ export function serializeJsonLd(value: unknown): string {
   if (json === undefined) throw new TypeError("JSON-LD must be serializable")
   const escapes: Record<string, string> = { "<": "\\u003c", ">": "\\u003e", "&": "\\u0026", "\u2028": "\\u2028", "\u2029": "\\u2029" }
   return json.replace(/[<>&\u2028\u2029]/g, character => escapes[character])
+}
+
+// Only fields supported by the visible article are emitted. Historic display
+// dates/team labels are not converted into newly verified authorship or review dates.
+export function articleSchema(article: BlogPost) {
+  const url = `${SITE_ORIGIN}/blog/${article.slug}`
+  return {
+    "@context": "https://schema.org", "@type": "BlogPosting", "@id": `${url}#article`,
+    url, headline: article.title, description: article.excerpt,
+    image: `${SITE_ORIGIN}${article.image}`, mainEntityOfPage: { "@id": url },
+    publisher: { "@id": BUSINESS_ID }, isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+  }
+}
+
+export function breadcrumbSchema(path: string, items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org", "@type": "BreadcrumbList", "@id": `${SITE_ORIGIN}${path}#breadcrumb`,
+    itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.name, item: `${SITE_ORIGIN}${item.path}` })),
+  }
 }

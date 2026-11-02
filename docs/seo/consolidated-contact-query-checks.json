@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://visionsecuretech.in/contact?service=CCTV%20Surveillance",
+    "status": 200,
+    "final": "https://visionsecuretech.in/contact?service=CCTV%20Surveillance",
+    "canonical": "https://visionsecuretech.in/contact",
+    "method": "Bounded public GET only; interactive preselection independently tested locally"
+  },
+  {
+    "url": "https://visionsecuretech.in/contact?service=Networking%20Solutions",
+    "status": 200,
+    "final": "https://visionsecuretech.in/contact?service=Networking%20Solutions",
+    "canonical": "https://visionsecuretech.in/contact",
+    "method": "Bounded public GET only; interactive preselection independently tested locally"
+  }
+]
