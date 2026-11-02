@@ -20,11 +20,11 @@ No merge or production deployment is part of this task. README says a merge to m
 7. Check the unchanged popup's mobile close control, Tab/Escape behavior and scroll access to the form. Any proposed timing/trigger change needs a separate decision, not an unnoticed performance workaround.
 8. Collect new PageSpeed/local lab results under stated comparable settings and inspect actual LCP resources, image dimensions/loading and layout shifts. Keep earlier provided screenshots, this task's local lab and field data separate. Do not claim a score increase from local timings.
 
-## Account-side monitoring ? authorised owner actions
+## Account-side monitoring - authorised owner actions
 
 Use the existing verified Search Console property. Inspect current Google-selected canonical/index status for priority URLs when appropriate; an URL absent from an export is not automatically unindexed. Submit the existing sitemap only if needed and request recrawl selectively for materially updated pages through the owner's account. No submissions were made here.
 
-The supplied baseline is Web (text-based), 1 August?31 October 2026, 21 clicks/1,134 impressions. Two identical exports are one dataset. Compare future complete periods with the same filters; do not add page/alias summaries to property totals or infer query-to-page pairs. Coverage's latest chart point is 23 October with 24 affected pages, not a sum or a current canonical inventory. Google Generative AI file totals 112 impressions; it is not ChatGPT traffic, clicks or leads, and may overlap Web reporting.
+The supplied baseline is Web (text-based), 1 August to 31 October 2026, 21 clicks/1,134 impressions. Two identical exports are one dataset. Compare future complete periods with the same filters; do not add page/alias summaries to property totals or infer query-to-page pairs. Coverage's latest chart point is 23 October with 24 affected pages, not a sum or a current canonical inventory. Google Generative AI file totals 112 impressions; it is not ChatGPT traffic, clicks or leads, and may overlap Web reporting.
 
 Bing sitemap/index/performance review and GA4 ingestion/consent/key-event checks remain account-side. Preserve enquiry_saved after confirmed API success separately from call_click/whatsapp_click. Do not send customer names, phone, email, address, requirements, credentials or recordings to analytics. Review genuine qualified enquiries, quotations and won/installed outcomes within the existing workflow without inventing keyword attribution.
 

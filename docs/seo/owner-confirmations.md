@@ -16,7 +16,7 @@ Prepared 2 November 2026. Pending items are not implemented as new facts or visi
 | Article identity and dates | Existing articles display a team label and historical dates | Verify authorship/publication history and any later qualified technical review | Article schema omits unverified authors/review/modified dates; no fake freshness |
 | Business policies | The task supplies no complete approved privacy/terms policy | Confirm actual data handling, retention and customer terms before publishing policy copy | No legal policy or assurance invented for an audit score |
 
-## Separate popup proposal ? not implemented
+## Separate popup proposal - not implemented
 
 The existing automatic popup opens after its original 4-second timer and can interrupt mobile reading. At 390x844 the form is scrollable, the submit control is reachable, Tab remains inside the dialog, Escape closes it and the session flag prevents repeated opening. No timing, trigger, lead validation or submission behavior changed.
 
