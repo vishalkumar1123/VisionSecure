@@ -1,0 +1,809 @@
+{
+  "method": "Matched server/image warm-up on both variants, then local Chromium lab, 3 fresh contexts per variant/device, interleaved before/after, external requests and non-GETs blocked, same webpack compiler and dummy configuration. Not Lighthouse scores, not field data.",
+  "popup": "Article pages have no lead popup in either version. Home retains its normal 4-second popup and is audited separately.",
+  "network": {
+    "mobile": {
+      "latencyMs": 150,
+      "mbps": 1.6,
+      "cpu": 4
+    },
+    "desktop": {
+      "latencyMs": 40,
+      "mbps": 10,
+      "cpu": 1
+    }
+  },
+  "summary": [
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "mobile",
+      "fcpMs": 1796,
+      "lcpMs": 1796,
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1349,
+      "resourceTransferBytes": 644427,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "mobile",
+      "fcpMs": 1728,
+      "lcpMs": 1764,
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1107,
+      "resourceTransferBytes": 645182,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "desktop",
+      "fcpMs": 416,
+      "lcpMs": 416,
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 94,
+      "resourceTransferBytes": 871698,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "desktop",
+      "fcpMs": 420,
+      "lcpMs": 420,
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 77,
+      "resourceTransferBytes": 876372,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "mobile",
+      "fcpMs": 1292,
+      "lcpMs": 2392,
+      "cls": 0,
+      "observedLongTaskBlockingMs": 2615,
+      "resourceTransferBytes": 667543,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "mobile",
+      "fcpMs": 1676,
+      "lcpMs": 1676,
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1163,
+      "resourceTransferBytes": 668298,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "desktop",
+      "fcpMs": 520,
+      "lcpMs": 536,
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 122,
+      "resourceTransferBytes": 915175,
+      "imageRequests": 1
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "desktop",
+      "fcpMs": 444,
+      "lcpMs": 464,
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 105,
+      "resourceTransferBytes": 919274,
+      "imageRequests": 1
+    }
+  ],
+  "results": [
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "mobile",
+      "run": 1,
+      "fcpMs": 1796,
+      "lcpMs": 1796,
+      "lcpCandidates": [
+        {
+          "time": 1796,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1274,
+      "observedUntilMs": 7853.5,
+      "resourceTransferBytes": 644427,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "mobile",
+      "run": 1,
+      "fcpMs": 1728,
+      "lcpMs": 1728,
+      "lcpCandidates": [
+        {
+          "time": 1728,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1019,
+      "observedUntilMs": 7753,
+      "resourceTransferBytes": 645182,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "mobile",
+      "run": 2,
+      "fcpMs": 1168,
+      "lcpMs": 1620,
+      "lcpCandidates": [
+        {
+          "time": 1168,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 1620,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1353,
+      "observedUntilMs": 7936.300000011921,
+      "resourceTransferBytes": 644427,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "mobile",
+      "run": 2,
+      "fcpMs": 1792,
+      "lcpMs": 1792,
+      "lcpCandidates": [
+        {
+          "time": 1792,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1107,
+      "observedUntilMs": 7779.600000023842,
+      "resourceTransferBytes": 645182,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "mobile",
+      "run": 3,
+      "fcpMs": 1860,
+      "lcpMs": 1860,
+      "lcpCandidates": [
+        {
+          "time": 1860,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1349,
+      "observedUntilMs": 8063.300000011921,
+      "resourceTransferBytes": 644427,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "mobile",
+      "run": 3,
+      "fcpMs": 1200,
+      "lcpMs": 1764,
+      "lcpCandidates": [
+        {
+          "time": 1200,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 1764,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1134,
+      "observedUntilMs": 7779,
+      "resourceTransferBytes": 645182,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "desktop",
+      "run": 1,
+      "fcpMs": 416,
+      "lcpMs": 416,
+      "lcpCandidates": [
+        {
+          "time": 416,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 90,
+      "observedUntilMs": 6124.100000023842,
+      "resourceTransferBytes": 871698,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "desktop",
+      "run": 1,
+      "fcpMs": 440,
+      "lcpMs": 440,
+      "lcpCandidates": [
+        {
+          "time": 440,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 71,
+      "observedUntilMs": 6069.600000023842,
+      "resourceTransferBytes": 876372,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "desktop",
+      "run": 2,
+      "fcpMs": 408,
+      "lcpMs": 408,
+      "lcpCandidates": [
+        {
+          "time": 408,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 94,
+      "observedUntilMs": 6126.399999976158,
+      "resourceTransferBytes": 871121,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "desktop",
+      "run": 2,
+      "fcpMs": 416,
+      "lcpMs": 416,
+      "lcpCandidates": [
+        {
+          "time": 416,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 89,
+      "observedUntilMs": 6067.800000011921,
+      "resourceTransferBytes": 876372,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "before",
+      "device": "desktop",
+      "run": 3,
+      "fcpMs": 456,
+      "lcpMs": 456,
+      "lcpCandidates": [
+        {
+          "time": 456,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 104,
+      "observedUntilMs": 6086.5,
+      "resourceTransferBytes": 872271,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/how-to-choose-the-right-cctv-camera",
+      "stage": "after",
+      "device": "desktop",
+      "run": 3,
+      "fcpMs": 420,
+      "lcpMs": 420,
+      "lcpCandidates": [
+        {
+          "time": 420,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 6.804289641203704e-06,
+      "observedLongTaskBlockingMs": 77,
+      "observedUntilMs": 6038.5,
+      "resourceTransferBytes": 876372,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "mobile",
+      "run": 1,
+      "fcpMs": 1292,
+      "lcpMs": 2392,
+      "lcpCandidates": [
+        {
+          "time": 1292,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 2392,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 2615,
+      "observedUntilMs": 9237.199999988079,
+      "resourceTransferBytes": 667543,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "mobile",
+      "run": 1,
+      "fcpMs": 1676,
+      "lcpMs": 1676,
+      "lcpCandidates": [
+        {
+          "time": 1676,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1062,
+      "observedUntilMs": 7832.5,
+      "resourceTransferBytes": 668298,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "mobile",
+      "run": 2,
+      "fcpMs": 1212,
+      "lcpMs": 1712,
+      "lcpCandidates": [
+        {
+          "time": 1212,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 1712,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1335,
+      "observedUntilMs": 8163.199999988079,
+      "resourceTransferBytes": 667543,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "mobile",
+      "run": 2,
+      "fcpMs": 1752,
+      "lcpMs": 1752,
+      "lcpCandidates": [
+        {
+          "time": 1752,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1449,
+      "observedUntilMs": 7887.300000011921,
+      "resourceTransferBytes": 668298,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "mobile",
+      "run": 3,
+      "fcpMs": 1800,
+      "lcpMs": 4376,
+      "lcpCandidates": [
+        {
+          "time": 1800,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        },
+        {
+          "time": 4376,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 4311,
+      "observedUntilMs": 11623.599999964237,
+      "resourceTransferBytes": 667543,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "mobile",
+      "run": 3,
+      "fcpMs": 1640,
+      "lcpMs": 1640,
+      "lcpCandidates": [
+        {
+          "time": 1640,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 0,
+      "observedLongTaskBlockingMs": 1163,
+      "observedUntilMs": 7853.600000023842,
+      "resourceTransferBytes": 668298,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "desktop",
+      "run": 1,
+      "fcpMs": 532,
+      "lcpMs": 564,
+      "lcpCandidates": [
+        {
+          "time": 532,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 564,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 122,
+      "observedUntilMs": 6186.400000035763,
+      "resourceTransferBytes": 915175,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "desktop",
+      "run": 1,
+      "fcpMs": 444,
+      "lcpMs": 464,
+      "lcpCandidates": [
+        {
+          "time": 444,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 464,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 105,
+      "observedUntilMs": 6094.300000011921,
+      "resourceTransferBytes": 919275,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "desktop",
+      "run": 2,
+      "fcpMs": 456,
+      "lcpMs": 488,
+      "lcpCandidates": [
+        {
+          "time": 456,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 488,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 126,
+      "observedUntilMs": 6061.399999976158,
+      "resourceTransferBytes": 914024,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "desktop",
+      "run": 2,
+      "fcpMs": 436,
+      "lcpMs": 456,
+      "lcpCandidates": [
+        {
+          "time": 436,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 456,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 94,
+      "observedUntilMs": 6072.800000011921,
+      "resourceTransferBytes": 919274,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "before",
+      "device": "desktop",
+      "run": 3,
+      "fcpMs": 520,
+      "lcpMs": 536,
+      "lcpCandidates": [
+        {
+          "time": 520,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 536,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 101,
+      "observedUntilMs": 6113,
+      "resourceTransferBytes": 915177,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    },
+    {
+      "path": "/blog/networking-structured-cabling-and-server-setup-guide",
+      "stage": "after",
+      "device": "desktop",
+      "run": 3,
+      "fcpMs": 500,
+      "lcpMs": 516,
+      "lcpCandidates": [
+        {
+          "time": 500,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "H1",
+          "id": ""
+        },
+        {
+          "time": 516,
+          "duration": 0,
+          "value": 0,
+          "recentInput": false,
+          "element": "IMG",
+          "id": ""
+        }
+      ],
+      "cls": 1.1393229166666667e-05,
+      "observedLongTaskBlockingMs": 112,
+      "observedUntilMs": 6124.800000011921,
+      "resourceTransferBytes": 919274,
+      "imageRequests": 1,
+      "overflow": false,
+      "popupVisible": false
+    }
+  ],
+  "baseline_commit": "a07ca3b",
+  "recorded_at_utc": "2026-11-02T17:38:31.764965+00:00",
+  "limits": "Three interleaved samples per condition; source frozen, equal warm-up and disabled browser cache; machine variability remains. No statistical significance, Lighthouse score/TBT or field-performance claim.",
+  "proposed_source_sha256": {
+    "app/blog/[slug]/page.tsx": "88e389372e76577ab3d414aeaf20bf677a69eeea41e187a43a0affda1dc3fe36",
+    "app/services/[slug]/page.tsx": "a401f9caa4004c64ff04f8c84566cc9a5a3102468f4e77dd26884cf1c2f49dc0",
+    "components/article-content.tsx": "c32347262e39723201665d528fa527ef46378e7a59d9b6e96cf48fac035b8d77",
+    "components/faq-page-content.tsx": "2fc4581bc5a8bad94e07792feea27c5219d0d5f5c4545692a4ea7911cdd14648",
+    "lib/article-content.ts": "3fc3fbb0f761bc11da8bc0838fe241c6833dbb0955e110d22c9e0a1917d45881",
+    "lib/blogs.ts": "27acb67c7b4ee7be03551cabbc08c5de182887b825cc968428d067c2fb9f585d",
+    "lib/schema.ts": "bbbdb56cb01124405d15bcb4bfd2f5fd6287aeee9ca9be438d32b52084047e7d",
+    "lib/service-content.ts": "d27dd52f10a3333f8a0c8a8a40cdf1f53715da876c9ff15dd9e73ac7342d2427"
+  }
+}

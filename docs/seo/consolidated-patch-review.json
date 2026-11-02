@@ -1,0 +1,7 @@
+{
+  "base": "a07ca3b",
+  "method": "Read-only compatibility check against untouched index; old patch not applied",
+  "compatible": false,
+  "diagnostics": "error: patch failed: app/blog/[slug]/page.tsx:6\nerror: app/blog/[slug]/page.tsx: patch does not apply\nerror: patch failed: app/page.tsx:23\nerror: app/page.tsx: patch does not apply\nerror: docs/seo/workbook-keyword-disposition.csv: already exists in index\nerror: docs/seo/workbook-keyword-summary.json: already exists in index\nerror: patch failed: lib/service-buyer-guides.ts:28\nerror: lib/service-buyer-guides.ts: patch does not apply",
+  "decision": "Skip historical generated reports, regional/backlink plans and overlapping extra buyer-guide sets. Implement the current requested parser/technical corrections directly; retain already merged image, enquiry and language work."
+}
