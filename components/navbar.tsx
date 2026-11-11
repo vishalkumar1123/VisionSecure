@@ -48,7 +48,7 @@ export function Navbar() {
         </div>
         {navLinks.map((link) => <Link key={link.href} href={link.href} className={cn("nav-link", pathname === link.href && "nav-link-active")}>{link.label}</Link>)}
       </div>
-      <div className="hidden items-center gap-4 xl:flex"><a href="tel:+919872133840" className="flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-sm font-bold text-brand-ink transition hover:bg-muted"><Phone size={15} />Call Now</a><Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-brand-hover"><ArrowRight size={15} />Get Free Site Visit</Link></div>
+      <div className="hidden items-center gap-4 xl:flex"><a href="tel:+919872133840" className="flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-sm font-bold text-brand-ink transition hover:bg-muted"><Phone size={15} />Call Now</a><Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground shadow-[0_8px_22px_rgba(121,201,20,.25)] transition hover:-translate-y-0.5 hover:bg-brand-hover"><ArrowRight size={15} />Request a Quote</Link></div>
       <div className="flex items-center gap-2"><LanguageSwitch /><ThemeToggle />
       <button onClick={() => setMobileOpen((value) => !value)} className="rounded-lg p-2 text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent xl:hidden" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation">{mobileOpen ? <X /> : <Menu />}</button></div>
     </nav>

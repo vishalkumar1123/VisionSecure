@@ -1,181 +1,53 @@
-"use client"
+﻿"use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { homeSlides } from "@/lib/home-slides"
 import { cn } from "@/lib/utils"
-import { FaWhatsapp } from "react-icons/fa"
-
-const slides = [
-  {
-    image: "/images/CCTV_Camera.png",
-    headline: "Smart Security Solutions for Your Safety",
-    subheading: "Protect your home and business with advanced CCTV surveillance systems",
-    accent: "CCTV Surveillance",
-  },
-  {
-    image: "/images/Essl_Biom.png",
-    headline: "Advanced Biometric & Access Control",
-    subheading: "Secure your premises with fingerprint, face recognition & card access systems",
-    accent: "Biometric Systems",
-  },
-  {
-    image: "/images/Smart_home.png",
-    headline: "Complete Smart Home Automation",
-    subheading: "Control your security, lighting, and appliances from anywhere",
-    accent: "Home Automation",
-  },
-  {
-    image: "/images/Networking_blog.png",
-    headline: "Professional Networking Solutions",
-    subheading: "Reliable structured cabling and network infrastructure for your business",
-    accent: "Networking",
-  },
-]
 
 export function HeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [current, setCurrent] = useState(0)
   const [firstImageReady, setFirstImageReady] = useState(false)
-  const [loadOtherSlides, setLoadOtherSlides] = useState(false)
-
-  // Keep invisible carousel images out of the initial critical request queue.
+  const [loadOthers, setLoadOthers] = useState(false)
+  const slide = homeSlides[current]
+  // Keep the first image high priority and other images outside the critical queue.
   useEffect(() => {
     if (!firstImageReady) return
     if ("requestIdleCallback" in window) {
-      const task = window.requestIdleCallback(() => setLoadOtherSlides(true), { timeout: 1500 })
+      const task = window.requestIdleCallback(() => setLoadOthers(true), { timeout: 1500 })
       return () => window.cancelIdleCallback(task)
     }
-    const task = setTimeout(() => setLoadOtherSlides(true), 150)
+    const task = setTimeout(() => setLoadOthers(true), 150)
     return () => clearTimeout(task)
   }, [firstImageReady])
 
-  const nextSlide = useCallback(() => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setCurrentSlide((prev) => (prev + 1) % slides.length)
-    setTimeout(() => setIsAnimating(false), 600)
-  }, [isAnimating])
-
-  const prevSlide = useCallback(() => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
-    setTimeout(() => setIsAnimating(false), 600)
-  }, [isAnimating])
-
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 6000)
-    return () => clearInterval(timer)
-  }, [nextSlide])
-
   return (
-    <section id="home" tabIndex={-1} className="relative min-h-screen flex items-center overflow-hidden">
-      {slides.map((slide, index) => <div key={slide.image} aria-hidden={index !== currentSlide} className={cn("absolute inset-0 transition-opacity duration-1000", index === currentSlide ? "opacity-100" : "opacity-0")}>
-        {(index === 0 || loadOtherSlides || index === currentSlide) && <Image src={slide.image} alt={slide.accent} fill sizes="100vw" className="object-cover object-center" priority={index === 0} fetchPriority={index === 0 ? "high" : "low"} onLoad={index === 0 ? () => setFirstImageReady(true) : undefined} />}
-      </div>)}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/10" />
-      <div className="container mx-auto px-4 lg:px-8 pt-24 lg:pt-32 relative z-10">
-        <div className="flex items-center min-h-[calc(100vh-8rem)]">
-          {/* Content */}
-          <div className="max-w-2xl space-y-8 py-24 text-white">
-            <div
-              key={currentSlide}
-              className="space-y-6 animate-slide-up"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/25 border border-white/30">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                </span>
-                <span className="text-sm font-medium text-lime-300">{slides[currentSlide].accent}</span>
-              </div>
-
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-balance">
-                Security and networking solutions in Lucknow
-              </h1>
-
-              <p className="text-lg lg:text-xl text-white/85 max-w-xl leading-relaxed">
-                {slides[currentSlide].subheading}
-              </p>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-8 h-14 text-base font-semibold shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-105 transition-all duration-300"
-                asChild
-              >
-                <Link href="/contact">Get Free Site Visit</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full px-8 h-14 text-base font-semibold border-white/40 bg-black/25 text-white hover:bg-black/45 hover:scale-105 transition-all duration-300"
-                asChild
-              >
-                <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer">
-                <FaWhatsapp className="h-5 w-5 text-lime-300" />
-                  WhatsApp Now
-                </a>
-              </Button>
-            </div>
-
-            {/* Slide Navigation */}
-            <div className="flex items-center gap-6 pt-8">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={prevSlide}
-                  className="p-2 rounded-full border border-white/40 bg-black/25 text-white hover:bg-black/45 hover:border-accent/50 transition-all duration-300"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className="p-2 rounded-full border border-white/40 bg-black/25 text-white hover:bg-black/45 hover:border-accent/50 transition-all duration-300"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2">
-                {slides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      if (!isAnimating) {
-                        setIsAnimating(true)
-                        setCurrentSlide(index)
-                        setTimeout(() => setIsAnimating(false), 600)
-                      }
-                    }}
-                    className={cn(
-                      "h-2 rounded-full transition-all duration-500",
-                      index === currentSlide
-                        ? "w-8 bg-accent"
-                        : "w-2 bg-white/40 hover:bg-white/70"
-                    )}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
+    <section id="home" tabIndex={-1} aria-labelledby="home-heading" className="relative isolate overflow-hidden bg-[#061b32] pt-[72px] text-white">
+      <h1 id="home-heading" className="relative z-10 border-y border-white/20 bg-[#061b32] px-4 py-4 text-center font-display text-lg font-bold sm:text-xl lg:text-2xl">
+        Security, Networking &amp; Smart Solutions in Lucknow
+      </h1>
+      <div className="relative min-h-[650px]">
+        {homeSlides.map((item, index) => (
+          <div key={item.slug} aria-hidden="true" className={cn("pointer-events-none absolute inset-0 transition-opacity duration-500 motion-reduce:transition-none", current === index ? "opacity-100" : "opacity-0")}>
+            {(index === 0 || loadOthers || current === index) && <Image src={item.image} alt={item.alt} fill sizes="100vw" className="object-cover object-center" priority={index === 0} fetchPriority={index === 0 ? "high" : "low"} onLoad={index === 0 ? () => setFirstImageReady(true) : undefined} />}
+          </div>
+        ))}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#03182e]/95 via-[#03182e]/85 to-black/30" />
+        <div className="page-container relative z-10 py-12 sm:py-16 lg:py-20">
+          <div id="home-service-panel" className="max-w-3xl" aria-live="polite" aria-atomic="true">
+            <p className="inline-flex rounded-full border border-lime-300 px-4 py-2 text-sm font-bold uppercase tracking-wide text-lime-300">{slide.accent}</p>
+            <h2 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">{slide.headline}</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/90 sm:text-xl">{slide.description}</p>
+            <div className="mt-7 flex flex-wrap gap-4">
+              <Link href={`/contact?service=${slide.slug}`} className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-6 py-3 font-bold text-accent-foreground transition hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{slide.enquiry}</Link>
+              <Link href={`/services/${slide.slug}`} className="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-white/80 bg-black/20 px-6 py-3 font-bold text-white transition hover:bg-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{slide.explore}</Link>
             </div>
           </div>
-
-
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in">
-        <span className="text-xs text-white/85 uppercase tracking-widest">Scroll</span>
-        <div className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-accent rounded-full animate-bounce" />
+          <div className="mt-10 flex flex-wrap gap-3 pr-16 sm:pr-0 lg:mt-14" role="group" aria-label="Choose a service">
+            {homeSlides.map((item, index) => <button key={item.slug} type="button" aria-pressed={current === index} aria-controls="home-service-panel" onClick={() => setCurrent(index)} className={cn("min-h-11 rounded-full border-2 px-5 py-2 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white", current === index ? "border-accent bg-accent text-accent-foreground" : "border-white/80 bg-black/20 text-white hover:bg-white/15")}>{item.label}</button>)}
+          </div>
+          <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block rounded text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Discuss your requirement on WhatsApp</a>
         </div>
       </div>
     </section>

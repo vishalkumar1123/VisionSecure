@@ -83,11 +83,11 @@ export default function RootLayout({
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
+      <head><Schema /></head>
       <body
         className={`${inter.variable} ${manrope.variable} font-sans antialiased`}
       >
       <ClarityProvider />
-       <Schema />
          <Providers>
           <SiteMotionEffects />
           <SiteLanguage />

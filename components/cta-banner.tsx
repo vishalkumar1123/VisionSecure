@@ -58,7 +58,7 @@ export function CTABanner() {
             Ready to Secure Your Property?
           </h2>
           <p className="text-lg lg:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
-            Get a free site visit and customized security plan from our experts. No obligations, just solutions.
+            Tell us about your home, shop or office in Lucknow and the equipment you already use. Site layout, cabling and compatibility help determine the quotation.
           </p>
           
           {/* CTAs */}
@@ -69,7 +69,7 @@ export function CTABanner() {
               asChild
             >
               <a href="/contact">
-                Get Free Site Visit
+                Request a Quote
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
@@ -90,7 +90,7 @@ export function CTABanner() {
           <div className="flex flex-wrap items-center justify-center gap-6 mt-12 text-foreground/60 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-accent" />
-              <span>Free Consultation</span>
+              <span>Requirement-based Planning</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-accent" />
@@ -98,7 +98,7 @@ export function CTABanner() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-accent" />
-              <span>Warranty Included</span>
+              <span>Applicable Warranty Terms</span>
             </div>
           </div>
         </div>
