@@ -1,7 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react"
-import { FaWhatsapp } from "react-icons/fa"
+import { Mail, MapPin, Phone } from "lucide-react"
 import { services } from "@/lib/services"
 
 const companyLinks = [["Home", "/"], ["About VisionSecure", "/about"], ["Services", "/services"], ["Gallery", "/gallery"], ["Blogs", "/blog"], ["Contact Us", "/contact"]]
@@ -10,21 +9,15 @@ const serviceGroups = [
   { title: "Networking & IT", categories: ["Networking & IT"] },
   { title: "Smart Technology & Safety", categories: ["Smart Technology", "Alarm & Safety"] },
 ]
-const socials = [
-  { Icon: Youtube, href: "https://www.youtube.com/@visionsecure_tech", label: "YouTube", color: "bg-red-50 text-red-700 border-red-200 hover:bg-red-100 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800" },
-  { Icon: Instagram, href: "https://www.instagram.com/visionsecure_tech/", label: "Instagram", color: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200 hover:bg-fuchsia-100 dark:bg-fuchsia-950/40 dark:text-fuchsia-300 dark:border-fuchsia-800" },
-  { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61584897029759", label: "Facebook", color: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800" },
-  { Icon: FaWhatsapp, href: "https://wa.me/919872133840", label: "WhatsApp", color: "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800" },
-]
 const linkClass = "inline-flex min-h-10 items-center rounded py-2 text-sm leading-6 transition hover:text-brand-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
 
 export function Footer() {
   return <footer className="border-t border-border bg-secondary text-muted-foreground">
     <div className="page-container py-10 lg:py-12">
       <div className="grid gap-6 border-b border-border pb-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-12">
-        <div className="space-y-5">
+        <div className="min-w-0">
         <Link href="/" aria-label="VisionSecure home" className="inline-block w-fit shrink-0 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"><Image src="/images/Visionsecuretech_logo.png" alt="VisionSecure Smart Technologies" width={300} height={84} className="h-14 max-w-full w-auto object-contain dark:rounded-md dark:bg-white dark:p-2" /></Link>
-        <div className="flex shrink-0 gap-3">{socials.map(({ Icon, href, label, color }) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className={`inline-flex h-11 w-11 items-center justify-center rounded-xl border transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${color}`}><Icon size={18} aria-hidden="true" /></a>)}</div>
+
         </div>
         <div className="space-y-3 text-sm leading-7">
           <p>VisionSecure Smart Technologies offers CCTV surveillance, security systems, IT infrastructure, networking and smart technology solutions in Lucknow, Uttar Pradesh.</p>

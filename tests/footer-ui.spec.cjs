@@ -21,15 +21,22 @@ for(const [width,theme] of [[320,'light'],[390,'dark'],[1440,'light']])test(`com
  await expect(footer.getByRole('link',{name:'Contact Us',exact:true})).toHaveAttribute('href','/contact')
  await expect(footer.getByRole('link',{name:'WhatsApp Us',exact:true})).toHaveAttribute('href','https://wa.me/919872133840')
  await expect(footer.getByRole('link',{name:'Call Us',exact:true})).toHaveAttribute('href','tel:+919872133840')
- await expect(footer.getByRole('link',{name:'WhatsApp',exact:true})).toHaveAttribute('href','https://wa.me/919872133840')
- await expect(footer.getByRole('link',{name:'WhatsApp',exact:true}).locator('svg')).toHaveCount(1)
  await expect(footer.getByRole('link',{name:'WhatsApp Us',exact:true}).locator('svg')).toHaveCount(0)
- const socialColors=[]
- for(const name of ['YouTube','Instagram','Facebook','WhatsApp']){
-  const link=footer.getByRole('link',{name,exact:true});await expect(link).toBeVisible()
-  socialColors.push(await link.evaluate(el=>getComputedStyle(el).color))
+ for(const name of ['YouTube','Instagram','Facebook','WhatsApp'])await expect(footer.getByRole('link',{name,exact:true})).toHaveCount(0)
+ const socialNav=page.getByRole('navigation',{name:'Connect with VisionSecure on social media'})
+ await expect(socialNav.getByRole('link')).toHaveCount(4)
+ for(const name of ['Facebook','Instagram','YouTube','WhatsApp']){
+  const link=socialNav.getByRole('link',{name:'Visit VisionSecure on '+name,exact:true})
+  await expect(link.locator('svg')).toHaveCount(1)
+  expect((await link.textContent()).trim()).toBe('')
+  await expect(link).toHaveAttribute('target','_blank')
+  await expect(link).toHaveAttribute('rel','noopener noreferrer')
  }
- expect(new Set(socialColors).size).toBe(4)
+ await expect(socialNav.getByRole('link',{name:'Visit VisionSecure on WhatsApp',exact:true})).toHaveAttribute('href','https://wa.me/919872133840')
+ await socialNav.scrollIntoViewIfNeeded()
+ await expect.poll(()=>socialNav.evaluate(el=>{for(let node=el;node;node=node.parentElement){if(Number(getComputedStyle(node).opacity)<0.99)return false}return true})).toBe(true)
+
+ await page.screenshot({path:`docs/seo/screenshots/connect-icons-${width}-${theme}.png`,animations:'disabled'})
  const map=footer.getByRole('link',{name:'VisionSecure office on Google Maps in Lucknow, Uttar Pradesh',exact:true})
  await expect(map).toHaveAttribute('href','https://www.google.com/maps?cid=11122454082046890724')
  await expect(map).toHaveAttribute('target','_blank')

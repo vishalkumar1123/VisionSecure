@@ -615,59 +615,18 @@ export function ContactSection() {
                   SOCIAL BUTTONS
                   ================================================= */}
 
-              <div className="mt-5 flex flex-wrap justify-center gap-3">
-
+              <nav aria-label="Connect with VisionSecure on social media" className="mt-5 flex flex-wrap justify-center gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
-
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit VisionSecure  on ${social.label}`}
-                      title={social.label}
-                      className={cn(
-                        "group/social relative flex min-h-11 items-center justify-center gap-2 overflow-hidden rounded-xl border bg-card px-3.5 transition-all duration-300 hover:-translate-y-1.5 hover:text-foreground hover:shadow-xl focus:outline-none focus:ring-4 dark:bg-card/[0.03]",
-
-                        /* Facebook */
-
-                        social.color === "facebook" &&
-                          "border-[#1877F2]/20 text-[#1877F2] hover:border-[#1877F2] hover:bg-[#1877F2] hover:shadow-[#1877F2]/25 focus:ring-[#1877F2]/20 dark:border-[#1877F2]/25",
-
-                        /* Instagram */
-
-                        social.color === "instagram" &&
-                          "border-status-pink/20 text-[#E4405F] hover:border-[#E4405F] hover:bg-gradient-to-br hover:from-[#F58529] hover:via-[#E4405F] hover:to-[#833AB4] hover:shadow-pink-500/25 focus:ring-status-pink/20 dark:border-status-pink/20",
-
-                        /* YouTube */
-
-                        social.color === "youtube" &&
-                          "border-[#FF0000]/20 text-[#FF0000] hover:border-[#FF0000] hover:bg-[#FF0000] hover:shadow-red-500/25 focus:ring-destructive/20 dark:border-[#FF0000]/25",
-
-                        /* WhatsApp */
-
-                        social.color === "whatsapp" &&
-                          "border-[#25D366]/20 text-[#25D366] hover:border-[#25D366] hover:bg-[#25D366] hover:shadow-[#25D366]/30 focus:ring-[#25D366]/20 dark:border-[#25D366]/25"
-                      )}
-                    >
-                      <Icon
-                        className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover/social:scale-110"
-                        strokeWidth={2}
-                      />
-                      <span className="relative z-10 text-sm font-semibold">{social.label}</span>
-
-                      {/* Shine effect */}
-
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-background/20 to-transparent transition-transform duration-700 group-hover/social:translate-x-full"
-                      />
-                    </a>
-                  )
+                  return <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={`Visit VisionSecure on ${social.label}`} title={social.label} className={cn(
+                    "inline-flex h-11 w-11 items-center justify-center rounded transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
+                    social.color === "facebook" && "text-blue-700 hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-200",
+                    social.color === "instagram" && "text-pink-700 hover:text-pink-900 dark:text-pink-300 dark:hover:text-pink-200",
+                    social.color === "youtube" && "text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200",
+                    social.color === "whatsapp" && "text-emerald-700 hover:text-emerald-900 dark:text-emerald-300 dark:hover:text-emerald-200"
+                  )}><Icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" /></a>
                 })}
-              </div>
+              </nav>
 
               {/* Divider */}
 
