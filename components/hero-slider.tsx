@@ -9,20 +9,20 @@ import { cn } from "@/lib/utils"
 export function HeroSlider() {
   const [current, setCurrent] = useState(0)
   const [ready, setReady] = useState(false)
-  const [paused, setPaused] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
   const [interacting, setInteracting] = useState(false)
   const [firstImageReady, setFirstImageReady] = useState(false)
   const [loadOthers, setLoadOthers] = useState(false)
   const slide = homeSlides[current]
   useEffect(() => {
     setReady(true)
-    setPaused(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   }, [])
   useEffect(() => {
-    if (!ready || paused || interacting) return
+    if (!ready || reducedMotion || interacting) return
     const timer = setInterval(() => setCurrent(index => (index + 1) % homeSlides.length), 8000)
     return () => clearInterval(timer)
-  }, [ready, paused, interacting])
+  }, [ready, reducedMotion, interacting])
   // Keep the first image high priority and other images outside the critical queue.
   useEffect(() => {
     if (!firstImageReady) return
@@ -58,11 +58,6 @@ export function HeroSlider() {
           </div>
           <div className="pointer-events-auto mt-10 flex flex-wrap gap-3 pr-16 sm:pr-0 lg:mt-14" role="group" aria-label="Choose a service">
             {homeSlides.map((item, index) => <button key={item.slug} type="button" disabled={!ready} aria-pressed={current === index} aria-controls="home-service-panel" onClick={() => setCurrent(index)} className={cn("min-h-11 rounded-full border-2 px-5 py-2 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white", current === index ? "border-accent bg-accent text-accent-foreground" : "border-white/80 bg-black/20 text-white hover:bg-white/15")}>{item.label}</button>)}
-          </div>
-          <div className="pointer-events-auto mt-5 flex flex-wrap items-center gap-3 text-sm">
-            <button type="button" disabled={!ready} onClick={() => { setPaused(true); setCurrent(index => (index + homeSlides.length - 1) % homeSlides.length) }} aria-label="Previous service slide" className="min-h-11 rounded-full border border-white/60 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Previous</button>
-            <button type="button" disabled={!ready} onClick={() => setPaused(value => !value)} aria-label={paused ? "Play service slideshow" : "Pause service slideshow"} className="min-h-11 rounded-full border border-white/60 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">{paused ? "Play slideshow" : "Pause slideshow"}</button>
-            <button type="button" disabled={!ready} onClick={() => { setPaused(true); setCurrent(index => (index + 1) % homeSlides.length) }} aria-label="Next service slide" className="min-h-11 rounded-full border border-white/60 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Next</button>
           </div>
           <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer" className="pointer-events-auto mt-6 inline-block rounded text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Discuss your requirement on WhatsApp</a>
         </div>

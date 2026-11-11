@@ -28,17 +28,18 @@ for(const width of [320,390,1440])test(`contextual homepage links and layout at 
   await expect(page).toHaveURL(base+'/services/'+slug)
  }
 })
-test('autoplay advances, hover and pause stop it, and reduced motion starts paused',async({page})=>{
+test('autoplay runs without extra controls and respects interaction and reduced motion',async({page})=>{
  await page.clock.install();await page.goto(base)
  await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled()
+ for(const name of ['Previous service slide','Next service slide','Play service slideshow','Pause service slideshow'])await expect(page.getByRole('button',{name,exact:true})).toHaveCount(0)
  await page.mouse.move(0,0);await page.getByRole('link',{name:'VisionSecure home',exact:true}).first().focus()
  await page.clock.fastForward(8100)
  await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
  await page.locator('#home-service-panel').hover();await page.clock.fastForward(16000)
  await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
- await page.getByRole('button',{name:'Pause service slideshow'}).click();await page.mouse.move(0,0);await page.getByRole('link',{name:'VisionSecure home',exact:true}).first().focus();await page.clock.fastForward(16000)
- await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
+ await page.mouse.move(0,0);await page.clock.fastForward(8100)
+ await expect(page.getByRole('button',{name:'Home Automation',exact:true})).toHaveAttribute('aria-pressed','true')
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base)
- await expect(page.getByRole('button',{name:'Play service slideshow'})).toBeEnabled();await page.mouse.move(0,0);await page.clock.fastForward(16000)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled();await page.mouse.move(0,0);await page.clock.fastForward(16000)
  await expect(page.getByRole('button',{name:'CCTV',exact:true})).toHaveAttribute('aria-pressed','true')
 })
