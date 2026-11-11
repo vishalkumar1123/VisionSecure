@@ -43,3 +43,11 @@ Final control-removal verification: focused browser regression, ESLint, TypeScri
 2026-11-11. Removed the standalone Discuss your requirement on WhatsApp link from the hero. Navbar Quote CTA now opens https://wa.me/919872133840 in both desktop and mobile menus, consistently labelled Request a Quote, using safe new-tab attributes. Contact navigation, service-specific enquiry links, forms and the existing floating WhatsApp entry remain unchanged. No message sent and no customer information inserted into the URL.
 
 Read-only localhost browser checks passed at 390px and 1440px: mobile-menu/desktop CTA visible with correct href/target/rel, standalone hero WhatsApp link absent, service enquiry link retained. Focused lint and diff checks passed. No full build rerun for this small link/presentation change. Active root work and staged merge preserved; no production deploy.
+
+## Continuous auto-next correction
+
+2026-11-11. Fixed the cause of perceived stopped autoplay: the previous broad mouse-hover/pointer-focus pause. Ordinary mouse hover and selector clicks no longer stop rotation. Slides advance every six seconds and the timer resets cleanly after a manual selection. Keyboard focus-visible still pauses to avoid moving a keyboard user's target; the system reduced-motion preference is retained. No Previous/Play/Pause/Next controls reintroduced. Service image/CTA destinations, first-image loading priority and deferred images remain unchanged.
+
+Clock-driven actual-workspace browser regression passed a full four-slide cycle with the mouse over the banner and automatic advancement after a manual service selection, correct destination after advancement, extra-control absence and reduced-motion fallback. No source/route/form/analytics integration changes beyond the carousel. Root staged merge preserved. Lint/TypeScript and diff validation recorded when complete; no full production build for this small event/timer fix and no production deploy.
+
+Final continuous-autoplay verification: focused browser regression, ESLint, TypeScript noEmit and diff checks passed.

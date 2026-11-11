@@ -10,7 +10,7 @@ export function HeroSlider() {
   const [current, setCurrent] = useState(0)
   const [ready, setReady] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
-  const [interacting, setInteracting] = useState(false)
+  const [keyboardFocused, setKeyboardFocused] = useState(false)
   const [firstImageReady, setFirstImageReady] = useState(false)
   const [loadOthers, setLoadOthers] = useState(false)
   const slide = homeSlides[current]
@@ -19,10 +19,10 @@ export function HeroSlider() {
     setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   }, [])
   useEffect(() => {
-    if (!ready || reducedMotion || interacting) return
-    const timer = setInterval(() => setCurrent(index => (index + 1) % homeSlides.length), 8000)
+    if (!ready || reducedMotion || keyboardFocused) return
+    const timer = setInterval(() => setCurrent(index => (index + 1) % homeSlides.length), 6000)
     return () => clearInterval(timer)
-  }, [ready, reducedMotion, interacting])
+  }, [ready, reducedMotion, keyboardFocused, current])
   // Keep the first image high priority and other images outside the critical queue.
   useEffect(() => {
     if (!firstImageReady) return
@@ -35,7 +35,7 @@ export function HeroSlider() {
   }, [firstImageReady])
 
   return (
-    <section id="home" onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)} onFocusCapture={() => setInteracting(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setInteracting(false) }} tabIndex={-1} aria-labelledby="home-heading" className="relative isolate overflow-hidden bg-[#061b32] pt-[72px] text-white">
+    <section id="home" onPointerDownCapture={() => setKeyboardFocused(false)} onFocusCapture={event => setKeyboardFocused((event.target as HTMLElement).matches(":focus-visible"))} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setKeyboardFocused(false) }} tabIndex={-1} aria-labelledby="home-heading" className="relative isolate overflow-hidden bg-[#061b32] pt-[72px] text-white">
       <h1 id="home-heading" className="relative z-10 border-y border-white/20 bg-[#061b32] px-4 py-4 text-center font-display text-lg font-bold sm:text-xl lg:text-2xl">
         Security, Networking &amp; Smart Solutions in Lucknow
       </h1>
