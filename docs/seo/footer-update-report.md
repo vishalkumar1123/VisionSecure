@@ -31,3 +31,11 @@ The extra header style top:40px is absent from the application Navbar and origin
 A browser setting change (hide only SBMM Top Bar) plus reload comparison is the concrete remaining remediation, pending owner confirmation. No suppressHydrationWarning, client-only Navbar or hardcoded 40px workaround added. No browser extension/profile settings changed in this task. See navbar-hydration-investigation.md for evidence and the installed Alt+Shift+K toolbar toggle.
 
 Existing uncommitted homepage work, staged patch files and unfinished root merge are preserved. Review branch: feat/docx-homepage-schema-review. No merge or production deployment performed.
+
+## Approved browser remediation verified
+
+2026-11-11. Owner explicitly approved hiding only SBMM Top Bar and reload verification. Native Chrome access succeeded this turn and identified the affected window at http://localhost:3000/. The SBMM toolbar was present in that browser profile. The Hide bar action reported a geometry error, so its success was not assumed; subsequent screenshots showed the toolbar collapsed to its small Show bar handle. Did not toggle blindly again. The collapsed state persisted across hard reloads, and the website header visually returned to the top of the page without the expanded 40px toolbar.
+
+Opened the affected tab's Chrome DevTools Console, hard-reloaded, and inspected the resulting console: React DevTools/HMR messages were present and the reported hydration-mismatch warning did not recur during the observed reloads. Returned the browser to the homepage with DevTools closed. No extension uninstall, unrelated settings changes, website source changes or lead actions performed.
+
+A direct read-only header-style expression could not be pasted because Chrome's self-XSS protection blocked console paste. Did not bypass that protection or claim a direct DOM attribute measurement. Verification is the observed toolbar/header placement and the affected-profile console after reload. This supersedes the earlier pending-browser-verification status. Keep SBMM's bar collapsed while developing React/Next pages on localhost; expanding it can reintroduce its header mutation.
