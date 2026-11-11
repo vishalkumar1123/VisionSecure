@@ -1,16 +1,47 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
+﻿import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { services } from "@/lib/services"
-import { cn } from "@/lib/utils"
 import { SectionHeading } from "@/components/section-heading"
 
+const groups = ["Security & Surveillance", "Networking & IT", "Smart Technology", "Alarm & Safety"]
+const copy: Record<string, [string, string]> = {
+  "cctv-surveillance": ["Plan camera coverage, recording storage or an upgrade to the equipment already at your property.", "Explore CCTV Installation"],
+  "biometric-attendance": ["Choose attendance tools around employee numbers, shift patterns and the reports your team needs.", "Explore Attendance Systems"],
+  "access-control-system": ["Plan who can enter each door or area, the access methods they need and how permissions will be managed.", "Explore Access Control"],
+  "video-door-phone": ["Discuss entrance monitoring, two-way visitor communication and where you need an indoor display.", "Explore Video Door Phones"],
+  "networking-solutions": ["Connect computers, printers and other fixed devices with planned LAN points and organised cable routes.", "Explore Office Networking"],
+  "wifi-mesh-networking": ["Identify weak-signal rooms and floors so access-point or mesh placement can be assessed for your layout.", "Explore Wi-Fi and Mesh"],
+  "it-support-amc": ["Describe the issue with your existing security or IT equipment, or discuss a defined maintenance scope.", "Explore Support and AMC"],
+  "server-networking-infrastructure": ["Plan rack space, patch panels, switching and power requirements around your existing infrastructure.", "Explore Network Infrastructure"],
+  "smart-door-locks": ["Review door fit, access methods, battery requirements and a suitable backup way to enter.", "Explore Smart Door Locks"],
+  "home-automation": ["Choose the lighting or compatible devices you want to control and assess the wiring and integration needed.", "Explore Home Automation"],
+  "speaker-solutions": ["Share which areas need music or announcements so speaker placement, zones and coverage can be planned.", "Explore Speaker Solutions"],
+  "glass-break-alarm-system": ["Assess glass doors, windows or display areas and discuss detector placement with a compatible alarm system.", "Explore Glass Break Alarms"],
+  "emergency-alarm-system": ["Plan alert points and the notification paths needed at your site, subject to the selected system’s capabilities.", "Explore Emergency Alarms"],
+}
+
 export function ServicesSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-  useEffect(() => { const observer = new IntersectionObserver(([entry]) => entry.isIntersecting && setIsVisible(true), { threshold: 0.1 }); const current = sectionRef.current; if (current) observer.observe(current); return () => observer.disconnect() }, [])
-  return <section id="services" ref={sectionRef} className="relative overflow-hidden bg-background py-20 lg:py-28"><div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-secondary/30 via-transparent to-background" /><div className="page-container relative z-10"><SectionHeading align="center" className={cn("mb-12 transition duration-500", isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0")} eyebrow="Our services" title="Security, networking and smart solutions" description="Explore requirement-based security and technology solutions for homes, offices and commercial spaces." /><p className="mx-auto mb-8 max-w-3xl text-center leading-7 text-muted-foreground">Planning security system installation for a home or shop in Lucknow? Start with our <Link href="/services/cctv-surveillance" className="font-semibold text-brand-green underline underline-offset-4">CCTV installation service</Link>. For office networking, explore <Link href="/services/networking-solutions" className="font-semibold text-brand-green underline underline-offset-4">LAN and structured cabling</Link>. For smart home installation, review <Link href="/services/home-automation" className="font-semibold text-brand-green underline underline-offset-4">home automation options</Link>. Share your property type and locality to discuss a suitable scope.</p><div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{services.map((service, index) => { const Icon = service.icon; return <Link href={`/services/${service.slug}`} key={service.slug} className={cn("group relative overflow-hidden rounded-xl border border-border/70 bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/70 hover:shadow-xl", isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0")} style={{ transitionDelay: `${Math.min(index * 45, 360)}ms` }}><div className="relative h-44 overflow-hidden"><Image src={service.image} alt={service.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition duration-300 group-hover:scale-[1.04]" /><div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" /><div className="absolute bottom-3 left-3 rounded-lg bg-background/85 p-2 text-brand-green backdrop-blur"><Icon className="h-4 w-4" /></div></div><div className="p-5"><h3 className="font-display text-lg font-semibold text-foreground">{service.title}</h3><p className="mt-2 min-h-12 text-sm leading-6 text-muted-foreground">{service.summary}</p><span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-ink">Explore service <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span></div></Link> })}</div><div className="mt-10 text-center"><Link href="/services" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 font-semibold text-foreground transition hover:-translate-y-0.5 hover:border-primary hover:text-brand-ink">View all services <ArrowRight className="h-4 w-4" /></Link></div></div></section>
+  return <section id="services" className="bg-background py-16 lg:py-24">
+    <div className="page-container">
+      <SectionHeading align="center" eyebrow="Explore our services" title="CCTV, Networking and Smart Technology Services in Lucknow" description="Plan security, connectivity and everyday technology around your property and the people using it." />
+      <p className="mx-auto mt-6 max-w-3xl text-center leading-7 text-muted-foreground">For a home, shop, office or institution, start with the problem you want to solve. Choose a service below to review the scope and the details that help us assess your requirement.</p>
+      <div className="mt-12 space-y-12">
+        {groups.map(category => <section key={category} aria-label={category}>
+          <div className="mb-5 flex items-center gap-4"><h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">{category}</h3><span className="h-px flex-1 bg-border" /></div>
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {services.filter(service => service.category === category).map(service => {
+              const Icon = service.icon
+              const [description, label] = copy[service.slug]
+              return <Link key={service.slug} href={`/services/${service.slug}`} className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:border-primary/70 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                <div className="relative h-40 overflow-hidden"><Image src={service.image} alt={`${service.title} illustration`} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw" className="object-cover transition group-hover:scale-[1.03]" /></div>
+                <div className="flex flex-1 flex-col p-5"><Icon className="mb-3 h-6 w-6 text-brand-green" aria-hidden="true" /><h4 className="font-display text-lg font-bold text-foreground">{service.title}</h4><p className="mb-5 mt-3 text-sm leading-6 text-muted-foreground">{description}</p><span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand-ink">{label}<ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" /></span></div>
+              </Link>
+            })}
+          </div>
+        </section>)}
+      </div>
+      <div className="mt-10 text-center"><Link href="/services" className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold text-foreground hover:border-primary">View All Services<ArrowRight className="h-4 w-4" /></Link></div>
+    </div>
+  </section>
 }

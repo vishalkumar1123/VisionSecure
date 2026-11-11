@@ -1,12 +1,13 @@
-﻿const {test,expect}=require('@playwright/test')
+const {test,expect}=require('@playwright/test')
 test.use({launchOptions:{executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--no-sandbox']}})
-const base='http://localhost:3032'
+const base=process.env.SEO_TEST_BASE_URL||'http://localhost:3032'
 const panels=[['CCTV','cctv-surveillance','CCTV Surveillance'],['Networking','networking-solutions','Networking Solutions'],['Home Automation','home-automation','Home Automation'],['Attendance','biometric-attendance','Biometric Attendance']]
 for(const width of [320,390,1440])test(`owner document homepage at ${width}px`,async({page})=>{
  await page.setViewportSize({width,height:900})
  await page.addInitScript(()=>sessionStorage.setItem('leadPopupShown','true'))
  await page.route('**/*',r=>new URL(r.request().url()).origin===base&&r.request().method()==='GET'?r.continue():r.abort())
  await page.goto(base)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled()
  await expect(page.locator('h1')).toHaveCount(1)
  await expect(page.locator('h1')).toHaveText('Security, Networking & Smart Solutions in Lucknow')
  const entities=await page.locator('head script[type="application/ld+json"]').evaluateAll(nodes=>nodes.flatMap(n=>{const d=JSON.parse(n.textContent);return d['@graph']||[d]}))
@@ -27,8 +28,27 @@ for(const width of [320,390,1440])test(`owner document homepage at ${width}px`,a
   await expect(page.locator('#contact-service')).toContainText(service)
   expect(await page.locator('link[rel="canonical"]').getAttribute('href')).toBe('https://visionsecuretech.in/contact')
   await page.goto(base)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled()
  }
  await page.getByRole('button',{name:'Networking',exact:true}).focus()
  await page.keyboard.press('Enter')
  await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
+})
+
+test('homepage lists thirteen distinct services in four groups',async({page})=>{
+ await page.addInitScript(()=>sessionStorage.setItem('leadPopupShown','true'))
+ await page.route('**/*',r=>new URL(r.request().url()).origin===base&&r.request().method()==='GET'?r.continue():r.abort())
+ await page.goto(base)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled()
+ const services=page.locator('#services')
+ await expect(services.locator('h2')).toHaveText('CCTV, Networking and Smart Technology Services in Lucknow')
+ await expect(services.locator('h3')).toHaveCount(4)
+ await expect(services.locator('h4')).toHaveCount(13)
+ const links=await services.locator('a[href^="/services/"]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')))
+ expect(new Set(links).size).toBe(13)
+ expect(links).toHaveLength(13)
+ expect(new Set(await services.locator('h4').allTextContents()).size).toBe(13)
+ await expect(page.locator('#contact-heading').locator('..')).toContainText('full site address')
+ await services.scrollIntoViewIfNeeded()
+ await page.screenshot({path:'docs/seo/screenshots/docx-services-desktop.png',fullPage:false,animations:'disabled'})
 })

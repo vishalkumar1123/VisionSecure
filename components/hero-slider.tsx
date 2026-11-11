@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
@@ -8,9 +8,11 @@ import { cn } from "@/lib/utils"
 
 export function HeroSlider() {
   const [current, setCurrent] = useState(0)
+  const [ready, setReady] = useState(false)
   const [firstImageReady, setFirstImageReady] = useState(false)
   const [loadOthers, setLoadOthers] = useState(false)
   const slide = homeSlides[current]
+  useEffect(() => { setReady(true) }, [])
   // Keep the first image high priority and other images outside the critical queue.
   useEffect(() => {
     if (!firstImageReady) return
@@ -45,7 +47,7 @@ export function HeroSlider() {
             </div>
           </div>
           <div className="mt-10 flex flex-wrap gap-3 pr-16 sm:pr-0 lg:mt-14" role="group" aria-label="Choose a service">
-            {homeSlides.map((item, index) => <button key={item.slug} type="button" aria-pressed={current === index} aria-controls="home-service-panel" onClick={() => setCurrent(index)} className={cn("min-h-11 rounded-full border-2 px-5 py-2 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white", current === index ? "border-accent bg-accent text-accent-foreground" : "border-white/80 bg-black/20 text-white hover:bg-white/15")}>{item.label}</button>)}
+            {homeSlides.map((item, index) => <button key={item.slug} type="button" disabled={!ready} aria-pressed={current === index} aria-controls="home-service-panel" onClick={() => setCurrent(index)} className={cn("min-h-11 rounded-full border-2 px-5 py-2 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white", current === index ? "border-accent bg-accent text-accent-foreground" : "border-white/80 bg-black/20 text-white hover:bg-white/15")}>{item.label}</button>)}
           </div>
           <a href="https://wa.me/919872133840" target="_blank" rel="noopener noreferrer" className="mt-6 inline-block rounded text-sm font-semibold text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">Discuss your requirement on WhatsApp</a>
         </div>

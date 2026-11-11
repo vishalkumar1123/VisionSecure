@@ -130,23 +130,21 @@ export function WhyChooseUs() {
         >
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/[0.06] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-ink dark:border-primary/20 dark:bg-primary/[0.08] dark:text-brand-ink">
             <ShieldCheck className="h-3.5 w-3.5" />
-            Why Choose Us
+            Why Choose VisionSecure
           </div>
 
           <h2
             id="why-choose-us-heading"
             className="text-balance text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl dark:text-foreground"
           >
-            Security Solutions Built Around{" "}
+            Security and Networking Planned Around{" "}
             <span className="bg-gradient-to-r from-brand-ink to-highlight-ink bg-clip-text text-transparent">
               Your Needs
             </span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg dark:text-muted-foreground">
-            We combine trusted technology, professional installation,
-            customized solutions, and responsive support to help protect
-            homes, offices, shops, and businesses.
+            From CCTV and office networking to biometric attendance and smart home technology, we plan the equipment, cabling and configuration around your property and daily use.
           </p>
         </div>
 

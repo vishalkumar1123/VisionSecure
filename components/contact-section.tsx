@@ -426,9 +426,7 @@ export function ContactSection() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg dark:text-muted-foreground">
-            Tell us what you need. Our team will understand
-            your requirement and help you choose the right
-            security or IT solution.
+            Share your full site address in Lucknow, the service you need and a little about your property. If you already have a setup, tell us what equipment you use and what needs attention.
           </p>
         </div>
 
