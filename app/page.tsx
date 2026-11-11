@@ -22,12 +22,12 @@ export default function Home() {
       <HeroSlider />
       <TrustSection />      
       <ServicesSection />
-      <section className="page-container pb-16" aria-labelledby="planning-heading">
+      <section className="page-container pb-16 text-center [&>p]:mx-auto [&>p]:max-w-4xl" aria-labelledby="planning-heading">
         <h2 id="planning-heading" className="text-3xl font-bold">Plan security and networking around your Lucknow property</h2>
         <p className="mt-4 leading-7 text-muted-foreground">For a new installation or an upgrade, start with the rooms, entry points and people using the system. Share your full site address, existing equipment and the problem you want to solve. Equipment selection and quotation depend on the layout, capacity, cabling and compatibility.</p>
         <p className="mt-4 leading-7 text-muted-foreground">Use our <Link href="/services/cctv-surveillance" className="underline">CCTV planning guidance</Link> for camera coverage and recording, <Link href="/services/networking-solutions" className="underline">LAN and structured cabling guidance</Link> for wired points, or <Link href="/services/biometric-attendance" className="underline">attendance system guidance</Link> for staff and reporting needs. For existing systems, review <Link href="/services/it-support-amc" className="underline">maintenance scope and AMC questions</Link> before requesting cover.</p>
         <h3 className="mt-6 text-xl font-semibold">Which service should I choose for my property?</h3>
-        <p className="mt-3 leading-7 text-muted-foreground">CCTV addresses camera coverage and recording. Access control manages entry permissions, while biometric attendance records staff attendance. Wired LAN points and WiFi coverage solve different connectivity needs. Select the main problem in your enquiry and mention any related systems so compatibility and the installation scope can be assessed together.</p>
+        <p className="mt-3 leading-7 text-muted-foreground">CCTV addresses camera coverage and recording. <Link href="/services/access-control-system" className="underline underline-offset-4">Access control</Link> manages entry permissions, while biometric attendance records staff attendance. Wired LAN points and <Link href="/services/wifi-mesh-networking" className="underline underline-offset-4">Wi-Fi and mesh coverage</Link> solve different connectivity needs. Select the main problem in <Link href="/contact" className="underline underline-offset-4">your enquiry</Link> and mention any related systems so compatibility and the installation scope can be assessed together.</p>
       </section>
       <WhyChooseUs />
       <TestimonialsSection />

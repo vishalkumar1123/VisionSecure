@@ -1,0 +1,27 @@
+{
+  "source": "Keyword Stats 2026-11-06 at 16_33_27.csv",
+  "sha256": "fef167a41e9a3556da81cce32cbf839398db711cc8ebd231b80a9ac1cb4ca516",
+  "period": "October 1, 2025 - September 30, 2026",
+  "rows": 1174,
+  "unique_normalized_phrases": 1174,
+  "exact_normalized_duplicates": {},
+  "limitations": [
+    "Location/network/language filters not included in supplied export; monthly volumes are not established Lucknow demand.",
+    "Competition and bid columns are advertising metrics, not organic SEO difficulty.",
+    "Similar wording shares the existing canonical service page; do not repeat all variants on Home."
+  ],
+  "selected_intents": {
+    "cctv installation and surveillance": "/services/cctv-surveillance",
+    "biometric attendance": "/services/biometric-attendance",
+    "door access control": "/services/access-control-system",
+    "LAN and structured cabling": "/services/networking-solutions",
+    "Wi-Fi and mesh coverage": "/services/wifi-mesh-networking",
+    "maintenance and technical support": "/services/it-support-amc",
+    "smart home automation": "/services/home-automation"
+  },
+  "excluded_intents": [
+    "Unconfirmed superlatives, brands, unsupported cities or services",
+    "awkward repeated variants and mechanical near-me phrases",
+    "prices, product-only search intentions and generic security-guard queries without service evidence"
+  ]
+}

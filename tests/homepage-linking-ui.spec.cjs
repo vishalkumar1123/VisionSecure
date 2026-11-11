@@ -1,0 +1,44 @@
+const {test,expect}=require('@playwright/test')
+test.use({launchOptions:{executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--no-sandbox']}})
+const base=process.env.SEO_TEST_BASE_URL||'http://localhost:3000'
+test.beforeEach(async({page})=>{
+ await page.addInitScript(base=>{if(location.origin===base)sessionStorage.setItem('leadPopupShown','true')},base)
+ await page.route('**/*',r=>new URL(r.request().url()).origin===base&&r.request().method()==='GET'?r.continue():r.abort())
+})
+const slides=[['CCTV','cctv-surveillance'],['Networking','networking-solutions'],['Home Automation','home-automation'],['Attendance','biometric-attendance']]
+for(const width of [320,390,1440])test(`contextual homepage links and layout at ${width}px`,async({page})=>{
+ await page.setViewportSize({width,height:900});await page.goto(base)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled()
+ const planning=page.locator('section[aria-labelledby="planning-heading"]')
+ await expect(planning).toHaveCSS('text-align','center')
+ const why=page.locator('section[aria-labelledby="why-choose-us-heading"]')
+ const destinations={'Premium Quality Products':'/services','Professional Technical Support':'/services/it-support-amc','Experienced Technical Team':'/about','Responsive Service':'/contact','Warranty & AMC Support':'/services/it-support-amc','Customized Solutions':'/contact'}
+ for(const [title,href] of Object.entries(destinations))await expect(why.getByRole('heading',{name:title,exact:true}).getByRole('link')).toHaveAttribute('href',href)
+ await expect(why.getByRole('link',{name:'Trusted Technology',exact:true})).toHaveAttribute('href','/services')
+ await expect(why.getByRole('link',{name:'Professional Installation',exact:true})).toHaveAttribute('href','/services')
+ await expect(why.getByRole('link',{name:'Responsive Support',exact:true})).toHaveAttribute('href','/services/it-support-amc')
+ await expect(page.locator('footer p')).toHaveCount(4)
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width)
+ await planning.scrollIntoViewIfNeeded();await page.screenshot({path:`docs/seo/screenshots/home-planning-${width}.png`,animations:'disabled'})
+ for(const [label,slug] of slides){
+  await page.goto(base);await page.getByRole('button',{name:label,exact:true}).click()
+  const imageLink=page.getByRole('link',{name:label+' service details from banner image',exact:true})
+  await expect(imageLink).toHaveAttribute('href','/services/'+slug)
+  await Promise.all([page.waitForURL(base+'/services/'+slug,{timeout:30000}),imageLink.click({position:{x:width-8,y:150}})])
+  await expect(page).toHaveURL(base+'/services/'+slug)
+ }
+})
+test('autoplay advances, hover and pause stop it, and reduced motion starts paused',async({page})=>{
+ await page.clock.install();await page.goto(base)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toBeEnabled()
+ await page.mouse.move(0,0);await page.getByRole('link',{name:'VisionSecure home',exact:true}).first().focus()
+ await page.clock.fastForward(8100)
+ await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
+ await page.locator('#home-service-panel').hover();await page.clock.fastForward(16000)
+ await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
+ await page.getByRole('button',{name:'Pause service slideshow'}).click();await page.mouse.move(0,0);await page.getByRole('link',{name:'VisionSecure home',exact:true}).first().focus();await page.clock.fastForward(16000)
+ await expect(page.getByRole('button',{name:'Networking',exact:true})).toHaveAttribute('aria-pressed','true')
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base)
+ await expect(page.getByRole('button',{name:'Play service slideshow'})).toBeEnabled();await page.mouse.move(0,0);await page.clock.fastForward(16000)
+ await expect(page.getByRole('button',{name:'CCTV',exact:true})).toHaveAttribute('aria-pressed','true')
+})

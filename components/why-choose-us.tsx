@@ -10,6 +10,7 @@ import {
   Target,
   Users,
 } from "lucide-react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 const features = [
@@ -57,6 +58,21 @@ const trustPoints = [
   "Customized Solutions",
   "Responsive Support",
 ]
+
+const featureLinks: Record<string, string> = {
+  "Premium Quality Products": "/services",
+  "Professional Technical Support": "/services/it-support-amc",
+  "Experienced Technical Team": "/about",
+  "Responsive Service": "/contact",
+  "Warranty & AMC Support": "/services/it-support-amc",
+  "Customized Solutions": "/contact",
+}
+const trustLinks: Record<string, string> = {
+  "Trusted Technology": "/services",
+  "Professional Installation": "/services",
+  "Customized Solutions": "/contact",
+  "Responsive Support": "/services/it-support-amc",
+}
 
 export function WhyChooseUs() {
   const [isVisible, setIsVisible] = useState(false)
@@ -162,17 +178,18 @@ export function WhyChooseUs() {
           style={{ transitionDelay: "150ms" }}
         >
           {trustPoints.map((point, index) => (
-            <div
+            <Link
+              href={trustLinks[point]}
               key={point}
               className={cn(
-                "flex items-center justify-center gap-2 px-4 py-4 text-center text-xs font-semibold text-muted-foreground sm:text-sm dark:text-muted-foreground",
+                "rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary hover:text-brand-ink flex items-center justify-center gap-2 px-4 py-4 text-center text-xs font-semibold text-muted-foreground sm:text-sm dark:text-muted-foreground",
                 index !== 0 && "border-border sm:border-l dark:border-border/[0.07]",
                 index >= 2 && "border-t sm:border-t-0"
               )}
             >
               <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-ink dark:text-brand-ink" />
               <span>{point}</span>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -211,7 +228,7 @@ export function WhyChooseUs() {
                 {/* Content */}
                 <div className="relative">
                   <h3 className="mb-3 text-lg font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-brand-ink dark:text-foreground dark:group-hover:text-brand-ink">
-                    {feature.title}
+                    <Link href={featureLinks[feature.title]} className="rounded underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">{feature.title}</Link>
                   </h3>
 
                   <p className="text-sm leading-6 text-muted-foreground dark:text-muted-foreground">

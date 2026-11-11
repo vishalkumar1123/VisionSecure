@@ -21,6 +21,23 @@ for(const [width,theme] of [[320,'light'],[390,'dark'],[1440,'light']])test(`com
  await expect(footer.getByRole('link',{name:'Contact Us',exact:true})).toHaveAttribute('href','/contact')
  await expect(footer.getByRole('link',{name:'WhatsApp Us',exact:true})).toHaveAttribute('href','https://wa.me/919872133840')
  await expect(footer.getByRole('link',{name:'Call Us',exact:true})).toHaveAttribute('href','tel:+919872133840')
+ await expect(footer.getByRole('link',{name:'WhatsApp',exact:true})).toHaveAttribute('href','https://wa.me/919872133840')
+ await expect(footer.getByRole('link',{name:'WhatsApp',exact:true}).locator('svg')).toHaveCount(1)
+ await expect(footer.getByRole('link',{name:'WhatsApp Us',exact:true}).locator('svg')).toHaveCount(0)
+ const socialColors=[]
+ for(const name of ['YouTube','Instagram','Facebook','WhatsApp']){
+  const link=footer.getByRole('link',{name,exact:true});await expect(link).toBeVisible()
+  socialColors.push(await link.evaluate(el=>getComputedStyle(el).color))
+ }
+ expect(new Set(socialColors).size).toBe(4)
+ const map=footer.getByRole('link',{name:'VisionSecure office on Google Maps in Lucknow, Uttar Pradesh',exact:true})
+ await expect(map).toHaveAttribute('href','https://www.google.com/maps?cid=11122454082046890724')
+ await expect(map).toHaveAttribute('target','_blank')
+ await expect(map).toHaveAttribute('rel','noopener noreferrer')
+ const description=await footer.locator('p').allTextContents()
+ const descriptionText=description.join(' ')
+ for(const term of ['CCTV camera installation','biometric attendance','access control','video door phones','LAN networking','Wi-Fi and mesh','IT support','AMC','server infrastructure','smart door locks','home automation','speaker systems','glass-break sensors','emergency alarm systems'])expect(descriptionText).toContain(term)
+
  await footer.scrollIntoViewIfNeeded()
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width)
  await footer.getByRole('link',{name:'Request a Quote',exact:true}).focus()
