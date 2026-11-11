@@ -37,3 +37,9 @@ Final isolated production audit: all 28 canonical public pages pass metadata/H1/
 2026-11-11. Per owner request, removed the visible Previous, Play/Pause and Next controls from the homepage hero. The four existing service selectors and service/image/enquiry destinations remain. Autoplay still advances every eight seconds and retains the existing hover/focus and reduced-motion behaviour; removed obsolete manual-pause state. Root and review copies match. Focused clock-driven browser regression passed: extra controls absent, automatic advance works, hover pauses and leaving resumes, reduced-motion starts static. No dependency, URL or lead behaviour changes. No new full production build for this small UI removal; lint/TypeScript checks run separately. Root staged merge work preserved; no production deploy.
 
 Final control-removal verification: focused browser regression, ESLint, TypeScript noEmit and diff checks passed.
+
+## Navbar quote to WhatsApp
+
+2026-11-11. Removed the standalone Discuss your requirement on WhatsApp link from the hero. Navbar Quote CTA now opens https://wa.me/919872133840 in both desktop and mobile menus, consistently labelled Request a Quote, using safe new-tab attributes. Contact navigation, service-specific enquiry links, forms and the existing floating WhatsApp entry remain unchanged. No message sent and no customer information inserted into the URL.
+
+Read-only localhost browser checks passed at 390px and 1440px: mobile-menu/desktop CTA visible with correct href/target/rel, standalone hero WhatsApp link absent, service enquiry link retained. Focused lint and diff checks passed. No full build rerun for this small link/presentation change. Active root work and staged merge preserved; no production deploy.
