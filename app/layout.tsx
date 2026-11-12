@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Inter, Manrope } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Providers from "@/components/providers"
 import { Toaster } from "@/components/ui/sonner"
 import { PublicClickTracking } from "@/components/public-click-tracking"
@@ -98,7 +99,7 @@ export default function RootLayout({
          <PublicClickTracking />
          <GoogleAnalytics />
         {process.env.NODE_ENV === "production" && <Analytics />}
-        
+        <SpeedInsights />
       </body>
     </html>
   )
