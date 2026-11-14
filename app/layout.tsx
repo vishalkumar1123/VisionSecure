@@ -84,8 +84,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head><Schema /></head>
+      {/* Browser writing assistants can mutate body before React hydrates. */}
       <body
         className={`${inter.variable} ${manrope.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
       <ClarityProvider />
          <Providers>
